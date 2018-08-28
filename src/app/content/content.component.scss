@@ -1,0 +1,100 @@
+/*
+CSS Tips
+  Centering: http://vanseodesign.com/css/vertical-centering/
+  https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/
+  https://css-tricks.com/absolute-positioning-inside-relative-positioning/
+  http://douglasheriot.com/tutorials/css_vertical_centre/demo4.html
+  https://www.w3.org/Style/Examples/007/center.en.html
+  https://jordanhollinger.com/2014/01/29/css-gaussian-blur-behind-a-translucent-box/
+  
+  https://blog.trackduck.com/2015/06/25/15-captivating-parallax-effects-from-codepen/
+  http://keithclark.co.uk/articles/pure-css-parallax-websites/
+*/
+
+/*
+  PARALLAX STUFF
+  https://css-tricks.com/absolute-positioning-inside-relative-positioning/
+
+  NOTE: dont use 100vw or 100vh;
+*/
+
+/* Content underneath parallax */
+.content-container
+{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+}
+
+
+/* Grey + Blurred Background Image */
+.parallax-bg
+{
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index:-1;
+  
+  width: 100%; 
+  min-height: 100%;
+  background-image: url("/assets/imgs/chiptest1.jpg");
+  background-attachment:fixed;                     /* parallax effect */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center;
+  
+  /* Pull the background 70px higher to the same as .parallax's */
+}
+
+/* Put this on top of the blurred background layer */
+.parallax-caption
+{
+  /* Place above z-index 99 */
+  position:absolute;
+  left: 0;
+  top:50%;
+  width:100%;
+  text-align: center;
+}
+
+/* Section: About */
+/* Column Container */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+    flex: 25%;
+    max-width: 25%;
+}
+
+/* General */
+
+.section-light
+{
+  background-color: #ffffff;
+  padding: 20px;
+
+}
+
+.section-dark
+{
+  background-color: #eceff1;
+  padding: 20px;
+
+}
+
+/**
+  Primary - red
+  500: #F44336
+  700: #D32F2F
+  800: #C62828
+
+  Accent - indigo
+  A200: #536DFE
+*/

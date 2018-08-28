@@ -1,0 +1,42 @@
+/* Section: About */
+/* Column Container */
+
+.drawer-container {
+  top:56px;
+  width: 100%;
+}
+
+.drawer {
+  width:336px;
+}
+
+/* Create four equal columns that sits next to each other */
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.left-column {
+  flex:15%;
+}
+
+.center-column {
+ flex:70%;
+ height:100%;
+}
+
+.right-column {
+  flex:15%;
+}
+
+/* If the browser window is smaller than 699px */
+@media only screen and (max-width:699px)
+{
+  /* Custom Sidenav size*/
+  .drawer
+  {
+    min-width: 200px !important;
+    width: 50vw !important;
+    max-width: 200px !important;
+  }
+}

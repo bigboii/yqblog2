@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button [class.active]="toggleActive" (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>
+    <h1 class="example-app-name">yqblog</h1>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <mat-icon>brightness_high</mat-icon>
+  <mat-slide-toggle
+        [color]="color"
+        [checked]="checked"
+        [disabled]="disabled"
+        (click)="toggleNightmode()">
+  </mat-slide-toggle>
+  <mat-icon>brightness_3</mat-icon>
+</mat-toolbar>
