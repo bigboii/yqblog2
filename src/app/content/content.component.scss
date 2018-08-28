@@ -38,7 +38,7 @@ CSS Tips
   z-index:1;
   
   width: 100%; 
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh);
   background-image: url("/assets/imgs/chiptest1.jpg");
   background-attachment:fixed;                     /* parallax effect */
   background-repeat: no-repeat;
@@ -54,10 +54,11 @@ CSS Tips
   /* Place above z-index 99 */
   position:absolute;
   left: 0;
-  top:50%;
+  top:calc(50vh - 56px);
   width:100%;
   text-align: center;
   z-index:2;
+  color:#fff;
 }
 
 /* Left Center Right columning */
@@ -126,6 +127,6 @@ CSS Tips
 @media only screen and (max-width:699px)
 {
   .parallax-bg {
-    min-height: calc(100vh - 56px);
+    min-height: calc(100vh);
   }
 }
