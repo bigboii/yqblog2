@@ -25,17 +25,3 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-##References
-http://www.kejiashao.com/about.php
-http://www.garysheng.com/
-https://brittanychiang.com/
-
-
-#Applying Dark Theme Notes
-https://grensesnittet.computas.com/dynamic-themes-in-angular-material/
-https://github.com/eTallang/theme-demo/blob/master/src/app/app.component.html
-https://coursetro.com/posts/code/116/Create-your-own-Angular-5-Material-Theme
-
-#Parallax notes
-https://www.w3schools.com/howto/howto_css_parallax.asp

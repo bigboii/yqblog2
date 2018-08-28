@@ -35,10 +35,10 @@ CSS Tips
   bottom: 0;
   left: 0;
   right: 0;
-  z-index:-1;
+  z-index:1;
   
   width: 100%; 
-  min-height: 100%;
+  min-height: calc(100vh - 64px);
   background-image: url("/assets/imgs/chiptest1.jpg");
   background-attachment:fixed;                     /* parallax effect */
   background-repeat: no-repeat;
@@ -57,7 +57,30 @@ CSS Tips
   top:50%;
   width:100%;
   text-align: center;
+  z-index:2;
 }
+
+/* Left Center Right columning */
+
+/* Create four equal columns that sits next to each other */
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.left-column {
+  flex:15%;
+}
+
+.center-column {
+ flex:70%;
+ height:100%;
+}
+
+.right-column {
+  flex:15%;
+}
+
 
 /* Section: About */
 /* Column Container */
@@ -98,3 +121,11 @@ CSS Tips
   Accent - indigo
   A200: #536DFE
 */
+
+/* If the browser window is smaller than 699px */
+@media only screen and (max-width:699px)
+{
+  .parallax-bg {
+    min-height: calc(100vh - 56px);
+  }
+}
