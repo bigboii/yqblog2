@@ -12,7 +12,13 @@ export class SidenavComponent implements OnInit {
   @ViewChild('drawer') 
   public sidenav: MatSidenav;
 
-  navItems = ["Home", "About", "Projects", "Test"];
+  navItems = [
+    {"id":"Home", "iconName":"home"},
+    {"id":"About", "iconName":"account_circle"},
+    {"id":"Projects", "iconName":"code"},
+    {"id":"Blog", "iconName":"desktop_windows"},
+
+  ]
  
  
   constructor(private toggleService: ToggleService) { }

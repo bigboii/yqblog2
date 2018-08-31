@@ -1,45 +1,19 @@
-/*
-CSS Tips
-  Centering: http://vanseodesign.com/css/vertical-centering/
-  https://css-tricks.com/absolute-relative-fixed-positioining-how-do-they-differ/
-  https://css-tricks.com/absolute-positioning-inside-relative-positioning/
-  http://douglasheriot.com/tutorials/css_vertical_centre/demo4.html
-  https://www.w3.org/Style/Examples/007/center.en.html
-  https://jordanhollinger.com/2014/01/29/css-gaussian-blur-behind-a-translucent-box/
-  
-  https://blog.trackduck.com/2015/06/25/15-captivating-parallax-effects-from-codepen/
-  http://keithclark.co.uk/articles/pure-css-parallax-websites/
-*/
+@import '~@angular/material/_theming';
+$config: mat-typography-config();
 
-/*
-  PARALLAX STUFF
-  https://css-tricks.com/absolute-positioning-inside-relative-positioning/
-
-  NOTE: dont use 100vw or 100vh;
-*/
-
-/* Content underneath parallax */
-.content-container
-{
-  height:100%;
-  display:flex;
-  flex-direction:column;
+.content-container {
+  display: flex;
+  flex-direction: column;
 }
-
 
 /* Grey + Blurred Background Image */
 .parallax-bg
 {
   position: relative;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   z-index:1;
-  
   width: 100%; 
   min-height: calc(100vh - 64px);
-  background-image: url("/assets/imgs/chiptest1.jpg");
+  background-image: url("/assets/imgs/parallax.jpg");
   background-attachment:fixed;                     /* parallax effect */
   background-repeat: no-repeat;
   background-size: cover;
@@ -53,11 +27,26 @@ CSS Tips
 {
   /* Place above z-index 99 */
   position:absolute;
+  top:calc(50vh - 32px - 154px);     /* toolbar_height/2 - fastText_height/2 */
   left: 0;
-  top:50%;
   width:100%;
   text-align: center;
   z-index:2;
+  color: white;
+}
+
+.parallax-caption .top-caption {
+  text-align: center;
+  margin-bottom: 0;
+  font-size:mat-font-size($config, display-2);
+  font-style:italic;
+}
+
+.parallax-caption .bottom-caption {
+  text-align: center;
+  margin-top: 0;
+  font-size:mat-font-size($config, display-4);
+  font-style:bold;
 }
 
 /* Left Center Right columning */
@@ -69,26 +58,26 @@ CSS Tips
 }
 
 .left-column {
-  flex:15%;
+  flex:25%;
 }
 
-.center-column {
- flex:70%;
- height:100%;
+/* Content underneath parallax */
+.content-column
+{
+  display:flex;
+  flex-direction:column;
+  flex:50%;
+  height:100%;
 }
 
 .right-column {
-  flex:15%;
+  flex:25%;
 }
 
 
 /* Section: About */
 /* Column Container */
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 4px;
-}
+
 
 /* Create four equal columns that sits next to each other */
 .column {
@@ -100,15 +89,15 @@ CSS Tips
 
 .section-light
 {
+  padding: 24px 24px;
   background-color: #ffffff;
-  padding: 20px;
 
 }
 
 .section-dark
 {
+  padding: 24px 24px;
   background-color: #eceff1;
-  padding: 20px;
 
 }
 
@@ -122,10 +111,34 @@ CSS Tips
   A200: #536DFE
 */
 
+/* ---------------------- */
+/* CSS for MOBILE VERSION */
+/* ---------------------- */
+
+
 /* If the browser window is smaller than 699px */
 @media only screen and (max-width:699px)
 {
   .parallax-bg {
+    /*top: 56px; */
     min-height: calc(100vh - 56px);
+  }
+
+  .parallax-caption {
+    top:calc(50vh - 90px);
+  }
+
+  .parallax-caption .top-caption {
+    text-align: center;
+    margin-bottom: 0;
+    font-size:mat-font-size($config, display-1);
+    font-style:italic;
+  }
+
+  .parallax-caption .bottom-caption {
+    text-align: center;
+    margin-top: 0;
+    font-size:mat-font-size($config, display-3);
+    font-style:bold;
   }
 }

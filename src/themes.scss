@@ -1,14 +1,14 @@
 @import '~@angular/material/_theming';
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 @include mat-core();
 
 // Typography
-$custom-typography: mat-typography-config(
-  $font-family: Roboto,
-  $headline: mat-typography-level(24px, 48px, 400),
-  $body-1: mat-typography-level(16px, 24px, 400)
-);
-@include angular-material-typography($custom-typography);
+//$custom-typography: mat-typography-config(
+//  $font-family: Roboto,
+//  $headline: mat-typography-level(24px, 48px, 400),
+//  $body-1: mat-typography-level(16px, 24px, 400)
+//);
+//@include angular-material-typography($custom-typography);
 
 // Default colors
 $my-app-primary: mat-palette($mat-red, 700, 100, 800);

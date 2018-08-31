@@ -2,26 +2,18 @@
 /* Column Container */
 
 .drawer-container {
-  top:64px;
-  width: 100%;
+  flex:1;
 }
 
+/* Set width of sidenav */
 .drawer {
-  width:336px;
+  width:256px;
 }
 
-/* If the browser window is smaller than 699px */
-@media only screen and (max-width:699px)
-{
-  /* Custom Sidenav size*/
-  .drawer
-  {
-    min-width: 200px !important;
-    width: 50vw !important;
-    max-width: 200px !important;
-  }
+.drawer mat-icon {
+  padding: 0 4px;
+}
 
-  .drawer-container {
-    top:56px;
-  }
+mat-sidenav-content {
+
 }
