@@ -19,19 +19,14 @@ $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 
 // Dark theme
 $dark-primary: mat-palette($mat-gray);
-$dark-accent:  mat-palette($mat-amber, A400, A100, A700);
-$dark-warn:    mat-palette($mat-red);
+$dark-accent:  mat-palette($mat-red, A400, A100, A700);
+$dark-warn:    mat-palette($mat-orange);
 $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 .dark-theme {
-  color: $light-primary-text;
-  background-color: mat-color($dark-accent, A700);
   @include angular-material-theme($dark-theme);
 }
 
-.mat-drawer-backdrop.mat-drawer-shown { 
-  background-color: mat-color($dark-accent, A700);
-}
 
 // Light theme
 $light-primary: mat-palette($mat-grey, 200, 500, 300);

@@ -1,0 +1,33 @@
+.card-container {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.column-left {
+  display: flex;
+  flex-grow: 25;
+  flex-direction: column;
+  /* flex: 1 1 1px; */
+  padding:12px 24px 12px 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+.column-left > .mat-card-image {
+  margin: 0 0 0 0;
+  object-fit: scale-down;
+}
+
+.column-right {
+  display:flex;
+  flex-shrink: 75;
+  flex-direction: column;
+  /*flex: 1 1 100px; */
+  padding:12px 12px 12px 24px;
+}
+
+mat-card-avatar {
+  object-fit: cover;
+}

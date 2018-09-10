@@ -1,9 +1,12 @@
 @import '~@angular/material/_theming';
 $config: mat-typography-config();
 
+$some-other-color: mat-palette($mat-red, 700, 100, 800);
+
 .content-container {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 /* Grey + Blurred Background Image */
@@ -12,7 +15,9 @@ $config: mat-typography-config();
   position: relative;
   z-index:1;
   width: 100%; 
-  min-height: calc(100vh - 64px);
+  /*min-height: calc(100vh);*/
+  /* parallax height is set by content.component.ts */
+
   background-image: url("/assets/imgs/parallax.jpg");
   background-attachment:fixed;                     /* parallax effect */
   background-repeat: no-repeat;
@@ -53,8 +58,13 @@ $config: mat-typography-config();
 
 /* Create four equal columns that sits next to each other */
 .row {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
 .left-column {
@@ -78,38 +88,57 @@ $config: mat-typography-config();
 /* Section: About */
 /* Column Container */
 
-
 /* Create four equal columns that sits next to each other */
-.column {
-    flex: 25%;
-    max-width: 25%;
+
+.column-25 {
+  flex-grow: 1;
+  max-width: 25%;
+  align-items: center; 
 }
+
+.row-25 {
+  display: flex;
+  flex-direction: row; 
+
+  align-items: center; 
+  text-align: center;
+}
+
+.row-25 > mat-icon {
+  padding-right:4px;
+  margin-right:8px;
+}
+
+.row-25 > h3 {
+  margin: 0px;
+}
+
 
 /* General */
-
-.section-light
+.section
 {
-  padding: 24px 24px;
-  background-color: #ffffff;
-
+  padding: 24px 0px 24px 0px;
 }
 
-.section-dark
+.section > .mat-title
 {
-  padding: 24px 24px;
-  background-color: #eceff1;
-
+  color: mat-color($some-other-color);
 }
 
-/**
-  Primary - red
-  500: #F44336
-  700: #D32F2F
-  800: #C62828
+.section > .mat-headline
+{
+  color: mat-color($some-other-color);
+}
 
-  Accent - indigo
-  A200: #536DFE
-*/
+.section > .mat-display-1
+{
+  color: mat-color($some-other-color);
+}
+
+/* Section: Skills */
+.section > mat-list {
+  display: inline-block;
+}
 
 /* ---------------------- */
 /* CSS for MOBILE VERSION */
@@ -117,11 +146,11 @@ $config: mat-typography-config();
 
 
 /* If the browser window is smaller than 699px */
-@media only screen and (max-width:699px)
+@media only screen and (max-width:600px)
 {
   .parallax-bg {
     /*top: 56px; */
-    min-height: calc(100vh - 56px);
+    /*min-height: calc(100vh - 56px); */
   }
 
   .parallax-caption {

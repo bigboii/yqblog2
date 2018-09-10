@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import { ToggleService } from '../toggle.service';
+import { ToggleService } from '../services/toggle.service';
 import { MatSidenav } from '@angular/material';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 
@@ -11,6 +11,7 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
 export class HeaderComponent implements OnInit {
 
   @Output() nightmodeToggled = new EventEmitter();
+  @Input() logoPath;
 
   constructor(public toggleService: ToggleService) { }
 

@@ -3,6 +3,8 @@
 
 .drawer-container {
   flex:1;
+  /* needed to push content down */
+  /*top: 64px;  */
 }
 
 /* Set width of sidenav */
@@ -11,9 +13,18 @@
 }
 
 .drawer mat-icon {
-  padding: 0 4px;
+  padding: 4px 4px;
 }
 
-mat-sidenav-content {
+.row-sidenav-item {
+  display: flex;
+  flex-direction: row; 
 
+  align-items: center; 
+  text-align: center;
+}
+
+.row-sidenav-item > mat-icon {
+  padding-right:4px;
+  margin-right:8px;
 }

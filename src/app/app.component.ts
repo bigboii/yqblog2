@@ -1,6 +1,5 @@
-import { Component, HostBinding} from '@angular/core';
+import { Component, HostBinding, Renderer2, ElementRef} from '@angular/core';
 import { MatSidenav } from '@angular/material';
-import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +13,9 @@ export class AppComponent {
   title = 'app';
   isNightmode = true;
   theme;
+  logoPath = "assets/imgs/q2-logo-color_white.png";
 
-  constructor(public overlayContainer: OverlayContainer) {
+  constructor(private renderer: Renderer2, private el: ElementRef) {
   }
 
   ngOnInit(): void {
@@ -28,15 +28,17 @@ export class AppComponent {
       console.log("Nightmode On");
       this.isNightmode = false;
       this.theme = "dark-theme";
-      this.overlayContainer.getContainerElement().classList.add("dark-theme");
       this.componentCssClass = this.theme;
+      this.logoPath = "assets/imgs/q2-logo-color_black.png";
+      //this.renderer.addClass(document.body, 'dark-theme');
     }
     else {
       console.log("Nightmode Off");
       this.isNightmode = true;
-      this.theme = "my-app-theme";
-      this.overlayContainer.getContainerElement().classList.add("my-app-theme");
+      this.theme = "light-theme";
       this.componentCssClass = this.theme;
+      this.logoPath = "assets/imgs/q2-logo-color_white.png";
+      //this.renderer.addClass(document.body, 'my-app-theme');
     }
   }
 }

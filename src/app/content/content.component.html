@@ -1,15 +1,20 @@
 <div class="content-container">
-  <div class="parallax-bg">
-    <div class="parallax-caption">
-      <h3 class="mat-headline2 top-caption" fasttext> 
-              Hi, I'm
-      </h3>
-      <h1 class="mat-headline1 bottom-caption" fasttext> 
-              - Q KIM -
-      </h1>
+
+
+  <div deferLoad (deferLoad)="loadParallax($event)">
+    <div [@revealParallax]="parallaxShow"> 
+      <div class="parallax-bg" [style.height.px]="parallaxHeight">
+        <div class="parallax-caption">
+          <h3 class="mat-headline2 top-caption" fasttext> 
+                  Hi, I'm
+          </h3>
+          <h1 class="mat-headline1 bottom-caption" fasttext> 
+                  - Q KIM -
+          </h1>
+        </div>
+      </div>
     </div>
   </div>
-
 
   <div class="row">
     <!-- Left -->
@@ -17,81 +22,86 @@
 
     <!-- Center -->
     <div class="content-column">
+
       <!-- Section: About Me -->
-      <div class="section-dark">
-        <div>
-          <h1 class="mat-display-1">A Stateless Developer</h1>
-          <h2 class="mat-h2"> I'm currently a Software Engineer based in the United States, Jersey City, building things for the private cloud. In my own free time, I like to tinker around with IoT projects (Arduino, Raspberry Pi) or working on this Website</h2>
-          <h2 class="mat-h2"> </h2>
-
-          <h2 class="mat-h2"> When I'm not in "Development mode", I'm probably sipping beer while studying the stockmarket, performing HIIT workouts, tinkering with microcontrollers, or crossing off another todo item in my bucket list. </h2>
-        </div>
-      </div>
-
-      <!-- Skills: About me -->
-      <div class="section-light">
-        <div class="row">
-          <div class="column">
-            <h3 class="mat-h3"> Languages </h3>
-
-              <mat-nav-list>
-                <a mat-list-item routerLink="." *ngFor="let language of languages">{{language}}</a>
-              </mat-nav-list>
-          </div>
-          <div class="column">
-            <h3 class="mat-h3"> Frameworks </h3>
-            <mat-nav-list>
-              <a mat-list-item routerLink="." *ngFor="let framework of frameworks">{{framework}}</a>
-            </mat-nav-list>
-
-          </div>
-          <div class="column">
-            <h3 class="mat-h3"> Tools </h3>
-            <mat-nav-list>
-              <a mat-list-item routerLink="." *ngFor="let tool of tools">{{tool}}</a>
-            </mat-nav-list>
-          </div>
-          <div class="column">
-            <h3 class="mat-h3"> Databases </h3>
-            <mat-nav-list>
-              <a mat-list-item routerLink="." *ngFor="let database of databases">{{database}}</a>
-            </mat-nav-list>
-          </div>
+      <div revealOnScroll [index]="visibleSections[0].id" (showSection)="displayEmitterResults($event)">
+        <div class="section" [@sectionState2]="visibleSections[0].show">
+            <h1 class="mat-title">Background</h1>
+            <p class="mat-body-1"> I'm currently a Software Engineer based in the United States, Jersey City, building things for the private cloud. </p>
+            <p class="mat-body-1"> When I'm not in development mode, I'm probably finding stocks to invest in, performing HIIT workouts, tinkering with microcontrollers, or crossing off another todo item in my bucket list. </p>
         </div>
       </div>
 
       <!-- Section: Resume -->
-      <div class="section-dark">
-        <div>
-          <h1 class="mat-display-1">A Stateless Developer</h1>
-          <h2 class="mat-h2"> I'm currently a Software Engineer based in the United States, Jersey City, building things for the private cloud. In my own free time, I like to tinker around with IoT projects (Arduino, Raspberry Pi) or working on this Website</h2>
-          <h2 class="mat-h2"> </h2>
-
-          <h2 class="mat-h2"> When I'm not in "Development mode", I'm probably sipping beer while studying the stockmarket, performing HIIT workouts, or crossing off another todo item in my bucket list. </h2>
-        </div>
-      </div>
-
-      <!-- Section: Job Experience -->
-
-      <!-- Section: Projects -->
-      <div class="section-dark">
-        <div>
+      <div revealOnScroll [index]="visibleSections[1].id" (showSection)="displayEmitterResults($event)">
+        <div class="section" [@sectionState2]="visibleSections[1].show">
           <h1 class="mat-display-1">Here's what I've done so far</h1>
-          <h2 class="mat-h2">Some of my work</h2>
+          <app-featcard *ngFor="let card of cards" [cardData]=card> </app-featcard>
         </div>
       </div>
 
-
-
-      <!-- Section: Blog , do this last -->
-      <div class="section-light">
-        <div>
-          <h1 class="mat-display-1">Lets Connect</h1>
-          <h2 class="mat-h2">I'm interested in chatting about , feel free to connect with me on any of the social platforms below.</h2>
+      <!-- Section: Skills -->
+      <div revealOnScroll [index]="visibleSections[2].id" (showSection)="displayEmitterResults($event)">
+          <div class="section" [@sectionState2]="visibleSections[2].show">
+            <h1 class="mat-title">Skills</h1>
+            <div class="row">
+              <div class="column-25">
+                <div class="row-25"> 
+                  <mat-icon>keyboard</mat-icon> 
+                 <h3 class="mat-subheading-2">Languages </h3>
+                </div> 
+                <mat-list dense>
+                  <mat-list-item *ngFor="let language of languages">
+                    <p class="mat-body-1"> {{language}} </p>
+                  </mat-list-item>
+                </mat-list>
+              </div>
+              <div class="column-25">
+                <div class="row-25"> 
+                  <mat-icon>code</mat-icon> 
+                  <h3 class="mat-subheading-2"> Frameworks </h3> 
+                </div> 
+                <mat-list dense>
+                  <a mat-list-item *ngFor="let framework of frameworks">
+                    <p class="mat-body-1"> {{framework}} </p>
+                  </a>
+                </mat-list>
+              </div>
+              <div class="column-25">
+                <div class="row-25"> 
+                  <mat-icon>laptop</mat-icon> 
+                  <h3 class="mat-subheading-2"> Tools </h3> 
+                </div> 
+                <mat-list dense>
+                  <a mat-list-item routerLink="." *ngFor="let tool of tools">
+                     <p class="mat-body-1"> {{tool}} </p>
+                  </a>
+                </mat-list>
+              </div>
+              <div class="column-25">
+                <div class="row-25"> 
+                  <mat-icon>storage</mat-icon> 
+                  <h3 class="mat-subheading-2"> Databases </h3> 
+                </div> 
+                <mat-list dense>
+                  <a mat-list-item routerLink="." *ngFor="let database of databases">
+                    <p class="mat-body-1"> {{database}} </p>
+                  </a>
+                </mat-list>
+              </div>
+            </div>
+          </div>
+      </div>
+      <!-- Section: Blog, do this last -->
+      <div revealOnScroll [index]="visibleSections[3].id" (showSection)="displayEmitterResults($event)">
+        <div class="section" [@sectionState2]="visibleSections[3].show">
+            <h1 class="mat-headline">Lets Connect</h1>
+            <h2 class="mat-body-1">Feel free to reach out to me. LinkedIn or Email best.</h2>
         </div>
       </div>
     </div>
 
+    <!-- right -->
     <div class="right-column"></div>
   </div>
 </div>
