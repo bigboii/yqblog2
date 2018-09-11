@@ -36,9 +36,17 @@ export class RevealonscrollDirective implements OnInit {
     let rect = this._el.nativeElement.getBoundingClientRect();
   }
 
-  @HostListener('window:scroll', ['$event.target'])
-  onScroll(event) {
+  //
+  //https://stackoverflow.com/questions/47528852/angular-material-sidenav-cdkscrollable/50812763#50812763
 
+  @HostListener('window:scroll', ['$event'])     //window:scroll
+  public onScroll($event:Event):void {
+
+    console.log("[scrolled]: event: " + $event);
+    //this.elementScrollEvent($event);
+
+    console.log("[scrolling] : " + $event.srcElement.scrollLeft, $event.srcElement.scrollTop);
+    console.log("[revealOnScroll]");
     let scrolled = window.pageYOffset;
     let rect = this._el.nativeElement.getBoundingClientRect();
     let elementOffsetTop = this._el.nativeElement.offsetTop;
@@ -50,7 +58,6 @@ export class RevealonscrollDirective implements OnInit {
       if(this.switchedOn) {
         this.switchedOn = false;
       }
-
 
       this.showSection.emit({
         "index": this.index,

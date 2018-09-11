@@ -30,7 +30,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
  
   constructor(private toggleService: ToggleService, 
               changeDetectorRef: ChangeDetectorRef,
-              media: MediaMatcher) 
+              media: MediaMatcher,
+              @Inject(DOCUMENT) private document: Document) 
   { 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -39,34 +40,29 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     //Dynamically set content height based on screen size
-    //this.contentHeight = document.documentElement.clientHeight;
-    //console.log("[sideNav] content height " + this.contentHeight);
 
     //Register current sidenav to toggleService
     this.toggleService.setSidenav(this.sidenav);
+
+    //Set Dynamically set Height of content based on screen sizes
+    if(document.documentElement.clientHeight >= 600) {  //Desktop Screen
+      this.contentHeight = document.documentElement.clientHeight - 64;
+    }
+    else {                                                //Mobile Screen
+      this.contentHeight = document.documentElement.clientHeight - 56;
+    }
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  getState(outlet) {
-    console.log("--- Route Activated ---");
-    //console.dir(outlet);
-    //console.log("outlet.activatedRouteData.state: " + outlet.activatedRouteData.state);
-
-    //console.log("outlet.isActivated: " + outlet.isActivated);
-    //console.log("outlet.activatedRoute: " + outlet.activatedRoute);
-  /*
-    o.isActivated ? o.activatedRoute : ''
-  */
-
+  getPage(outlet) {
     // Changing the activatedRouteData.state triggers the animation
     //return outlet.activatedRouteData.state;
 
     let output = outlet.isActivated ? outlet.activatedRoute : '';
-    console.log("router output: " + output);
-    return output
+    return outlet.activatedRouteData['page'] || 'content';
   }
 
   routeTransitionStarted(event) {

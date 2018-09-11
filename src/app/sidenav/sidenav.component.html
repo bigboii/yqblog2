@@ -10,10 +10,12 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content [style.marginTop.px]="mobileQuery.matches ? 56 : 64">
-    <main [@fadeTransition]="getState(o)" 
+    <div class="main" 
+        [style.height.px]="contentHeight"
+        [@fadeTransition]="getPage(appOutlet)" 
         (@fadeTransition.start)="routeTransitionStarted($event)"
         (@fadeTransition.done)="routeTransitionDone($event)">
-      <router-outlet #o="outlet"></router-outlet>
-    </main>
+      <router-outlet #appOutlet="outlet"></router-outlet>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

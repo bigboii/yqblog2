@@ -5,8 +5,9 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
 
 .content-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; 
   height: 100%;
+  position:absolute;      /* This is needed to allow router animation*/
 }
 
 /* Grey + Blurred Background Image */
