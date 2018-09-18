@@ -1,4 +1,5 @@
-import { Directive, OnInit, Renderer2, ElementRef, Input, EventEmitter} from '@angular/core';
+import { Directive, OnInit, Renderer2, ElementRef, Input, EventEmitter, AfterViewInit, Inject} from '@angular/core';
+import { DOCUMENT } from '@angular/platform-browser';
 
 /*
 https://github.com/allenRoyston/ang2-parallax/blob/master/ng2-parallax-directive/parallax.directive.ts
@@ -6,26 +7,28 @@ https://github.com/allenRoyston/ang2-parallax/blob/master/ng2-parallax-directive
     https://medium.com/@kmathy/angular-manipulate-properly-the-dom-with-renderer-16a756508cba
 */
 
-
 //GLOBAL
 declare var window:any;
 
 @Directive({
   selector: '[fasttext]'
 })
-export class FasttextDirective implements OnInit {
+export class FasttextDirective implements OnInit, AfterViewInit  {
 
   private element:any;    
   private renderer:any;
 
-  constructor(el: ElementRef, renderer: Renderer2) {
+  constructor(private el: ElementRef, renderer: Renderer2, @Inject(DOCUMENT) private document: Document) {
     this.element = el.nativeElement;
     this.renderer = renderer;
   }
 
+ngOnInit() {
+}
 
-  ngOnInit(){
-    //this.renderer.addClass(this.element, 'fasttext');
+  //ngOnInit() {
+  ngAfterViewInit() {
+    //this.document.querySelector('mat-sidenav-content').addEventListener('scroll', onContentScroll.bind(this));
 
     var t = this;                              //reference to current element
     var _speed = 1;                            //translate speed
@@ -40,48 +43,42 @@ export class FasttextDirective implements OnInit {
     }
 
     var isMobile = window.mobileAndTabletcheck();
-    //console.log('isMobile: ' + isMobile);
 
-    function execute(){
+    function onContentScroll(event) {
 
-        var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : window(document.documentElement || document.body.parentNode || document.body).scrollTop;
-        var speed = -(scrollTop / _speed );
+      let myDoc = this.document.querySelector('mat-sidenav-content');
 
-        //console.log('scrollTop: ' + scrollTop);
-        //console.log('speed: ' + speed);
+      let rect = this.el.nativeElement.getBoundingClientRect();
+      let elementOffsetTop = this.el.nativeElement.offsetTop;
 
-        if(isMobile){
-          speed = speed * .10
-        }
-        if(speed == 0){
-          fastTextElement.style.backgroundPosition = '0% '+ 0 + '%';
-          //console.log("[1] " + fastTextElement.style.backgroundPosition)
-        }
-        else{
-          /* //Doesn't work yet in angular 6
-          renderer2.setStyle(
-            fastTextElement,
-            'translate',
-            '0px ' + speed   + 'px'
-          );
-          */
-          fastTextElement.style.transform = 'translate(0px, ' + speed   + 'px)';
-          //console.log("[2] " + fastTextElement.style.backgroundPosition)
-        }
-    };
+      var scrollTop = myDoc.scrollTop;
+      var speed = -(scrollTop / _speed );
+
+      if(isMobile){
+        speed = speed * .10
+      }
+      if(speed == 0){
+        fastTextElement.style.backgroundPosition = '0% '+ 0 + '%';
+        //console.log("[1] " + fastTextElement.style.backgroundPosition)
+      }
+      else{
+        /* //Doesn't work yet in angular 6
+        renderer2.setStyle(
+          fastTextElement,
+          'translate',
+          '0px ' + speed   + 'px'
+        );
+        */
+        fastTextElement.style.transform = 'translate(0px, ' + speed   + 'px)';
+        //console.log("[2] " + fastTextElement.style.backgroundPosition)
+      }
+    }
 
     // for mobile
-    window.document.addEventListener("touchmove", function(){
-      //console.log("Touch Moving");
-      execute();
-    });
-
+    this.document.querySelector('mat-sidenav-content').addEventListener('touchmove', onContentScroll.bind(this));
 
     // for browsers
-    window.document.addEventListener("scroll", function() {
-      //console.log("Scrolling");
-      execute();
-    });
+    this.document.querySelector('mat-sidenav-content').addEventListener('scroll', onContentScroll.bind(this));
 
     execute();
   }

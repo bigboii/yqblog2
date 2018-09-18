@@ -7,7 +7,7 @@ import { revealOnScrollAnimation } from '../animations';
 })
 export class RevealonscrollDirective implements OnInit, AfterViewInit {
 
-  @ViewChild('sectionAbout') section: ElementRef;
+  //@ViewChild('sectionAbout') section: ElementRef;
 
   public windowHeight: string;
   public windowWidth: string;
@@ -33,13 +33,13 @@ export class RevealonscrollDirective implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.document.querySelector('mat-sidenav-content')
-                                 .addEventListener('scroll', this.onScrollHacky.bind(this));
+                                 .addEventListener('scroll', this.onContentScroll.bind(this));
   }
 
-  onScrollHacky(event){
-    console.log("[onScrollHacky]");
+  onContentScroll(event){
+    //console.log("[onContentScroll]");
 
-        let scrolled = window.pageYOffset;
+    let scrolled = window.pageYOffset;
     let rect = this.elementRef.nativeElement.getBoundingClientRect();
     let elementOffsetTop = this.elementRef.nativeElement.offsetTop;
 

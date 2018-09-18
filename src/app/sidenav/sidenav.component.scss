@@ -28,3 +28,11 @@
   padding-right:4px;
   margin-right:8px;
 }
+
+
+.content-container {
+  display: flex;
+  flex-direction: column; 
+  height: 100%;
+  position:absolute;      /* This is needed to allow router animation*/
+}
