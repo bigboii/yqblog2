@@ -1,6 +1,4 @@
-<div class="content-container" (scroll)="onScroll($event)">
-
-
+<div class="content-container" (scroll)="onContentScroll($event)">
   <div deferLoad (deferLoad)="loadParallax($event)">
     <div [@revealParallax]="parallaxShow"> 
       <div class="parallax-bg" [style.height.px]="parallaxHeight">
@@ -27,7 +25,11 @@
       <div revealOnScroll [index]="visibleSections[0].id" (showSection)="displayEmitterResults($event)">
         <div class="section" [@sectionState2]="visibleSections[0].show">
             <h1 class="mat-title">Background</h1>
-            <p class="mat-body-1"> I'm currently a Software Engineer based in the United States, Jersey City, building things for the private cloud. </p>
+            <p class="mat-body-1"> I'm currently a Software Engineer based in United States, Jersey City, building things for the private cloud with an amazing team. </p>
+
+            <p> Whether its website, a microcontroller project, or the cloud, I enjoy solving problems and building things. To make that happen, I'm constantly striving to learn new languages and master them.
+
+            </p>
             <p class="mat-body-1"> When I'm not in development mode, I'm probably finding stocks to invest in, performing HIIT workouts, tinkering with microcontrollers, or crossing off another todo item in my bucket list. </p>
         </div>
       </div>

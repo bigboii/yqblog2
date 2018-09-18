@@ -1,44 +1,34 @@
-import { Component, HostBinding, Renderer2, ElementRef} from '@angular/core';
+import { Component, HostBinding, OnInit, AfterViewInit} from '@angular/core';
 import { MatSidenav } from '@angular/material';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewInit {
 
   @HostBinding('class') componentCssClass;
 
   title = 'app';
-  isNightmode = true;
-  theme;
-  logoPath = "assets/imgs/q2-logo-color_white.png";
 
-  constructor(private renderer: Renderer2, private el: ElementRef) {
+  private appTheme: string;
+  public logoPath: string;
+
+  constructor(public themeService : ThemeService) {
   }
 
   ngOnInit(): void {
+    this.themeService.currentTheme.subscribe(theme => { this.componentCssClass = theme; console.log("change detected: " + this.appTheme);});
+    this.themeService.currentLogo.subscribe(logo => this.logoPath = logo);
 
+    //this.componentCssClass = this.appTheme;
+    
   }
 
-  onNightmodeToggled (){
-    console.log("isNightmode: " + this.isNightmode);
-    if(this.isNightmode) {
-      console.log("Nightmode On");
-      this.isNightmode = false;
-      this.theme = "dark-theme";
-      this.componentCssClass = this.theme;
-      this.logoPath = "assets/imgs/q2-logo-color_black.png";
-      //this.renderer.addClass(document.body, 'dark-theme');
-    }
-    else {
-      console.log("Nightmode Off");
-      this.isNightmode = true;
-      this.theme = "light-theme";
-      this.componentCssClass = this.theme;
-      this.logoPath = "assets/imgs/q2-logo-color_white.png";
-      //this.renderer.addClass(document.body, 'my-app-theme');
-    }
+  ngAfterViewInit(): void {
+    console.log("[app] ngAfterViewInit");
+    console.log(this.componentCssClass);
   }
 }

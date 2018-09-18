@@ -34,7 +34,7 @@ export class ContentComponent implements OnInit {
       this.parallaxHeight = document.documentElement.clientHeight - 56;
     }
 
-    console.log("dcoument.height: " + document.documentElement.clientHeight);
+    console.log("document.height: " + document.documentElement.clientHeight);
   }
 
   //Static Data
@@ -82,4 +82,9 @@ export class ContentComponent implements OnInit {
     this.visibleSections[index]["show"]=someEvent["state"];
   }
 
+  /*
+  onContentScroll(event) { 
+    console.log("[onContentScroll] scroller");
+  }
+  */
 }

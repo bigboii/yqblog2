@@ -5,6 +5,7 @@ import { fadeTransition } from '../animations';
 import { DOCUMENT } from '@angular/platform-browser';
 import {MediaMatcher} from '@angular/cdk/layout';
 
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -23,8 +24,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
     {"id":"About", "iconName":"account_circle", "route":"about"},
     {"id":"Projects", "iconName":"code", "route":"projects"},
     {"id":"Blog", "iconName":"desktop_windows", "route":"blog"}
-
   ]
+ 
  
   private _mobileQueryListener: () => void;
  
@@ -39,16 +40,14 @@ export class SidenavComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    //Dynamically set content height based on screen size
-
     //Register current sidenav to toggleService
     this.toggleService.setSidenav(this.sidenav);
 
     //Set Dynamically set Height of content based on screen sizes
-    if(document.documentElement.clientHeight >= 600) {  //Desktop Screen
+    if(document.documentElement.clientHeight >= 600) {                  //Desktop Screen
       this.contentHeight = document.documentElement.clientHeight - 64;
     }
-    else {                                                //Mobile Screen
+    else {                                                              //Mobile Screen
       this.contentHeight = document.documentElement.clientHeight - 56;
     }
   }
@@ -57,21 +56,29 @@ export class SidenavComponent implements OnInit, OnDestroy {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
+  /*
+    Get currently active route page
+    @outlet: router outlet
+  */
   getPage(outlet) {
     // Changing the activatedRouteData.state triggers the animation
-    //return outlet.activatedRouteData.state;
-
     let output = outlet.isActivated ? outlet.activatedRoute : '';
     return outlet.activatedRouteData['page'] || 'content';
   }
 
+  /*
+    Callback when route transition animation starts
+    @event: animation event
+  */
   routeTransitionStarted(event) {
-    console.log("+++++++++++++++++++++++++++");
-    console.log("Route Transition Starting");
+    //console.log("Route Transition Starting");
   }
 
+  /*
+    Callback when route transition animation ends
+    @event: animation event
+  */
   routeTransitionDone(event) {
-    console.log("--------------------------");
-    console.log("Route Transition Complete");
+    //console.log("Route Transition Complete");
   }
 }

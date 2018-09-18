@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, EventEmitter} from '@angular/core';
 import { ToggleService } from '../services/toggle.service';
+import { ThemeService } from '../services/theme.service';
 import { MatSidenav } from '@angular/material';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 
@@ -10,10 +11,10 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
 })
 export class HeaderComponent implements OnInit {
 
-  @Output() nightmodeToggled = new EventEmitter();
   @Input() logoPath;
 
-  constructor(public toggleService: ToggleService) { }
+  constructor(public toggleService: ToggleService,
+              public themeService : ThemeService) { }
 
   ngOnInit() {
 
@@ -26,7 +27,6 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleNightmode() {
-    this.nightmodeToggled.emit();
+    this.themeService.toggleTheme();
   }
-
 }

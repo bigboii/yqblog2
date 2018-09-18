@@ -1,17 +1,11 @@
-import { Directive, HostListener, ElementRef, ViewChild, Input, Output, Inject, EventEmitter, OnInit} from '@angular/core';
+import { Directive, HostListener, ElementRef, ViewChild, Input, Output, Inject, EventEmitter, OnInit, AfterViewInit} from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { revealOnScrollAnimation } from '../animations';
-
-//https://www.youtube.com/watch?v=TfDK-KLq0Ks
-//http://blog.webbb.be/trigger-css-animation-scroll/
-
-
-//NOTE: window height vs brower height
 
 @Directive({
   selector: '[revealOnScroll]'
 })
-export class RevealonscrollDirective implements OnInit {
+export class RevealonscrollDirective implements OnInit, AfterViewInit {
 
   @ViewChild('sectionAbout') section: ElementRef;
 
@@ -23,7 +17,7 @@ export class RevealonscrollDirective implements OnInit {
   @Input() public index: number;
   @Output() public showSection: EventEmitter<any> = new EventEmitter();
 
-  constructor(private _el: ElementRef, @Inject(DOCUMENT) private document: Document) { 
+  constructor(private elementRef: ElementRef, @Inject(DOCUMENT) private document: Document) { 
 
     this.windowHeight = (window.screen.height) + "px";
     this.windowWidth = (window.screen.width) + "px";
@@ -33,11 +27,47 @@ export class RevealonscrollDirective implements OnInit {
 
   ngOnInit() {
     let bodyRect = document.body.getBoundingClientRect();
-    let rect = this._el.nativeElement.getBoundingClientRect();
+    let rect = this.elementRef.nativeElement.getBoundingClientRect();
+  }
+
+
+  ngAfterViewInit() {
+    this.document.querySelector('mat-sidenav-content')
+                                 .addEventListener('scroll', this.onScrollHacky.bind(this));
+  }
+
+  onScrollHacky(event){
+    console.log("[onScrollHacky]");
+
+        let scrolled = window.pageYOffset;
+    let rect = this.elementRef.nativeElement.getBoundingClientRect();
+    let elementOffsetTop = this.elementRef.nativeElement.offsetTop;
+
+    let startOfContent = document.documentElement.clientHeight;
+
+    if( rect.top <= startOfContent ) 
+    { 
+      if(this.switchedOn) {
+        this.switchedOn = false;
+      }
+
+      this.showSection.emit({
+        "index": this.index,
+        "state": true
+      });
+    }
+    else {
+      this.showSection.emit({
+        "index": this.index,
+        "state": false
+      });
+    }
   }
 
   //
   //https://stackoverflow.com/questions/47528852/angular-material-sidenav-cdkscrollable/50812763#50812763
+
+
 
   @HostListener('window:scroll', ['$event'])     //window:scroll
   public onScroll($event:Event):void {
@@ -45,11 +75,11 @@ export class RevealonscrollDirective implements OnInit {
     console.log("[scrolled]: event: " + $event);
     //this.elementScrollEvent($event);
 
-    console.log("[scrolling] : " + $event.srcElement.scrollLeft, $event.srcElement.scrollTop);
-    console.log("[revealOnScroll]");
+    //console.log("[scrolling] : " + $event.srcElement.scrollLeft, $event.srcElement.scrollTop);
+    //console.log("[revealOnScroll]");
     let scrolled = window.pageYOffset;
-    let rect = this._el.nativeElement.getBoundingClientRect();
-    let elementOffsetTop = this._el.nativeElement.offsetTop;
+    let rect = this.elementRef.nativeElement.getBoundingClientRect();
+    let elementOffsetTop = this.elementRef.nativeElement.offsetTop;
 
     let startOfContent = document.documentElement.clientHeight;
 

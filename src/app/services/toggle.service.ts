@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 
+/**
+  Service that allows external component to activate sidenav's toggle
+*/
+
 @Injectable(
-//{
-  //providedIn: 'root'        //make ToggleService a singleton (angular 6 way)
-//}
+  {
+    providedIn: 'root'        //make ToggleService a singleton
+  }
 )
 export class ToggleService {
 

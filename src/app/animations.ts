@@ -23,12 +23,12 @@ export const fadeTransition = trigger('fadeTransition', [
     query(
       ':leave',
       // here we apply a style and use the animate function to apply the style over 0.3 seconds
-      [style({ opacity: 1 }), animate('500ms', style({ opacity: 0 }))],
+      [style({ opacity: 1 }), animate('300ms', style({ opacity: 0 }))],
       { optional: true }
     ),
     query(
       ':enter',
-      [style({ opacity: 0 }), animate('500ms', style({ opacity: 1 }))],
+      [style({ opacity: 0 }), animate('300ms', style({ opacity: 1 }))],
       { optional: true }
     )
   ])

@@ -16,6 +16,7 @@
         (@fadeTransition.start)="routeTransitionStarted($event)"
         (@fadeTransition.done)="routeTransitionDone($event)">
       <router-outlet #appOutlet="outlet"></router-outlet>
+        <app-footer [contentHeight]="contentHeight" [style.top.px]="footerPosition"></app-footer>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

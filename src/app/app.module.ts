@@ -7,7 +7,6 @@ import { AngularMaterialModule } from './modules/angular-material.module'
 import { HeaderComponent } from './header/header.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ContentComponent } from './content/content.component';
-import { ToggleService } from './services/toggle.service';
 import { ParallaxDirective } from './directives/parallax.directive';
 import { FasttextDirective } from './directives/fasttext.directive';
 import {OverlayContainer, OverlayModule} from '@angular/cdk/overlay';
@@ -19,6 +18,9 @@ import { BlogComponent } from './blog/blog.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { LazyloadDirective } from './directives/lazyload.directive';
 import { RevealonscrollDirective } from './directives/revealonscroll.directive';
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import { FooterComponent } from './footer/footer.component';  //needed to inject scrolling inside sidenav-content
+
 
 @NgModule({
   declarations: [
@@ -34,17 +36,19 @@ import { RevealonscrollDirective } from './directives/revealonscroll.directive';
     BlogComponent,
     ProjectsComponent,
     LazyloadDirective,
-    RevealonscrollDirective
+    RevealonscrollDirective,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
     OverlayModule,
-    AppRouterModule
+    AppRouterModule,
+    ScrollDispatchModule
   ],
   providers: [
-    ToggleService   //make ToggleService a singleton (angular 5 way)
+
   ],
   bootstrap: [AppComponent]
 })
