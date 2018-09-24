@@ -30,13 +30,12 @@ export class RevealonscrollDirective implements OnInit, AfterViewInit {
     let rect = this.elementRef.nativeElement.getBoundingClientRect();
   }
 
-
   ngAfterViewInit() {
     this.document.querySelector('mat-sidenav-content')
                                  .addEventListener('scroll', this.onContentScroll.bind(this));
   }
 
-  onContentScroll(event){
+  onContentScroll(event) {
     //console.log("[onContentScroll]");
 
     let scrolled = window.pageYOffset;
@@ -46,7 +45,7 @@ export class RevealonscrollDirective implements OnInit, AfterViewInit {
     let startOfContent = document.documentElement.clientHeight;
 
     if( rect.top <= startOfContent ) 
-    { 
+    {
       if(this.switchedOn) {
         this.switchedOn = false;
       }
@@ -63,44 +62,4 @@ export class RevealonscrollDirective implements OnInit, AfterViewInit {
       });
     }
   }
-
-  //
-  //https://stackoverflow.com/questions/47528852/angular-material-sidenav-cdkscrollable/50812763#50812763
-
-
-
-  @HostListener('window:scroll', ['$event'])     //window:scroll
-  public onScroll($event:Event):void {
-
-    console.log("[scrolled]: event: " + $event);
-    //this.elementScrollEvent($event);
-
-    //console.log("[scrolling] : " + $event.srcElement.scrollLeft, $event.srcElement.scrollTop);
-    //console.log("[revealOnScroll]");
-    let scrolled = window.pageYOffset;
-    let rect = this.elementRef.nativeElement.getBoundingClientRect();
-    let elementOffsetTop = this.elementRef.nativeElement.offsetTop;
-
-    let startOfContent = document.documentElement.clientHeight;
-
-    if( rect.top <= startOfContent ) 
-    { 
-      if(this.switchedOn) {
-        this.switchedOn = false;
-      }
-
-      this.showSection.emit({
-        "index": this.index,
-        "state": true
-      });
-    }
-    else {
-      this.showSection.emit({
-        "index": this.index,
-        "state": false
-      });
-    }
-
-  }
-
 }

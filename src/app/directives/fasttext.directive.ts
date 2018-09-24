@@ -1,5 +1,6 @@
 import { Directive, OnInit, Renderer2, ElementRef, Input, EventEmitter, AfterViewInit, Inject} from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
+import { ContentScrollListenerService } from '../services/contentscrolllistener.service';
 
 /*
 https://github.com/allenRoyston/ang2-parallax/blob/master/ng2-parallax-directive/parallax.directive.ts
@@ -18,17 +19,33 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
   private element:any;    
   private renderer:any;
 
-  constructor(private el: ElementRef, renderer: Renderer2, @Inject(DOCUMENT) private document: Document) {
+  public scrollCallback;
+  public contentScrollEvent;
+
+
+  constructor(private el: ElementRef, renderer: Renderer2, 
+              @Inject(DOCUMENT) private document: Document,
+              public contentScrollService : ContentScrollListenerService) {
     this.element = el.nativeElement;
     this.renderer = renderer;
   }
 
-ngOnInit() {
-}
+  ngOnInit() {
 
-  //ngOnInit() {
+  } 
+
   ngAfterViewInit() {
-    //this.document.querySelector('mat-sidenav-content').addEventListener('scroll', onContentScroll.bind(this));
+    //Initialize ContentScrollService
+    this.contentScrollService.listenForScrolling();
+
+    //
+    console.log("[fastText] contentScrollService: " + this.contentScrollService);
+    console.dir(this.contentScrollService);
+    console.log("[fastText] contentScrollService.scrollEvent: " + this.contentScrollService.scrollEvent);
+    console.dir(this.contentScrollService.scrollEvent);
+
+    //Register event scrolling
+    this.contentScrollService.scrollEvent.subscribe(event => this.contentScrollEvent = event);
 
     var t = this;                              //reference to current element
     var _speed = 1;                            //translate speed
@@ -74,33 +91,28 @@ ngOnInit() {
       }
     }
 
+    function onContentScroll2(event) {
+    /*
+      var speed = -(scrollTop / _speed );
+
+      if(isMobile){
+        speed = speed * .10
+      }
+      if(speed == 0){
+        fastTextElement.style.backgroundPosition = '0% '+ 0 + '%';
+        //console.log("[1] " + fastTextElement.style.backgroundPosition)
+      }
+      else{
+        fastTextElement.style.transform = 'translate(0px, ' + speed   + 'px)';
+        //console.log("[2] " + fastTextElement.style.backgroundPosition)
+      }
+      */
+    }
+
     // for mobile
     this.document.querySelector('mat-sidenav-content').addEventListener('touchmove', onContentScroll.bind(this));
 
     // for browsers
     this.document.querySelector('mat-sidenav-content').addEventListener('scroll', onContentScroll.bind(this));
-
-    execute();
   }
-
-  /* ANGULAR 1 Code: Fast Text on Scroll code */
-  /*
-  var content = angular.element('#content');
-  var fastText = angular.element('#parallax-text');
-  content.bind("scroll", function(e) 
-  {
-    //Calculate offset
-    var parent = content.parent();
-    var offset = parent.offset().top - content.scrollTop();
-
-    var currentScrollY = content.scrollTop();                  //get current vertical scroll position
-    var slowScroll = currentScrollY/1.25;                       //calculate fast scroll offset; smaller denominator, faster text translation  
-    
-    fastText.css({
-      'transform'         : 'translateY(-' + slowScroll + 'px)',
-      '-moz-transform'    : 'translateY(-' + slowScroll + 'px)',
-      '-webkit-transform' : 'translateY(-' + slowScroll + 'px)'
-    });   
-  });
-  */
 }

@@ -30,10 +30,12 @@ export class ThemeService {
   private logoPath: string = "assets/imgs/q2-logo-color_white.png";
 
   toggleTheme (){
+    console.log("[ThemeService] toggleTheme");
     if(this.isNightmode) {             //Nightmode ON
       this.isNightmode = false;
       this.themeSource.next("light-theme");
       this.logoSource.next("assets/imgs/q2-logo-color_black.png");
+
       /*
       return {
         "theme":"light-theme",
