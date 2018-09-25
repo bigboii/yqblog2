@@ -42,13 +42,13 @@ export class ContentComponent implements OnInit {
     {
       "title": "Bank of America (Current)",
       "subTitle": "Software Engineer (Officer)",
-      "imgPath":"./assets/imgs/boa_logo.svg",
-      "description":"My team works on building building the private cloud. Using Spring Boot and other tools, I helped my team add new features, simplify our data set, and ensured that our infrastructure works after a framework migration."
+      "imgPath":"./assets/imgs/card_bofa.png",
+      "description":"By following an agile methodology and microservices framework, I work with my team to rapidly deliver a private enterprise cloud. Utilizing both vendor and opensource technologies. The service provides pre-defined VMs or a custom one in a self serve manne. I helped my team add new features, simplify our data set, and ensured that our infrastructure works after a framework migration."
     },
     {
       "title": "Bank of America",
       "subTitle": "Technicaly Analyst, Internship",
-      "imgPath":"./assets/imgs/boa_logo.svg",
+      "imgPath":"./assets/imgs/card_bofa.png",
       "description":"This internship is when I got into web development for the first time. I was responsible for designing and implementing a web application, Time Management System (TMS). Using the MEAN stack approach, I used bootstrap for the overall layout combined with Kendo UI for presenting a bunch of json into a more meaningful way via graphs."
     },
     {

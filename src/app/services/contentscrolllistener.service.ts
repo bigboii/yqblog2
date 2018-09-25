@@ -39,7 +39,10 @@ export class ContentScrollListenerService {
     
   }
 
-  //Listen for Scrolling
+  /**
+  *
+  */
+
   listenForScrolling () {
 
     //Initialize local variables
@@ -50,29 +53,10 @@ export class ContentScrollListenerService {
 
     //Stream Scroll Event
     this.scrollEvent = this.contentScrollEventSource.pipe(
-      map((e: any): ScrollPosition => ({                            //record scroll related positions
+      map((e: any): ScrollPosition => ({                            //get scrollHeight, scrollTop, and clientHeight per each scroll
         sH: e.target.scrollHeight,
         sT: e.target.scrollTop,
         cH: e.target.clientHeight
-      })),
-      pairwise(),                                                   //
-      filter(positions => this.isUserScrollingDown(positions)),
-      map(e => console.log("[scrollListenerService] 11111")));
-
-    console.log("[ContentScrollListener] scrollEvent: " + this.scrollEvent);
-
-    //Return output
-    //this.requestOnScroll = this.scrollEvent;
-    //this.requestOnScroll.exhaustMap(() => { return this.scrollCallback(); }).subscribe(() => { });
-
-
-    //return this.requestOnScroll;
-  }
-
-  private isUserScrollingDown = (positions) => {
-    console.log("[ContentScrollListener] user is scrolling");
-    console.log("[ContentScrollListener] positions: " + positions);
-    console.dir(positions);
-    return positions[0].sT < positions[1].sT;
+      })));
   }
 }

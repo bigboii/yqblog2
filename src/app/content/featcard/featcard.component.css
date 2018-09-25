@@ -6,28 +6,31 @@
 }
 
 .column-left {
-  display: flex;
-  flex-grow: 25;
-  flex-direction: column;
+  display:flex;
   /* flex: 1 1 1px; */
-  padding:12px 24px 12px 12px;
+  padding:12px 12px 12px 12px;
   justify-content: center;
   align-items: center;
 }
 
 .column-left > .mat-card-image {
-  margin: 0 0 0 0;
+  /* margin: 0 0 0 0; */
+  width:60px;
+  height:60px;
+  margin: 12px 24px 12px 12px;
   object-fit: scale-down;
 }
 
 .column-right {
   display:flex;
-  flex-shrink: 75;
+  flex-grow: 1;
   flex-direction: column;
   /*flex: 1 1 100px; */
   padding:12px 12px 12px 24px;
 }
 
 mat-card-avatar {
-  object-fit: cover;
+  width:60px;
+  height:60px;
+  object-fit: scale-down;
 }

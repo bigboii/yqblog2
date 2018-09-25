@@ -1,13 +1,9 @@
 <mat-card class="card-container">
-  <!-- Left -->
-  <div class="column-left">
-    <img mat-card-image src="{{cardData.imgPath}}" alt="Photo of a Shiba Inu" width=270 height=180>
-  </div>
 
   <!-- Right -->
   <div class="column-right">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
+      <div mat-card-avatar class="example-header-image"> <img src="{{cardData.imgPath}}" alt="Photo of a Shiba Inu" width=40 height=40> </div>
       <mat-card-title>{{cardData.title}}</mat-card-title>
       <mat-card-subtitle>{{cardData.subTitle}}</mat-card-subtitle>
     </mat-card-header>
@@ -16,9 +12,5 @@
        {{cardData.description}}
       </p>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
   </div>
 </mat-card>

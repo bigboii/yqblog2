@@ -21,6 +21,7 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
 
   public scrollCallback;
   public contentScrollEvent;
+  public currentScrollPosition;
 
 
   constructor(private el: ElementRef, renderer: Renderer2, 
@@ -47,6 +48,8 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
     //Register event scrolling
     this.contentScrollService.scrollEvent.subscribe(event => this.contentScrollEvent = event);
 
+    //this.contentScrollService.currentScrollPosition.subscribe(position => this.currentScrollPosition = position);
+
     var t = this;                              //reference to current element
     var _speed = 1;                            //translate speed
 
@@ -61,11 +64,19 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
 
     var isMobile = window.mobileAndTabletcheck();
 
+
     function onContentScroll(event) {
+
+      console.log("-------------");
+      console.log("this.contentScrollEvent" + this.contentScrollEvent);
+      console.dir(this.contentScrollEvent);
+      console.log("this.currentScrollPosition" + this.currentScrollPosition);
+      console.dir(this.currentScrollPosition);
+      console.log("-------------");
 
       let myDoc = this.document.querySelector('mat-sidenav-content');
 
-      let rect = this.el.nativeElement.getBoundingClientRect();
+      //let rect = this.el.nativeElement.getBoundingClientRect();
       let elementOffsetTop = this.el.nativeElement.offsetTop;
 
       var scrollTop = myDoc.scrollTop;
@@ -79,20 +90,20 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
         //console.log("[1] " + fastTextElement.style.backgroundPosition)
       }
       else{
-        /* //Doesn't work yet in angular 6
-        renderer2.setStyle(
-          fastTextElement,
-          'translate',
-          '0px ' + speed   + 'px'
-        );
-        */
         fastTextElement.style.transform = 'translate(0px, ' + speed   + 'px)';
         //console.log("[2] " + fastTextElement.style.backgroundPosition)
       }
     }
+    
 
     function onContentScroll2(event) {
-    /*
+    
+      console.log("222222222");
+      console.dir(this.contentScrollEvent);
+      //let scrollHeight = this.contentScrollEvent.sH;
+      let scrollTop =  this.contentScrollEvent['sT'];
+      let clientHeight = this.contentScrollEvent['cH'];
+
       var speed = -(scrollTop / _speed );
 
       if(isMobile){
@@ -100,19 +111,19 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
       }
       if(speed == 0){
         fastTextElement.style.backgroundPosition = '0% '+ 0 + '%';
-        //console.log("[1] " + fastTextElement.style.backgroundPosition)
+        console.log("[1] " + fastTextElement.style.backgroundPosition)
       }
       else{
         fastTextElement.style.transform = 'translate(0px, ' + speed   + 'px)';
-        //console.log("[2] " + fastTextElement.style.backgroundPosition)
+        console.log("[2] " + fastTextElement.style.backgroundPosition)
       }
-      */
+      
     }
 
     // for mobile
-    this.document.querySelector('mat-sidenav-content').addEventListener('touchmove', onContentScroll.bind(this));
+    this.document.querySelector('mat-sidenav-content').addEventListener('touchmove', onContentScroll2.bind(this));
 
     // for browsers
-    this.document.querySelector('mat-sidenav-content').addEventListener('scroll', onContentScroll.bind(this));
+    this.document.querySelector('mat-sidenav-content').addEventListener('scroll', onContentScroll2.bind(this));
   }
 }
