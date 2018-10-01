@@ -3,8 +3,6 @@ import { AfterViewInit, Directive, ElementRef, EventEmitter, Inject, Input, NgZo
 import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';;
 
-//https://blog.angularindepth.com/a-modern-solution-to-lazy-loading-using-intersection-observer-9280c149bbc
-
 @Directive({
   selector: '[deferLoad]'
 })

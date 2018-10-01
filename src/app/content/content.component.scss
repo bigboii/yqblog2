@@ -107,6 +107,21 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
   margin: 0px;
 }
 
+/* Section: What I've accomplished */
+
+.column-left {
+  display:flex;
+  flex-grow: 1;
+  /* flex: 1 1 1px; */
+  padding:12px 12px 12px 12px;
+}
+
+.column-right {
+  display:flex;
+  flex-grow: 1;
+  flex-direction: column;
+}
+
 
 /* General */
 .section

@@ -25,7 +25,7 @@ const DEFAULT_SCROLL_POSITION: ScrollPosition = {
 })
 export class ContentScrollListenerService {
 
-  public sidenavContentElem;  
+  public sidenavContentElem;
   public contentScrollEventSource;
   public scrollEvent;
   public requestOnScroll;
@@ -35,7 +35,7 @@ export class ContentScrollListenerService {
   @Input() public testInput: string;
 
   constructor(@Inject(DOCUMENT) private document: Document) 
-  { 
+  {
     
   }
 
@@ -53,7 +53,7 @@ export class ContentScrollListenerService {
 
     //Stream Scroll Event
     this.scrollEvent = this.contentScrollEventSource.pipe(
-      map((e: any): ScrollPosition => ({                            //get scrollHeight, scrollTop, and clientHeight per each scroll
+      map((e: any): ScrollPosition => ({                   //get scrollHeight, scrollTop, and clientHeight per each scroll
         sH: e.target.scrollHeight,
         sT: e.target.scrollTop,
         cH: e.target.clientHeight

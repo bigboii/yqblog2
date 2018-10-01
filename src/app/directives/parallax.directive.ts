@@ -8,8 +8,6 @@ import {Directive, OnInit, ElementRef, Input, EventEmitter } from '@angular/core
     <h1 class="mat-display-1">Jackdaws love my big sphinx of quartz.</h1>
   </div>
 
-  TODO: Use Renderer instead of ElementRef
-    https://medium.com/@kmathy/angular-manipulate-properly-the-dom-with-renderer-16a756508cba
 */
 
 declare var window:any;

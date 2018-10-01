@@ -12,6 +12,7 @@ export class FeatcardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

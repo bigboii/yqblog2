@@ -1,12 +1,6 @@
-import { Directive, OnInit, Renderer2, ElementRef, Input, EventEmitter, AfterViewInit, Inject} from '@angular/core';
+import { Directive, OnInit, ElementRef, Input, EventEmitter, AfterViewInit, Inject} from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
 import { ContentScrollListenerService } from '../services/contentscrolllistener.service';
-
-/*
-https://github.com/allenRoyston/ang2-parallax/blob/master/ng2-parallax-directive/parallax.directive.ts
-  TODO: Use Renderer instead of ElementRef
-    https://medium.com/@kmathy/angular-manipulate-properly-the-dom-with-renderer-16a756508cba
-*/
 
 //GLOBAL
 declare var window:any;
@@ -24,11 +18,10 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
   public currentScrollPosition;
 
 
-  constructor(private el: ElementRef, renderer: Renderer2, 
+  constructor(private el: ElementRef, 
               @Inject(DOCUMENT) private document: Document,
               public contentScrollService : ContentScrollListenerService) {
     this.element = el.nativeElement;
-    this.renderer = renderer;
   }
 
   ngOnInit() {
@@ -36,25 +29,13 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
   } 
 
   ngAfterViewInit() {
-    //Initialize ContentScrollService
     this.contentScrollService.listenForScrolling();
-
-    //
-    console.log("[fastText] contentScrollService: " + this.contentScrollService);
-    console.dir(this.contentScrollService);
-    console.log("[fastText] contentScrollService.scrollEvent: " + this.contentScrollService.scrollEvent);
-    console.dir(this.contentScrollService.scrollEvent);
-
-    //Register event scrolling
-    this.contentScrollService.scrollEvent.subscribe(event => this.contentScrollEvent = event);
-
-    //this.contentScrollService.currentScrollPosition.subscribe(position => this.currentScrollPosition = position);
+    this.contentScrollService.scrollEvent.subscribe(event => this.contentScrollEvent = event);    
 
     var t = this;                              //reference to current element
     var _speed = 1;                            //translate speed
 
     var fastTextElement = t.element;
-    var renderer2 = t.renderer;                //Use this instead of elementRef
 
     window.mobileAndTabletcheck = function() {
       var check = false;
@@ -62,45 +43,9 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
       return check;
     }
 
-    var isMobile = window.mobileAndTabletcheck();
-
+    var isMobile = window.mobileAndTabletcheck();    
 
     function onContentScroll(event) {
-
-      console.log("-------------");
-      console.log("this.contentScrollEvent" + this.contentScrollEvent);
-      console.dir(this.contentScrollEvent);
-      console.log("this.currentScrollPosition" + this.currentScrollPosition);
-      console.dir(this.currentScrollPosition);
-      console.log("-------------");
-
-      let myDoc = this.document.querySelector('mat-sidenav-content');
-
-      //let rect = this.el.nativeElement.getBoundingClientRect();
-      let elementOffsetTop = this.el.nativeElement.offsetTop;
-
-      var scrollTop = myDoc.scrollTop;
-      var speed = -(scrollTop / _speed );
-
-      if(isMobile){
-        speed = speed * .10
-      }
-      if(speed == 0){
-        fastTextElement.style.backgroundPosition = '0% '+ 0 + '%';
-        //console.log("[1] " + fastTextElement.style.backgroundPosition)
-      }
-      else{
-        fastTextElement.style.transform = 'translate(0px, ' + speed   + 'px)';
-        //console.log("[2] " + fastTextElement.style.backgroundPosition)
-      }
-    }
-    
-
-    function onContentScroll2(event) {
-    
-      console.log("222222222");
-      console.dir(this.contentScrollEvent);
-      //let scrollHeight = this.contentScrollEvent.sH;
       let scrollTop =  this.contentScrollEvent['sT'];
       let clientHeight = this.contentScrollEvent['cH'];
 
@@ -111,19 +56,17 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
       }
       if(speed == 0){
         fastTextElement.style.backgroundPosition = '0% '+ 0 + '%';
-        console.log("[1] " + fastTextElement.style.backgroundPosition)
       }
       else{
         fastTextElement.style.transform = 'translate(0px, ' + speed   + 'px)';
-        console.log("[2] " + fastTextElement.style.backgroundPosition)
       }
       
     }
 
     // for mobile
-    this.document.querySelector('mat-sidenav-content').addEventListener('touchmove', onContentScroll2.bind(this));
+    this.document.querySelector('mat-sidenav-content').addEventListener('touchmove', onContentScroll.bind(this));
 
     // for browsers
-    this.document.querySelector('mat-sidenav-content').addEventListener('scroll', onContentScroll2.bind(this));
+    this.document.querySelector('mat-sidenav-content').addEventListener('scroll', onContentScroll.bind(this));
   }
 }

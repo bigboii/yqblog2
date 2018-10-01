@@ -20,6 +20,7 @@ import { LazyloadDirective } from './directives/lazyload.directive';
 import { RevealonscrollDirective } from './directives/revealonscroll.directive';
 import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import { FooterComponent } from './footer/footer.component';  //needed to inject scrolling inside sidenav-content
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { FooterComponent } from './footer/footer.component';  //needed to inject
     AngularMaterialModule,
     OverlayModule,
     AppRouterModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
+    FlexLayoutModule
   ],
   providers: [
 

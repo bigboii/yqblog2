@@ -17,7 +17,7 @@ export class RevealonscrollDirective implements OnInit, AfterViewInit {
   @Input() public index: number;
   @Output() public showSection: EventEmitter<any> = new EventEmitter();
 
-  constructor(private elementRef: ElementRef, @Inject(DOCUMENT) private document: Document) { 
+  constructor(private elementRef: ElementRef, @Inject(DOCUMENT) private document: Document) {
 
     this.windowHeight = (window.screen.height) + "px";
     this.windowWidth = (window.screen.width) + "px";
@@ -37,7 +37,8 @@ export class RevealonscrollDirective implements OnInit, AfterViewInit {
 
   onContentScroll(event) {
     //console.log("[onContentScroll]");
-
+    console.log("[service: onContentScroll] ");
+    console.dir(event);
     let scrolled = window.pageYOffset;
     let rect = this.elementRef.nativeElement.getBoundingClientRect();
     let elementOffsetTop = this.elementRef.nativeElement.offsetTop;

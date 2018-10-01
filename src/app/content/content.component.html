@@ -37,7 +37,8 @@
     <div revealOnScroll [index]="visibleSections[1].id" (showSection)="displayEmitterResults($event)">
       <div class="section" [@sectionState2]="visibleSections[1].show">
         <h1 class="mat-display-1">Here's what I've done so far</h1>
-        <app-featcard *ngFor="let card of cards" [cardData]=card> </app-featcard>
+
+        <app-featcard [cardData]=cards> </app-featcard>
       </div>
     </div>
 
