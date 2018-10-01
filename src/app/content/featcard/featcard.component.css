@@ -1,9 +1,17 @@
-.card-container {
-  margin-bottom: 1%;
-}
-
 mat-card-avatar {
   width:60px;
   height:60px;
   object-fit: scale-down;
+}
+
+/*
+  Remove elevation and background color for mat-card
+*/
+.mat-card:not([class*=mat-elevation-z]) {
+  background: none;
+  box-shadow: none;
+}
+
+.card-container {
+  margin-bottom: 1%;
 }
