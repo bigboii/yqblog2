@@ -1,7 +1,6 @@
 import { Injectable, Inject, Input } from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
-import { BehaviorSubject } from 'rxjs';
-import { fromEvent } from 'rxjs';
+import { BehaviorSubject ,  fromEvent } from 'rxjs';
 import { map, pairwise, filter, exhaustMap } from 'rxjs/operators';
 
 //https://hackernoon.com/naive-infinite-scroll-in-reactive-programming-using-rxjs-observables-4a605d3146e8

@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, EventEmitter} from '@angular/core';
-import { ToggleService } from '../services/toggle.service';
-import { ThemeService } from '../services/theme.service';
+import { ToggleService } from '../../shared/services/toggle.service';
+import { ThemeService } from '../../shared/services/theme.service';
 import { MatSidenav } from '@angular/material';
-import { SidenavComponent } from '../sidenav/sidenav.component';
 
 @Component({
   selector: 'app-header',

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, Inject, ChangeDetectorRef} from '@angular/core';
-import { ToggleService } from '../services/toggle.service';
+import { ToggleService } from '../../shared/services/toggle.service';
 import { MatSidenav } from '@angular/material';
-import { fadeTransition } from '../animations';
+import { fadeTransition } from '../../animations';
 import { DOCUMENT } from '@angular/platform-browser';
 import {MediaMatcher} from '@angular/cdk/layout';
 

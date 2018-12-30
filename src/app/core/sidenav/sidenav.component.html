@@ -18,7 +18,7 @@
         <div class="content-container" (scroll)="onContentScroll($event)">
           <router-outlet #appOutlet="outlet"></router-outlet>
 
-
+          <app-chat> </app-chat>
           <app-footer [contentHeight]="contentHeight" [style.top.px]="footerPosition"></app-footer>
         </div>
     </div>

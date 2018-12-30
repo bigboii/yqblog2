@@ -1,6 +1,6 @@
 import { Directive, HostListener, ElementRef, ViewChild, Input, Output, Inject, EventEmitter, OnInit, AfterViewInit} from '@angular/core';
 import { DOCUMENT } from '@angular/platform-browser';
-import { revealOnScrollAnimation } from '../animations';
+import { revealOnScrollAnimation } from '../../animations';
 
 @Directive({
   selector: '[revealOnScroll]'

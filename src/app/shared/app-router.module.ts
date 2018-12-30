@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ContentComponent } from '../content/content.component';
-import { AboutComponent } from '../about/about.component';
-import { ProjectsComponent } from '../projects/projects.component';
-import { BlogComponent } from '../blog/blog.component';
+import { ContentComponent } from '../modules/content/content.component';
+import { AboutComponent } from '../modules/about/about.component';
+import { ProjectsComponent } from '../modules/projects/projects.component';
+import { BlogComponent } from '../modules/blog/blog.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'content', pathMatch: 'full' },

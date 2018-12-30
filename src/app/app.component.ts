@@ -1,6 +1,5 @@
 import { Component, HostBinding, OnInit} from '@angular/core';
 import { MatSidenav } from '@angular/material';
-import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +8,10 @@ import { ThemeService } from './services/theme.service';
 })
 export class AppComponent implements OnInit {
 
-  @HostBinding('class') componentCssClass;
-
-  title = 'app';
-
-  private appTheme: string;
-  public logoPath: string;
-
-  constructor(public themeService : ThemeService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.themeService.currentTheme.subscribe(theme => { this.componentCssClass = theme; console.log("change detected: " + this.appTheme);});
-    this.themeService.currentLogo.subscribe(logo => this.logoPath = logo);    
+   
   }
 }
