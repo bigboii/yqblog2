@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AngularMaterialModule } from './shared/angular-material.module'
-import { HomeModule } from './modules/home/home.module'
+import { MainModule } from './modules/main/main.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
     BrowserModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    HomeModule
+    MainModule
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,0 @@
-.content-container {
-  background-color:blue;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100%; 
-}
