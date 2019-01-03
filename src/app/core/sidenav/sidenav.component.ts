@@ -19,6 +19,10 @@ export class SidenavComponent implements OnInit, OnDestroy {
   public contentHeight: number;
   mobileQuery: MediaQueryList;
 
+  //https://uxplanet.org/responsive-design-best-practices-c6d3f5fd163b
+  //https://gist.github.com/gokulkrishh/242e68d1ee94ad05f488
+  const width_dynamic : Array<number> = ['960px', '740px', '480px'];
+
   navItems = [
     {"id":"Home", "iconName":"home", "route":""},
     {"id":"About", "iconName":"account_circle", "route":"about"},

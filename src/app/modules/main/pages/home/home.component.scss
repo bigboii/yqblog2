@@ -54,6 +54,8 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
 .row {
   display: flex;
   flex-direction: row;
+  
+  justify-content: center;
 }
 
 .column {
@@ -61,11 +63,12 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
   flex-direction: column;
 }
 
+/* Content underneath parallax */
+/*
 .left-column {
   flex:25%;
 }
 
-/* Content underneath parallax */
 .content-column
 {
   display:flex;
@@ -76,6 +79,14 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
 
 .right-column {
   flex:25%;
+}
+*/
+
+/* middle */
+.content-column
+{
+  width:960px;
+  height:100%;
 }
 
 
