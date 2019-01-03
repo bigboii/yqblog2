@@ -15,11 +15,41 @@
         [@fadeTransition]="getPage(appOutlet)" 
         (@fadeTransition.start)="routeTransitionStarted($event)"
         (@fadeTransition.done)="routeTransitionDone($event)">
-        <div class="content-container" (scroll)="onContentScroll($event)">
-          <router-outlet #appOutlet="outlet"></router-outlet>
 
-          <app-chat> </app-chat>
-          <app-footer [contentHeight]="contentHeight" [style.top.px]="footerPosition"></app-footer>
+        <div class="content-container" (scroll)="onContentScroll($event)">
+
+          <!-- parallax -->
+          <div deferLoad (deferLoad)="loadParallax($event)">
+            <div [@revealParallax]="parallaxShow"> 
+              <div class="parallax-bg" [style.height.px]="parallaxHeight">
+                <div class="parallax-caption">
+                  <h3 class="mat-headline2 top-caption" fasttext  testInput="testInput"> 
+                          Hi, I'm
+                  </h3>
+                  <h1 class="mat-headline1 bottom-caption" fasttext> 
+                          - Q KIM -
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- content -->
+          <div class="row">
+
+            <!-- Left -->
+            <div class="left-column"></div>
+
+            <!-- Center -->
+            <router-outlet #appOutlet="outlet"></router-outlet>
+
+            <!-- right -->
+            <div class="right-column"></div>
+          </div>
+
+          
+          <app-footer [contentHeight]="contentHeight + parallaxHeight" [style.top.px]="contentHeight + parallaxHeight"></app-footer>
+          <!--<app-footer [contentHeight]="contentHeight" [style.top.px]="footerPosition"></app-footer> -->
         </div>
     </div>
   </mat-sidenav-content>

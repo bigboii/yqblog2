@@ -6,11 +6,15 @@ import { DOCUMENT } from '@angular/platform-browser';
 import {MediaMatcher} from '@angular/cdk/layout';
 
 
+import { revealParallaxAnimation } from '../../shared/animations';
+
+
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss'],
-  animations: [fadeTransition]
+  animations: [fadeTransition, revealParallaxAnimation]
 })
 export class SidenavComponent implements OnInit, OnDestroy {
 
@@ -21,7 +25,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   //https://uxplanet.org/responsive-design-best-practices-c6d3f5fd163b
   //https://gist.github.com/gokulkrishh/242e68d1ee94ad05f488
-  const width_dynamic : Array<number> = ['960px', '740px', '480px'];
+  //const width_dynamic : Array<number> = ['960px', '740px', '480px'];
 
   navItems = [
     {"id":"Home", "iconName":"home", "route":""},
@@ -32,6 +36,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
  
  
   private _mobileQueryListener: () => void;
+
+  public parallaxHeight: number;                            //Parallax
  
   constructor(private toggleService: ToggleService, 
               changeDetectorRef: ChangeDetectorRef,
@@ -50,10 +56,26 @@ export class SidenavComponent implements OnInit, OnDestroy {
     //Set Dynamically set Height of content based on screen sizes
     if(document.documentElement.clientHeight >= 600) {                  //Desktop Screen
       this.contentHeight = document.documentElement.clientHeight - 64;
+      //console.log(" contentHeight: " + this.contentHeight);
     }
     else {                                                              //Mobile Screen
       this.contentHeight = document.documentElement.clientHeight - 56;
     }
+
+    /////Parallax Stuff/////////
+    if(document.documentElement.clientHeight >= 600) {    //Desktop Screen
+      this.parallaxHeight = document.documentElement.clientHeight - 64;
+    }
+    else {                                                //Mobile Screen
+      this.parallaxHeight = document.documentElement.clientHeight - 56;
+    }
+  }
+
+  //LazyLoad for parallax bg
+  showParallax = false;
+
+  loadParallax(someEvent) {
+    this.showParallax = true;
   }
 
   ngOnDestroy(): void {

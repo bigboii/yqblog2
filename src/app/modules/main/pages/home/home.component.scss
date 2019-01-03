@@ -58,11 +58,6 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
   justify-content: center;
 }
 
-.column {
-  display: flex;
-  flex-direction: column;
-}
-
 /* Content underneath parallax */
 /*
 .left-column {
@@ -88,7 +83,6 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
   width:960px;
   height:100%;
 }
-
 
 /* Section: About */
 /* Column Container */

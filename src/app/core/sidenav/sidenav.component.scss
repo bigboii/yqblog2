@@ -1,4 +1,64 @@
-/* Section: About */
+@import '~@angular/material/_theming';
+$config: mat-typography-config();
+
+$some-other-color: mat-palette($mat-red, 700, 100, 800);
+
+app-footer {
+  
+  position:relative;
+}
+
+/* --------------------------------------------*/
+/* ------------ Router Layout -----------------*/
+/* --------------------------------------------*/
+/deep/ router-outlet~* {
+    position: absolute;
+    width: 100%;
+    width:960px;
+}
+
+/* middle */
+.content-column
+{
+  width:960px;
+  height:100%;
+}
+
+/* Create four equal columns that sits next to each other */
+.row {
+  display: flex;
+  flex-direction: row;
+  
+  justify-content: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Content underneath parallax */
+/*
+.left-column {
+  flex:25%;
+}
+
+.content-column
+{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.right-column {
+  flex:25%;
+}
+*/
+
+
+/* --------------------------------------------*/
+/* ------------ Sidenav Layout ----------------*/
+/* --------------------------------------------*/
 /* Column Container */
 
 .drawer-container {
@@ -33,7 +93,59 @@
 .content-container {
   display: flex;
   flex-direction: column; 
-  height: 100%;
+
   width: 100%;
-  position:absolute;      /* This is needed to allow router animation*/
 }
+
+
+/* --------------------------------------------*/
+/* ------------ Parallax ----------------------*/
+/* --------------------------------------------*/
+/* Grey + Blurred Background Image */
+.parallax-bg
+{
+  position: relative;
+  z-index:1;
+  width: 100%; 
+  /*min-height: calc(100vh);*/
+  /* parallax height is set by content.component.ts */
+
+  background-image: url("/assets/imgs/parallax.jpg");
+  background-attachment:fixed;                     /* parallax effect */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position:center;
+  
+  /* Pull the background 70px higher to the same as .parallax's */
+}
+
+/* Put this on top of the blurred background layer */
+.parallax-caption
+{
+  /* Place above z-index 99 */
+  position:absolute;
+  top:calc(50vh - 32px - 154px);     /* toolbar_height/2 - fastText_height/2 */
+  left: 0;
+  width:100%;
+  text-align: center;
+  z-index:2;
+  color: white;
+}
+
+.parallax-caption .top-caption {
+  text-align: center;
+  margin-bottom: 0;
+  font-size:mat-font-size($config, display-2);
+  font-style:italic;
+}
+
+.parallax-caption .bottom-caption {
+  text-align: center;
+  margin-top: 0;
+  font-size:mat-font-size($config, display-4);
+  font-style:bold;
+}
+
+
+
+
