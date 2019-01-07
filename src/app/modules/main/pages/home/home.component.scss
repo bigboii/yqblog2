@@ -154,6 +154,12 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
   display: inline-block;
 }
 
+/* List Item Height */
+.mat-list .mat-list-item {
+  height: 30px; /* default is 72px */
+}
+
+
 /* ---------------------- */
 /* CSS for MOBILE VERSION */
 /* ---------------------- */

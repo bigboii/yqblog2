@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, Inject, ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Inject, ChangeDetectorRef, AfterViewInit} from '@angular/core';
 import { ToggleService } from '../../shared/services/toggle.service';
 import { MatSidenav } from '@angular/material';
 import { fadeTransition } from '../../animations';
@@ -16,12 +16,13 @@ import { revealParallaxAnimation } from '../../shared/animations';
   styleUrls: ['./sidenav.component.scss'],
   animations: [fadeTransition, revealParallaxAnimation]
 })
-export class SidenavComponent implements OnInit, OnDestroy {
+export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('drawer') 
   public sidenav: MatSidenav;
   public contentHeight: number;
   mobileQuery: MediaQueryList;
+  public routerHeight: number;
 
   //https://uxplanet.org/responsive-design-best-practices-c6d3f5fd163b
   //https://gist.github.com/gokulkrishh/242e68d1ee94ad05f488
@@ -63,12 +64,20 @@ export class SidenavComponent implements OnInit, OnDestroy {
     }
 
     /////Parallax Stuff/////////
+    //Calculate Parallax height; 
     if(document.documentElement.clientHeight >= 600) {    //Desktop Screen
       this.parallaxHeight = document.documentElement.clientHeight - 64;
     }
     else {                                                //Mobile Screen
       this.parallaxHeight = document.documentElement.clientHeight - 56;
     }
+
+  }
+
+  ngAfterViewInit() {
+        //Calculate router-outlet height
+    this.routerHeight = document.getElementsByTagName('router-outlet')[0].nextElementSibling.scrollHeight;
+    console.log(" routerHeight: " + this.routerHeight);
   }
 
   //LazyLoad for parallax bg

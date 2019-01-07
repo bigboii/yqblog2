@@ -3,33 +3,39 @@ $config: mat-typography-config();
 
 $some-other-color: mat-palette($mat-red, 700, 100, 800);
 
-app-footer {
-  
-  position:relative;
+.content-wrapper {
+  width: 100%;
+  min-height: 100%;
+  margin:auto;
 }
 
 /* --------------------------------------------*/
 /* ------------ Router Layout -----------------*/
 /* --------------------------------------------*/
-/deep/ router-outlet~* {
-    position: absolute;
-    width: 100%;
-    width:960px;
-}
-
-/* middle */
-.content-column
-{
-  width:960px;
-  height:100%;
-}
 
 /* Create four equal columns that sits next to each other */
 .row {
   display: flex;
   flex-direction: row;
-  
   justify-content: center;
+}
+
+.outlet-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+}
+
+/deep/ router-outlet~* {
+  position: absolute;
+  width:960px;
+  top:0;
+}
+
+app-footer {
+  position:absolute;
+  width:100%;
 }
 
 .column {
@@ -37,7 +43,9 @@ app-footer {
   flex-direction: column;
 }
 
+
 /* Content underneath parallax */
+
 /*
 .left-column {
   flex:25%;
@@ -89,13 +97,6 @@ app-footer {
   margin-right:8px;
 }
 
-
-.content-container {
-  display: flex;
-  flex-direction: column; 
-
-  width: 100%;
-}
 
 
 /* --------------------------------------------*/

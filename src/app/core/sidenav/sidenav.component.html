@@ -16,40 +16,28 @@
         (@fadeTransition.start)="routeTransitionStarted($event)"
         (@fadeTransition.done)="routeTransitionDone($event)">
 
-        <div class="content-container" (scroll)="onContentScroll($event)">
+        <div class="content-wrapper" (scroll)="onContentScroll($event)">
 
           <!-- parallax -->
-          <div deferLoad (deferLoad)="loadParallax($event)">
-            <div [@revealParallax]="parallaxShow"> 
-              <div class="parallax-bg" [style.height.px]="parallaxHeight">
-                <div class="parallax-caption">
-                  <h3 class="mat-headline2 top-caption" fasttext  testInput="testInput"> 
-                          Hi, I'm
-                  </h3>
-                  <h1 class="mat-headline1 bottom-caption" fasttext> 
-                          - Q KIM -
-                  </h1>
-                </div>
-              </div>
+          <div class="parallax-bg" [style.height.px]="parallaxHeight" [@revealParallax]="parallaxShow" deferLoad (deferLoad)="loadParallax($event)"> 
+            <div class="parallax-caption">
+              <h3 class="mat-headline2 top-caption" fasttext  testInput="testInput"> 
+                      Hi, my name is
+              </h3>
+              <h1 class="mat-headline1 bottom-caption" fasttext> 
+                      Young Kyu Kim.
+              </h1>
             </div>
           </div>
 
           <!-- content -->
-          <div class="row">
-
-            <!-- Left -->
-            <div class="left-column"></div>
-
+          <div class="outlet-wrapper">
             <!-- Center -->
-            <router-outlet #appOutlet="outlet"></router-outlet>
 
-            <!-- right -->
-            <div class="right-column"></div>
+            <router-outlet #appOutlet="outlet"></router-outlet>
+            <app-footer [contentHeight]="contentHeight + parallaxHeight" [footerPosition]="routerHeight" [style.top.px]="routerHeight"></app-footer>
           </div>
 
-          
-          <app-footer [contentHeight]="contentHeight + parallaxHeight" [style.top.px]="contentHeight + parallaxHeight"></app-footer>
-          <!--<app-footer [contentHeight]="contentHeight" [style.top.px]="footerPosition"></app-footer> -->
         </div>
     </div>
   </mat-sidenav-content>
