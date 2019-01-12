@@ -19,7 +19,7 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.themeService.currentTheme.subscribe(theme => { this.componentCssClass = theme; console.log("change detected: " + this.appTheme);});
+    this.themeService.currentTheme.subscribe(theme => { this.componentCssClass = theme; console.log("change detected: " + theme);});
     this.themeService.currentLogo.subscribe(logo => this.logoPath = logo);    
   }
 

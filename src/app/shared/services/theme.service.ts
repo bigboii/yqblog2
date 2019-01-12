@@ -13,6 +13,7 @@ import { BehaviorSubject } from 'rxjs';
 export class ThemeService {
 
   private themeSource = new BehaviorSubject<string>("light-theme");
+  //private themeSource = new BehaviorSubject<string>("my-app-theme");
   private logoSource = new BehaviorSubject<string>("assets/imgs/q2-logo-color_white.png");
   currentTheme = this.themeSource.asObservable();
   currentLogo = this.logoSource.asObservable();

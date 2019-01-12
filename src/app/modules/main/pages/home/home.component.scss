@@ -1,52 +1,55 @@
 @import '~@angular/material/_theming';
+
 $config: mat-typography-config();
 
-$some-other-color: mat-palette($mat-red, 700, 100, 800);
 
-/* Grey + Blurred Background Image */
-.parallax-bg
-{
-  position: relative;
-  z-index:1;
-  width: 100%; 
-  /*min-height: calc(100vh);*/
-  /* parallax height is set by content.component.ts */
+// Define a custom mixin that takes in the current theme
+@mixin set-theme-home($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  // Create theme specfic styles
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
 
-  background-image: url("/assets/imgs/parallax.jpg");
-  background-attachment:fixed;                     /* parallax effect */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position:center;
-  
-  /* Pull the background 70px higher to the same as .parallax's */
+  .mat-display-1 { 
+    color:mat-color($accent);
+  }
+
+  .section > .mat-title
+  {
+    color: mat-color($accent);
+  }
+
+  .section > .mat-headline
+  {
+    color: mat-color($accent);
+  }
+
+  .section > .mat-display-1
+  {
+    color: mat-color($accent);
+  }
+
+  .arrow::before {
+    content: "▹";
+    position: absolute;
+    left: 0px;
+    color: mat-color($accent);
+    font-size: 14px;
+    line-height: 12px;
+  }
 }
 
-/* Put this on top of the blurred background layer */
-.parallax-caption
-{
-  /* Place above z-index 99 */
-  position:absolute;
-  top:calc(50vh - 32px - 154px);     /* toolbar_height/2 - fastText_height/2 */
-  left: 0;
-  width:100%;
-  text-align: center;
-  z-index:2;
-  color: white;
-}
 
-.parallax-caption .top-caption {
-  text-align: center;
-  margin-bottom: 0;
-  font-size:mat-font-size($config, display-2);
-  font-style:italic;
-}
-
-.parallax-caption .bottom-caption {
-  text-align: center;
-  margin-top: 0;
-  font-size:mat-font-size($config, display-4);
-  font-style:bold;
-}
 
 /* Left Center Right columning */
 
@@ -72,7 +75,9 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
   height:100%;
 }
 
-.right-column {
+
+
+.right-column:: {
   flex:25%;
 }
 */
@@ -85,9 +90,63 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
 }
 
 /* Section: About */
+.about {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.about-content-container {
+  width:60%;
+  max-width:480px;
+}
+
+.about-pic-container {
+  position: relative;
+  width: 40%;
+  max-width: 300px;
+  margin-left: 60px;
+  margin-top: 60px;
+}
+
+.avatar-pic
+{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  object-position: center center;
+}
+
+
 /* Column Container */
 
 /* Create four equal columns that sits next to each other */
+
+/*
+.mat-display-1 {
+      position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 100%;
+    white-space: nowrap;
+    font-size: 30px;
+    margin: 10px 0px 40px;
+}
+*/
+
+.mat-display-1::after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 300px;
+    position: relative;
+    top: -5px;
+    margin-left: 20px;
+}
 
 .column-25 {
   flex-grow: 1;
@@ -131,23 +190,9 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
 /* General */
 .section
 {
-  padding: 24px 0px 24px 0px;
+  padding: 150px 0px;
 }
 
-.section > .mat-title
-{
-  color: mat-color($some-other-color);
-}
-
-.section > .mat-headline
-{
-  color: mat-color($some-other-color);
-}
-
-.section > .mat-display-1
-{
-  color: mat-color($some-other-color);
-}
 
 /* Section: Skills */
 .section > mat-list {

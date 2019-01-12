@@ -1,9 +1,51 @@
+@import '~@angular/material/_theming';
+
+// Define a custom mixin that takes in the current theme
+@mixin set-theme-header($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  // Create theme specfic styles
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+
+  .mat-toolbar.mat-primary {
+    background: mat-color($primary);
+      @include mat-elevation-transition;
+  }
+}
+
+
+
 mat-toolbar {
+
   position: fixed;
-  
+      width: 100%;
   /* Make sure the toolbar will stay on top of the content as it scrolls past. */
   z-index: 2;
+
 }
+
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 16px;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    white-space: nowrap;
+}
+
+
 
 .fill-remaining-space {
   /* This fills the remaining space, by using flexbox. 

@@ -81,3 +81,6 @@ export const sectionAnimation2 = trigger('sectionState',[
  transition('0 => 1', animate("5s ease-in")),
  transition('1 => 0', animate("5s ease-out"))
 ])
+
+
+//Animation for mat-toolbar shadowbox

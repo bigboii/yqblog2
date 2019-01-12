@@ -1,4 +1,53 @@
 @import '~@angular/material/_theming';
+
+// Define a custom mixin that takes in the current theme
+@mixin set-theme-sidenav($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  // Create theme specfic styles
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+
+  .parallax-bg {
+    background-color: mat-color($primary);
+    border-color: mat-color($accent, darker);
+
+  }
+
+  .parallax-caption h3 {
+    color:mat-color($accent);
+  }
+
+  .parallax-caption h1 {
+    color: rgb(230, 241, 255);
+  }
+
+  .parallax-bg .mat-body-1 { 
+    color:mat-color($accent, lighter);
+  }
+}
+
+
+
+/*
+$custom-typography: mat-typography-config(
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 20px, 400)
+);
+
+@include mat-core($custom-typography);
+*/
+
+
 $config: mat-typography-config();
 
 $some-other-color: mat-palette($mat-red, 700, 100, 800);
@@ -27,6 +76,12 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
   align-items:center;
 }
 
+.outlet
+{ 
+
+
+}
+
 /deep/ router-outlet~* {
   position: absolute;
   width:960px;
@@ -34,7 +89,6 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
 }
 
 app-footer {
-  position:absolute;
   width:100%;
 }
 
@@ -103,43 +157,45 @@ app-footer {
 /* ------------ Parallax ----------------------*/
 /* --------------------------------------------*/
 /* Grey + Blurred Background Image */
+
+
 .parallax-bg
 {
   position: relative;
   display: flex;
   justify-content:center;
   align-items:center;
-  z-index:1;
+  z-index:0;
   width: 100%; 
-  /*min-height: calc(100vh);*/
+  /* min-height: calc(100vh); */
   /* parallax height is set by content.component.ts */
 
-  background-image: url("/assets/imgs/parallax.jpg");
-  background-attachment:fixed;                     /* parallax effect */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position:center;
+  /* parallax effect */
   
+  //background-image: url("/assets/imgs/parallax.jpg");
+  //background-attachment:fixed;                     
+  //background-repeat: no-repeat;
+  //background-size: cover;
+  //background-position:center; 
+  
+    
   /* Pull the background 70px higher to the same as .parallax's */
 
 }
 
 /* Put this on top of the blurred background layer */
-
-
 .parallax-caption
 {
-  
   max-width: 1000px;
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    flex-direction: column;
-    align-items: flex-start;
-    min-height: 100vh;
-    margin: 0px auto;
-    padding: 150px 0px;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0px auto;
+  padding: 150px 0px;
 }
 
 .parallax-caption2
@@ -154,32 +210,26 @@ app-footer {
   color: white;
 }
 
-.parallax-caption .top-caption {
-  margin-bottom: 0;
-  font-size:16px;
-  font-style:bold;
-  color:mat-color($some-other-color);
+.parallax-caption h3 {
+  font-family:'Ubuntu Mono', monospace;
+  margin: 0px 0px 20px 0px;
 }
 
-.parallax-caption .middle-caption {
-  margin-bottom: 0;
+.parallax-caption h1 {
   font-size:80px;
-  font-style:bold;
-  color: rgb(230, 241, 255);
+  line-height:1.1;
 }
 
-.parallax-caption .bottom-caption {
-    font-size:16px;
-    margin-top: 25px;
+.parallax-caption p {
     /* width: 50%; */ 
     max-width: 500px;
-    color:rgb(136, 146, 176);
+    margin: 0px 0px 10px;
 }
 
 .parallax-caption .middle-caption2 {
   text-align: center;
   margin-bottom: 0;
-  font-size:mat-font-size($config, display-2);
+  //font-size:mat-font-size($config, display-2);
   font-style:italic;
 }
 

@@ -12,7 +12,7 @@ export class RevealonscrollDirective implements OnInit, AfterViewInit {
   public windowHeight: string;
   public windowWidth: string;
   public win_height_padded: number;
-  public switchedOn :boolean = true;
+  public switchedOn : boolean = true;
 
   @Input() public index: number;
   @Output() public showSection: EventEmitter<any> = new EventEmitter();
@@ -31,14 +31,16 @@ export class RevealonscrollDirective implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+
+    //Constantly listen to content scrolling inside "mat-sidenav-content"
     this.document.querySelector('mat-sidenav-content')
                                  .addEventListener('scroll', this.onContentScroll.bind(this));
   }
 
   onContentScroll(event) {
     //console.log("[onContentScroll]");
-    console.log("[service: onContentScroll] ");
-    console.dir(event);
+    //console.log("[service: onContentScroll] ");
+    //console.dir(event);
     let scrolled = window.pageYOffset;
     let rect = this.elementRef.nativeElement.getBoundingClientRect();
     let elementOffsetTop = this.elementRef.nativeElement.offsetTop;

@@ -1,40 +1,65 @@
 @import '~@angular/material/_theming';
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 @include mat-core();
+@import './app/core/header/header.component';
+@import './app/core/sidenav/sidenav.component';
+@import './app/modules/main/pages/home/home.component';
 
-// Typography
-//$custom-typography: mat-typography-config(
-//  $font-family: Roboto,
-//  $headline: mat-typography-level(24px, 48px, 400),
-//  $body-1: mat-typography-level(16px, 24px, 400)
-//);
-//@include angular-material-typography($custom-typography);
 
-// Default colors
-$my-app-primary: mat-palette($mat-red, 700, 100, 800);
-$my-app-accent:  mat-palette($mat-indigo, 700, 100, 800);
+@mixin set-theme($theme) // define a new @mixin that will be invoked each time the theme is changed
+{
+  @include set-theme-header($theme);   // invoke the mixin we defined for component_1
+  @include set-theme-sidenav($theme);
+  @include set-theme-home($theme);
+  // repeat this for each component that uses theme colors
+}
 
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
-@include angular-material-theme($my-app-theme);
+//Typography
+$custom-typography: mat-typography-config(
+  $font-family: Roboto,
+  $headline: mat-typography-level(32px, 48px, 900),
+  $body-1: mat-typography-level(16px, 28px, 400)
+);
+@include angular-material-typography($custom-typography);
+
 
 // Dark theme
-$dark-primary: mat-palette($mat-gray);
-$dark-accent:  mat-palette($mat-red, A400, A100, A700);
+$dark-primary: mat-palette($mat-red, 400, 300, 900);
+$dark-accent:  mat-palette($mat-blue, A200, A100, A400);
 $dark-warn:    mat-palette($mat-orange);
 $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 .dark-theme {
+  // set text color
+  //color: mat-color($dark-accent, default-contrast);
+  //color: mat-color($dark-primary, lighter);
+  //$dark-foreground: my-mat-dark-theme-foreground(mat-color($dark-accent));
+  //$dark-theme: map-merge($dark-theme, (foreground: $dark-foreground));
+  @include set-theme($dark-theme);
   @include angular-material-theme($dark-theme);
 }
 
-
 // Light theme
-$light-primary: mat-palette($mat-grey, 200, 500, 300);
-$light-accent: mat-palette($mat-brown, 200);
-$light-warn: mat-palette($mat-deep-orange, 200);
-
+$light-primary: mat-palette($mat-red, 500, 300, 900);
+$light-accent:  mat-palette($mat-blue, A400, A100, A700);
+$light-warn:    mat-palette($mat-orange);
 $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 
 .light-theme {
-  @include angular-material-theme($my-app-theme)
+  // Set custom background color
+  //$custom-background-color: map_get($mat-red, 500);
+
+  //$background: map-get($my-app-theme, background);
+  //color: mat-color($my-app-accent, default-contrast);
+  //$background: map_merge($background, (background: $custom-background-color));
+  //$my-app-theme: map_merge($my-app-theme, (background: $background));
+
+  // set text color
+  // You can put any color here. I've chosen mat-color($my-app-primary, 700)
+  // $my-foreground: my-mat-light-theme-foreground(mat-color($light-accent, 500));
+  // $my-app-theme: map-merge($my-app-theme, (foreground: $my-foreground));
+  //done
+
+  @include set-theme($light-theme);
+  @include angular-material-theme($light-theme);
 }
+

@@ -62,15 +62,12 @@ export class ParallaxDirective  {
         else{
           fastTextElement.style.backgroundPosition = '0% '+ speed + '%';
         }
-
-
     };
 
     // for mobile
     window.document.addEventListener("touchmove", function(){
         execute();
     })
-
 
     // for browsers
     window.document.addEventListener("scroll", function() {

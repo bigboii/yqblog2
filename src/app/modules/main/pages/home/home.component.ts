@@ -10,10 +10,10 @@ import { DOCUMENT } from '@angular/platform-browser';
 })
 export class HomeComponent implements OnInit {
 
-  languages = ["Java", "C", "C++", "JavaScript", "TypeScript"];
-  frameworks = ["Angular", "Spring", "Node", "Android"];
-  tools=["Bash", "Git", "NPM"];
-  databases=["SQL", "MongoDB", "Firebase"];
+  languages = ["Java", "C", "C++", "Spring", "HashiCorp", "VMWare"];
+  frameworks = ["Angular", "Node.js", "JavaScript", "TypeScript"];
+  databases=["SQL", "MongoDB", "Firebase", "Logstash", "Filebeat"];
+  framework=["Spring", "Hashicorp"]
 
   public parallaxHeight: number;
 

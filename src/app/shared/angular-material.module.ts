@@ -37,6 +37,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { MaterialElevationDirective } from './directives/material-elevation.directive';
 
 @NgModule({
 exports: [
@@ -75,6 +76,7 @@ exports: [
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-  ]
+  ],
+declarations: [MaterialElevationDirective]
 })
 export class AngularMaterialModule { }
