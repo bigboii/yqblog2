@@ -19,7 +19,7 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
     //console.log("footer's contentHeight: " + this.contentHeight);
     //this.footerPosition = this.contentHeight - 64;
-    console.log("footer's footerPosition: " + this.footerPosition);
+    //console.log("footer's footerPosition: " + this.footerPosition);
 
     //console.log("footer's css this.componentCssStyle.top: " + this.componentCssStyle.top.px);
     this.componentCssStyle.top.px = this.footerPosition;

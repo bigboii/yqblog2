@@ -29,10 +29,11 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
   //const width_dynamic : Array<number> = ['960px', '740px', '480px'];
 
   navItems = [
-    {"id":"Home", "iconName":"home", "route":""},
+    {"id":"Home", "iconName":"home", "route":"home"},
     {"id":"About", "iconName":"account_circle", "route":"about"},
     {"id":"Projects", "iconName":"code", "route":"projects"},
-    {"id":"Blog", "iconName":"desktop_windows", "route":"blog"}
+    {"id":"Blog", "iconName":"desktop_windows", "route":"blog"},
+    { path: '**', redirectTo: '/home' }
   ]
  
  
