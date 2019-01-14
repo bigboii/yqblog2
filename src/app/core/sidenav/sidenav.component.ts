@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy, ViewChild, Inject, ChangeDetectorRef, AfterViewInit} from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, Inject, ChangeDetectorRef, AfterViewInit, HostBinding} from '@angular/core';
 import { ToggleService } from '../../shared/services/toggle.service';
 import { MatSidenav } from '@angular/material';
 import { fadeTransition } from '../../animations';
 import { DOCUMENT } from '@angular/platform-browser';
 import {MediaMatcher} from '@angular/cdk/layout';
+
+import { ThemeService } from '../../shared/services/theme.service';
 
 
 import { revealParallaxAnimation } from '../../shared/animations';
@@ -18,22 +20,27 @@ import { revealParallaxAnimation } from '../../shared/animations';
 })
 export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
 
+
+  @HostBinding('class') componentCssClass;
+
   @ViewChild('drawer') 
   public sidenav: MatSidenav;
   public contentHeight: number;
   mobileQuery: MediaQueryList;
   public routerHeight: number;
 
+  private appTheme: string;
+  public logoPath: string;
+
   //https://uxplanet.org/responsive-design-best-practices-c6d3f5fd163b
   //https://gist.github.com/gokulkrishh/242e68d1ee94ad05f488
   //const width_dynamic : Array<number> = ['960px', '740px', '480px'];
 
   navItems = [
-    {"id":"Home", "iconName":"home", "route":"home"},
+    {"id":"Home", "iconName":"home", "route":""},
     {"id":"About", "iconName":"account_circle", "route":"about"},
     {"id":"Projects", "iconName":"code", "route":"projects"},
-    {"id":"Blog", "iconName":"desktop_windows", "route":"blog"},
-    { path: '**', redirectTo: '/home' }
+    {"id":"Blog", "iconName":"desktop_windows", "route":"blog"}
   ]
  
  
@@ -42,6 +49,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
   public parallaxHeight: number;                            //Parallax
  
   constructor(private toggleService: ToggleService, 
+              public themeService : ThemeService,
               changeDetectorRef: ChangeDetectorRef,
               media: MediaMatcher,
               @Inject(DOCUMENT) private document: Document) 
@@ -52,25 +60,30 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
+
+    //Register Theme
+    this.themeService.currentTheme.subscribe(theme => { this.componentCssClass = theme; console.log("change detected: " + theme);});
+    this.themeService.currentLogo.subscribe(logo => this.logoPath = logo);    
+
     //Register current sidenav to toggleService
     this.toggleService.setSidenav(this.sidenav);
 
     //Set Dynamically set Height of content based on screen sizes
     if(document.documentElement.clientHeight >= 600) {                  //Desktop Screen
-      this.contentHeight = document.documentElement.clientHeight - 64;
+      this.contentHeight = document.documentElement.clientHeight;
       console.log(" contentHeight: " + this.contentHeight);
     }
     else {                                                              //Mobile Screen
-      this.contentHeight = document.documentElement.clientHeight - 56;
+      this.contentHeight = document.documentElement.clientHeight;
     }
 
     /////Parallax Stuff/////////
     //Calculate Parallax height; 
     if(document.documentElement.clientHeight >= 600) {    //Desktop Screen
-      this.parallaxHeight = document.documentElement.clientHeight - 64;
+      this.parallaxHeight = document.documentElement.clientHeight;
     }
     else {                                                //Mobile Screen
-      this.parallaxHeight = document.documentElement.clientHeight - 56;
+      this.parallaxHeight = document.documentElement.clientHeight;
     }
 
   }
