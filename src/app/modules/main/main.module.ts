@@ -12,7 +12,6 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { HeaderComponent } from '../../core/header/header.component';
 import { SidenavComponent } from '../../core/sidenav/sidenav.component';
 import { FooterComponent } from '../../core/footer/footer.component';  //needed to inject scrolling inside sidenav-content
-import { ChatComponent } from '../../core/chat/chat.component';
 
 import { ParallaxDirective } from '../../shared/directives/parallax.directive';
 import { FasttextDirective } from '../../shared/directives/fasttext.directive';
@@ -23,6 +22,8 @@ import { AngularMaterialModule } from '../../shared/angular-material.module';
 import { FeatcardComponent } from './components/featcard/featcard.component';
 import { AppRouterModule } from './app-router.module';
 import { MainComponent } from './main.component'
+
+import { ChatModule } from '../chat/chat.module'
 
 @NgModule({
   declarations: [
@@ -38,15 +39,15 @@ import { MainComponent } from './main.component'
     ProjectsComponent,
     LazyloadDirective,
     RevealonscrollDirective,
-    FooterComponent,
-    ChatComponent],
+    FooterComponent],
   imports: [
     CommonModule,
     OverlayModule,
     AppRouterModule,
     ScrollDispatchModule,
     FlexLayoutModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    ChatModule
   ],
   exports: [
     MainComponent

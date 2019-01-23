@@ -40,8 +40,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
     {"id":"Home", "iconName":"home", "route":""},
     {"id":"About", "iconName":"account_circle", "route":"about"},
     {"id":"Projects", "iconName":"code", "route":"projects"},
-    {"id":"Blog", "iconName":"desktop_windows", "route":"blog"}
-  ]
+    {"id":"Chat", "iconName":"desktop_windows", "route":"chat"}  ]
  
  
   private _mobileQueryListener: () => void;

@@ -36,6 +36,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule,
+  MatFormFieldModule
 } from '@angular/material';
 import { MaterialElevationDirective } from './directives/material-elevation.directive';
 

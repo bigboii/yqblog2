@@ -10,31 +10,31 @@
 
       <p class="mat-body-1"> Heres a few things I'm experienced with: </p>
 
-           <!-- Section: Skills -->
-<div revealOnScroll [index]="visibleSections[2].id" (showSection)="displayEmitterResults($event)">
-  <div class="row">
-    <div class="column-25">
-      <div class="row-25"> 
-      </div> 
-      <mat-list dense>
-        <mat-list-item *ngFor="let language of languages">
-          <div class="arrow">
-            <p class="mat-body-1"> {{language}} </p>
+      <!-- Section: Skills -->
+      <div revealOnScroll [index]="visibleSections[2].id" (showSection)="displayEmitterResults($event)">
+        <div class="row">
+          <div class="column-25">
+            <div class="row-25"> 
+            </div> 
+            <mat-list dense>
+              <mat-list-item *ngFor="let language of languages">
+                <div class="arrow">
+                  <p class="mat-body-1"> {{language}} </p>
+                </div>
+              </mat-list-item>
+            </mat-list>
           </div>
-        </mat-list-item>
-      </mat-list>
-    </div>
-    <div class="column-25">
-      <div class="row-25"> 
-      </div> 
-      <mat-list dense>
-        <a mat-list-item *ngFor="let framework of frameworks">
-          <p class="mat-body-1"> {{framework}} </p>
-        </a>
-      </mat-list>
-    </div>
-  </div>
-</div>
+          <div class="column-25">
+            <div class="row-25"> 
+            </div> 
+            <mat-list dense>
+              <a mat-list-item *ngFor="let framework of frameworks">
+                <p class="mat-body-1"> {{framework}} </p>
+              </a>
+            </mat-list>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="about-pic-container">
       <img class="avatar-pic" alt="Avator" src="/assets/imgs/parallax.jpg">
