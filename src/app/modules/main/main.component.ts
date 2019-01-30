@@ -1,26 +1,59 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
-import { ThemeService } from '../../shared/services/theme.service';
+import { Component, HostBinding, OnInit, AfterViewInit } from '@angular/core';
+
+import { fadeTransition } from '../../animations';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
+  animations: [fadeTransition]
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, AfterViewInit {
 
-  @HostBinding('class') componentCssClass;
+  public contentHeight: number;
+  public routerHeight: number;
 
-  title = 'app';
+  ngOnInit() {
 
-  private appTheme: string;
-  public logoPath: string;
-
-  constructor(public themeService : ThemeService) {
+      //Set Dynamically set Height of content based on screen sizes
+    if(document.documentElement.clientHeight >= 600) {                  //Desktop Screen
+      this.contentHeight = document.documentElement.clientHeight - 64;
+      console.log(" contentHeight: " + this.contentHeight);
+    }
+    else {                                                              //Mobile Screen
+      this.contentHeight = document.documentElement.clientHeight - 56;
+    }
   }
 
-  ngOnInit(): void {
-    this.themeService.currentTheme.subscribe(theme => { this.componentCssClass = theme; console.log("change detected: " + theme);});
-    this.themeService.currentLogo.subscribe(logo => this.logoPath = logo);    
+  ngAfterViewInit() {
+        //Calculate router-outlet height
+    this.routerHeight = document.getElementsByTagName('router-outlet')[0].nextElementSibling.scrollHeight;
+    console.log(" routerHeight: " + this.routerHeight);
   }
 
+  /*
+    Get currently active route page
+    @outlet: router outlet
+  */
+  getPage(outlet) {
+    // Changing the activatedRouteData.state triggers the animation
+    let output = outlet.isActivated ? outlet.activatedRoute : '';
+    return outlet.activatedRouteData['page'] || 'content';
+  }
+
+  /*
+    Callback when route transition animation starts
+    @event: animation event
+  */
+  routeTransitionStarted(event) {
+    console.log("Route Transition Starting");
+  }
+
+  /*
+    Callback when route transition animation ends
+    @event: animation event
+  */
+  routeTransitionDone(event) {
+    console.log("Route Transition Complete");
+  }
 }

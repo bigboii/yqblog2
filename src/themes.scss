@@ -2,7 +2,7 @@
 @include mat-core();
 @import './app/core/header/header.component';
 @import './app/core/sidenav/sidenav.component';
-@import './app/modules/main/pages/home/home.component';
+@import './app/modules/main/pages/home/content/home.component';
 
 
 @mixin set-theme($theme) // define a new @mixin that will be invoked each time the theme is changed

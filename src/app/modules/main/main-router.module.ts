@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './pages/home/content/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { ChatComponent } from '../chat/chat.component';
+
+import { ParallaxHomeComponent } from './pages/home/parallax/parallax-home.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -21,4 +23,4 @@ const routes: Routes = [
   ],
   exports: [ RouterModule ]
 })
-export class AppRouterModule { }
+export class MainRouterModule { }

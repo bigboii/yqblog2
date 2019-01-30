@@ -1,5 +1,21 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div>
-  <app-header  [logoPath]=logoPath></app-header>
-  <app-sidenav></app-sidenav>
-</div>
+    <!--The content below is only a placeholder and can be replaced.-->
+    <div
+        [style.height.px]="contentHeight"
+        [@fadeTransition]="getPage(appOutlet)" 
+        (@fadeTransition.start)="routeTransitionStarted($event)"
+        (@fadeTransition.done)="routeTransitionDone($event)">
+
+      <div class="content-wrapper" (scroll)="onContentScroll($event)">
+
+        <!-- parallax -->
+
+
+        <!-- content -->
+        <div class="outlet-wrapper mat-elevation-z2">
+          
+          <!-- Center -->
+          <router-outlet #appOutlet="outlet" class="mat-elevation-z1 outlet"></router-outlet>
+        </div>
+
+      </div>
+  </div>

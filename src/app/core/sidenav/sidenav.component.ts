@@ -1,22 +1,19 @@
 import { Component, OnInit, OnDestroy, ViewChild, Inject, ChangeDetectorRef, AfterViewInit, HostBinding} from '@angular/core';
 import { ToggleService } from '../../shared/services/toggle.service';
 import { MatSidenav } from '@angular/material';
-import { fadeTransition } from '../../animations';
 import { DOCUMENT } from '@angular/platform-browser';
 import {MediaMatcher} from '@angular/cdk/layout';
 
 import { ThemeService } from '../../shared/services/theme.service';
 
-
+//import { fadeTransition } from '../../animations';
 import { revealParallaxAnimation } from '../../shared/animations';
-
-
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss'],
-  animations: [fadeTransition, revealParallaxAnimation]
+  animations: [revealParallaxAnimation] //fadeTransition
 })
 export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
 
@@ -27,7 +24,6 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
   public sidenav: MatSidenav;
   public contentHeight: number;
   mobileQuery: MediaQueryList;
-  public routerHeight: number;
 
   private appTheme: string;
   public logoPath: string;
@@ -88,9 +84,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-        //Calculate router-outlet height
-    this.routerHeight = document.getElementsByTagName('router-outlet')[0].nextElementSibling.scrollHeight;
-    console.log(" routerHeight: " + this.routerHeight);
+
   }
 
   //LazyLoad for parallax bg
@@ -104,29 +98,5 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  /*
-    Get currently active route page
-    @outlet: router outlet
-  */
-  getPage(outlet) {
-    // Changing the activatedRouteData.state triggers the animation
-    let output = outlet.isActivated ? outlet.activatedRoute : '';
-    return outlet.activatedRouteData['page'] || 'content';
-  }
-
-  /*
-    Callback when route transition animation starts
-    @event: animation event
-  */
-  routeTransitionStarted(event) {
-    //console.log("Route Transition Starting");
-  }
-
-  /*
-    Callback when route transition animation ends
-    @event: animation event
-  */
-  routeTransitionDone(event) {
-    //console.log("Route Transition Complete");
-  }
+  
 }

@@ -4,3 +4,48 @@ html, body{
   margin: 0;
   padding: 0;
 }
+
+.content-wrapper {
+  width: 100%;
+  min-height: 100%;
+  margin:auto;
+}
+
+/* --------------------------------------------*/
+/* ------------ Router Layout -----------------*/
+/* --------------------------------------------*/
+
+/* Create four equal columns that sits next to each other */
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.outlet-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+}
+
+.outlet
+{ 
+
+
+}
+
+/deep/ router-outlet~* {
+  position: absolute;
+  width:960px;
+  top:0;
+}
+
+app-footer {
+  width:100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}

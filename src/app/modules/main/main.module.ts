@@ -4,14 +4,12 @@ import {OverlayContainer, OverlayModule} from '@angular/cdk/overlay';
 import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { HomeComponent } from './pages/home/home.component';
+import { HomeComponent } from './pages/home/content/home.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 
-import { HeaderComponent } from '../../core/header/header.component';
-import { SidenavComponent } from '../../core/sidenav/sidenav.component';
-import { FooterComponent } from '../../core/footer/footer.component';  //needed to inject scrolling inside sidenav-content
+//import { FooterComponent } from '../../core/footer/footer.component';  //needed to inject scrolling inside sidenav-content
 
 import { ParallaxDirective } from '../../shared/directives/parallax.directive';
 import { FasttextDirective } from '../../shared/directives/fasttext.directive';
@@ -20,17 +18,19 @@ import { RevealonscrollDirective } from '../../shared/directives/revealonscroll.
 import { AngularMaterialModule } from '../../shared/angular-material.module';
 
 import { FeatcardComponent } from './components/featcard/featcard.component';
-import { AppRouterModule } from './app-router.module';
+import { MainRouterModule } from './main-router.module';
 import { MainComponent } from './main.component'
 
-import { ChatModule } from '../chat/chat.module'
+import { ChatModule } from '../chat/chat.module';
+import { ParallaxHomeComponent } from './pages/home/parallax/parallax-home.component'
+
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     MainComponent,
     HomeComponent,
-    HeaderComponent,
-    SidenavComponent,
     ParallaxDirective,
     FasttextDirective,
     FeatcardComponent,
@@ -39,11 +39,14 @@ import { ChatModule } from '../chat/chat.module'
     ProjectsComponent,
     LazyloadDirective,
     RevealonscrollDirective,
-    FooterComponent],
+    //FooterComponent,
+    ParallaxHomeComponent],
   imports: [
+    BrowserAnimationsModule,
+    BrowserModule,
+    MainRouterModule,
     CommonModule,
     OverlayModule,
-    AppRouterModule,
     ScrollDispatchModule,
     FlexLayoutModule,
     AngularMaterialModule,

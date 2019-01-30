@@ -1,0 +1,40 @@
+@import '~@angular/material/_theming';
+
+// Define a custom mixin that takes in the current theme
+@mixin set-theme-sidenav($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  // Create theme specfic styles
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+
+  .parallax-bg {
+    background-color: mat-color($primary);
+    border-color: mat-color($accent, darker);
+
+  }
+
+  .parallax-caption h3 {
+    color:mat-color($accent);
+  }
+
+  .parallax-caption h1 {
+    color: rgb(230, 241, 255);
+  }
+
+  .parallax-bg .mat-body-1 { 
+    color:mat-color($accent, lighter);
+  }
+}

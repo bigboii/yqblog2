@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { revealOnScrollAnimation, revealParallaxAnimation } from '../../../../shared/animations';
+import { revealOnScrollAnimation, revealParallaxAnimation } from '../../../../../shared/animations';
 import { DOCUMENT } from '@angular/platform-browser';
 
 @Component({
