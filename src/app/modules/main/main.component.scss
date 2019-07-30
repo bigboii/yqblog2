@@ -29,11 +29,14 @@ html, body{
   align-items:center;
 }
 
-.outlet
-{ 
-
-
+/deep/ .outlet-parallax~* {
+  position: absolute;
+  width:100%;
+  height:1000px;
+  top:0;
 }
+
+
 
 /deep/ router-outlet~* {
   position: absolute;

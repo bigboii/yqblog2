@@ -1,7 +1,7 @@
 <mat-sidenav-container class="drawer-container">
   <mat-sidenav #drawer class="drawer mat-elevation-z6 my-dark-theme" mode="side" opened="false" [fixedInViewport]="true" fixedTopGap="{{mobileQuery.matches ? 56 : 64}}">
   	<mat-nav-list>
-      <a mat-list-item *ngFor="let nav of navItems" routerLink="{{nav.route}}" routerLinkActive="active-list-item">
+      <a mat-list-item *ngFor="let nav of navItems" routerLink="{{nav.route}}" routerLinkActive="active-list-item" (click)="secondaryNav('home')">
         <div class="row-sidenav-item"> 
           <mat-icon>{{nav.iconName}}</mat-icon>
           <div>{{nav.id}}</div>
@@ -9,8 +9,7 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content [style.marginTop.px]="mobileQuery.matches ? 56 : 64">
+  <mat-sidenav-content >   <!-- [style.marginTop.px]="mobileQuery.matches ? 56 : 64" -->
     <app-main> </app-main>
-    <app-footer class="mat-elevation-z8" [contentHeight]="" [footerPosition]="routerHeight" [style.top.px]="routerHeight"></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

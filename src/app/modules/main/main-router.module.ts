@@ -11,6 +11,7 @@ import { ParallaxHomeComponent } from './pages/home/parallax/parallax-home.compo
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, data:{page: "home"}},
+//  { path: 'home', component: ParallaxHomeComponent, outlet:'parallax', data:{page: "home"}},
   { path: 'about', component: AboutComponent, data:{page: "about"} },
   { path: 'projects', component: ProjectsComponent, data:{page: "projects"}},
   { path: 'chat', component: ChatComponent, data:{page: "chat"}},
@@ -19,7 +20,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { useHash: true })
+    RouterModule.forRoot(routes, {useHash: true})
   ],
   exports: [ RouterModule ]
 })

@@ -4,6 +4,8 @@ import { MatSidenav } from '@angular/material';
 import { DOCUMENT } from '@angular/platform-browser';
 import {MediaMatcher} from '@angular/cdk/layout';
 
+import { Router } from '@angular/router';
+
 import { ThemeService } from '../../shared/services/theme.service';
 
 //import { fadeTransition } from '../../animations';
@@ -33,7 +35,7 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
   //const width_dynamic : Array<number> = ['960px', '740px', '480px'];
 
   navItems = [
-    {"id":"Home", "iconName":"home", "route":""},
+    {"id":"Home", "iconName":"home", "route":"home"},
     {"id":"About", "iconName":"account_circle", "route":"about"},
     {"id":"Projects", "iconName":"code", "route":"projects"},
     {"id":"Chat", "iconName":"desktop_windows", "route":"chat"}  ]
@@ -47,7 +49,8 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
               public themeService : ThemeService,
               changeDetectorRef: ChangeDetectorRef,
               media: MediaMatcher,
-              @Inject(DOCUMENT) private document: Document) 
+              @Inject(DOCUMENT) private document: Document,
+              private router: Router) 
   { 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -97,6 +100,16 @@ export class SidenavComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
+
+
+  //Implement below in future
+/*
+  secondaryNav(path) {
+    this.router.navigate([{ outlets: {
+      parallax: [path]
+    }}]);
+  }
+  */
 
   
 }

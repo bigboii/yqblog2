@@ -1,21 +1,25 @@
-    <!--The content below is only a placeholder and can be replaced.-->
-    <div
-        [style.height.px]="contentHeight"
-        [@fadeTransition]="getPage(appOutlet)" 
-        (@fadeTransition.start)="routeTransitionStarted($event)"
-        (@fadeTransition.done)="routeTransitionDone($event)">
+  <!--The content below is only a placeholder and can be replaced.-->
+<div
+    [style.height.px]="contentHeight"
+    [@fadeTransition]="getPage(outletContent)" 
+    (@fadeTransition.start)="routeTransitionStarted($event)"
+    (@fadeTransition.done)="routeTransitionDone($event)">
 
-      <div class="content-wrapper" (scroll)="onContentScroll($event)">
+  <div class="content-wrapper" (scroll)="onContentScroll($event)">
 
-        <!-- parallax -->
+    <!--
+    <router-outlet name="parallax" class="mat-elevation-z1 outlet-parallax"></router-outlet>  
+    -->
+    
+    <parallax-home></parallax-home>  
 
 
-        <!-- content -->
-        <div class="outlet-wrapper mat-elevation-z2">
-          
-          <!-- Center -->
-          <router-outlet #appOutlet="outlet" class="mat-elevation-z1 outlet"></router-outlet>
-        </div>
+    <!-- content -->
+    <div class="outlet-wrapper mat-elevation-z2">
+      
+      <!-- Center, NOTE: #outletContent="outlet" is property of router-outlet -->
+      <router-outlet #outletContent="outlet" class="mat-elevation-z1 outlet-main"></router-outlet>
+    </div>
 
-      </div>
   </div>
+</div>

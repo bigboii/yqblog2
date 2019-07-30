@@ -1,0 +1,22 @@
+app-header {
+  position:sticky;
+  height: 100%;
+  margin: 0;
+  z-index: 999999999;
+}
+
+//Q: why sticky sidenavs?
+app-sidenav {
+  position: sticky!important; 
+  top:0!important; 
+  height:calc(100vh - 64px);  //subtract toolbar height
+  display: flex;
+  flex-direction: column;
+}
+
+app-footer {
+  position:sticky; 
+  top:0;
+  z-index: 999999; 
+  bottom:auto;
+}

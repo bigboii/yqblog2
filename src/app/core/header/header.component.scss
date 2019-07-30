@@ -23,18 +23,6 @@
   }
 }
 
-
-
-mat-toolbar {
-
-  position: fixed;
-      width: 100%;
-  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-  z-index: 3;
-
-}
-
-
 .mat-toolbar-row, .mat-toolbar-single-row {
     display: flex;
     box-sizing: border-box;

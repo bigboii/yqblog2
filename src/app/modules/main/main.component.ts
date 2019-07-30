@@ -11,7 +11,7 @@ import { fadeTransition } from '../../animations';
 export class MainComponent implements OnInit, AfterViewInit {
 
   public contentHeight: number;
-  public routerHeight: number;
+  public routerHeight: number;         //Might need to return this to Sidenav
 
   ngOnInit() {
 
@@ -35,10 +35,11 @@ export class MainComponent implements OnInit, AfterViewInit {
     Get currently active route page
     @outlet: router outlet
   */
-  getPage(outlet) {
+  getPage(outletContent) {
     // Changing the activatedRouteData.state triggers the animation
-    let output = outlet.isActivated ? outlet.activatedRoute : '';
-    return outlet.activatedRouteData['page'] || 'content';
+    let output = outletContent.isActivated ? outletContent.activatedRoute : '';
+    return outletContent.activatedRouteData['page'] || 'content';
+
   }
 
   /*

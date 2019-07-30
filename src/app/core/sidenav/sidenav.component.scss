@@ -51,9 +51,6 @@ $config: mat-typography-config();
 
 $some-other-color: mat-palette($mat-red, 700, 100, 800);
 
-
-
-
 /* --------------------------------------------*/
 /* Content underneath parallax */
 /* --------------------------------------------*/
@@ -78,10 +75,20 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
 /* --------------------------------------------*/
 /* ------------ Sidenav Layout ----------------*/
 /* --------------------------------------------*/
+
+mat-sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #EEEEEE;
+}
+
 /* Column Container */
 
 .drawer-container {
-  flex:1;
+  /*flex:1;*/
   /* needed to push content down */
   /*top: 64px;  */
 }
