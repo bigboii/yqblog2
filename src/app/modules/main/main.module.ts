@@ -9,7 +9,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 
-//import { FooterComponent } from '../../core/footer/footer.component';  //needed to inject scrolling inside sidenav-content
+import { FooterComponent } from '../../core/footer/footer.component';  //needed to inject scrolling inside sidenav-content
 
 import { ParallaxDirective } from '../../shared/directives/parallax.directive';
 import { FasttextDirective } from '../../shared/directives/fasttext.directive';
@@ -39,7 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProjectsComponent,
     LazyloadDirective,
     RevealonscrollDirective,
-    //FooterComponent,
+    FooterComponent,
     ParallaxHomeComponent],
   imports: [
     BrowserAnimationsModule,

@@ -14,12 +14,14 @@ export class ParallaxHomeComponent implements OnInit {
   ngOnInit() {
     /////Parallax Stuff/////////
     //Calculate Parallax height; 
+    /*
     if(document.documentElement.clientHeight >= 600) {    //Desktop Screen
       this.parallaxHeight = document.documentElement.clientHeight;
     }
     else {                                                //Mobile Screen
       this.parallaxHeight = document.documentElement.clientHeight;
     }
+    */
   }
 
 }

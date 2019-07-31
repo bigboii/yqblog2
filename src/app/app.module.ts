@@ -10,7 +10,7 @@ import { HeaderComponent } from './core/header/header.component';
 import { SidenavComponent } from './core/sidenav/sidenav.component';
 import { MainComponent } from './modules/main/main.component';
 import { MainRouterModule } from './modules/main/main-router.module';
-import { FooterComponent } from './core/footer/footer.component';  //needed to inject scrolling inside sidenav-content
+//import { FooterComponent } from './core/footer/footer.component';  //needed to inject scrolling inside sidenav-content
 
 
 @NgModule({
@@ -18,7 +18,7 @@ import { FooterComponent } from './core/footer/footer.component';  //needed to i
     AppComponent,
     HeaderComponent,
     SidenavComponent,
-    FooterComponent
+//    FooterComponent
   ],
   imports: [
     BrowserAnimationsModule,
