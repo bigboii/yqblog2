@@ -50,37 +50,30 @@ $config: mat-typography-config();
 }
 
 
+parallax-home {
+  width:100%;
+}
 
 /* Left Center Right columning */
 
 /* Create four equal columns that sits next to each other */
 .row {
-//  display: flex;
+  display: flex;
   flex-direction: row;
   
   justify-content: center;
 }
 
 /* Content underneath parallax */
-/*
+
 .left-column {
   flex:25%;
 }
 
-.content-column
-{
-  display:flex;
-  flex-direction:column;
-  flex:50%;
-  height:100%;
-}
-
-
-
-.right-column:: {
+.right-column {
   flex:25%;
 }
-*/
+
 
 /* middle */
 .content-column

@@ -1,14 +1,14 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { revealOnScrollAnimation, revealParallaxAnimation } from '../../../../../shared/animations';
-import { DOCUMENT } from '@angular/platform-browser';
+import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
+import { revealOnScrollAnimation } from '../../../../../shared/animations';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [ revealOnScrollAnimation, revealParallaxAnimation ]
+  animations: [ revealOnScrollAnimation ]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
   languages = ["Java", "C", "C++", "Spring", "HashiCorp", "VMWare"];
   frameworks = ["Angular", "Node.js", "JavaScript", "TypeScript"];
@@ -16,6 +16,18 @@ export class HomeComponent implements OnInit {
   framework=["Spring", "Hashicorp"]
 
   public parallaxHeight: number;
+
+    //Animation for sections
+  public visibleSections: Array<Object> = [
+    // { "id": 0, "show": false },
+    // { "id": 1, "show": false },
+    // { "id": 2, "show": false },
+    // { "id": 3, "show": false }
+    //     { "id": 0, "show": true },
+    // { "id": 1, "show": true },
+    // { "id": 2, "show": true },
+    // { "id": 3, "show": true }
+  ];
 
   constructor(@Inject(DOCUMENT) private document: Document) 
   { 
@@ -29,6 +41,23 @@ export class HomeComponent implements OnInit {
     else {                                                //Mobile Screen
       this.parallaxHeight = document.documentElement.clientHeight - 56;
     }
+
+    this.visibleSections.push({ "id": 0, "show": true });
+    this.visibleSections.push({ "id": 1, "show": true });
+    this.visibleSections.push({ "id": 2, "show": true });
+    this.visibleSections.push({ "id": 3, "show": true });
+
+    console.log("[HOME] ngOnInit");
+  }
+
+  ngAfterViewInit() {
+    this.visibleSections[0]["show"]=false;
+    this.visibleSections[1]["show"]=false;
+    this.visibleSections[2]["show"]=false;
+    this.visibleSections[3]["show"]=false;
+    // this.visibleSections.push({ "id": 1, "show": false });
+    // this.visibleSections.push({ "id": 2, "show": false });
+    // this.visibleSections.push({ "id": 3, "show": false });
   }
 
   cards= 
@@ -59,13 +88,7 @@ export class HomeComponent implements OnInit {
   //LazyLoad for parallax bg
   showParallax = false;
 
-  //Animation for sections
-  public visibleSections: Array<Object> = [
-    { "id": 0, "show": false },
-    { "id": 1, "show": false },
-    { "id": 2, "show": false },
-    { "id": 3, "show": false }
-  ];
+
 
   loadParallax(someEvent) {
     this.showParallax = true;
@@ -74,5 +97,6 @@ export class HomeComponent implements OnInit {
   displayEmitterResults(someEvent) {
     let index = someEvent["index"];
     this.visibleSections[index]["show"]=someEvent["state"];
+    //console.log("[home] displayEmitterResults: " + this.visibleSections[index]["show"]);
   }
 }

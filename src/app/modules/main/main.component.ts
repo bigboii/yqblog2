@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnInit, AfterViewInit } from '@angular/core';
 
-import { fadeTransition } from '../../animations';
+import { fadeTransition } from '../../shared/animations';
 
 @Component({
   selector: 'app-main',
@@ -28,7 +28,7 @@ export class MainComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
         //Calculate router-outlet height
     this.routerHeight = document.getElementsByTagName('router-outlet')[0].nextElementSibling.scrollHeight;
-    console.log(" routerHeight: " + this.routerHeight);
+    //console.log(" routerHeight: " + this.routerHeight);
   }
 
   /*

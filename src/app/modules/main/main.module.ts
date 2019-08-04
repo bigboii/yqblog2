@@ -15,6 +15,7 @@ import { ParallaxDirective } from '../../shared/directives/parallax.directive';
 import { FasttextDirective } from '../../shared/directives/fasttext.directive';
 import { LazyloadDirective } from '../../shared/directives/lazyload.directive';
 import { RevealonscrollDirective } from '../../shared/directives/revealonscroll.directive';
+import { ScrollRevealDirective } from '../../shared/directives/scrollreveal.directive';
 import { AngularMaterialModule } from '../../shared/angular-material.module';
 
 import { FeatcardComponent } from './components/featcard/featcard.component';
@@ -25,7 +26,6 @@ import { ChatModule } from '../chat/chat.module';
 import { ParallaxHomeComponent } from './pages/home/parallax/parallax-home.component'
 
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -39,10 +39,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProjectsComponent,
     LazyloadDirective,
     RevealonscrollDirective,
+    ScrollRevealDirective,
     FooterComponent,
     ParallaxHomeComponent],
   imports: [
-    BrowserAnimationsModule,
     BrowserModule,
     MainRouterModule,
     CommonModule,

@@ -7,7 +7,7 @@ import { AngularMaterialModule } from './shared/angular-material.module'
 import { MainModule } from './modules/main/main.module'
 
 import { HeaderComponent } from './core/header/header.component';
-import { SidenavComponent } from './core/sidenav/sidenav.component';
+// import { SidenavComponent } from './core/sidenav/sidenav.component';
 import { MainComponent } from './modules/main/main.component';
 import { MainRouterModule } from './modules/main/main-router.module';
 //import { FooterComponent } from './core/footer/footer.component';  //needed to inject scrolling inside sidenav-content
@@ -17,7 +17,7 @@ import { MainRouterModule } from './modules/main/main-router.module';
   declarations: [
     AppComponent,
     HeaderComponent,
-    SidenavComponent,
+    // SidenavComponent,
 //    FooterComponent
   ],
   imports: [

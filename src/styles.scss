@@ -2,12 +2,21 @@
 @import url("./assets/animate/animate.min.css");
 @import '~@angular/material/_theming';
 
+//@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
+
 //@import './themes.scss';  //  <-- the theme file shown above
 
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+body { 
+  margin: 0; 
+  font-family: 'Roboto', sans-serif; 
+}
 
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
 
 @font-face {
   font-family: 'Roboto', sans-serif;

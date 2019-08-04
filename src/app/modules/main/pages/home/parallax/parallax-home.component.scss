@@ -1,7 +1,7 @@
 @import '~@angular/material/_theming';
 
 // Define a custom mixin that takes in the current theme
-@mixin set-theme-sidenav($theme) {
+@mixin set-theme-parallax($theme) {
   // Parse the theme and create variables for each color in the pallete
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);

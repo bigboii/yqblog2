@@ -1,8 +1,9 @@
 @import '~@angular/material/_theming';
 @include mat-core();
 @import './app/core/header/header.component';
-@import './app/core/sidenav/sidenav.component';
+@import './app/app.component';
 @import './app/modules/main/pages/home/content/home.component';
+@import './app/modules/main/pages/home/parallax/parallax-home.component';
 
 
 @mixin set-theme($theme) // define a new @mixin that will be invoked each time the theme is changed
@@ -10,6 +11,7 @@
   @include set-theme-header($theme);   // invoke the mixin we defined for component_1
   @include set-theme-sidenav($theme);
   @include set-theme-home($theme);
+  @include set-theme-parallax($theme);
   // repeat this for each component that uses theme colors
 }
 

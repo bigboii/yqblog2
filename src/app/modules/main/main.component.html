@@ -12,13 +12,14 @@
     <router-outlet name="parallax" class="mat-elevation-z1 outlet-parallax"></router-outlet>  
     -->
 
-
     <!-- content -->
     <div fxFlex fxLayout="column" class="outlet-wrapper mat-elevation-z2">
       
       <!-- Center, NOTE: #outletContent="outlet" is property of router-outlet -->
       <router-outlet #outletContent="outlet" class="mat-elevation-z1 outlet-main"></router-outlet>
     </div>
-    <app-footer class="mat-elevation-z8" [contentHeight]="" [footerPosition]="routerHeight" [style.top.px]="routerHeight"></app-footer>
+    
+    <!-- [footerPosition]="routerHeight" -->
+    <app-footer class="mat-elevation-z8" [contentHeight]=""  [style.top]="routerHeight"></app-footer>
   </div>
 </div>

@@ -1,27 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { revealParallaxAnimation } from '../../../../../shared/animations';
 
 @Component({
   selector: 'parallax-home',
   templateUrl: './parallax-home.component.html',
-  styleUrls: ['./parallax-home.component.scss']
+  styleUrls: ['./parallax-home.component.scss'],
+  animations: [ revealParallaxAnimation ]
 })
 export class ParallaxHomeComponent implements OnInit {
 
-  public parallaxHeight: number;                            //Parallax
+  public parallaxHeight: number;
 
   constructor() { }
 
   ngOnInit() {
-    /////Parallax Stuff/////////
-    //Calculate Parallax height; 
-    /*
+    let viewportHeight: number = window.innerHeight;
+
     if(document.documentElement.clientHeight >= 600) {    //Desktop Screen
-      this.parallaxHeight = document.documentElement.clientHeight;
+      this.parallaxHeight = viewportHeight - 64;
     }
     else {                                                //Mobile Screen
-      this.parallaxHeight = document.documentElement.clientHeight;
+      this.parallaxHeight = viewportHeight - 56;
     }
-    */
   }
-
 }

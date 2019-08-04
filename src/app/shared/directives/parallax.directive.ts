@@ -27,6 +27,7 @@ export class ParallaxDirective  {
   }
 
   ngOnInit(){
+    console.log("[PARALLAX DIRECTIVE] onInit")
     var t = this,
     _img = t.src,
     _speed = t.speed;

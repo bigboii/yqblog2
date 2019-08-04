@@ -1,12 +1,12 @@
-<div class="parallax-bg mat-elevation-z4" [style.height.px]="parallaxHeight" [@revealParallax]="parallaxShow" deferLoad (deferLoad)="loadParallax($event)"> 
+<div class="parallax-bg mat-elevation-z0" [style.height.px]="parallaxHeight" [@revealParallax]="parallaxShow"> <!--lazyLoad-->
   <div class="parallax-caption">
-    <h3 class="mat-title" color="accent" fasttext testInput="testInput"> 
+    <h3 class="mat-title" color="accent" fasttext [targetDom]="'mat-sidenav-content'"> 
         Hi, my name is
     </h3>
-    <h1 class="mat-headline" fasttext> 
+    <h1 class="mat-headline" fasttext [targetDom]="'mat-sidenav-content'"> 
         Young Kyu Kim.
     </h1>
-    <p class="mat-body-1" fasttext> 
+    <p class="mat-body-1" fasttext [targetDom]="'mat-sidenav-content'"> 
       I'm a software engineer based in Jersey City, NJ specializing in developing (and occasionaly designing) complex large scale infrastructures and distributed systems. Currently working at Bank of America as an engineer.
     </p>
   </div>

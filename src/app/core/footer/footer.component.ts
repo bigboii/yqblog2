@@ -28,7 +28,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.componentCssStyle.top.px = this.footerPosition;
+    //this.componentCssStyle.top.px = this.footerPosition;
   }
 
 }
