@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { revealParallaxAnimation } from '../../../../../shared/animations';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { revealParallaxAnimation, slideUpFadeIn } from '../../../../../shared/animations';
 
 @Component({
   selector: 'parallax-home',
   templateUrl: './parallax-home.component.html',
   styleUrls: ['./parallax-home.component.scss'],
-  animations: [ revealParallaxAnimation ]
+  animations: [ revealParallaxAnimation, slideUpFadeIn ]
 })
-export class ParallaxHomeComponent implements OnInit {
+export class ParallaxHomeComponent implements OnInit, AfterViewInit {
 
   public parallaxHeight: number;
+  public state: boolean = false;  //animation state
 
   constructor() { }
 
@@ -22,5 +23,23 @@ export class ParallaxHomeComponent implements OnInit {
     else {                                                //Mobile Screen
       this.parallaxHeight = viewportHeight - 56;
     }
+  }
+
+  ngAfterViewInit() {
+    console.log("[PARALLAXHOME] start: " + this.state);
+    this.state=true;
+    console.log("[PARALLAXHOME] start: " + this.state);
+  }
+
+  textTransitionStarted(event) {
+    console.log("[Parallax Home] slideInFadeIn Route Transition Starting");
+  }
+
+  /*
+    Callback when route transition animation ends
+    @event: animation event
+  */
+  textTransitionDone(event) {
+    console.log("[Parallax Home] slideInFadeIn Transition Complete");
   }
 }

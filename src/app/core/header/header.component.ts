@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, Input, EventEmitter, Inject, ElementR
 import { ToggleService } from '../../shared/services/toggle.service';
 import { ThemeService } from '../../shared/services/theme.service';
 import { MatSidenav } from '@angular/material';
+import { revealOnScrollAnimation, slideDownFadeIn, fadeIn } from '../../shared/animations';
 //import { ContentScrollListenerService } from '../services/contentscrolllistener.service';
 
 //ContentScrollStuff
@@ -10,7 +11,8 @@ import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  animations: [slideDownFadeIn, fadeIn]
 })
 export class HeaderComponent implements OnInit, AfterViewInit {
 
@@ -18,6 +20,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   public contentScrollEvent;
   public currentScrollPosition;
+  public state: boolean = false;  //animation state
+
   //public elem;
 
   constructor(public toggleService: ToggleService,
@@ -39,7 +43,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     //Possibly don't need below lines
     this.document.querySelector('mat-sidenav-content')
                                  .addEventListener('scroll', this.onContentScroll.bind(this));
-    console.log("[HEADER] ngAfterViewInit");
+
+    this.state=true;
   }
 
   toggleActive:boolean = false;
@@ -61,20 +66,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   public elevationValue = 0
 
   onContentScroll(event) {
-    let scrolled = window.pageYOffset;
-    let rect = this.elementRef.nativeElement.getBoundingClientRect().top;
-    let elementOffsetTop = this.elementRef.nativeElement.offsetTop;
-
     let elem = document.getElementsByClassName('parallax-bg')[0].getBoundingClientRect();
-
-    // console.log("[header] elem.top " + elem.top);
-    // console.dir(elem);
 
     if( elem.top < 64 ) 
     {
-    //       console.log("[header scroll]");
-    // console.log("[header.component : onContentScroll] ");
-    // console.dir(event);
       if(this.isElevated) {
         this.isElevated = false;
       }

@@ -34,6 +34,7 @@ export class ChatComponent implements OnInit {
               private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    console.log("[Chat Component] onInit");
     this.userNameForm = this.formBuilder.group({
       'userName': ['', Validators.required]
     });

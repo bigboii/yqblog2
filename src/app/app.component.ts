@@ -68,7 +68,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     //Set Dynamically set Height of content based on screen sizes
     if(document.documentElement.clientHeight >= 600) {                  //Desktop Screen
       this.contentHeight = document.documentElement.clientHeight - 64;
-      console.log(" contentHeight: " + this.contentHeight);
     }
     else {                                                              //Mobile Screen
       this.contentHeight = document.documentElement.clientHeight - 56;

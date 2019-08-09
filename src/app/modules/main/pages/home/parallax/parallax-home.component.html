@@ -1,12 +1,12 @@
-<div class="parallax-bg mat-elevation-z0" [style.height.px]="parallaxHeight" [@revealParallax]="parallaxShow"> <!--lazyLoad-->
+<div class="parallax-bg mat-elevation-z0" [style.height.px]="parallaxHeight"> <!-- [@revealParallax]="parallaxShow"  lazyLoad-->
   <div class="parallax-caption">
-    <h3 class="mat-title" color="accent" fasttext [targetDom]="'mat-sidenav-content'"> 
-        Hi, my name is
-    </h3>
-    <h1 class="mat-headline" fasttext [targetDom]="'mat-sidenav-content'"> 
+      <h3 class="mat-title" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.2}}" (@slideUpFadeIn.start)="textTransitionStarted($event)">
+          Hi, my name is
+      </h3>
+    <h1 class="mat-headline" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.4}}"  (@slideUpFadeIn.start)="textTransitionStarted($event)"> 
         Young Kyu Kim.
     </h1>
-    <p class="mat-body-1" fasttext [targetDom]="'mat-sidenav-content'"> 
+    <p class="mat-body-1" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.6}}"  (@slideUpFadeIn.start)="textTransitionStarted($event)"> 
       I'm a software engineer based in Jersey City, NJ specializing in developing (and occasionaly designing) complex large scale infrastructures and distributed systems. Currently working at Bank of America as an engineer.
     </p>
   </div>

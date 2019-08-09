@@ -34,8 +34,6 @@ export const fadeTransition = trigger('fadeTransition', [
   ])
 ]);
 
-
-
 export const revealParallaxAnimation = trigger('revealParallax',[
   state('false',style({
      opacity: 0
@@ -51,36 +49,77 @@ export const revealParallaxAnimation = trigger('revealParallax',[
   ])
 ])
 
-
-export const revealOnScrollAnimation = trigger('sectionState2',[
-  state('false',style({
-     opacity: 0,
-     position: 'relative',
-     top:-56
-   })),
-   state('true',style({
-     opacity: 1,
-     position:'relative',
-     top:0
-   })),
-  transition('0 => 1', [
-    animate("1000ms ease-in", style({ opacity: 1, transform: 'translateY(56px)' }))
-  ]),
-  transition('1 => 0', [
-    animate("1000ms ease-out", style({ opacity: 0, transform: 'translateY(-56px)' }))
+export const fadeIn = trigger('fadeIn',[
+  transition(':enter', 
+  [
+    style({opacity: 0}),
+    animate("1000ms ease-in", style({opacity: 1})), 
   ])
 ])
 
-export const sectionAnimation2 = trigger('sectionState',[
- state('false',style({
-   opacity: 0
- })),
- state('true',style({
-   opacity: 1
- })),
+export const slideUpFadeIn = trigger('slideUpFadeIn',[
+  state('false', style({
+     opacity: 0,
+     transform: 'translateY(28px)'
+   })),
+  state('true', style({
+       opacity: 1,
+       transform: 'translateY(-28px)'
+     })),
+  transition('false => true', [
+    animate("333ms {{initialDelay}}s ease-in")
+  ], 
+  {
+    params: {initialDelay: '0'}  //Default Value needed
+  })
+])
+
+export const slideDownFadeIn = trigger('slideDownFadeIn',[
+  state('false', style({
+     opacity: 0,
+     transform: 'translateY(-24px)'
+   })),
+  state('true', style({
+       opacity: 1,
+       transform: 'translateY(0px)'
+     })),
+  transition('false => true', [
+    animate("333ms {{initialDelay}}s ease-in")
+  ], 
+  {
+    params: {initialDelay: '0'}  //Default Value needed
+  })
+])
+
+export const revealOnScrollAnimation = trigger('sectionState',[
+  state('false',style({
+     opacity: 0,
+     transform: 'translateY(-18px)'
+     //position: 'relative',
+   })),
+   state('true',style({
+     opacity: 1,
+     transform:'translateY(18px)'
+     //position:'relative',
+     //top:0
+   })),
+  transition('false => true', [
+    animate("1000ms ease-in")
+  ]),
+  transition('true => false', [
+    animate("1000ms ease-in")
+  ])
+])
+
+export const sectionAnimation2 = trigger('sectionState4',[
  transition('0 => 1', animate("5s ease-in")),
  transition('1 => 0', animate("5s ease-out"))
 ])
 
+export const rotateAnimation =  trigger('rotate', [
+      transition(':enter', [style({transform: 'rotate(-4320deg)'}), animate('2000ms')])
+  ])
 
-//Animation for mat-toolbar shadowbox
+export const flipHorizontal =  trigger('flipHorizontal', [
+      transition(':enter', [style({transform: 'rotateY(-4320deg)'}), animate('5000ms')])
+  ])

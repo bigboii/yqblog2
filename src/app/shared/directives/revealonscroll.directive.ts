@@ -15,7 +15,6 @@ export class RevealonscrollDirective implements OnInit, OnDestroy {
   public switchedOn : boolean = true;
   private startOfContent;
   private startOfContent2;
-  private rect2;
 
   private elementView;
   private windowHeight;
@@ -44,9 +43,6 @@ export class RevealonscrollDirective implements OnInit, OnDestroy {
 
      this.elementView = this.elementRef.nativeElement.getBoundingClientRect();
      this.startOfContent = this.elementRef.nativeElement.getBoundingClientRect().top;
-     this.startOfContent2 = document.documentElement.clientHeight;
-
-     this.rect2 = this.elementView.top;
 
      this.windowHeight = window.innerHeight;
 
@@ -55,7 +51,7 @@ export class RevealonscrollDirective implements OnInit, OnDestroy {
         "state": false
       });
 
-     console.log("[REVEALONSCROLL] ngOnInit");
+     //console.log("[REVEALONSCROLL] ngOnInit");
   }
 
   ngOnDestroy() {
@@ -77,12 +73,12 @@ export class RevealonscrollDirective implements OnInit, OnDestroy {
     if( (event.srcElement.scrollTop + this.windowHeight) >= this.startOfContent ) 
     {
       if(this.index === 0) {
-        console.log("<" + this.index + ">" + "[revealOnScroll] designated element reached");
+        //console.log("<" + this.index + ">" + "[revealOnScroll] designated element reached");
       }
       if(this.switchedOn) {
         this.switchedOn = false;
         if(this.index === 0) {
-          console.log("<" + this.index + ">" + "[revealOnScroll] this.switchedOn TRUE");
+          //console.log("<" + this.index + ">" + "[revealOnScroll] this.switchedOn TRUE");
         }
       }
 
@@ -91,12 +87,12 @@ export class RevealonscrollDirective implements OnInit, OnDestroy {
         "state": true
       });
     }
-    else {
-      this.showSection.emit({
-        "index": this.index,
-        "state": false
-      });
-    }
+    // else {
+    //   this.showSection.emit({
+    //     "index": this.index,
+    //     "state": false
+    //   });
+    // }
 
   }
 }

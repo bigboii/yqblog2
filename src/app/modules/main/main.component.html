@@ -2,11 +2,9 @@
   <!-- https://stackblitz.com/edit/angular-flex-layout-seed-oyjh2z?file=app%2Fapp.component.ts -->
 <div
     [style.height.px]="contentHeight"
-    [@fadeTransition]="getPage(outletContent)" 
-    (@fadeTransition.start)="routeTransitionStarted($event)"
-    (@fadeTransition.done)="routeTransitionDone($event)">
+    >
 
-  <div fxLayout="column" fxFill class="content-wrapper" (scroll)="onContentScroll($event)">
+  <div fxLayout="column" fxFill class="content-wrapper" >
 
     <!--
     <router-outlet name="parallax" class="mat-elevation-z1 outlet-parallax"></router-outlet>  

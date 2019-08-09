@@ -1,5 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import { AfterViewInit, Directive, ElementRef, HostBinding, Input } from '@angular/core';
+import { OnInit, AfterViewInit, Directive, ElementRef, HostBinding, Input } from '@angular/core';
 
 
 /**
@@ -15,19 +15,22 @@ import { AfterViewInit, Directive, ElementRef, HostBinding, Input } from '@angul
 @Directive({
   selector: '[lazy-load]'
 })
-export class LazyloadDirective implements AfterViewInit {
+export class LazyloadDirective implements OnInit, AfterViewInit {
   @HostBinding('attr.src') srcAttr = null;
   @Input() src: string;
 
   constructor(private el: ElementRef) {}
 
-  ngAfterViewInit() {
-    console.log("[LAZYLOAD] canLazyLoad: " + this.canLazyLoad());
+  ngOnInit() {
+    console.log("[LazyLoad] oninit");
     this.canLazyLoad() ? this.lazyLoadImage() : this.loadImage();
   }
 
+  ngAfterViewInit() {
+    //this.canLazyLoad() ? this.lazyLoadImage() : this.loadImage();
+  }
+
   private canLazyLoad() {
-    //console.log("[LAZYLOAD] canLazyLoad: " + (window && 'IntersectionObserver' in window));
     return window && 'IntersectionObserver' in window;
   }
 
@@ -35,7 +38,6 @@ export class LazyloadDirective implements AfterViewInit {
     const obs = new IntersectionObserver(entries => {
       entries.forEach(({ isIntersecting }) => {
         if (isIntersecting) {
-          console.log("[IMAGE LOADED]");
           this.loadImage();
           obs.unobserve(this.el.nativeElement);
         }

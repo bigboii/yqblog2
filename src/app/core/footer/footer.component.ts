@@ -12,7 +12,7 @@ export class FooterComponent implements OnInit, AfterViewInit {
   @Input() public footerPosition: number;
   //public footerPosition: number;
 
-  @HostBinding('style') componentCssStyle;
+  //@HostBinding('style') componentCssStyle;
   
   constructor() { }
 

@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit, AfterViewInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 
 import { fadeTransition } from '../../shared/animations';
 
@@ -8,7 +8,7 @@ import { fadeTransition } from '../../shared/animations';
   styleUrls: ['./main.component.scss'],
   animations: [fadeTransition]
 })
-export class MainComponent implements OnInit, AfterViewInit {
+export class MainComponent implements OnInit {
 
   public contentHeight: number;
   public routerHeight: number;         //Might need to return this to Sidenav
@@ -18,17 +18,10 @@ export class MainComponent implements OnInit, AfterViewInit {
       //Set Dynamically set Height of content based on screen sizes
     if(document.documentElement.clientHeight >= 600) {                  //Desktop Screen
       this.contentHeight = document.documentElement.clientHeight - 64;
-      console.log(" contentHeight: " + this.contentHeight);
     }
     else {                                                              //Mobile Screen
       this.contentHeight = document.documentElement.clientHeight - 56;
     }
-  }
-
-  ngAfterViewInit() {
-        //Calculate router-outlet height
-    this.routerHeight = document.getElementsByTagName('router-outlet')[0].nextElementSibling.scrollHeight;
-    //console.log(" routerHeight: " + this.routerHeight);
   }
 
   /*

@@ -21,20 +21,20 @@
   }
 
   .parallax-bg {
-    background-color: mat-color($primary);
+    background-color: mat-color($background);
     border-color: mat-color($accent, darker);
 
   }
 
   .parallax-caption h3 {
-    color:mat-color($accent);
+    //color:mat-color($accent);
   }
 
   .parallax-caption h1 {
-    color: rgb(230, 241, 255);
+    //color: mat-color($accent, darker);
   }
 
   .parallax-bg .mat-body-1 { 
-    color:mat-color($accent, lighter);
+    //color:mat-color($accent, lighter);
   }
 }
