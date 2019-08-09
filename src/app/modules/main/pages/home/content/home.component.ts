@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit{
   private framework : Array<String>;
 
   public parallaxHeight: number;
-  public visibleSections: Array<Object>;
+  public visibleSections: Array<Object> = [];
   private cards: Array<Object>;
   public showParallax : boolean;
 

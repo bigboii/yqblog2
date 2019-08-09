@@ -1,12 +1,23 @@
 @import '../../../themes.scss';
 
-mat-toolbar {
-  //position:absolute;
-  //z-index: 2;
+.mat-toolbar {
+	padding: 12px;
+    font-size: 12px;
+}
+
+.footer-list {
+	align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 8px;
+}
+
+.footer-list-item {
+	flex: 1;
 }
 
 .mat-toolbar.mat-primary {
-  background: mat-color($light-primary, darker);
+  //background: mat-color($light-primary, darker);
 }
 
 .fill-remaining-space {
@@ -16,5 +27,5 @@ mat-toolbar {
 }
 
 .mat-header {
-  padding: 0px 16px;
+  //padding: 0px 16px;
 }

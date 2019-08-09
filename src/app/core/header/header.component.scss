@@ -18,9 +18,14 @@
   }
 
   .mat-toolbar.mat-primary {
-    background: mat-color($primary);
+     //background: mat-color($primary);
       @include mat-elevation-transition;
   }
+
+  //   .mat-toolbar.mat-primary {
+  //    background: mat-color($primary);
+  //     @include mat-elevation-transition;
+  // }
 }
 
 .mat-toolbar-row, .mat-toolbar-single-row {

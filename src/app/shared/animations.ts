@@ -58,23 +58,37 @@ export const fadeIn = trigger('fadeIn',[
 ])
 
 export const slideUpFadeIn = trigger('slideUpFadeIn',[
-  state('false', style({
+
+  transition(':enter', [
+    style({
      opacity: 0,
      transform: 'translateY(28px)'
-   })),
-  state('true', style({
-       opacity: 1,
-       transform: 'translateY(-28px)'
-     })),
-  transition('false => true', [
-    animate("333ms {{initialDelay}}s ease-in")
-  ], 
+    }),
+    animate("333ms {{initialDelay}}s ease-in", style({opacity: 1, transform: 'translateY(-28px)'})), 
+  ],
   {
     params: {initialDelay: '0'}  //Default Value needed
   })
 ])
 
 export const slideDownFadeIn = trigger('slideDownFadeIn',[
+  transition(':enter', [
+      style({
+       opacity: 0,
+       transform: 'translateY(-24px)'
+     }),
+    animate("333ms {{initialDelay}}s ease-in", 
+      style({
+       opacity: 1,
+       transform: 'translateY(0px)'
+     }))
+  ], 
+  {
+    params: {initialDelay: '0'}  //Default Value needed
+  })
+])
+
+export const slideDownFadeIn2 = trigger('slideDownFadeIn2',[
   state('false', style({
      opacity: 0,
      transform: 'translateY(-24px)'

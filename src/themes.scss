@@ -5,6 +5,7 @@
 @import './app/modules/main/pages/home/content/home.component';
 @import './app/modules/main/pages/home/parallax/parallax-home.component';
 
+//https://github.com/angular/components/blob/master/src/lib/core/theming/_palette.scss
 
 @mixin set-theme($theme) // define a new @mixin that will be invoked each time the theme is changed
 {
@@ -30,7 +31,7 @@ $custom-typography: mat-typography-config(
 // $dark-warn:    mat-palette($mat-orange);
 // $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
-$dark-primary: mat-palette($mat-red, 700, 800, 900);
+$dark-primary: mat-palette($mat-grey, 700, 800, 900);
 $dark-accent:  mat-palette($mat-red, A200, A100, A400);
 $dark-warn:    mat-palette($mat-orange);
 $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);

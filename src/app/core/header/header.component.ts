@@ -1,11 +1,8 @@
-import { Component, OnInit, AfterViewInit, Input, EventEmitter, Inject, ElementRef} from '@angular/core';
+import { Component, AfterViewInit, Input, EventEmitter, Inject, ElementRef} from '@angular/core';
 import { ToggleService } from '../../shared/services/toggle.service';
 import { ThemeService } from '../../shared/services/theme.service';
 import { MatSidenav } from '@angular/material';
 import { revealOnScrollAnimation, slideDownFadeIn, fadeIn } from '../../shared/animations';
-//import { ContentScrollListenerService } from '../services/contentscrolllistener.service';
-
-//ContentScrollStuff
 import { DOCUMENT } from '@angular/common';
 
 @Component({
@@ -14,37 +11,26 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./header.component.scss'],
   animations: [slideDownFadeIn, fadeIn]
 })
-export class HeaderComponent implements OnInit, AfterViewInit {
+export class HeaderComponent implements AfterViewInit {
 
   @Input() logoPath;
 
   public contentScrollEvent;
   public currentScrollPosition;
-  public state: boolean = false;  //animation state
+ // public state: boolean;
 
   //public elem;
 
   constructor(public toggleService: ToggleService,
               public themeService : ThemeService,
               private elementRef: ElementRef,
-              @Inject(DOCUMENT) private document: Document) { }
-
-  ngOnInit() {
-    //     this.elem = document.getElementsByClassName('parallax-bg')[0].getBoundingClientRect();
-
-    // //Constantly listen to content scrolling inside "mat-sidenav-content"
-    // this.document.querySelector('mat-sidenav-content')
-    //                              .addEventListener('scroll', this.onContentScroll.bind(this));
+              @Inject(DOCUMENT) private document: Document) {
 
   }
 
   ngAfterViewInit() {
-    //this.elem = document.getElementsByClassName('parallax-bg')[0].getBoundingClientRect();
-    //Possibly don't need below lines
     this.document.querySelector('mat-sidenav-content')
                                  .addEventListener('scroll', this.onContentScroll.bind(this));
-
-    this.state=true;
   }
 
   toggleActive:boolean = false;
@@ -67,7 +53,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   onContentScroll(event) {
     let elem = document.getElementsByClassName('parallax-bg')[0].getBoundingClientRect();
-
+    console.log("[header] elem.top: " + elem.top);
     if( elem.top < 64 ) 
     {
       if(this.isElevated) {
