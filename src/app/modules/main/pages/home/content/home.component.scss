@@ -2,13 +2,14 @@
 
 $config: mat-typography-config();
 
-
 // Define a custom mixin that takes in the current theme
 @mixin set-theme-home($theme) {
   // Parse the theme and create variables for each color in the pallete
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
+  $foreground: map-get($theme, foreground);
+
   // Create theme specfic styles
   .primaryColorBG {
     background-color: mat-color($primary);
@@ -24,29 +25,80 @@ $config: mat-typography-config();
     color:mat-color($accent);
   }
 
-  .section > .mat-title
+  section > .mat-title
   {
     color: mat-color($accent);
   }
 
-  .section > .mat-headline
+  section > .mat-headline
   {
     color: mat-color($accent);
   }
 
-  .section > .mat-display-1
+  section > .mat-display-1
   {
     color: mat-color($accent);
   }
 
-  .arrow::before {
+  /*
+    arrow bullet point
+  */
+  mat-list-item p::before {
     content: "▹";
     position: absolute;
     left: 0px;
     color: mat-color($accent);
     font-size: 14px;
-    line-height: 12px;
+    // line-height: 60px;
   }
+
+  /**
+    Common Heading
+  **/
+  .heading {
+      position: relative;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      width: 100%;
+      white-space: nowrap;
+      font-size: 32px;
+      margin: 10px 0px 40px;
+  }
+
+  .heading::before{
+    counter-increment: heading-count;
+    content: "0" counter(heading-count) ".";
+    margin-right: 10px;
+    font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Lucida Console", Monaco, monospace;
+    font-weight: normal;
+    color: mat-color($primary);
+    font-size: 20px;
+    position: relative;
+    box-sizing: inherit;
+  }
+
+  .heading::after {
+      content: "";
+      display: block;
+      height: 1px;
+      width: 300px;
+      background-color: mat-color($foreground, text);
+      position: relative;
+      margin-left: 20px;
+      box-sizing: inherit;
+  }
+
+  // h1, h2, h3, h4, h5 {
+  //     font-weight: 600;
+  //     color: rgb(230, 241, 255);
+  //     margin: 0px 0px 10px;
+  // }
+
+}
+
+.home {
+  counter-reset: heading-count;  //creates a counter
 }
 
 
@@ -83,23 +135,79 @@ parallax-home {
 }
 
 /* Section: About */
-.about {
+section {
+    max-width: 1000px;
+    position: relative;
+    margin: 0px auto;
+    padding: 150px 0px;
+}
+
+section .about {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  max-width: 1000px;
+}
+
+.about-container {
+
 }
 
 .about-content-container {
-  width:60%;
-  max-width:480px;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .about-pic-container {
   position: relative;
   width: 40%;
-  max-width: 300px;
+  max-width: 480px;
   margin-left: 60px;
-  margin-top: 60px;
+  margin-top: 22px;
+  border-radius:3px;
+
+  a {
+    filter: grayscale(100%) contrast(1);
+    color: rgb(100, 255, 218);
+    transition: opacity 500ms ease 0s;
+
+    &:hover {
+      color: rgb(0, 0, 0);
+      filter: none;
+    }
+
+    img.avator-pic::before {
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      background-color: rgb(10, 25, 47);
+      mix-blend-mode: screen;
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 3px;
+      transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+    }
+    img.avator-pic::after {
+      top: 20px;
+      left: 20px;
+      z-index: -1;
+      border-width: 2px;
+      border-style: solid;
+      border-color: rgb(100, 255, 218);
+      border-image: initial;
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 3px;
+      transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+    }
+  } 
 }
 
 .avatar-pic
@@ -131,20 +239,10 @@ parallax-home {
 }
 */
 
-.mat-display-1::after {
-    content: "";
-    display: block;
-    height: 1px;
-    width: 300px;
-    position: relative;
-    top: -5px;
-    margin-left: 20px;
-}
-
 .column-25 {
-  flex-grow: 1;
-  max-width: 25%;
-  align-items: center; 
+  // flex-grow: 1;
+  // max-width: 25%;
+  // align-items: center; 
 }
 
 .row-25 {
@@ -165,7 +263,6 @@ parallax-home {
 }
 
 /* Section: What I've accomplished */
-
 .column-left {
   display:flex;
   flex-grow: 1;
@@ -183,7 +280,7 @@ parallax-home {
 /* General */
 .section
 {
-  padding: 150px 0px;
+  // padding: 150px 0px;
 }
 
 
@@ -228,4 +325,89 @@ parallax-home {
     font-size:mat-font-size($config, display-3);
     font-style:bold;
   }
+}
+
+
+/**
+  Vertical Mat Tabs
+**/
+//<mat-tab-body class="mat-tab-body ng-tns-c21-12 ng-star-inserted mat-tab-body-active" role="tabpanel" ng-reflect-_content="[object Object]" ng-reflect-animation-duration="500ms" ng-reflect-position="0" id="mat-tab-content-0-0" aria-labelledby="mat-tab-label-0-0" ng-reflect-origin="-1"><div class="mat-tab-body-content ng-trigger ng-trigger-translateTab" style="transform: none;"><!----> Tab One Content <!----></div></mat-tab-body>
+:host {
+    >.tabs-container {
+        max-width: 1264px;
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        background: none;
+    }
+    ::ng-deep {
+        .mat-tab-group {
+          flex-direction: row;
+
+          .mat-tab-body {
+            .mat-tab-body-content {
+              transform: translate3d(0px, -100%, 0px); min-height: 1px;
+            }
+          }
+        }
+        .mat-tab-header {
+          border-bottom: none;
+        }
+        .mat-tab-header-pagination {
+            display: none !important;
+        }
+        .mat-tab-labels {
+            flex-direction: column;
+        }
+        .mat-ink-bar {
+            height: 100%;
+            left: 98% !important;
+        }
+        .mat-tab-body-wrapper {
+            flex: 1 1 auto;
+            
+        }
+        
+
+        // .mat-tab-body-content ng-trigger ng-trigger-translateTab {
+        //   transform: translate3d(0px, -100%, 0px); min-height: 1px;
+        // }
+    }
+}
+
+.tabs-container {
+    position: relative;
+    width: 100%;
+    flex: 1 0 auto;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#content {
+    box-sizing: content-box;
+    margin: 0 auto;
+    padding: 15px;
+    width: 1264px;
+    background-color: #ffffff;
+}
+
+#content {
+    max-width: 1100px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+#content,
+#main-content {
+    &::before,
+    &::after {
+        content: "";
+        display: table;
+    }
+    &::after {
+        clear: both;
+    }
 }

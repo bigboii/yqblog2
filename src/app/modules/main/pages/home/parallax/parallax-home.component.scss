@@ -21,13 +21,15 @@
   }
 
   .parallax-bg{
-    
+    background-color: mat-color($primary, darker);
+    //border-color: mat-color($accent, darker);
+    color:mat-color($primary, 50);
   }
 
   .parallax-bg-light {
-    background-color: mat-color($primary);
+    background-color: mat-color($primary, darker);
     border-color: mat-color($accent, darker);
-    color:mat-color($mat-grey, 700);
+    color:mat-color($primary, 50);
   }
 
   .parallax-bg-dark {

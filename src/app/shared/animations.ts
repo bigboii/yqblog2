@@ -53,8 +53,24 @@ export const fadeIn = trigger('fadeIn',[
   transition(':enter', 
   [
     style({opacity: 0}),
-    animate("1000ms ease-in", style({opacity: 1})), 
+    animate("1000ms ease-out", style({opacity: 1})), 
   ])
+])
+
+export const fadeInOnClick = trigger('fadeInOnClick',[
+  state('false', style({
+    height: '0px', 
+    opacity: 0, 
+    display: 'none',
+  })),
+  state('true', style({
+    height: '100%', 
+    opacity: 0, 
+    display: 'none',
+  })),
+ transition('false => true', [
+   animate("333ms 0s ease-out")
+ ])
 ])
 
 export const slideUpFadeIn = trigger('slideUpFadeIn',[
@@ -64,7 +80,7 @@ export const slideUpFadeIn = trigger('slideUpFadeIn',[
      opacity: 0,
      transform: 'translateY(28px)'
     }),
-    animate("333ms {{initialDelay}}s ease-in", style({opacity: 1, transform: 'translateY(-28px)'})), 
+    animate("333ms {{initialDelay}}s ease-out", style({opacity: 1, transform: 'translateY(0)'})), 
   ],
   {
     params: {initialDelay: '0'}  //Default Value needed
@@ -77,7 +93,7 @@ export const slideDownFadeIn = trigger('slideDownFadeIn',[
        opacity: 0,
        transform: 'translateY(-24px)'
      }),
-    animate("333ms {{initialDelay}}s ease-in", 
+    animate("333ms {{initialDelay}}s ease-out", 
       style({
        opacity: 1,
        transform: 'translateY(0px)'
@@ -98,7 +114,7 @@ export const slideDownFadeIn2 = trigger('slideDownFadeIn2',[
        transform: 'translateY(0px)'
      })),
   transition('false => true', [
-    animate("333ms {{initialDelay}}s ease-in")
+    animate("333ms {{initialDelay}}s ease-out")
   ], 
   {
     params: {initialDelay: '0'}  //Default Value needed
@@ -118,10 +134,10 @@ export const revealOnScrollAnimation = trigger('sectionState',[
      //top:0
    })),
   transition('false => true', [
-    animate("1000ms ease-in")
+    animate("500ms ease-out")
   ]),
   transition('true => false', [
-    animate("1000ms ease-in")
+    animate("500ms ease-out")
   ])
 ])
 

@@ -17,6 +17,7 @@ import { LazyloadDirective } from '../../shared/directives/lazyload.directive';
 import { RevealonscrollDirective } from '../../shared/directives/revealonscroll.directive';
 import { ScrollRevealDirective } from '../../shared/directives/scrollreveal.directive';
 import { AngularMaterialModule } from '../../shared/angular-material.module';
+import { ElevateOnHoverDirective } from '../../shared/directives/elevateonhover.directive';
 
 import { FeatcardComponent } from './components/featcard/featcard.component';
 import { MainRouterModule } from './main-router.module';
@@ -26,6 +27,7 @@ import { ChatModule } from '../chat/chat.module';
 import { ParallaxHomeComponent } from './pages/home/parallax/parallax-home.component'
 
 import { BrowserModule } from '@angular/platform-browser';
+import { DragDropModule } from '@angular/cdk/drag-drop'
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { BrowserModule } from '@angular/platform-browser';
     ScrollDispatchModule,
     FlexLayoutModule,
     AngularMaterialModule,
-    ChatModule
+    ChatModule,
+    DragDropModule
   ],
   exports: [
     MainComponent

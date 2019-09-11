@@ -12,6 +12,7 @@ import { MainComponent } from './modules/main/main.component';
 import { MainRouterModule } from './modules/main/main-router.module';
 //import { FooterComponent } from './core/footer/footer.component';  //needed to inject scrolling inside sidenav-content
 
+//import { MaterialTabsModule } from '../node_modules/angular-vertical-tabs/projects/vertical-tabs/src/lib/vertical-tabs.module';
 
 @NgModule({
   declarations: [

@@ -1,3 +1,24 @@
+@import '~@angular/material/_theming';
+
+// Define a custom mixin that takes in the current theme
+@mixin set-theme-header($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+
+  // Create theme specfic styles
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+}
+
 /*
 .content-wrapper {
   
@@ -9,12 +30,12 @@
 }
 */
 
-app-footer {
-  position:sticky; 
-  top:0;
-  z-index: 999999; 
-  bottom:auto;
-}
+// app-footer {
+//   position:sticky; 
+//   top:0;
+//   z-index: 999999; 
+//   bottom:auto;
+// }
 
 /* --------------------------------------------*/
 /* ------------ Router Layout -----------------*/
@@ -55,14 +76,3 @@ app-footer {
   width:100%;
   top:0;
 }
-
-/*
-app-footer {
-  width:100%;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-}
-*/

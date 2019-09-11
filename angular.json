@@ -4,7 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "yqblog": {
-      "root": "",
+      "root": "src",
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
@@ -26,6 +26,12 @@
               "src/styles.scss",
               "src/themes.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src"
+                //"./folder/you/want/to/include"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
@@ -44,7 +50,7 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
+              "buildOptimizer": true
 
             }
           }

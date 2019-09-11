@@ -14,7 +14,7 @@ export class ThemeService {
 
   private themeSource = new BehaviorSubject<string>("light-theme");
   //private themeSource = new BehaviorSubject<string>("my-app-theme");
-  private logoSource = new BehaviorSubject<string>("assets/imgs/q2-logo-color_black.png");
+  private logoSource = new BehaviorSubject<string>("assets/imgs/q2-logo-color_white.png");
   currentTheme = this.themeSource.asObservable();
   currentLogo = this.logoSource.asObservable();
 
@@ -23,19 +23,19 @@ export class ThemeService {
   }
 
   private isNightmode: boolean = false;
-  private logoPath: string = "assets/imgs/q2-logo-color_black.png";
+  private logoPath: string = "assets/imgs/q2-logo-color_white.png";
 
   public toggleTheme(){
 
     if(this.isNightmode) {             //Nightmode ON
       this.isNightmode = false;
       this.themeSource.next("light-theme");
-      this.logoSource.next("assets/imgs/q2-logo-color_black.png");
+      this.logoSource.next("assets/imgs/q2-logo-color_white.png");
     }
     else {                             //Nightmode OFF
       this.isNightmode = true;
       this.themeSource.next("dark-theme");
-      this.logoSource.next("assets/imgs/q2-logo-color_white.png");
+      this.logoSource.next("assets/imgs/q2-logo-color_black.png");
     }
   }
 

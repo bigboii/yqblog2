@@ -1,18 +1,30 @@
-<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%" fxLayoutAlign="center" fxLayout="row wrap">
-  <mat-card *ngFor="let cardDatum of cardData" class="card-container" fxFlex="49%" fxFlex.xs="100%" >
+<div fxLayout="row" fxLayout.xs="row" fxLayoutAlign="flex-start">
 
-    <!-- Right -->
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"> 
-        <img src="{{cardDatum.imgPath}}" alt="Photo of a Shiba Inu" width=40 height=40> 
-      </div>
-      <mat-card-title>{{cardDatum.title}}</mat-card-title>
-      <mat-card-subtitle>{{cardDatum.subTitle}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-       {{cardDatum.description}}
-      </p>
-    </mat-card-content>
-  </mat-card>
+  <div class="tab">
+    <button class="tablinks" (click)="openTab($event, 'tab0')" id="defaultOpen"> Bank of America </button>
+    <button class="tablinks" (click)="openTab($event, 'tab1')"> Bank of America </button>
+    <button class="tablinks" (click)="openTab($event, 'tab2')"> HeyKorean </button>
+  </div>
+
+  <div *ngFor="let cardDatum of cardData">
+    <div class="tabcontent" id="{{cardDatum.id}}" [@fadeInOnClick]="this.visibleTabContent['cardDatum.id']['show']">
+      <mat-card class="tabcontent" id="{{cardDatum.id}}" elevateOnHover class="card-container" >
+
+        <!-- Right -->
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"> 
+            <img src="{{cardDatum.imgPath}}" alt="Photo of a Shiba Inu" width=40 height=40> 
+          </div>
+          <mat-card-title>{{cardDatum.position}} @ {{cardDatum.title}}</mat-card-title>
+          <mat-card-subtitle>{{cardDatum.subTitle}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content >
+          <p *ngFor="let bulletpoint of cardDatum.description">
+           {{bulletpoint}}
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  
 </div>

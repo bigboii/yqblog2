@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit{
   private cards: Array<Object>;
   public showParallax : boolean;
 
+  panelOpenState = false;
+
   constructor(@Inject(DOCUMENT) private document: Document) 
   { 
 
@@ -46,25 +48,42 @@ export class HomeComponent implements OnInit{
     this.cards= 
     [
       {
-        "id": 0,
+        "id": "tab0",
         "title": "Bank of America (Current)",
-        "subTitle": "Software Engineer (Officer)",
+        "position": "Software Engineer (Officer)",
+        "subTitle": "Jun 2017 - Present",
         "imgPath":"./assets/imgs/card_bofa.png",
-        "description":"By following an agile methodology and microservices framework, I work with my team to rapidly deliver a private enterprise cloud. Utilizing both vendor and opensource technologies. The service provides pre-defined VMs or a custom one in a self serve manne. I helped my team add new features, simplify our data set, and ensured that our infrastructure works after a framework migration."
+        "description": [
+          "Private cloud platform used internally within the firm that lets companies build virtual machines.",
+          "Actively manageing over 100,000 Virtual Machines",
+          "Todo: Implement a user friendly monitoring tool",
+        ]
       },
       {
-        "id": 1,
+        "id": "tab1",
         "title": "Bank of America",
-        "subTitle": "Technicaly Analyst, Internship",
+        "position": "Intern",
+        "subTitle": "Jun 2016 - Aug 2016",
         "imgPath":"./assets/imgs/card_bofa.png",
-        "description":"This internship is when I got into web development for the first time. I was responsible for designing and implementing a web application, Time Management System (TMS). Using the MEAN stack approach, I used bootstrap for the overall layout combined with Kendo UI for presenting a bunch of json into a more meaningful way via graphs."
+        "description":[
+          "Designed and implemented a web application, Time Management System (TMS)",
+          "Developed using MEAN stack to host web application",
+          "Utilized Bootstrap for the overall layout combined",
+          "Utilized Kendo UI to visualize json via charts and graphs."
+        ]
       },
       {
-        "id": 2,
+        "id": "tab2",
         "title": "HeyKorean",
-        "subTitle": "Android Developer, Internship",
+        "position": "Android Developer, Internship",
+        "subTitle": "Aug 2013 - April 2014",
         "imgPath": "./assets/imgs/heykorean_logo.png",
-        "description":"As my first internship, I HeyKorean taught me what its like to work in an industry. During the 6 months, I assisted my Senior Developers with the planning, development, and launching of Single To Mingle. http://singletomingle.us/mingle.html"
+        "description": [
+          "First Internship",
+          "I HeyKorean taught me what its like to work in an industry.",
+          "Assisted senior engineers to launch and launching of Single To Mingle. ",
+          "http://singletomingle.us/mingle.html"
+        ]
       }
     ];
   

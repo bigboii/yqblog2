@@ -53,7 +53,7 @@ export class HeaderComponent implements AfterViewInit {
 
   onContentScroll(event) {
     let elem = document.getElementsByClassName('parallax-bg')[0].getBoundingClientRect();
-    console.log("[header] elem.top: " + elem.top);
+    //console.log("[header] elem.top: " + elem.top);
     if( elem.top < 64 ) 
     {
       if(this.isElevated) {

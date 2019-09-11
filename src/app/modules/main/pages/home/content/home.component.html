@@ -2,69 +2,90 @@
 
   <parallax-home></parallax-home> 
 
-  <div class="container" fxFlex="1 1 auto">
+  <div class="home container" fxFlex="1 1 auto">
 
     <!-- Section: About Me -->
     <div revealOnScroll [index]="this.visibleSections[0].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[0].show">
-      <div class="section about">
-        <div class="about-content-container">
-          <h1 class="mat-display-1">Background</h1>
-          <p class="mat-body-1"> I'm currently a Software Engineer based in the United States, Jersey City, building things for the private cloud. I develop and maintain Bank of America's cloud infrastructure through microservices and automation. </p>
+            
+      <section class="about" fxFlex fxLayout="column" [ngStyle]="">
+        
+        <h1 class="mat-display-1 heading">Background</h1>
 
-          <p class="mat-body-1"> I don't just code for work. Whether its a website, an application, or a microcontroller project, I enjoy solving problems using code. To make that happen, I'm constantly striving to learn new languages and master them.
-          </p>
+        <div class="about-container" fxFlex fxLayout="row">
+          <div class="about-content-container"fxFlex fxLayout="column">
+            <p class="mat-body-1"> I'm currently a Software Engineer based in the United States, Jersey City and I spent the last few years developing Bank of America's enterprise private cloud platform. I develop and maintain Bank of America's cloud infrastructure through microservices and automation. </p>
 
-          <p class="mat-body-1"> Heres a few things I'm experienced with: </p>
+            <p class="mat-body-1"> I don't just code for work. Whether its a web application, a microcontroller project, o, I enjoy solving problems using code. To make that happen, I'm constantly striving to learn skills and master them.
+            </p>
 
-          <!-- Section: Skills -->
-          <div revealOnScroll>
+            <p class="mat-body-1"> Heres a few technologies I've been working with recently: </p>
+
+            <!-- Section: Skills -->
             <div class="row">
               <div class="column-25">
-                <div class="row-25"> 
-                </div> 
                 <mat-list dense>
                   <mat-list-item *ngFor="let language of languages">
-                    <div class="arrow">
-                      <p class="mat-body-1"> {{language}} </p>
-                    </div>
+                    <p class="mat-body-1"> {{language}} </p>
                   </mat-list-item>
                 </mat-list>
               </div>
               <div class="column-25">
-                <div class="row-25"> 
-                </div> 
                 <mat-list dense>
-                  <a mat-list-item *ngFor="let framework of frameworks">
+                  <mat-list-item *ngFor="let framework of frameworks">
                     <p class="mat-body-1"> {{framework}} </p>
-                  </a>
+                  </mat-list-item>
                 </mat-list>
               </div>
             </div>
           </div>
+          <div class="about-pic-container">
+            <a>
+              <img class="avatar-pic" alt="Avator" [src]="'/assets/imgs/parallax_small.jpg'">
+            </a>
+          </div>
         </div>
-        <div class="about-pic-container">
-          <img class="avatar-pic" alt="Avator" [src]="'/assets/imgs/parallax_small.jpg'">
-        </div>
-      </div>
+      </section>
     </div>
+
 
 
     <!-- Section: Resume -->
     <div revealOnScroll [index]="visibleSections[1].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[1].show">
-      <div class="section">
-        <h1 class="mat-display-1">Here's what I've done so far</h1>
+      <section class="section">
+        <h1 class="mat-display-1 heading">Here's what I've done so far</h1>
 
         <app-featcard [cardData]=cards> </app-featcard>
+      </section>
+    </div>
+
+  <div class="tabs-container">
+    <div id="content">
+      <div id="main-content">
+        <mat-tab-group >
+          <mat-tab label="Tab One">
+            Tab One Content
+          </mat-tab>
+          <mat-tab label="Tab Two">
+            Tab Two Content
+          </mat-tab>
+        </mat-tab-group>
       </div>
     </div>
+  </div>
+
+  <div class="vertical-tab-group">
+    <div>
+    </div>
+  </div>
+
 
 
     <!-- Section: Blog, do this last -->
     <div revealOnScroll [index]="visibleSections[2].id" [@sectionState]="visibleSections[2].show" (showSection)="displayEmitterResults($event)">
-      <div class="section">
-          <h1 class="mat-display-1">Lets Connect</h1>
+      <section class="section">
+          <h1 class="mat-display-1 heading">Lets Connect</h1>
           <h2 class="mat-body-1">Feel free to reach out to me. LinkedIn or Email best.</h2>
-      </div>
+      </section>
     </div>
 
   </div>
