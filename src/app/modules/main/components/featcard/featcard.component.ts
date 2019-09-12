@@ -18,11 +18,19 @@ export class FeatcardComponent implements OnInit, AfterViewInit {
   constructor(@Inject(DOCUMENT) private document: Document) { }
 
   public visibleTabContent: Array<Object> = [];     //TODO: convert this to MAP
+  //public visibleTabContentMap: Map<string,boolean>;     //TODO: convert this to MAP
+  public visibleTabContentMap: Object;
 
   ngOnInit() {
-    this.visibleTabContent.push({ "id": "tab0", "show": false });
-    this.visibleTabContent.push({ "id": "tab1", "show": false });
-    this.visibleTabContent.push({ "id": "tab2", "show": false });
+    // this.visibleTabContent.push({ "id": "tab0", "show": false });
+    // this.visibleTabContent.push({ "id": "tab1", "show": false });
+    // this.visibleTabContent.push({ "id": "tab2", "show": false });
+    // this.visibleTabContentMap.set("tab0", false);
+    // this.visibleTabContentMap.set("tab1", false);
+    // this.visibleTabContentMap.set("tab2", false);
+    this.visibleTabContentMap = {"tab0": false};
+    this.visibleTabContentMap = {"tab1": false};
+    this.visibleTabContentMap = {"tab2": false};
   }
 
 //https://www.w3schools.com/howto/howto_js_vertical_tabs.asp
@@ -66,11 +74,11 @@ export class FeatcardComponent implements OnInit, AfterViewInit {
   // }
 
   public openTab(event: Event, id: string) {
-    if(this.visibleTabContent[id]["show"]==true) {
-      this.visibleTabContent[id]["show"]=false;
+    if(this.visibleTabContent[id]==true) {
+      this.visibleTabContent[id]=false;
     }
-    if(this.visibleTabContent[id]["show"]==false) {
-      this.visibleTabContent[id]["show"]=true;
+    if(this.visibleTabContent[id]==false) {
+      this.visibleTabContent[id]=true;
     }
     // this.visibleTabConent[id]["show"]=true;
 

@@ -7,7 +7,7 @@
   </div>
 
   <div *ngFor="let cardDatum of cardData">
-    <div class="tabcontent" id="{{cardDatum.id}}" [@fadeInOnClick]="this.visibleTabContent['cardDatum.id']['show']">
+    <div class="tabcontent" id="{{cardDatum.id}}" [@fadeInOnClick]="this.visibleTabContentMap[cardDatum.id]">
       <mat-card class="tabcontent" id="{{cardDatum.id}}" elevateOnHover class="card-container" >
 
         <!-- Right -->
