@@ -141,15 +141,94 @@ export const revealOnScrollAnimation = trigger('sectionState',[
   ])
 ])
 
-export const sectionAnimation2 = trigger('sectionState4',[
- transition('0 => 1', animate("5s ease-in")),
- transition('1 => 0', animate("5s ease-out"))
+// export const sectionAnimation2 = trigger('sectionState4',[
+//  transition('0 => 1', animate("5s ease-in")),
+//  transition('1 => 0', animate("5s ease-out"))
+// ])
+
+// export const rotateAnimation =  trigger('rotate', [
+//       transition(':enter', [style({transform: 'rotate(-4320deg)'}), animate('2000ms')])
+//   ])
+
+// export const flipHorizontal =  trigger('flipHorizontal', [
+//       transition(':enter', [style({transform: 'rotateY(-4320deg)'}), animate('5000ms')])
+//   ])
+
+
+/*
+  Vertical Tab Content animations
+*/
+export const verticalTabContentFadeIn = trigger('verticalTabContentFadeIn',[
+  state('false', style({
+    height: '0px', 
+    opacity: 0, 
+    display: 'none',
+  })),
+  state('true', style({
+    height: '100%', 
+    opacity: 1
+  })),
+  transition('false => true', [
+    animate("0ms 0s ease-out")
+  ]),
+  transition('true => false', [
+    animate("0ms 0s ease-out")
+  ])
 ])
 
-export const rotateAnimation =  trigger('rotate', [
-      transition(':enter', [style({transform: 'rotate(-4320deg)'}), animate('2000ms')])
+export const tabSlide = trigger('tabSlide',[
+  state('false', style({
+    'border-right': '1px solid #ccc'
+  })),
+  state('true', style({
+    'border-right': '3px solid red'
+  })),
+  transition('false => true', [
+    animate("333ms ease-out")
+  ]),
+  transition('true => false', [
+    animate("333ms ease-out")
   ])
+])
 
-export const flipHorizontal =  trigger('flipHorizontal', [
-      transition(':enter', [style({transform: 'rotateY(-4320deg)'}), animate('5000ms')])
+//https://www.w3schools.com/w3css/w3css_tabulators.asp
+export const tabOmniSlide = trigger('tabOmniSlide',[
+  // state('selected', style({
+  //   'border-right': '3px solid red',
+  // })),
+  state('selectedUp', style({
+    'border-right': '3px solid red',
+    top:'-50px'
+  })),
+  state('selectedDown', style({
+    'border-right': '3px solid red',
+    top:'50px'
+  })),
+  state('deSelectedUp', style({
+    'border-right': '1px solid #ccc',
+  })),
+  state('deSelectedDown', style({
+    'border-right': '1px solid #ccc',
+  })),
+  state('hide', style({
+    'border-right': '1px solid #ccc',
+  })),
+  state('hideUp', style({
+    'border-right': '1px solid #ccc',
+  })),
+  state('hideDown', style({
+    'border-right': '1px solid #ccc',
+  })),
+  transition('hide => selectedUp', [
+    animate("333ms ease-out")
+  ]),
+  transition('hide => selectedDown', [
+    animate("333ms ease-out")
+  ]),
+  transition('selectedUp => hide', [
+    animate("333ms ease-out")
+  ]),
+  transition('selectedDown => hide', [
+    animate("333ms ease-out")
   ])
+])

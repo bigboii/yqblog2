@@ -1,36 +1,40 @@
 import { Component, OnInit, AfterViewInit, Input, Inject } from '@angular/core';
 // import { MaterialElevationDirective } from '../../../../shared/directives/material-elevation.directive';
 import { DOCUMENT } from '@angular/common';
-import { fadeIn, fadeInOnClick } from '../../../../shared/animations';
+import { fadeIn, tabOmniSlide, verticalTabContentFadeIn } from '../../../../shared/animations';
 
 @Component({
   selector: 'app-featcard',
   templateUrl: './featcard.component.html',
   styleUrls: ['./featcard.component.scss'],
-  animations: [ fadeIn, fadeInOnClick ]
+  animations: [ fadeIn, tabOmniSlide, verticalTabContentFadeIn ]
 })
 export class FeatcardComponent implements OnInit, AfterViewInit {
 
   @Input() cardData;
   private tabcontents;
   private tablinks;
+  private currentTab: Object;          //reference to current tab
 
   constructor(@Inject(DOCUMENT) private document: Document) { }
 
-  public visibleTabContent: Array<Object> = [];     //TODO: convert this to MAP
+  public visibleTabContents: Array<Object> = [];     //TODO: convert this to MAP
   //public visibleTabContentMap: Map<string,boolean>;     //TODO: convert this to MAP
-  public visibleTabContentMap: Object;
+  public tabs: Object = {};
 
   ngOnInit() {
-    // this.visibleTabContent.push({ "id": "tab0", "show": false });
-    // this.visibleTabContent.push({ "id": "tab1", "show": false });
-    // this.visibleTabContent.push({ "id": "tab2", "show": false });
-    // this.visibleTabContentMap.set("tab0", false);
-    // this.visibleTabContentMap.set("tab1", false);
-    // this.visibleTabContentMap.set("tab2", false);
-    this.visibleTabContentMap = {"tab0": false};
-    this.visibleTabContentMap = {"tab1": false};
-    this.visibleTabContentMap = {"tab2": false};
+    // this.visibleTabContents.push({ "index":0, "id": "tab0", "show": false });
+    // this.visibleTabContents.push({ "index":1, "id": "tab1", "show": false });
+    // this.visibleTabContents.push({ "index":2, "id": "tab2", "show": false });
+
+    this.tabs["tab0"] = { "index":0, "id": "tab0", "isShow":true, "state": "selectedUp" };
+    this.tabs["tab1"] = { "index":1, "id": "tab1", "isShow":false, "state": "hide" };
+    this.tabs["tab2"] = { "index":2, "id": "tab2", "isShow":false, "state": "hide" };
+
+    // this.visibleTabContentMap["tab0"][0] = true;
+    // this.visibleTabContentMap["tab1"][] = false;
+    // this.visibleTabContentMap["tab2"] = false;
+    this.currentTab = this.tabs["tab0"];
   }
 
 //https://www.w3schools.com/howto/howto_js_vertical_tabs.asp
@@ -73,12 +77,46 @@ export class FeatcardComponent implements OnInit, AfterViewInit {
   //   (event.currentTarget as HTMLInputElement).className += " active";
   // }
 
+  //TODO: finalize animations; logic complete
   public openTab(event: Event, id: string) {
-    if(this.visibleTabContent[id]==true) {
-      this.visibleTabContent[id]=false;
-    }
-    if(this.visibleTabContent[id]==false) {
-      this.visibleTabContent[id]=true;
+    console.log(this.tabs);
+
+
+    // for(let visibleTabContent of this.visibleTabContents) {
+    for(let tab of Object.entries(this.tabs)) {
+      let tabId = tab[0];
+      let index = tab[1]["index"];
+      let show = tab[1]["show"]
+
+      if(tabId == id) {
+        //determine direction
+        if(this.currentTab["id"] == tabId) {
+          console.log("sameTab, do Nothing: " + id);
+          this.tabs[tabId]["state"] = "selected";
+        }
+        else {
+          if(this.currentTab["index"] > index) {  //slide up
+            this.tabs[tabId]["isShow"] = true;
+            this.tabs[tabId]["state"] = "selectedUp";
+            console.log("slide up: " + id);
+          }
+          else {                                  //slide down
+            this.tabs[tabId]["isShow"] = true;
+            this.tabs[tabId]["state"] = "selectedDown";
+            console.log("slide down: " + id);
+          }
+
+        }
+        if(this.currentTab )
+          // console.log("1: " + tabId);
+          this.tabs[tabId]["isShow"] = true;
+          this.currentTab = this.tabs[tabId];
+      }
+      else {
+        // console.log("2: " + tabId);
+        this.tabs[tabId]["isShow"] = false;
+        this.tabs[tabId]["state"] = "hide";
+      }
     }
     // this.visibleTabConent[id]["show"]=true;
 
@@ -103,6 +141,10 @@ export class FeatcardComponent implements OnInit, AfterViewInit {
     // (document.getElementById(id) as HTMLElement).style.display = "block";
 
     // (event.currentTarget as HTMLInputElement).className += " active";
+  }
+
+  public determineSlideDirection() {
+
   }
 
 
