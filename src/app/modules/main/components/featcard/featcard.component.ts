@@ -19,28 +19,20 @@ export class FeatcardComponent implements OnInit, AfterViewInit {
   constructor(@Inject(DOCUMENT) private document: Document) { }
 
   public visibleTabContents: Array<Object> = [];     //TODO: convert this to MAP
-  //public visibleTabContentMap: Map<string,boolean>;     //TODO: convert this to MAP
   public tabs: Object = {};
 
   ngOnInit() {
-    // this.visibleTabContents.push({ "index":0, "id": "tab0", "show": false });
-    // this.visibleTabContents.push({ "index":1, "id": "tab1", "show": false });
-    // this.visibleTabContents.push({ "index":2, "id": "tab2", "show": false });
-
-    this.tabs["tab0"] = { "index":0, "id": "tab0", "isShow":true, "state": "selectedUp" };
+    this.tabs["tab0"] = { "index":0, "id": "tab0", "isShow":true, "state": "selected" };
     this.tabs["tab1"] = { "index":1, "id": "tab1", "isShow":false, "state": "hide" };
     this.tabs["tab2"] = { "index":2, "id": "tab2", "isShow":false, "state": "hide" };
 
-    // this.visibleTabContentMap["tab0"][0] = true;
-    // this.visibleTabContentMap["tab1"][] = false;
-    // this.visibleTabContentMap["tab2"] = false;
     this.currentTab = this.tabs["tab0"];
   }
 
 //https://www.w3schools.com/howto/howto_js_vertical_tabs.asp
   ngAfterViewInit() {
     // Get the element with id="defaultOpen" and click on it
-    (document.getElementById("defaultOpen") as HTMLFormElement).click();
+    // (document.getElementById("defaultOpen") as HTMLFormElement).click();
   }
 
   onMouseEnter(event : Event) {
@@ -79,7 +71,7 @@ export class FeatcardComponent implements OnInit, AfterViewInit {
 
   //TODO: finalize animations; logic complete
   public openTab(event: Event, id: string) {
-    console.log(this.tabs);
+    console.dir(this.tabs);
 
 
     // for(let visibleTabContent of this.visibleTabContents) {
@@ -88,13 +80,15 @@ export class FeatcardComponent implements OnInit, AfterViewInit {
       let index = tab[1]["index"];
       let show = tab[1]["show"]
 
+      //determine state for newly selected tab
       if(tabId == id) {
-        //determine direction
         if(this.currentTab["id"] == tabId) {
           console.log("sameTab, do Nothing: " + id);
           this.tabs[tabId]["state"] = "selected";
+          this.tabs[tabId]["isShow"] = true;
         }
         else {
+          let deselectedTabId = this.currentTab["id"];
           if(this.currentTab["index"] > index) {  //slide up
             this.tabs[tabId]["isShow"] = true;
             this.tabs[tabId]["state"] = "selectedUp";
@@ -105,19 +99,27 @@ export class FeatcardComponent implements OnInit, AfterViewInit {
             this.tabs[tabId]["state"] = "selectedDown";
             console.log("slide down: " + id);
           }
-
-        }
-        if(this.currentTab )
-          // console.log("1: " + tabId);
-          this.tabs[tabId]["isShow"] = true;
-          this.currentTab = this.tabs[tabId];
+        }        
       }
+      //determine state for recently deselected tab
       else {
-        // console.log("2: " + tabId);
-        this.tabs[tabId]["isShow"] = false;
-        this.tabs[tabId]["state"] = "hide";
+        let deselectedTabId = this.currentTab["id"];
+
+        if(this.currentTab["index"] > index) {  //slide up
+          this.tabs[deselectedTabId]["isShow"] = false;
+          this.tabs[deselectedTabId]["state"] = "deselectedUp";
+        }
+        else {
+          this.tabs[deselectedTabId]["isShow"] = false;
+          this.tabs[deselectedTabId]["state"] = "deselectedDown"
+        }
       }
+
+      
+
     }
+
+    this.currentTab = this.tabs[id];
     // this.visibleTabConent[id]["show"]=true;
 
 

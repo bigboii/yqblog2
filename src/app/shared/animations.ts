@@ -193,42 +193,38 @@ export const tabSlide = trigger('tabSlide',[
 
 //https://www.w3schools.com/w3css/w3css_tabulators.asp
 export const tabOmniSlide = trigger('tabOmniSlide',[
-  // state('selected', style({
-  //   'border-right': '3px solid red',
-  // })),
-  state('selectedUp', style({
+  state('selected', style({
     'border-right': '3px solid red',
-    top:'-50px'
   })),
-  state('selectedDown', style({
+  state('selectedUp', style({
     'border-right': '3px solid red',
     top:'50px'
   })),
   state('deSelectedUp', style({
     'border-right': '1px solid #ccc',
+    top:'0px'
+  })),
+  state('selectedDown', style({
+    'border-right': '3px solid red',
+    top:'-50px'
   })),
   state('deSelectedDown', style({
     'border-right': '1px solid #ccc',
+    top:'0px'
   })),
   state('hide', style({
     'border-right': '1px solid #ccc',
   })),
-  state('hideUp', style({
-    'border-right': '1px solid #ccc',
-  })),
-  state('hideDown', style({
-    'border-right': '1px solid #ccc',
-  })),
-  transition('hide => selectedUp', [
+  transition('deselectedUp => selectedUp', [
     animate("333ms ease-out")
   ]),
-  transition('hide => selectedDown', [
+  transition('deselectedDown => selectedDown', [
     animate("333ms ease-out")
   ]),
-  transition('selectedUp => hide', [
+  transition('selectedUp => deselectedUp', [
     animate("333ms ease-out")
   ]),
-  transition('selectedDown => hide', [
+  transition('selectedDown => deSelectedDown', [
     animate("333ms ease-out")
   ])
 ])
