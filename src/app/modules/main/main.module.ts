@@ -19,7 +19,7 @@ import { ScrollRevealDirective } from '../../shared/directives/scrollreveal.dire
 import { AngularMaterialModule } from '../../shared/angular-material.module';
 import { ElevateOnHoverDirective } from '../../shared/directives/elevateonhover.directive';
 
-import { FeatcardComponent } from './components/featcard/featcard.component';
+import { VerticalTabsComponent } from './components/vertical-tabs/vertical-tabs.component';
 import { MainRouterModule } from './main-router.module';
 import { MainComponent } from './main.component'
 
@@ -35,7 +35,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
     HomeComponent,
     ParallaxDirective,
     FasttextDirective,
-    FeatcardComponent,
+    VerticalTabsComponent,
     ContactComponent,
     AboutComponent,
     ProjectsComponent,

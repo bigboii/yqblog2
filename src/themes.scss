@@ -5,7 +5,7 @@
 @import './app/app.component';
 @import './app/modules/main/pages/home/content/home.component';
 @import './app/modules/main/pages/home/parallax/parallax-home.component';
-@import './app/modules/main/components/featcard/featcard.component';
+@import './app/modules/main/components/vertical-tabs/vertical-tabs.component';
 @import './themeVars';
 
 //https://github.com/angular/components/blob/master/src/lib/core/theming/_palette.scss
@@ -17,7 +17,7 @@
   @include set-theme-home($theme);
   @include set-theme-parallax($theme);
   @include set-theme-footer($theme);
-  @include set-theme-featcard($theme);
+  @include set-theme-vertical-tabs($theme);
   // repeat this for each component that uses theme colors
 }
 
@@ -53,6 +53,7 @@
   //color: mat-color($dark-primary, lighter);
   //$dark-foreground: my-mat-dark-theme-foreground(mat-color($dark-accent));
   //$dark-theme: map-merge($dark-theme, (foreground: $dark-foreground));
+  color: $light-primary-text;
   @include set-theme($dark-theme);
   @include angular-material-theme($dark-theme);
 }

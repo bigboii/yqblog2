@@ -2,16 +2,16 @@
 
   <div class="tab" fxLayout="column">
     <div fxLayout="row" > 
-      <button class="tablinks" (click)="openTab($event, 'tab0')" id="defaultOpen"> Bank of America </button>
-      <span fxFlex="none" [@tabOmniSlide0]="this.currentTab['id']"></span>
+      <button mat-button (click)="openTab($event, 'tab0')" id="defaultOpen"> Bank of America </button>
+      <span fxFlex="none" [@tabVerticalSlide0]="this.currentTab['id']"></span>
     </div>
     <div fxLayout="row" >
-      <button class="tablinks" (click)="openTab($event, 'tab1')" > Bank of America </button>
-      <span fxFlex="none" [@tabOmniSlide1]="this.currentTab['id']"></span>
+      <button mat-button (click)="openTab($event, 'tab1')" > Bank of America </button>
+      <span fxFlex="none" [@tabVerticalSlide1]="this.currentTab['id']"></span>
     </div>
     <div fxLayout="row" >
-      <button class="tablinks" (click)="openTab($event, 'tab2')" > HeyKorean </button>
-      <span fxFlex="none" [@tabOmniSlide2]="this.currentTab['id']"></span>
+      <button mat-button (click)="openTab($event, 'tab2')" > HeyKorean </button>
+      <span fxFlex="none" [@tabVerticalSlide2]="this.currentTab['id']"></span>
     </div>
   </div>
 
