@@ -62,8 +62,8 @@ $config: mat-typography-config();
 
   /* Style the buttons inside the tab */
   // $my-button : map-get($config, button);
-  .tab button {
-    display: block;
+  .tab div button {
+    // display: block;
     background-color: inherit;
     color: black;
     padding: 22px 16px;
@@ -75,6 +75,23 @@ $config: mat-typography-config();
     font-size: mat-font-size($config, button);
     font-weight: mat-font-weight($config, button);
     font-family: mat-font-family($config);
+    max-height:61px;
+
+    text-align: center;
+
+  vertical-align:middle;
+
+//     $button-font-family: map-font-family($my-button);
+// $button-font-size: map-font-size($my-button);
+// $button-font-weight: map-font-weight($my-button);
+// $button-line-height: map-line-height($my-button);
+  }
+
+  .tab div span {
+    // display: block;
+    background-color: inherit;
+    color: black;
+    height:100%;
 
 //     $button-font-family: map-font-family($my-button);
 // $button-font-size: map-font-size($my-button);

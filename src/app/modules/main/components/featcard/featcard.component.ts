@@ -1,13 +1,13 @@
 import { Component, OnInit, AfterViewInit, Input, Inject } from '@angular/core';
 // import { MaterialElevationDirective } from '../../../../shared/directives/material-elevation.directive';
 import { DOCUMENT } from '@angular/common';
-import { fadeIn, tabOmniSlide, verticalTabContentFadeIn } from '../../../../shared/animations';
+import { fadeIn, tabOmniSlide0, tabOmniSlide1, tabOmniSlide2, verticalTabContentFadeIn } from '../../../../shared/animations';
 
 @Component({
   selector: 'app-featcard',
   templateUrl: './featcard.component.html',
   styleUrls: ['./featcard.component.scss'],
-  animations: [ fadeIn, tabOmniSlide, verticalTabContentFadeIn ]
+  animations: [ fadeIn, tabOmniSlide0, tabOmniSlide1, tabOmniSlide2, verticalTabContentFadeIn ]
 })
 export class FeatcardComponent implements OnInit, AfterViewInit {
 
@@ -46,35 +46,19 @@ export class FeatcardComponent implements OnInit, AfterViewInit {
   /**
     Tab logic
   */
-  // public openTab(event: Event, id: string) {
-  //   console.log("[featcard] openTab: " + id);
-  //   this.tabcontents = (document.getElementsByClassName("tabcontent") as HTMLCollection);
-  //   console.log("tabcontents: " + this.tabcontents);
-  //   console.dir(this.tabcontents)
-  //   for(let tabcontent of this.tabcontents) {
-  //     console.log("tabcontent: " + tabcontent);
-
-  //     tabcontent.style.display = "none";
-  //   }
-
-  //   this.tablinks = (document.getElementsByClassName("tablinks") as HTMLCollection);
-  //   console.log("tablinks: " + this.tablinks);
-  //   console.dir(this.tablinks)
-  //   for(let tablink of this.tablinks) {
-  //     tablink.className = tablink.className.replace("active", "");
-  //   }
-
-  //   (document.getElementById(id) as HTMLElement).style.display = "block";
-
-  //   (event.currentTarget as HTMLInputElement).className += " active";
-  // }
 
   //TODO: finalize animations; logic complete
   public openTab(event: Event, id: string) {
     console.dir(this.tabs);
 
+    if(this.currentTab["id"] == id) {
 
-    // for(let visibleTabContent of this.visibleTabContents) {
+      this.tabs[id]["state"] = "selected";
+      this.tabs[id]["isShow"] = true;
+
+      return;     //no further logic is necessary
+    }
+
     for(let tab of Object.entries(this.tabs)) {
       let tabId = tab[0];
       let index = tab[1]["index"];
@@ -82,34 +66,37 @@ export class FeatcardComponent implements OnInit, AfterViewInit {
 
       //determine state for newly selected tab
       if(tabId == id) {
-        if(this.currentTab["id"] == tabId) {
-          console.log("sameTab, do Nothing: " + id);
-          this.tabs[tabId]["state"] = "selected";
-          this.tabs[tabId]["isShow"] = true;
-        }
-        else {
+      
+        // else {
           let deselectedTabId = this.currentTab["id"];
           if(this.currentTab["index"] > index) {  //slide up
             this.tabs[tabId]["isShow"] = true;
-            this.tabs[tabId]["state"] = "selectedUp";
-            console.log("slide up: " + id);
+            // this.tabs[tabId]["state"] = "selectedUp";
+            this.tabs[tabId]["state"] = "selected";
+            // console.log("slide up: " + id);
           }
           else {                                  //slide down
             this.tabs[tabId]["isShow"] = true;
-            this.tabs[tabId]["state"] = "selectedDown";
-            console.log("slide down: " + id);
+            // this.tabs[tabId]["state"] = "selectedDown";
+            this.tabs[tabId]["state"] = "selected";
+            // console.log("slide down: " + id);
           }
-        }        
+        // }        
       }
       //determine state for recently deselected tab
       else {
         let deselectedTabId = this.currentTab["id"];
-
-        if(this.currentTab["index"] > index) {  //slide up
+        // console.log("[deselect] slide up: " + this.currentTab["index"] + ", " + index);
+        if(this.currentTab["index"] == index) {
+          //doNothing
+          // console.log("[deselect] nothing done");
+        }
+        else if(this.currentTab["index"] > index) {  //slide up
           this.tabs[deselectedTabId]["isShow"] = false;
           this.tabs[deselectedTabId]["state"] = "deselectedUp";
         }
         else {
+          // console.log("[deselect] slide down");
           this.tabs[deselectedTabId]["isShow"] = false;
           this.tabs[deselectedTabId]["state"] = "deselectedDown"
         }

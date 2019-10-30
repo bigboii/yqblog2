@@ -1,9 +1,18 @@
 <div fxLayout="row" fxLayout.xs="row" fxLayoutAlign="flex-start">
 
-  <div class="tab">
-    <button class="tablinks" (click)="openTab($event, 'tab0')" id="defaultOpen" [@tabOmniSlide]="this.tabs['tab0']['state']"> Bank of America </button>
-    <button class="tablinks" (click)="openTab($event, 'tab1')" [@tabOmniSlide]="this.tabs['tab1']['state']"> Bank of America </button>
-    <button class="tablinks" (click)="openTab($event, 'tab2')" [@tabOmniSlide]="this.tabs['tab2']['state']"> HeyKorean </button>
+  <div class="tab" fxLayout="column">
+    <div fxLayout="row" > 
+      <button class="tablinks" (click)="openTab($event, 'tab0')" id="defaultOpen"> Bank of America </button>
+      <span fxFlex="none" [@tabOmniSlide0]="this.currentTab['id']"></span>
+    </div>
+    <div fxLayout="row" >
+      <button class="tablinks" (click)="openTab($event, 'tab1')" > Bank of America </button>
+      <span fxFlex="none" [@tabOmniSlide1]="this.currentTab['id']"></span>
+    </div>
+    <div fxLayout="row" >
+      <button class="tablinks" (click)="openTab($event, 'tab2')" > HeyKorean </button>
+      <span fxFlex="none" [@tabOmniSlide2]="this.currentTab['id']"></span>
+    </div>
   </div>
 
   <div *ngFor="let cardDatum of cardData">
