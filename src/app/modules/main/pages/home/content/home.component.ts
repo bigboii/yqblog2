@@ -11,9 +11,9 @@ import { DOCUMENT } from '@angular/common';
 export class HomeComponent implements OnInit{
 
   private languages : Array<String>;
-  private frameworks : Array<String>;
+  private technologies : Array<String>;
   private databases : Array<String>;
-  private framework : Array<String>;
+  private tools : Array<String>;
 
   public parallaxHeight: number;
   public visibleSections: Array<Object> = [];
@@ -35,15 +35,16 @@ export class HomeComponent implements OnInit{
       this.parallaxHeight = document.documentElement.clientHeight - 56;
     }
 
-    this.languages = ["Java", "C", "C++", "Spring", "HashiCorp", "VMWare"];
-    this.frameworks = ["Angular", "Node.js", "JavaScript", "TypeScript"];
+    this.languages = ["Java, Spring Boot", "C++", "JavaScript", "TypeScript",];
+    this.technologies = ["Angular", "Node.js", "JavaScript", "TypeScript"];
     this.databases=["SQL", "MongoDB", "Firebase", "Logstash", "Filebeat"];
-    this.framework=["Spring", "Hashicorp"]
+    this.tools=["Jenkins", "[Hashicorp] Consul, Nomad, Vault", "Elastic, Logstash, Kibana (ELK)"]
 
     this.visibleSections.push({ "id": 0, "show": false });
     this.visibleSections.push({ "id": 1, "show": false });
     this.visibleSections.push({ "id": 2, "show": false });
     this.visibleSections.push({ "id": 3, "show": false });
+    this.visibleSections.push({ "id": 4, "show": false });
 
     this.cards= 
     [
@@ -54,22 +55,24 @@ export class HomeComponent implements OnInit{
         "subTitle": "Jun 2017 - Present",
         "imgPath":"./assets/imgs/card_bofa.png",
         "description": [
-          "Private cloud platform used internally within the firm that lets companies build virtual machines.",
-          "Actively manageing over 100,000 Virtual Machines",
-          "Todo: Implement a user friendly monitoring tool",
+          "Private Cloud Platform where internal users can rapidly provision compliant and secure VMs and Loadbalancers",
+          "Write modern, performant, maintainable microservices using Spring to power cloud infrastructure",
+          "Continuously implementing features to automate manual tasks (e.g. recovery on build failure)",
+          "Contributed to development and maintenance of in-house orchestration engine",
+          "Contributed in automating deployment process using Jenkins, Artifactory, and various Hashicorp Tools;",
+          "Distributed Tracing using Spring rest templates, traceIds in headers, and ELK stack"
         ]
       },
       {
         "id": "tab1",
         "title": "Bank of America",
-        "position": "Intern",
+        "position": "Tech Intern",
         "subTitle": "Jun 2016 - Aug 2016",
         "imgPath":"./assets/imgs/card_bofa.png",
         "description":[
-          "Designed and implemented a web application, Time Management System (TMS)",
-          "Developed using MEAN stack to host web application",
-          "Utilized Bootstrap for the overall layout combined",
-          "Utilized Kendo UI to visualize json via charts and graphs."
+          "Proactively supported team building and onboarding applications via mentoring",
+          "Designed and implemented Time Management System (TMS), built using MEAN stack",
+          "Utilized Bootstrap and Kendo UI to visualize json data via charts and graphs."
         ]
       },
       {
@@ -79,9 +82,8 @@ export class HomeComponent implements OnInit{
         "subTitle": "Aug 2013 - April 2014",
         "imgPath": "./assets/imgs/heykorean_logo.png",
         "description": [
-          "First Internship",
-          "I HeyKorean taught me what its like to work in an industry.",
-          "Assisted senior engineers to launch and launching of Single To Mingle. ",
+          "Gained insight on industry level practices on Android software development.",
+          "Assisted senior engineers in developing and launching of a mobile dating application, Single To Mingle. ",
           "http://singletomingle.us/mingle.html"
         ]
       }

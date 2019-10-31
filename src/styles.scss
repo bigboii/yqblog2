@@ -11,10 +11,14 @@ html, body { height: 100%; }
 body { 
   margin: 0; 
   font-family: 'Roboto', sans-serif; 
+  width:100%;
+  min-height:100%;
 }
 
 .container {
-  width: 50%;
+  width: 100%;
+  max-width:1000px;
+  padding: 0px 150px;
   margin: 0 auto;
 }
 
