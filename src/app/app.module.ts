@@ -1,17 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AngularMaterialModule } from './shared/angular-material.module'
 import { MainModule } from './modules/main/main.module'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { HeaderComponent } from './core/header/header.component';
+// import { SidenavComponent } from './core/sidenav/sidenav.component';
+import { MainComponent } from './modules/main/main.component';
+import { MainRouterModule } from './modules/main/main-router.module';
+//import { FooterComponent } from './core/footer/footer.component';  //needed to inject scrolling inside sidenav-content
+
+//import { MaterialTabsModule } from '../node_modules/angular-vertical-tabs/projects/vertical-tabs/src/lib/vertical-tabs.module';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    // SidenavComponent,
+//    FooterComponent
   ],
   imports: [
-    BrowserModule,
     BrowserAnimationsModule,
+    BrowserModule,
+    MainRouterModule,
     AngularMaterialModule,
     MainModule
   ],

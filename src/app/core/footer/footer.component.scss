@@ -1,21 +1,53 @@
-@import '../../../themes.scss';
+@import '~@angular/material/_theming';
 
+// Define a custom mixin that takes in the current theme
+@mixin set-theme-footer($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
 
-mat-toolbar {
-  position:absolute;
-  z-index: 2;
+  // Create theme specfic styles
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+
+  // .mat-toolbar.mat-primary {
+  //    //background: mat-color($primary);
+  //     @include mat-elevation-transition;
+  // }
+
+  .footer {
+    padding: 12px;
+    font-size: 12px;
+    // margin-top: 40px;    
+    background-color: mat-color($primary);
+    //background-color: red;
+    color: mat-color($foreground, text);
+  }
 }
 
-.mat-toolbar.mat-primary {
-  background: mat-color($light-primary, darker);
+.footer-list {
+	align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 8px;
+}
+
+.footer-list-item {
+	flex: 1;
 }
 
 .fill-remaining-space {
   /* This fills the remaining space, by using flexbox. 
      Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
-}
-
-.mat-header {
-  padding: 0px 16px;
 }

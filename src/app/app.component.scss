@@ -1,0 +1,222 @@
+@import '~@angular/material/_theming';
+
+// Define a custom mixin that takes in the current theme
+@mixin set-theme-sidenav($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  // Create theme specfic styles
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+
+  /* Sidenav Drawer Color  */
+  $the-dark-theme: mat-dark-theme($primary, $accent, $warn);
+
+  .the-dark-theme {
+      @include angular-material-theme($the-dark-theme);
+      $background: map-get($the-dark-theme, background);
+      background-color: mat-color($background, background);
+  }
+
+  /* Active List Item */
+  .active-list-item {
+    color: mat-color($primary) !important; /* Note: You could also use a custom theme */
+  }
+}
+
+/* HEADER */
+app-header {
+  position:fixed;    //position sticky doesn't work within sidenav content
+  width:100%;
+  // height: 100%;
+  // margin: 0;
+  z-index: 2;
+}
+
+/* SIDENAV*/
+//Q: why sticky sidenavs?
+app-sidenav {
+  position: sticky!important; 
+  top:0!important; 
+  //height:calc(100vh - 64px);  //subtract toolbar height
+  height:100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// mat-sidenav-container {
+//   top: 64px;  //make space for sticky header; default 0
+// }
+
+
+/*
+$custom-typography: mat-typography-config(
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 20px, 400)
+);
+
+@include mat-core($custom-typography);
+*/
+
+
+$config: mat-typography-config();
+
+$some-other-color: mat-palette($mat-red, 700, 100, 800);
+
+/* --------------------------------------------*/
+/* Content underneath parallax */
+/* --------------------------------------------*/
+/*
+.left-column {
+  flex:25%;
+}
+
+.content-column
+{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+
+.right-column {
+  flex:25%;
+}
+*/
+
+
+/* --------------------------------------------*/
+/* ------------ Sidenav Layout ----------------*/
+/* --------------------------------------------*/
+
+mat-sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #EEEEEE;
+}
+
+/* Column Container */
+
+.drawer-container {
+  /*flex:1;*/
+  /* needed to push content down */
+  /*top: 64px;  */
+}
+
+/* Set width of sidenav */
+.drawer {
+  width:256px;
+}
+
+.drawer mat-icon {
+  padding: 4px 4px;
+}
+
+.row-sidenav-item {
+  display: flex;
+  flex-direction: row; 
+
+  align-items: center; 
+  text-align: center;
+}
+
+.row-sidenav-item > mat-icon {
+  padding-right:4px;
+  margin-right:8px;
+}
+
+
+
+/* --------------------------------------------*/
+/* ------------ Parallax ----------------------*/
+/* --------------------------------------------*/
+/* Grey + Blurred Background Image */
+
+
+.parallax-bg
+{
+  position: relative;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  z-index:0;
+  width: 100%; 
+  /* min-height: calc(100vh); */
+  /* parallax height is set by content.component.ts */
+
+  /* parallax effect */
+  
+  //background-image: url("/assets/imgs/parallax.jpg");
+  //background-attachment:fixed;                     
+  //background-repeat: no-repeat;
+  //background-size: cover;
+  //background-position:center; 
+  
+    
+  /* Pull the background 70px higher to the same as .parallax's */
+
+}
+
+/* Put this on top of the blurred background layer */
+.parallax-caption
+{
+  max-width: 1000px;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0px auto;
+  padding: 150px 0px;
+}
+
+.parallax-caption2
+{
+  /* Place above z-index 99 */
+  position:absolute;
+  top:calc(50vh - 32px - 154px);     /* toolbar_height/2 - fastText_height/2 */
+  left: 0;
+  width:100%;
+  text-align: center;
+  z-index:2;
+  color: white;
+}
+
+.parallax-caption h3 {
+  font-family:'Ubuntu Mono', monospace;
+  margin: 0px 0px 20px 0px;
+}
+
+.parallax-caption h1 {
+  font-size:80px;
+  line-height:1.1;
+}
+
+.parallax-caption p {
+    /* width: 50%; */ 
+    max-width: 500px;
+    margin: 0px 0px 10px;
+}
+
+.parallax-caption .middle-caption2 {
+  text-align: center;
+  margin-bottom: 0;
+  //font-size:mat-font-size($config, display-2);
+  font-style:italic;
+}
+

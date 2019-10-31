@@ -25,7 +25,7 @@ export class ThemeService {
   private isNightmode: boolean = false;
   private logoPath: string = "assets/imgs/q2-logo-color_white.png";
 
-  toggleTheme (){
+  public toggleTheme(){
 
     if(this.isNightmode) {             //Nightmode ON
       this.isNightmode = false;
@@ -38,4 +38,9 @@ export class ThemeService {
       this.logoSource.next("assets/imgs/q2-logo-color_black.png");
     }
   }
+
+  public getIsNightmode():boolean {
+    return this.isNightmode;
+  }
+
 }

@@ -1,3 +1,18 @@
 <div>
-  <app-main></app-main>
+  <app-header [logoPath]=logoPath></app-header>
+  <mat-sidenav-container class="drawer-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 64">
+    <mat-sidenav #drawer class="drawer mat-elevation-z6 my-dark-theme" mode="side" opened="false" [fixedInViewport]="mobileQuery.matches" fixedTopGap="{{mobileQuery.matches ? 56 : 64}}">
+      <mat-nav-list>
+        <a mat-list-item *ngFor="let nav of navItems" routerLink="{{nav.route}}" routerLinkActive="active-list-item" (click)="secondaryNav('home')">
+          <div class="row-sidenav-item"> 
+            <mat-icon>{{nav.iconName}}</mat-icon>
+            <div>{{nav.id}}</div>
+          </div>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <app-main> </app-main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

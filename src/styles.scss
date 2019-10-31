@@ -2,16 +2,29 @@
 @import url("./assets/animate/animate.min.css");
 @import '~@angular/material/_theming';
 
+//@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
+
 //@import './themes.scss';  //  <-- the theme file shown above
 
 
 html, body { height: 100%; }
-body { margin: 0; font-family: 'Roboto', sans-serif; }
+body { 
+  margin: 0; 
+  font-family: 'Roboto', sans-serif; 
+  width:100%;
+  min-height:100%;
+}
 
+.container {
+  width: 100%;
+  max-width:1000px;
+  padding: 0px 150px;
+  margin: 0 auto;
+}
 
 @font-face {
   font-family: 'Roboto', sans-serif;
-  src: url('/assets/fonts/Roboto/Roboto-Light.ttf') format('truetype')
+  src: url('/assets/fonts/Roboto/Roboto-Medium.ttf') format('truetype')
 }
 
 @font-face {

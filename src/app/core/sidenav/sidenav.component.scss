@@ -20,36 +20,14 @@
     background-color: mat-color($warn);
   }
 
-  .parallax-bg {
-    background-color: mat-color($primary);
-    border-color: mat-color($accent, darker);
-
-  }
-
-  .parallax-caption h3 {
-    color:mat-color($accent);
-  }
-
-  .parallax-caption h1 {
-    color: rgb(230, 241, 255);
-  }
-
-  .parallax-bg .mat-body-1 { 
-    color:mat-color($accent, lighter);
-  }
-
-
   /* Sidenav Drawer Color  */
-
   $the-dark-theme: mat-dark-theme($primary, $accent, $warn);
 
-.the-dark-theme {
-    @include angular-material-theme($the-dark-theme);
-    $background: map-get($the-dark-theme, background);
-    background-color: mat-color($background, background);
-}
-
-
+  .the-dark-theme {
+      @include angular-material-theme($the-dark-theme);
+      $background: map-get($the-dark-theme, background);
+      background-color: mat-color($background, background);
+  }
 
   /* Active List Item */
   .active-list-item {
@@ -73,54 +51,9 @@ $config: mat-typography-config();
 
 $some-other-color: mat-palette($mat-red, 700, 100, 800);
 
-.content-wrapper {
-  width: 100%;
-  min-height: 100%;
-  margin:auto;
-}
-
 /* --------------------------------------------*/
-/* ------------ Router Layout -----------------*/
-/* --------------------------------------------*/
-
-/* Create four equal columns that sits next to each other */
-.row {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.outlet-wrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items:center;
-}
-
-.outlet
-{ 
-
-
-}
-
-/deep/ router-outlet~* {
-  position: absolute;
-  width:960px;
-  top:0;
-}
-
-app-footer {
-  width:100%;
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-}
-
-
 /* Content underneath parallax */
-
+/* --------------------------------------------*/
 /*
 .left-column {
   flex:25%;
@@ -142,10 +75,20 @@ app-footer {
 /* --------------------------------------------*/
 /* ------------ Sidenav Layout ----------------*/
 /* --------------------------------------------*/
+
+mat-sidenav-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #EEEEEE;
+}
+
 /* Column Container */
 
 .drawer-container {
-  flex:1;
+  /*flex:1;*/
   /* needed to push content down */
   /*top: 64px;  */
 }

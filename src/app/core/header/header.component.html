@@ -1,16 +1,19 @@
-<mat-toolbar color="primary" [ngClass]="{ 'mat-elevation-z8' : isElevated}">
-  <button mat-icon-button [class.active]="toggleActive" (click)="toggleSidenav()"><mat-icon>menu</mat-icon></button>
-    <img [src]="logoPath" width="48px" height="48px">
+<mat-toolbar class="header-toolbar" [ngClass]="{ 'mat-elevation-z8' : isElevated}" > 
+  <button mat-icon-button [class.active]="toggleActive" (click)="toggleSidenav()">
+    <mat-icon [@fadeIn] >menu</mat-icon>
+  </button>
+    <img elevateOnHover [src]="logoPath" width="48px" height="48px" [@fadeIn] > <!-- [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.4}}" -->
 
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
 
-  <mat-icon>brightness_high</mat-icon>
+  <mat-icon [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.2}}">brightness_high</mat-icon>
   <mat-slide-toggle
         [color]="color"
         [checked]="checked"
         [disabled]="disabled"
-        (click)="toggleNightmode()">
+        (click)="toggleNightmode()"
+        [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.4}}">
   </mat-slide-toggle>
-  <mat-icon>brightness_3</mat-icon>
+  <mat-icon [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.6}}">brightness_3</mat-icon>
 </mat-toolbar>

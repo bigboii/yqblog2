@@ -1,26 +1,53 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { ThemeService } from '../../shared/services/theme.service';
+
+import { fadeTransition } from '../../shared/animations';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
+  animations: [fadeTransition]
 })
 export class MainComponent implements OnInit {
 
-  @HostBinding('class') componentCssClass;
+  public contentHeight: number;
+  public routerHeight: number;         //Might need to return this to Sidenav
 
-  title = 'app';
+  ngOnInit() {
 
-  private appTheme: string;
-  public logoPath: string;
-
-  constructor(public themeService : ThemeService) {
+      //Set Dynamically set Height of content based on screen sizes
+    if(document.documentElement.clientHeight >= 600) {                  //Desktop Screen
+      this.contentHeight = document.documentElement.clientHeight - 64;
+    }
+    else {                                                              //Mobile Screen
+      this.contentHeight = document.documentElement.clientHeight - 56;
+    }
   }
 
-  ngOnInit(): void {
-    this.themeService.currentTheme.subscribe(theme => { this.componentCssClass = theme; console.log("change detected: " + theme);});
-    this.themeService.currentLogo.subscribe(logo => this.logoPath = logo);    
+  /*
+    Get currently active route page
+    @outlet: router outlet
+  */
+  getPage(outletContent) {
+    // Changing the activatedRouteData.state triggers the animation
+    let output = outletContent.isActivated ? outletContent.activatedRoute : '';
+    return outletContent.activatedRouteData['page'] || 'content';
+
   }
 
+  /*
+    Callback when route transition animation starts
+    @event: animation event
+  */
+  routeTransitionStarted(event) {
+    console.log("Route Transition Starting");
+  }
+
+  /*
+    Callback when route transition animation ends
+    @event: animation event
+  */
+  routeTransitionDone(event) {
+    console.log("Route Transition Complete");
+  }
 }

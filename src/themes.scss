@@ -1,32 +1,51 @@
 @import '~@angular/material/_theming';
 @include mat-core();
 @import './app/core/header/header.component';
-@import './app/core/sidenav/sidenav.component';
-@import './app/modules/main/pages/home/home.component';
+@import './app/core/footer/footer.component';
+@import './app/app.component';
+@import './app/modules/main/pages/home/content/home.component';
+@import './app/modules/main/pages/home/parallax/parallax-home.component';
+@import './app/modules/main/components/vertical-tabs/vertical-tabs.component';
+@import './themeVars';
 
+//https://github.com/angular/components/blob/master/src/lib/core/theming/_palette.scss
 
 @mixin set-theme($theme) // define a new @mixin that will be invoked each time the theme is changed
 {
   @include set-theme-header($theme);   // invoke the mixin we defined for component_1
   @include set-theme-sidenav($theme);
   @include set-theme-home($theme);
+  @include set-theme-parallax($theme);
+  @include set-theme-footer($theme);
+  @include set-theme-vertical-tabs($theme);
   // repeat this for each component that uses theme colors
 }
 
 //Typography
-$custom-typography: mat-typography-config(
-  $font-family: Roboto,
-  $headline: mat-typography-level(32px, 48px, 900),
-  $body-1: mat-typography-level(16px, 28px, 400)
-);
+// $custom-typography: mat-typography-config(
+//   $font-family: Roboto,
+//   $headline: mat-typography-level(32px, 36px, 900),
+//   $display-1: mat-typography-level(24px, 36px, 700),
+//   $body-1: mat-typography-level(16px, 24px, 400)
+// );
 @include angular-material-typography($custom-typography);
 
 
 // Dark theme
-$dark-primary: mat-palette($mat-red, 400, 300, 900);
-$dark-accent:  mat-palette($mat-blue, A200, A100, A400);
-$dark-warn:    mat-palette($mat-orange);
-$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+// $dark-primary: mat-palette($mat-red, 400, 300, 900);
+// $dark-accent:  mat-palette($mat-blue, A200, A100, A400);
+// $dark-warn:    mat-palette($mat-orange);
+// $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+// $dark-primary: mat-palette($mat-grey, 700, 800, 900);
+// $dark-accent:  mat-palette($mat-red, A400, A200, A700);
+// $dark-warn:    mat-palette($mat-orange);
+// $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+// $dark-primary: mat-palette($mat-red, 500, 400, 600);
+// $dark-accent:  mat-palette($mat-indigo, A200, A100, A700);
+// $dark-warn:    mat-palette($mat-orange);
+// $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 .dark-theme {
   // set text color
@@ -34,15 +53,16 @@ $dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   //color: mat-color($dark-primary, lighter);
   //$dark-foreground: my-mat-dark-theme-foreground(mat-color($dark-accent));
   //$dark-theme: map-merge($dark-theme, (foreground: $dark-foreground));
+  color: $light-primary-text;
   @include set-theme($dark-theme);
   @include angular-material-theme($dark-theme);
 }
 
 // Light theme
-$light-primary: mat-palette($mat-red, 500, 300, 900);
-$light-accent:  mat-palette($mat-blue, A400, A100, A700);
-$light-warn:    mat-palette($mat-orange);
-$light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
+// $light-primary: mat-palette($mat-red, 500, 400, 600);
+// $light-accent:  mat-palette($mat-indigo, A200, A100, A700);
+// $light-warn:    mat-palette($mat-orange);
+// $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 
 .light-theme {
   // Set custom background color

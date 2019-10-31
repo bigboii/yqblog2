@@ -1,0 +1,60 @@
+@import '~@angular/material/_theming';
+
+@mixin set-theme-sidenav($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+}
+
+/********************
+  Sign In Section
+*********************/
+.signInPage {
+  position: relative;
+  top:64px;
+  width:100%;
+  height:100%;
+  z-index:5;
+}
+
+
+/********************
+    Chat Section
+*********************/
+
+
+.messages {
+   list-style-type: none; 
+   margin: 0; 
+   padding: 0; 
+ }
+
+.messages li { 
+  padding: 5px 10px; 
+}
+
+.messages li:nth-child(odd) { 
+  background: #eee; 
+}
+
+.test-container {
+  /*background-color:blue;*/
+
+  height: 100vh;
+  width: 100%; 
+}
+
+.chat-list {
+    overflow: auto;
+    top:500px;
+
+}
+
+.chat-container {
+    width: 100%; 
+    height: 100%;  
+}

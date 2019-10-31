@@ -1,5 +1,5 @@
 import { Directive, OnInit, ElementRef, Input, EventEmitter, AfterViewInit, Inject} from '@angular/core';
-import { DOCUMENT } from '@angular/platform-browser';
+import { DOCUMENT } from '@angular/common';
 import { ContentScrollListenerService } from '../services/contentscrolllistener.service';
 
 //GLOBAL
@@ -9,6 +9,8 @@ declare var window:any;
   selector: '[fasttext]'
 })
 export class FasttextDirective implements OnInit, AfterViewInit  {
+
+  @Input() targetDom: string;    //which dom to listen to; scroll
 
   private element:any;    
   private renderer:any;
@@ -25,13 +27,15 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
   }
 
   ngOnInit() {
-
+    this.contentScrollService.listenForScrolling();
+    this.contentScrollService.scrollEvent.subscribe(event => this.contentScrollEvent = event);    
+    //console.log("[FASTTEST] input-> targetDom: " + this.targetDom);
   } 
 
   ngAfterViewInit() {
-    this.contentScrollService.listenForScrolling();
-    this.contentScrollService.scrollEvent.subscribe(event => this.contentScrollEvent = event);    
-
+    // this.contentScrollService.listenForScrolling();
+    // this.contentScrollService.scrollEvent.subscribe(event => this.contentScrollEvent = event);    
+    console.log("[FASTTEXT] onInit");
     var t = this;                              //reference to current element
     var _speed = 1;                            //translate speed
 
@@ -62,11 +66,11 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
       }
       
     }
-
+    //console.log("[FASTTEST] input-> targetDom: " + this.targetDom);
     // for mobile
-    this.document.querySelector('mat-sidenav-content').addEventListener('touchmove', onContentScroll.bind(this));
+    this.document.querySelector(this.targetDom).addEventListener('touchmove', onContentScroll.bind(this));
 
     // for browsers
-    this.document.querySelector('mat-sidenav-content').addEventListener('scroll', onContentScroll.bind(this));
+    this.document.querySelector(this.targetDom).addEventListener('scroll', onContentScroll.bind(this));
   }
 }
