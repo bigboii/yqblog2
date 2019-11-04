@@ -1,8 +1,8 @@
-<div fxFlex fxLayout="column">
+<div fxLayout="column" fxLayoutAlign=" center">
 
   <parallax-home></parallax-home> 
 
-  <div class="home container" fxFlex="1 1 auto">
+  <div class="home container">
 
     <!-- Section: About Me -->
     <div revealOnScroll [index]="this.visibleSections[0].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[0].show">

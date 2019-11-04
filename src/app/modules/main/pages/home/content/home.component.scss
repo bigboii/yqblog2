@@ -101,6 +101,12 @@ $config: mat-typography-config();
   counter-reset: heading-count;  //creates a counter
 }
 
+.container {
+  width: 100%;
+  max-width:1000px;
+  padding: 0px 150px;
+  // margin: 0 auto;
+}
 
 parallax-home {
   width:100%;
@@ -146,7 +152,6 @@ section .about {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  max-width: 1000px;
 }
 
 .about-container {
