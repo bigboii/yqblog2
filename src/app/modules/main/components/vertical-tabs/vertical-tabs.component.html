@@ -1,18 +1,21 @@
 <div fxLayout="row" fxLayout.xs="row" fxLayoutAlign="flex-start">
 
-  <div class="tab" fxLayout="column">
-    <div fxLayout="row" > 
-      <button mat-button (click)="openTab($event, 'tab0')" id="defaultOpen"> Bank of America </button>
-      <span fxFlex="none" [@tabVerticalSlide0]="this.currentTab['id']"></span>
+  <div fxLayout="row">
+    <div class="tab" fxLayout="column">
+      <div fxLayout="row" > 
+        <button mat-button (click)="openTab($event, 'tab0')" id="defaultOpen"> Bank of America </button>
+        <span fxFlex="none" ></span>
+      </div>
+      <div fxLayout="row" >
+        <button mat-button (click)="openTab($event, 'tab1')" > Bank of America </button>
+        <span fxFlex="none" ></span>
+      </div>
+      <div fxLayout="row" >
+        <button mat-button (click)="openTab($event, 'tab2')" > HeyKorean </button>
+        <span fxFlex="none" ></span>
+      </div>
     </div>
-    <div fxLayout="row" >
-      <button mat-button (click)="openTab($event, 'tab1')" > Bank of America </button>
-      <span fxFlex="none" [@tabVerticalSlide1]="this.currentTab['id']"></span>
-    </div>
-    <div fxLayout="row" >
-      <button mat-button (click)="openTab($event, 'tab2')" > HeyKorean </button>
-      <span fxFlex="none" [@tabVerticalSlide2]="this.currentTab['id']"></span>
-    </div>
+    <div class="dynamicBorder" [@dynamicTabVerticalSlide]="this.currentTab['id']"></div>
   </div>
 
   <div *ngFor="let cardDatum of cardData">
