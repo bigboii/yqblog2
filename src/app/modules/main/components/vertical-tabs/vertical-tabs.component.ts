@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, ElementRef, ViewChildren, QueryList } from '@angular/core';
 // import { MaterialElevationDirective } from '../../../../shared/directives/material-elevation.directive';
 import { DOCUMENT } from '@angular/common';
 import { fadeIn} from '../../../../shared/animations';
+import { VerticalTabComponent } from '../vertical-tab/vertical-tab.component';
 import { tabVerticalSlide0, tabVerticalSlide1, tabVerticalSlide2, verticalTabContentFadeIn} from './vertical-tabs.animation';
 
 @Component({
@@ -12,11 +13,14 @@ import { tabVerticalSlide0, tabVerticalSlide1, tabVerticalSlide2, verticalTabCon
 })
 export class VerticalTabsComponent implements OnInit {
 
-  @Input() cardData;
-  public tabs: Object = {};            //reference to status of all tabs
+  @Input() private cardData;
+  // public tabs: Object = {};            //reference to status of all tabs
   private currentTab: Object;          //reference to currently selected tab
+  @ViewChildren(VerticalTabComponent) tabs : QueryList<VerticalTabComponent>;
+  
+  private tabHeight: number = 52;
 
-  constructor(@Inject(DOCUMENT) private document: Document) { }
+  constructor(@Inject(DOCUMENT) private document: Document, private el: ElementRef) { }
 
   ngOnInit() {
     this.tabs["tab0"] = { "index":0, "id": "tab0", "isShow":true, "state": "selected" };
@@ -24,57 +28,69 @@ export class VerticalTabsComponent implements OnInit {
     this.tabs["tab2"] = { "index":2, "id": "tab2", "isShow":false, "state": "hide" };
 
     this.currentTab = this.tabs["tab0"];
+
+    console.log("vertical-tabs children: ");
+    console.log(this.tabs);
+
+    let firstTab = this.tabs.find(function(value, index){
+      if (index==0)
+        return true;
+    });
+
+    firstTab.state = "selected";
   }
 
   /**
     Event Handler when user clicks on one of the tabs
   */
   public openTab(event: Event, id: string) {
+
     console.dir(this.tabs);
 
+    //---------- New Version ------------
     if(this.currentTab["id"] == id) {
 
-      this.tabs[id]["state"] = "selected";
-      this.tabs[id]["isShow"] = true;
+      this.tabs.toArray()[id]
+      // this.tabs[id]["state"] = "selected";
+      // this.tabs[id]["isShow"] = true;
 
       return;     //no further logic is necessary
     }
 
-    for(let tab of Object.entries(this.tabs)) {
-      let tabId = tab[0];
-      let index = tab[1]["index"];
-      let show = tab[1]["show"]
-
+    this.tabs.toArray().forEach(tab => {
       //determine state for newly selected tab
-      if(tabId == id) {
-        let deselectedTabId = this.currentTab["id"];
-        if(this.currentTab["index"] > index) {     //slide up
-          this.tabs[tabId]["isShow"] = true;
-          this.tabs[tabId]["state"] = "selected";
+      if(tab.tabId == id) {
+        if(this.currentTab["index"] > tab.index) { //slide up
+          tab.isShow = true;
+          tab.state = "selected";
+          tab.slideVector = tab.index * this.tabHeight;    //find way to dynamically get height of button (52)      
         }
-        else {                                     //slide down
-          this.tabs[tabId]["isShow"] = true;
-          this.tabs[tabId]["state"] = "selected";
+        else {                                     //slide down?
+          tab.isShow = true;
+          tab.state = "selected";
+          tab.slideVector = tab.index * this.tabHeight; 
         }   
       }
       //determine state for recently deselected tab
       else {
         let deselectedTabId = this.currentTab["id"];
 
-        if(this.currentTab["index"] == index) {
+        if(this.currentTab["index"] == tab.index) {
           //doNothing
         }
-        else if(this.currentTab["index"] > index) {  //slide up
-          this.tabs[deselectedTabId]["isShow"] = false;
-          this.tabs[deselectedTabId]["state"] = "deselectedUp";
+        else if(this.currentTab["index"] > tab.index) {  //slide up
+          this.tabs.toArray()[deselectedTabId].isShow = false;
+          this.tabs.toArray()[deselectedTabId].state = "slideUp";
+          this.tabs.toArray()[deselectedTabId].slideVector = tab.index * 1 * this.tabHeight;
         }
         else {
-          this.tabs[deselectedTabId]["isShow"] = false;
-          this.tabs[deselectedTabId]["state"] = "deselectedDown"
+          this.tabs.toArray()[deselectedTabId].isShow = false;
+          this.tabs.toArray()[deselectedTabId].state = "slideDown";
+          this.tabs.toArray()[deselectedTabId].slideVector = tab.index * -1 * this.tabHeight;
         }
       }
-    }
+    });
 
-    this.currentTab = this.tabs[id];
+    this.currentTab = this.tabs.toArray()[id];
   }
 }
