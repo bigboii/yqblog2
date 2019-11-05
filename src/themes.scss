@@ -1,5 +1,4 @@
 @import '~@angular/material/_theming';
-@include mat-core();
 @import './app/core/header/header.component';
 @import './app/core/footer/footer.component';
 @import './app/app.component';
@@ -7,7 +6,7 @@
 @import './app/modules/main/pages/home/parallax/parallax-home.component';
 @import './app/modules/main/components/vertical-tabs/vertical-tabs.component';
 @import './themeVars';
-
+@include mat-core($custom-typography);
 //https://github.com/angular/components/blob/master/src/lib/core/theming/_palette.scss
 
 @mixin set-theme($theme) // define a new @mixin that will be invoked each time the theme is changed
@@ -28,7 +27,7 @@
 //   $display-1: mat-typography-level(24px, 36px, 700),
 //   $body-1: mat-typography-level(16px, 24px, 400)
 // );
-@include angular-material-typography($custom-typography);
+// @include angular-material-typography($custom-typography);
 
 
 // Dark theme
@@ -56,6 +55,8 @@
   color: $light-primary-text;
   @include set-theme($dark-theme);
   @include angular-material-theme($dark-theme);
+  // @include mat-core($custom-typography);
+  font-family: "Roboto", sans-serif;
 }
 
 // Light theme
@@ -81,5 +82,7 @@
 
   @include set-theme($light-theme);
   @include angular-material-theme($light-theme);
+  // @include mat-core($custom-typography);
+  font-family: "Roboto", sans-serif;
 }
 
