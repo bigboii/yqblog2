@@ -23,19 +23,18 @@
     "@angular/platform-browser": "^8.2.0",
     "@angular/platform-browser-dynamic": "^8.2.0",
     "@angular/router": "^8.2.0",
-    "@types/express": "latest",
-    "@types/socket.io": "latest",
     "core-js": "^3.1.4",
-    "express": "latest",
     "rxjs": "^6.3.3",
-    "socket.io": "^2.2.0",
     "tslib": "^1.9.0",
-    "webpack-dev-server": "^3.9.0",
-    "zone.js": "^0.10.0"
+    "zone.js": "^0.10.0",
+    "socket.io": "^2.2.0",
+    "@types/socket.io": "latest",
+    "@types/express": "latest",
+    "express": "latest"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.802.0",
-    "@angular/cli": "latest",
+    "@angular/cli": "~8.2.0",
     "@angular/compiler-cli": "^8.2.0",
     "@angular/language-service": "^8.2.0",
     "@types/jasmine": "^3.3.16",
@@ -52,6 +51,6 @@
     "protractor": "~5.4.2",
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
-    "typescript": "~3.5.0"
+    "typescript": "^3.4.0"
   }
 }

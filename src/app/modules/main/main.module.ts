@@ -27,8 +27,7 @@ import { ChatModule } from '../chat/chat.module';
 import { ParallaxHomeComponent } from './pages/home/parallax/parallax-home.component'
 
 import { BrowserModule } from '@angular/platform-browser';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { VerticalTabComponent } from './components/vertical-tab/vertical-tab.component'
+import { DragDropModule } from '@angular/cdk/drag-drop'
 
 @NgModule({
   declarations: [
@@ -44,8 +43,7 @@ import { VerticalTabComponent } from './components/vertical-tab/vertical-tab.com
     RevealonscrollDirective,
     ScrollRevealDirective,
     FooterComponent,
-    ParallaxHomeComponent,
-    VerticalTabComponent],
+    ParallaxHomeComponent],
   imports: [
     BrowserModule,
     MainRouterModule,

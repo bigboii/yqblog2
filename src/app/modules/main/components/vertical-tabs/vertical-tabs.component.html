@@ -1,12 +1,6 @@
 <div fxLayout="row" fxLayout.xs="row" fxLayoutAlign="flex-start">
 
   <div class="tab" fxLayout="column">
-    <app-vertical-tab [tabId]="tab0">
-    </app-vertical-tab>
-    <app-vertical-tab [tabId]="tab1">
-    </app-vertical-tab>
-    <app-vertical-tab [tabId]="tab2">
-    </app-vertical-tab>
     <div fxLayout="row" > 
       <button mat-button (click)="openTab($event, 'tab0')" id="defaultOpen"> Bank of America </button>
       <span fxFlex="none" [@tabVerticalSlide0]="this.currentTab['id']"></span>
