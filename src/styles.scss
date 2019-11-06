@@ -7,13 +7,31 @@
 //@import './themes.scss';  //  <-- the theme file shown above
 
 
-html, body { height: 100%; }
+html { 
+  height: 100%; 
+}
+
 body { 
   margin: 0; 
   width:100%;
   min-height:100%;
 }
 
+/*
+  Universal box sizing with inheritance.
+  Set this to make responsive layouts more manageable
+  actual width of element = width + padding + border
+  actual height of element = height + padding + border
+*/
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing:inherit;
+}
+
+//Import Fonts
 @font-face {
   font-family: 'Roboto', sans-serif;
   src: url('/assets/fonts/Roboto/Roboto-Medium.ttf') format('truetype')

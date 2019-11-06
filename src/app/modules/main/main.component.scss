@@ -30,6 +30,9 @@
 /* ------------ Router Layout -----------------*/
 /* --------------------------------------------*/
 
+// *, ::before, ::after {   //review this later
+//   box-sizing: inherit;
+// }
 
 .outlet-wrapper {
   position: relative;

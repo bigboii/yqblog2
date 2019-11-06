@@ -116,10 +116,13 @@ $config: mat-typography-config();
 
 }
 
+.root-container {
+  width: 100%;
+}
+
 .home {
   counter-reset: heading-count;  //creates a counter
 }
-
 
 parallax-home {
   width:100%;
@@ -131,19 +134,24 @@ parallax-home {
 
 .container {
   width: 100%;
-  margin: 0px auto;
+  // margin: 0px auto;
+  // box-sizing:border-box;
 
   @media screen and (min-width: 400px) {   //ultra small
     padding: 0px 25px;
+    // width: calc(100%-50px);      //TODO: not responsive; look for alternative approach
   }
   @media screen and (min-width: 600px) {   //small
     padding: 0px 50px;
+    // width: calc(100%-100px);
   }
   @media screen and (min-width: 1200px) {  //medium
     padding: 0px 100px;
+    // width: calc(100%-200px);
   }
   @media screen and (min-width: 1600px) {  //large
     padding: 0px 150px;
+    // width: calc(100%-300px);
   }
 }
 
@@ -151,19 +159,25 @@ parallax-home {
 section {
     width:100%;
     position: relative;
-    margin: 0px auto;
+    display:block;     //starts on a new line and strech out to the left and right as far as it can.
+    // margin: 0px auto;
+    // box-sizing:inherit;  //inherit box sizing from .container
     max-width:1000px;
+    // flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
     @media screen and (min-width: 400px) {   //ultra small
-
+      // width:calc(100% - 50px);      //SOLVED: don't need this if we use border-box
       padding: 25px 0px;
     }
     @media screen and (min-width: 600px) {   //small
+      // width:calc(100% - 100px);
       padding: 50px 0px;
     }
     @media screen and (min-width: 1200px) {  //medium
+      // width:calc(100% - 200px);
       padding: 100px 0px;
     }
     @media screen and (min-width: 1600px) {  //large
+      // width:calc(100% - 300px);
       padding: 150px 0px;
     }
 }
@@ -177,28 +191,47 @@ app-vertical-tabs {
   }
 }
 
-section .about {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
+// section .about {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: flex-start;
+// }
 
 .about-container {
-
-}
-
-.about-content-container {
+  flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
+  display: flex;
+  -webkit-box-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: center;
   align-items: flex-start;
+  box-sizing:border-box;
 }
 
-.about-pic-container {
+.about-container-content {
+  
+  max-width: 480px;
+  @media screen and (min-width: 400px) {   //ultra small
+    width:100%;
+  }
+  @media screen and (min-width: 1600px) {  //large
+    width:60%;
+  }
+}
+
+.about-container-pic {
   position: relative;
   width: 40%;
-  max-width: 480px;
-  margin-left: 60px;
-  margin-top: 22px;
+  max-width: 300px;
+  // margin-top: 22px;
   border-radius:3px;
+
+  @media screen and (min-width: 400px) {   //ultra small
+    width:100%;
+  }
+  @media screen and (min-width: 1600px) {  //large
+    width:60%;
+    margin-left: 60px;
+  }
 
   a {
     filter: grayscale(100%) contrast(1);
@@ -243,6 +276,10 @@ section .about {
     }
   } 
 }
+// .about-container-pic img {
+//   width:100%;
+// }
+
 
 .avatar-pic
 {
@@ -274,18 +311,18 @@ section .about {
 */
 
 /* Section: What I've accomplished */
-.column-left {
-  display:flex;
-  flex-grow: 1;
-  /* flex: 1 1 1px; */
-  padding:12px 12px 12px 12px;
-}
+// .column-left {
+//   display:flex;
+//   flex-grow: 1;
+//   /* flex: 1 1 1px; */
+//   padding:12px 12px 12px 12px;
+// }
 
-.column-right {
-  display:flex;
-  flex-grow: 1;
-  flex-direction: column;
-}
+// .column-right {
+//   display:flex;
+//   flex-grow: 1;
+//   flex-direction: column;
+// }
 
 
 /* General */

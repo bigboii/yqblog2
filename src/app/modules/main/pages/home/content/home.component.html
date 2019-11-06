@@ -1,15 +1,15 @@
-<div fxLayout="column">
+<div fxLayout="column" class="root-container">
 
   <parallax-home></parallax-home> 
 
   <div class="home container">
 
     <!-- Section: About Me -->
-    <div revealOnScroll [index]="this.visibleSections[0].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[0].show">
-      <section class="about" fxLayout="column" [ngStyle]="">
+    <!-- <div revealOnScroll [index]="this.visibleSections[0].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[0].show"> -->
+      <section class="about" fxLayout="column" revealOnScroll [index]="this.visibleSections[0].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[0].show">
         <h1 class="mat-display-1 heading">Background</h1>
         <div class="about-container" fxLayout="row" fxLayout.xs="column">
-          <div class="about-content-container" fxLayout="column">
+          <div class="about-container-content" fxLayout="column">
             <p class="mat-body-1"> I'm currently a Software Engineer based in the United States, Jersey City and I spent the last few years developing Bank of America's Private Cloud Platform. </p>
 
             <p class="mat-body-1"> I've gained hands on experience in developing large scale backend applications using a microservice architecture (inspired by Netflix); sometimes, a large complex problem can be be easily solved, developed, tested, and maintained when split into smaller fine-grained functions that are working together. </p>
@@ -36,14 +36,14 @@
               </div>
             </div>
           </div>
-          <div class="about-pic-container">
+          <div class="about-container-pic">
             <a>
               <img class="avatar-pic" alt="Avator" [src]="'/assets/imgs/parallax_small.jpg'">
             </a>
           </div>
         </div>
       </section>
-    </div>    
+    <!-- </div>     -->
 
     <!-- Section: Resume -->
     <div revealOnScroll [index]="visibleSections[1].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[1].show">
