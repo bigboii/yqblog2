@@ -1,15 +1,15 @@
-<div fxFlex fxLayout="column">
+<div fxLayout="column">
 
   <parallax-home></parallax-home> 
 
-  <div class="home container" fxFlex="1 1 auto">
+  <div class="home container">
 
     <!-- Section: About Me -->
     <div revealOnScroll [index]="this.visibleSections[0].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[0].show">
-      <section class="about" fxFlex fxLayout="column" [ngStyle]="">
+      <section class="about" fxLayout="column" [ngStyle]="">
         <h1 class="mat-display-1 heading">Background</h1>
-        <div class="about-container" fxFlex fxLayout="row" fxLayout.xs="column">
-          <div class="about-content-container"fxFlex fxLayout="column">
+        <div class="about-container" fxLayout="row" fxLayout.xs="column">
+          <div class="about-content-container" fxLayout="column">
             <p class="mat-body-1"> I'm currently a Software Engineer based in the United States, Jersey City and I spent the last few years developing Bank of America's Private Cloud Platform. </p>
 
             <p class="mat-body-1"> I've gained hands on experience in developing large scale backend applications using a microservice architecture (inspired by Netflix); sometimes, a large complex problem can be be easily solved, developed, tested, and maintained when split into smaller fine-grained functions that are working together. </p>

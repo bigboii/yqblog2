@@ -57,13 +57,32 @@ $config: mat-typography-config();
   **/
   .heading {
       position: relative;
-      display: flex;
-      -webkit-box-align: center;
-      align-items: center;
+      // display: flex;
+      // -webkit-box-align: center;
+      // align-items: center;
       width: 100%;
       white-space: nowrap;
-      font-size: 32px;
-      margin: 10px 0px 40px;
+      // font-size: 32px;         //TODO: causing issue with mobile screen sizes
+      // margin: 10px 0px 40px;   //TODO: causing issue with mobile screen sizes
+
+      // @media screen and (min-width: 400px) {   //ultra small
+      //   padding: 0px 25px;
+      //         font-size: 24px;         //TODO: causing issue with mobile screen sizes
+      //   margin: 10px 0px 40px;   //TODO: causing issue with mobile screen sizes
+
+      // }
+      // @media screen and (min-width: 600px) {   //small
+      //   padding: 0px 50px;
+      // }
+      // @media screen and (min-width: 1200px) {  //medium
+      //   padding: 0px 100px;
+      // }
+      // @media screen and (min-width: 1600px) {  //large
+      //   padding: 0px 150px;
+      //         font-size: 32px;         //TODO: causing issue with mobile screen sizes
+      // margin: 10px 0px 40px;   //TODO: causing issue with mobile screen sizes
+
+      // }
   }
 
   .heading::before{
@@ -109,28 +128,53 @@ parallax-home {
 /* Left Center Right columning */
 
 /* Create four equal columns that sits next to each other */
-.row {
-  display: flex;
-  flex-direction: row;
-  
-  justify-content: center;
-}
 
+.container {
+  width: 100%;
+  margin: 0px auto;
+
+  @media screen and (min-width: 400px) {   //ultra small
+    padding: 0px 25px;
+  }
+  @media screen and (min-width: 600px) {   //small
+    padding: 0px 50px;
+  }
+  @media screen and (min-width: 1200px) {  //medium
+    padding: 0px 100px;
+  }
+  @media screen and (min-width: 1600px) {  //large
+    padding: 0px 150px;
+  }
+}
 
 /* Section: About */
 section {
     width:100%;
     position: relative;
     margin: 0px auto;
-    
-    @media screen and (min-width:400px) {
-      max-width: 350px;
+    max-width:1000px;
+    @media screen and (min-width: 400px) {   //ultra small
+
       padding: 25px 0px;
     }
-    @media screen and (min-width:1600px) {
-      max-width: 1000px;
+    @media screen and (min-width: 600px) {   //small
+      padding: 50px 0px;
+    }
+    @media screen and (min-width: 1200px) {  //medium
+      padding: 100px 0px;
+    }
+    @media screen and (min-width: 1600px) {  //large
       padding: 150px 0px;
     }
+}
+
+app-vertical-tabs {
+  @media screen and (min-width: 400px) {   //ultra small
+    display:none;
+  }
+  @media screen and (min-width: 1600px) {  //large
+
+  }
 }
 
 section .about {
