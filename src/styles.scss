@@ -16,9 +16,27 @@ body {
 
 .container {
   width: 100%;
-  max-width:1000px;
-  padding: 0px 150px;
+  // max-width:1000px;
   margin: 0 auto;
+
+
+  @media screen and (min-width: 400px) {   //ultra small
+    max-width:350px;
+    padding: 0px 25px;
+  }
+
+  @media screen and (min-width: 600px) {   //small
+    max-width:400px;
+    padding: 0px 25px;
+  }
+  @media screen and (min-width: 1200px) {  //medium
+    max-width:800px;
+    padding: 0px 125px;
+  }
+  @media screen and (min-width: 1600px) {  //large
+    max-width:1000px;
+    padding: 0px 150px;
+  }
 }
 
 @font-face {

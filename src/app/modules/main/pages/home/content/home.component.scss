@@ -116,37 +116,27 @@ parallax-home {
   justify-content: center;
 }
 
-/* Content underneath parallax */
-
-.left-column {
-  flex:25%;
-}
-
-.right-column {
-  flex:25%;
-}
-
-
-/* middle */
-.content-column
-{
-  width:960px;
-  height:100%;
-}
 
 /* Section: About */
 section {
-    max-width: 1000px;
+    width:100%;
     position: relative;
     margin: 0px auto;
-    padding: 150px 0px;
+    
+    @media screen and (min-width:400px) {
+      max-width: 350px;
+      padding: 25px 0px;
+    }
+    @media screen and (min-width:1600px) {
+      max-width: 1000px;
+      padding: 150px 0px;
+    }
 }
 
 section .about {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  max-width: 1000px;
 }
 
 .about-container {
@@ -239,29 +229,6 @@ section .about {
 }
 */
 
-.column-25 {
-  // flex-grow: 1;
-  // max-width: 25%;
-  // align-items: center; 
-}
-
-.row-25 {
-  display: flex;
-  flex-direction: row; 
-
-  align-items: center; 
-  text-align: center;
-}
-
-.row-25 > mat-icon {
-  padding-right:4px;
-  margin-right:8px;
-}
-
-.row-25 > h3 {
-  margin: 0px;
-}
-
 /* Section: What I've accomplished */
 .column-left {
   display:flex;
@@ -278,11 +245,6 @@ section .about {
 
 
 /* General */
-.section
-{
-  // padding: 150px 0px;
-}
-
 
 /* Section: Skills */
 .section > mat-list {

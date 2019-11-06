@@ -15,7 +15,8 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
 
-      //Set Dynamically set Height of content based on screen sizes
+     //Set Dynamically set Height of content based on screen sizes
+     //TODO: recalculate height on resize()
     if(document.documentElement.clientHeight >= 600) {                  //Desktop Screen
       this.contentHeight = document.documentElement.clientHeight - 64;
     }

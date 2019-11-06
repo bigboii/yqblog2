@@ -60,18 +60,6 @@ app-sidenav {
 // }
 
 
-/*
-$custom-typography: mat-typography-config(
-  $headline: mat-typography-level(32px, 48px, 700),
-  $body-1: mat-typography-level(16px, 20px, 400)
-);
-
-@include mat-core($custom-typography);
-*/
-
-
-// $config: mat-typography-config();
-
 $some-other-color: mat-palette($mat-red, 700, 100, 800);
 
 /* --------------------------------------------*/
