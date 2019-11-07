@@ -13,18 +13,14 @@ import { DOCUMENT } from '@angular/common';
 })
 export class HeaderComponent implements AfterViewInit {
 
-  @Input() logoPath;
+  @Input() private logoPath;
+  @ViewChild('headerToolbar', {static:false, read: ElementRef}) private matToolbarElem: ElementRef;
+  private contentScrollEvent;
+  private currentScrollPosition;
+  private elemParallax;
 
-  public contentScrollEvent;
-  public currentScrollPosition;
-  // public state: boolean;
-
-  @ViewChild('headerToolbar', {static: false}) matToolbarElem: ElementRef;
-  //public elem;
-
-
-  constructor(public toggleService: ToggleService,
-              public themeService : ThemeService,
+  constructor(private toggleService: ToggleService,
+              private themeService : ThemeService,
               private elementRef: ElementRef,
               @Inject(DOCUMENT) private document: Document) {
 
@@ -33,8 +29,9 @@ export class HeaderComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.document.querySelector('mat-sidenav-content')
                                  .addEventListener('scroll', this.onContentScroll.bind(this));
-    console.log("[HEADER] ngAfterViewInit(): ");
-    console.dir(this.matToolbarElem);
+    this.elemParallax = document.getElementsByClassName('parallax-bg')[0];
+    console.log("[header] ngAFterViewInit: " + this.elemParallax);
+    console.dir(this.elemParallax);
   }
 
   toggleActive:boolean = false;
@@ -49,18 +46,20 @@ export class HeaderComponent implements AfterViewInit {
 
 
   //SECTION
-
   @Input() public index: number;
   public isElevated: boolean = false;
   public switchedOn :boolean = true;
   public elevationValue = 0
 
   onContentScroll(event) {
-    let elem = document.getElementsByClassName('parallax-bg')[0].getBoundingClientRect();
-    
-    console.log("[header] elem.top: " + elem.top);
-    console.log("[header] matToolbar height: " + this.matToolbarElem.nativeElement.offsetHeight);
-    if( elem.top < this.matToolbarElem.nativeElement.offsetHeight ) 
+
+    if(this.elemParallax === undefined) {
+      this.elemParallax = document.getElementsByClassName('parallax-bg')[0];
+    }
+
+    console.dir(this.elemParallax);
+    console.log(this.elemParallax.getBoundingClientRect().top);
+    if( this.elemParallax.getBoundingClientRect().top < this.matToolbarElem.nativeElement.clientHeight) 
     {
       if(this.isElevated) {
         this.isElevated = false;
