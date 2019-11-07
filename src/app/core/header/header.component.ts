@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input, EventEmitter, Inject, ElementRef} from '@angular/core';
+import { Component, AfterViewInit, Input, EventEmitter, Inject, ElementRef, ViewChild} from '@angular/core';
 import { ToggleService } from '../../shared/services/toggle.service';
 import { ThemeService } from '../../shared/services/theme.service';
 import { MatSidenav } from '@angular/material';
@@ -17,9 +17,11 @@ export class HeaderComponent implements AfterViewInit {
 
   public contentScrollEvent;
   public currentScrollPosition;
- // public state: boolean;
+  // public state: boolean;
 
+  @ViewChild('headerToolbar', {static: false}) matToolbarElem: ElementRef;
   //public elem;
+
 
   constructor(public toggleService: ToggleService,
               public themeService : ThemeService,
@@ -31,6 +33,8 @@ export class HeaderComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.document.querySelector('mat-sidenav-content')
                                  .addEventListener('scroll', this.onContentScroll.bind(this));
+    console.log("[HEADER] ngAfterViewInit(): ");
+    console.dir(this.matToolbarElem);
   }
 
   toggleActive:boolean = false;
@@ -53,8 +57,10 @@ export class HeaderComponent implements AfterViewInit {
 
   onContentScroll(event) {
     let elem = document.getElementsByClassName('parallax-bg')[0].getBoundingClientRect();
-    //console.log("[header] elem.top: " + elem.top);
-    if( elem.top < 64 ) 
+    
+    console.log("[header] elem.top: " + elem.top);
+    console.log("[header] matToolbar height: " + this.matToolbarElem.nativeElement.offsetHeight);
+    if( elem.top < this.matToolbarElem.nativeElement.offsetHeight ) 
     {
       if(this.isElevated) {
         this.isElevated = false;

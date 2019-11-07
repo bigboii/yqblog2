@@ -1,4 +1,4 @@
-<mat-toolbar class="header-toolbar" [ngClass]="{ 'mat-elevation-z8' : isElevated}" > 
+<mat-toolbar #headerToolbar class="header-toolbar" [ngClass]="{ 'mat-elevation-z8' : isElevated}" > 
   <button mat-icon-button [class.active]="toggleActive" (click)="toggleSidenav()">
     <mat-icon [@fadeIn] >menu</mat-icon>
   </button>

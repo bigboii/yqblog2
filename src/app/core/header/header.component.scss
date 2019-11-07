@@ -49,8 +49,10 @@
 
 .mat-toolbar > img {
   padding: 0 0 0 14px;
+  width:initial;  //default width of this image
 }
 
 mat-icon {
     padding: 0 14px;
+    width:initial;  //default width of this image
 }

@@ -22,6 +22,8 @@ body {
   Set this to make responsive layouts more manageable
   actual width of element = width + padding + border
   actual height of element = height + padding + border
+
+  Now all elements will include padding and border in its total width and height (this solves children's overflowing parent width issue)
 */
 html {
   box-sizing: border-box;

@@ -21,7 +21,7 @@
   }
 
   .parallax-bg{
-    background-color: mat-color($primary, darker);
+    background-color: mat-color($primary, darker);  //TODO: background color for dark theme(?)
     //border-color: mat-color($accent, darker);
     color:mat-color($primary, 50);
   }
@@ -54,31 +54,33 @@
 /* --------------------------------------------*/
 /* ------------ Parallax ----------------------*/
 /* --------------------------------------------*/
-/* Grey + Blurred Background Image */
-
 
 .parallax-bg
 {
+  --matToolbarLarge:64px;        //TODO: hardcode this? or dynamically retrieve this via typescript?
+  --matToolbarSmall:56px;
+
   position: relative;
   display: flex;
-  justify-content:center;
-  align-items:center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   z-index:0;
   width: 100%; 
-  /* min-height: calc(100vh); */
-  /* parallax height is set by content.component.ts */
+  // margin: 0px auto;
 
-  /* parallax effect */
-  
-  //background-image: url("/assets/imgs/parallax.jpg");
-  //background-attachment:fixed;                     
-  //background-repeat: no-repeat;
-  //background-size: cover;
-  //background-position:center; 
-  
-    
-  /* Pull the background 70px higher to the same as .parallax's */
-
+  @media screen and (min-width: 400px) {   //ultra small
+    // padding: 100px 25px;
+    padding: calc(100px - var(--matToolbarSmall)) 25px 100px 25px;
+  }
+  @media screen and (min-width: 600px) {   //small
+    // padding: 150px 100px;
+    padding: calc(150px - var(--matToolbarSmall)) 100px 150px 100px;
+  }
+  @media screen and (min-width: 1200px) {  //large
+    // padding: 150px 150px;
+    padding: calc(150px - var(--matToolbarLarge)) 150px 150px 150px;
+  }
 }
 
 /* Put this on top of the blurred background layer */
@@ -91,8 +93,8 @@
   -webkit-box-align: center;
   flex-direction: column;
   align-items: flex-start;
-  min-height: 100vh;
-  margin: 0px auto;
+  // min-height: 100vh;
+  // margin: 0px 0px 0px 0px;
   @media screen and (max-width: 1200px) {
     padding: 150px 0px;
   }
@@ -101,21 +103,9 @@
   }
 }
 
-.parallax-caption2
-{
-  /* Place above z-index 99 */
-  position:absolute;
-  top:calc(50vh - 32px - 154px);     /* toolbar_height/2 - fastText_height/2 */
-  left: 0;
-  width:100%;
-  text-align: center;
-  z-index:2;
-  color: white;
-}
-
 .parallax-caption h3 {
   font-family:'Ubuntu Mono', monospace;
-  margin: 0px 0px 20px 0px;
+  margin: 0px 0px 0px 0px;
 }
 
 .parallax-caption h1 {
@@ -128,7 +118,7 @@
     /* width: 50%; */ 
     font-family:'Roboto', sans-serif;
     max-width: 500px;
-    margin: 0px 0px 10px;
+    margin: 25px 0px 0px 0px;
 }
 
 .parallax-caption .middle-caption2 {

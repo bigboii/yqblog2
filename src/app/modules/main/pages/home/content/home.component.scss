@@ -57,13 +57,13 @@ $config: mat-typography-config();
   **/
   .heading {
       position: relative;
-      // display: flex;
-      // -webkit-box-align: center;
-      // align-items: center;
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
       width: 100%;
       white-space: nowrap;
-      // font-size: 32px;         //TODO: causing issue with mobile screen sizes
-      // margin: 10px 0px 40px;   //TODO: causing issue with mobile screen sizes
+      // font-size: 32px;      //TODO: dynamic font sizes? based on screen size
+      margin: 10px 0px 40px;   //TODO: causing issue with mobile screen sizes
 
       // @media screen and (min-width: 400px) {   //ultra small
       //   padding: 0px 25px;
@@ -139,19 +139,15 @@ parallax-home {
 
   @media screen and (min-width: 400px) {   //ultra small
     padding: 0px 25px;
-    // width: calc(100%-50px);      //TODO: not responsive; look for alternative approach
   }
-  @media screen and (min-width: 600px) {   //small
+  @media screen and (min-width: 800px) {   //small
     padding: 0px 50px;
-    // width: calc(100%-100px);
   }
-  @media screen and (min-width: 1200px) {  //medium
+  @media screen and (min-width: 1200px) {   //medium
     padding: 0px 100px;
-    // width: calc(100%-200px);
   }
   @media screen and (min-width: 1600px) {  //large
     padding: 0px 150px;
-    // width: calc(100%-300px);
   }
 }
 
@@ -160,24 +156,14 @@ section {
     width:100%;
     position: relative;
     display:block;     //starts on a new line and strech out to the left and right as far as it can.
-    // margin: 0px auto;
+    margin: 0px auto;
     // box-sizing:inherit;  //inherit box sizing from .container
     max-width:1000px;
     // flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
     @media screen and (min-width: 400px) {   //ultra small
-      // width:calc(100% - 50px);      //SOLVED: don't need this if we use border-box
-      padding: 25px 0px;
-    }
-    @media screen and (min-width: 600px) {   //small
-      // width:calc(100% - 100px);
-      padding: 50px 0px;
-    }
-    @media screen and (min-width: 1200px) {  //medium
-      // width:calc(100% - 200px);
       padding: 100px 0px;
     }
     @media screen and (min-width: 1600px) {  //large
-      // width:calc(100% - 300px);
       padding: 150px 0px;
     }
 }
@@ -198,7 +184,7 @@ app-vertical-tabs {
 // }
 
 .about-container {
-  flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
+  // flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
   display: flex;
   -webkit-box-pack: justify;
   justify-content: space-between;
@@ -348,28 +334,28 @@ p {
 
 
 /* If the browser window is smaller than 699px */
-@media only screen and (max-width:600px)
-{
-  .parallax-bg {
-    /*top: 56px; */
-    /*min-height: calc(100vh - 56px); */
-  }
+// @media only screen and (max-width:600px)
+// {
+//   .parallax-bg {
+//     /*top: 56px; */
+//     /*min-height: calc(100vh - 56px); */
+//   }
 
-  .parallax-caption {
-    top:calc(50vh - 90px);
-  }
+//   .parallax-caption {
+//     top:calc(50vh - 90px);
+//   }
 
-  .parallax-caption .top-caption {
-    text-align: center;
-    margin-bottom: 0;
-    font-size:mat-font-size($config, display-1);
-    font-style:italic;
-  }
+//   .parallax-caption .top-caption {
+//     text-align: center;
+//     margin-bottom: 0;
+//     font-size:mat-font-size($config, display-1);
+//     font-style:italic;
+//   }
 
-  .parallax-caption .bottom-caption {
-    text-align: center;
-    margin-top: 0;
-    font-size:mat-font-size($config, display-3);
-    font-style:bold;
-  }
-}
+//   .parallax-caption .bottom-caption {
+//     text-align: center;
+//     margin-top: 0;
+//     font-size:mat-font-size($config, display-3);
+//     font-style:bold;
+//   }
+// }
