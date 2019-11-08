@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import { revealParallaxAnimation, slideUpFadeIn } from '../../../../../shared/animations';
 import { ThemeService } from '../../../../../shared/services/theme.service';
 
@@ -10,6 +10,12 @@ import { ThemeService } from '../../../../../shared/services/theme.service';
 })
 export class ParallaxHomeComponent implements OnInit, AfterViewInit {
 
+
+  @HostListener('window:resize') onResize() {
+    console.log("[Parallax] resize: ");
+    this.parallaxHeight = window.innerHeight;
+  }
+
   public parallaxHeight: number;
   //public state: boolean;  //animation state
 
@@ -17,13 +23,13 @@ export class ParallaxHomeComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     let viewportHeight: number = window.innerHeight;
-
-    if(document.documentElement.clientHeight >= 600) {    //Desktop Screen
-      this.parallaxHeight = viewportHeight - 64;
-    }
-    else {                                                //Mobile Screen
-      this.parallaxHeight = viewportHeight - 56;
-    }
+    this.parallaxHeight = viewportHeight
+    // if(document.documentElement.clientHeight >= 600) {    //Desktop Screen
+    //   this.parallaxHeight = viewportHeight - 64;
+    // }
+    // else {                                                //Mobile Screen
+    //   this.parallaxHeight = viewportHeight - 56;
+    // }
 
     //this.state = false;
   }

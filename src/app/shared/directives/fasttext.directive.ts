@@ -19,6 +19,10 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
   public contentScrollEvent;
   public currentScrollPosition;
 
+  public _speed;
+  public isMobile;
+  public fastTextElement;
+
 
   constructor(private el: ElementRef, 
               @Inject(DOCUMENT) private document: Document,
@@ -27,9 +31,10 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
   }
 
   ngOnInit() {
-    this.contentScrollService.listenForScrolling();
-    this.contentScrollService.scrollEvent.subscribe(event => this.contentScrollEvent = event);    
+    // this.contentScrollService.listenForScrolling();
+    // this.contentScrollService.scrollEvent.subscribe(event => this.contentScrollEvent = event);    
     //console.log("[FASTTEST] input-> targetDom: " + this.targetDom);
+    // window.addEventListener('scroll', this.onContentScroll.bind(this));
   } 
 
   ngAfterViewInit() {
@@ -37,9 +42,9 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
     // this.contentScrollService.scrollEvent.subscribe(event => this.contentScrollEvent = event);    
     console.log("[FASTTEXT] onInit");
     var t = this;                              //reference to current element
-    var _speed = 1;                            //translate speed
+    this._speed = 1;                            //translate speed
 
-    var fastTextElement = t.element;
+    this.fastTextElement = t.element;
 
     window.mobileAndTabletcheck = function() {
       var check = false;
@@ -47,30 +52,55 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
       return check;
     }
 
-    var isMobile = window.mobileAndTabletcheck();    
+    this.isMobile = window.mobileAndTabletcheck();    
 
-    function onContentScroll(event) {
-      let scrollTop =  this.contentScrollEvent['sT'];
-      let clientHeight = this.contentScrollEvent['cH'];
+    // function onContentScroll(event) {
+    //   let scrollTop =  this.contentScrollEvent['sT'];
+    //   let clientHeight = this.contentScrollEvent['cH'];
 
-      var speed = -(scrollTop / _speed );
+    //   var speed = -(scrollTop / _speed );
 
-      if(isMobile){
-        speed = speed * .10
-      }
-      if(speed == 0){
-        fastTextElement.style.backgroundPosition = '0% '+ 0 + '%';
-      }
-      else{
-        fastTextElement.style.transform = 'translate(0px, ' + speed   + 'px)';
-      }
+    //   if(isMobile){
+    //     speed = speed * .10
+    //   }
+    //   if(speed == 0){
+    //     fastTextElement.style.backgroundPosition = '0% '+ 0 + '%';
+    //   }
+    //   else{
+    //     fastTextElement.style.transform = 'translate(0px, ' + speed   + 'px)';
+    //   }
       
-    }
+    // }
     //console.log("[FASTTEST] input-> targetDom: " + this.targetDom);
-    // for mobile
-    this.document.querySelector(this.targetDom).addEventListener('touchmove', onContentScroll.bind(this));
+    // for 
+    // window.addEventListener('scroll', this.onContentScroll.bind(this));
+
+    // this.document.querySelector(this.targetDom).addEventListener('touchmove', this.onContentScroll.bind(this));
+    window.addEventListener('touchmove', this.onContentScroll.bind(this));
 
     // for browsers
-    this.document.querySelector(this.targetDom).addEventListener('scroll', onContentScroll.bind(this));
+    // this.document.querySelector(this.targetDom).addEventListener('scroll', this.onContentScroll.bind(this));
+    window.addEventListener('scroll', this.onContentScroll.bind(this));
+  }
+
+  onContentScroll(event) {
+    // let scrollTop =  this.contentScrollEvent['sT'];
+    // let clientHeight = this.contentScrollEvent['cH'];
+    let scrollTop = window.pageYOffset;
+    let clientHeight = window.innerHeight ;
+
+    var speed = -(scrollTop / this._speed );
+
+    // console.log("speed: " + speed);
+    if(this.isMobile){
+      speed = speed * .10
+    }
+    if(speed == 0){
+      this.fastTextElement.style.backgroundPosition = '0% '+ 0 + '%';
+    }
+    else{
+      this.fastTextElement.style.transform = 'translate(0px, ' + speed   + 'px)';
+    }
+    
   }
 }

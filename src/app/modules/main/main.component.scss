@@ -34,12 +34,12 @@
 //   box-sizing: inherit;
 // }
 
-.outlet-wrapper {
-  position: relative;
-  //display: flex;           //replaced by fxFlex
-  //flex-direction: column;  //replaced by fxLayout = column
-  align-items:center;
-}
+// .outlet-wrapper {
+//   position: relative;
+//   //display: flex;           //replaced by fxFlex
+//   //flex-direction: column;  //replaced by fxLayout = column
+//   align-items:center;
+// }
 
 
 ::ng-deep .outlet-parallax~* {

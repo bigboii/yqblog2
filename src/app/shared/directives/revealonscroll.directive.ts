@@ -13,7 +13,7 @@ export class RevealonscrollDirective implements OnInit, OnDestroy {
   public windowWidth: string;
   public win_height_padded: number;
   public switchedOn : boolean = true;
-  private startOfContent;
+  private posY;
   private startOfContent2;
 
   private elementView;
@@ -38,11 +38,13 @@ export class RevealonscrollDirective implements OnInit, OnDestroy {
     //console.log("[onContentScroll] index added -> " + this.index);
 
     //Constantly listen to content scrolling inside "mat-sidenav-content"
-    this.document.querySelector('mat-sidenav-content')
-                                 .addEventListener('scroll', this.onContentScroll.bind(this));
+    // this.document.querySelector('mat-sidenav-content')
+    //                              .addEventListener('scroll', this.onContentScroll.bind(this));
+
+    window.addEventListener('scroll', this.onContentScroll.bind(this));
 
      this.elementView = this.elementRef.nativeElement.getBoundingClientRect();
-     this.startOfContent = this.elementRef.nativeElement.getBoundingClientRect().top;
+     this.posY = this.elementRef.nativeElement.getBoundingClientRect().top + window.innerHeight;
 
      this.windowHeight = window.innerHeight;
 
@@ -51,16 +53,25 @@ export class RevealonscrollDirective implements OnInit, OnDestroy {
         "state": false
       });
 
-     //console.log("[REVEALONSCROLL] ngOnInit");
   }
 
   ngOnDestroy() {
     //unsubscribe
-    this.document.querySelector('mat-sidenav-content').removeEventListener('scroll', this.onContentScroll);
+    // this.document.querySelector('mat-sidenav-content').removeEventListener('scroll', this.onContentScroll);
+    window.removeEventListener('scroll', this.onContentScroll);
   }
 
   onContentScroll(event) {
-
+    // if(this.index == 0) {
+    //   console.log("============================================");
+    //   console.log("startOfContent: " + this.startOfContent);
+    //   // console.dir(event);
+    //   console.log("window.pageYOffset: " + window.pageYOffset);
+    //   console.log("windowHeight: " + this.windowHeight);
+    //   console.log(" -- " + (window.pageYOffset + this.windowHeight));
+    //   console.log("============================================");
+    // }
+   
     if(this.timer) {
       window.clearTimeout(this.timer);
     }
@@ -70,15 +81,16 @@ export class RevealonscrollDirective implements OnInit, OnDestroy {
       }, 1000);
         
     //activate event when scrolled to its designated element
-    if( (event.srcElement.scrollTop + this.windowHeight) >= this.startOfContent ) 
+    // if( (event.srcElement.scrollTop + this.windowHeight) >= this.startOfContent ) 
+    if( (window.pageYOffset + this.windowHeight) >= (this.posY) ) 
     {
       if(this.index === 0) {
-        //console.log("<" + this.index + ">" + "[revealOnScroll] designated element reached");
+        console.log("<" + this.index + ">" + "[revealOnScroll] designated element reached");
       }
       if(this.switchedOn) {
         this.switchedOn = false;
         if(this.index === 0) {
-          //console.log("<" + this.index + ">" + "[revealOnScroll] this.switchedOn TRUE");
+          console.log("<" + this.index + ">" + "[revealOnScroll] this.switchedOn TRUE");
         }
       }
 
@@ -87,12 +99,5 @@ export class RevealonscrollDirective implements OnInit, OnDestroy {
         "state": true
       });
     }
-    // else {
-    //   this.showSection.emit({
-    //     "index": this.index,
-    //     "state": false
-    //   });
-    // }
-
   }
 }

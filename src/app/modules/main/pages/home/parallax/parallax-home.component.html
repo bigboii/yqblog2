@@ -1,13 +1,13 @@
 <div [ngClass]="'parallax-bg mat-elevation-z0'" 
   [style.height.px]="parallaxHeight"> <!-- [@revealParallax]="parallaxShow"  lazyLoad--> <!-- (themeService.getIsNightmode() == false) ? 'parallax-bg parallax-bg-light mat-elevation-z0':'parallax-bg parallax-bg-dark mat-elevation-z0' -->
   <div class="parallax-caption">
-      <h3 class="mat-title" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1}}" >
+      <h3 class="mat-title" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1}}" fasttext>
           Hi, my name is
       </h3>
-    <h1 class="mat-headline" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.2}}"  > 
+    <h1 class="mat-headline" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.2}}"  fasttext> 
         Young Kyu Kim.
     </h1>
-    <p class="mat-body-1" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.4}}"  > 
+    <p class="mat-body-1" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.4}}"  fasttext> 
       I'm a software engineer based in Jersey City, NJ whos been developing (and occasionaly designing) large scale applications. Recently, I've also picked up UI development as a hobby.
     </p>
   </div>

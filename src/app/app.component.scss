@@ -87,14 +87,34 @@ $some-other-color: mat-palette($mat-red, 700, 100, 800);
 /* ------------ Sidenav Layout ----------------*/
 /* --------------------------------------------*/
 
+//SCSS for sidenav content scrollbar
+// mat-sidenav-container {
+//   position: absolute;    //Use this to make router outlet contain scrollbar instead of window
+//   top: 0;
+//   bottom: 0;
+//   left: 0;
+//   right: 0;
+//   background-color: #EEEEEE;
+// }
+
+
+
+//SCSS for window scrollbar
 mat-sidenav-container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  // position: absolute;    //Use this to make router outlet contain scrollbar instead of window
+  // top: 0;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
   background-color: #EEEEEE;
+  
 }
+
+mat-sidenav-container, mat-sidenav-content{
+  display: block; height: 100%;
+}
+
+app-main { height: 100%; overflow-y: auto; }
 
 /* Column Container */
 
