@@ -172,8 +172,8 @@ app-vertical-tabs {
   @media screen and (min-width: 400px) {   //ultra small
     display:none;
   }
-  @media screen and (min-width: 1600px) {  //large
-
+  @media screen and (min-width: 1200px) {  //large
+    display:initial;
   }
 }
 
@@ -214,6 +214,8 @@ app-vertical-tabs {
 
   @media screen and (min-width: 400px) {   //ultra small
     width:100%;
+    margin: 0px auto;
+    padding-top: 25px;
   }
   @media screen and (min-width: 1600px) {  //large
     width:60%;
@@ -328,35 +330,3 @@ app-vertical-tabs {
 p {
   margin: 0px 0px 15px;
 }
-
-/* ---------------------- */
-/* CSS for MOBILE VERSION */
-/* ---------------------- */
-
-
-/* If the browser window is smaller than 699px */
-// @media only screen and (max-width:600px)
-// {
-//   .parallax-bg {
-//     /*top: 56px; */
-//     /*min-height: calc(100vh - 56px); */
-//   }
-
-//   .parallax-caption {
-//     top:calc(50vh - 90px);
-//   }
-
-//   .parallax-caption .top-caption {
-//     text-align: center;
-//     margin-bottom: 0;
-//     font-size:mat-font-size($config, display-1);
-//     font-style:italic;
-//   }
-
-//   .parallax-caption .bottom-caption {
-//     text-align: center;
-//     margin-top: 0;
-//     font-size:mat-font-size($config, display-3);
-//     font-style:bold;
-//   }
-// }

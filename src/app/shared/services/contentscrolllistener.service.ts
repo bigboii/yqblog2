@@ -3,6 +3,11 @@ import { DOCUMENT } from '@angular/common';
 import { BehaviorSubject ,  fromEvent } from 'rxjs';
 import { map, pairwise, filter, exhaustMap } from 'rxjs/operators';
 
+/** 
+ * 
+ * Listens to scrolling event within mat-side-nav content (when windows:scroll isn't available)
+*/
+
 //https://hackernoon.com/naive-infinite-scroll-in-reactive-programming-using-rxjs-observables-4a605d3146e8
 //https://codeburst.io/angular-2-simple-infinite-scroller-directive-with-rxjs-observables-a989b12d4fb1
 //https://netbasal.com/rxjs-six-operators-that-you-must-know-5ed3b6e238a0

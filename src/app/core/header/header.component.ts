@@ -15,23 +15,19 @@ export class HeaderComponent implements AfterViewInit {
 
   @Input() private logoPath;
   @ViewChild('headerToolbar', {static:false, read: ElementRef}) private matToolbarElem: ElementRef;
-  private contentScrollEvent;
-  private currentScrollPosition;
-  private elemParallax;
 
   constructor(private toggleService: ToggleService,
               private themeService : ThemeService,
               private elementRef: ElementRef,
               @Inject(DOCUMENT) private document: Document) {
-
   }
 
   ngAfterViewInit() {
-    this.document.querySelector('mat-sidenav-content')
-                                 .addEventListener('scroll', this.onContentScroll.bind(this));
-    this.elemParallax = document.getElementsByClassName('parallax-bg')[0];
-    console.log("[header] ngAFterViewInit: " + this.elemParallax);
-    console.dir(this.elemParallax);
+    // this.document.querySelector('mat-sidenav-content')
+    //                              .addEventListener('scroll', this.onContentScroll.bind(this));
+    window.addEventListener("scroll", this.onContentScroll.bind(this));
+
+    this.onContentScroll(new CustomEvent(null));
   }
 
   toggleActive:boolean = false;
@@ -52,14 +48,7 @@ export class HeaderComponent implements AfterViewInit {
   public elevationValue = 0
 
   onContentScroll(event) {
-
-    if(this.elemParallax === undefined) {
-      this.elemParallax = document.getElementsByClassName('parallax-bg')[0];
-    }
-
-    console.dir(this.elemParallax);
-    console.log(this.elemParallax.getBoundingClientRect().top);
-    if( this.elemParallax.getBoundingClientRect().top < this.matToolbarElem.nativeElement.clientHeight) 
+    if( window.scrollY > this.matToolbarElem.nativeElement.clientHeight) 
     {
       if(this.isElevated) {
         this.isElevated = false;
@@ -67,6 +56,7 @@ export class HeaderComponent implements AfterViewInit {
 
       this.isElevated = true;
       this.elevationValue = 8;
+      
     }
     else {
       this.isElevated = false;

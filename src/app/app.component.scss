@@ -139,9 +139,11 @@ app-main { height: 100%; overflow-y: auto; }
 
   align-items: center; 
   text-align: center;
+  
 }
 
 .row-sidenav-item > mat-icon {
+  box-sizing: initial;          //don't use border-box for mat-icon
   padding-right:4px;
   margin-right:8px;
 }

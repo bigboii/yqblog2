@@ -134,10 +134,10 @@ export const revealOnScrollAnimation = trigger('sectionState',[
      //top:0
    })),
   transition('false => true', [
-    animate("500ms ease-out")
+    animate("0.5s 0.2s ease-out")
   ]),
   transition('true => false', [
-    animate("500ms ease-out")
+    animate("0.5s 0.2s ease-out")
   ])
 ])
 

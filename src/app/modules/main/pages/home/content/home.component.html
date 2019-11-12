@@ -47,7 +47,7 @@
 
     <!-- Section: Resume -->
     <div revealOnScroll [index]="visibleSections[1].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[1].show">
-      <section class="section">
+      <section>
         <h1 class="mat-display-1 heading">Where I've worked</h1>
 
         <app-vertical-tabs [cardData]=cards> </app-vertical-tabs>
@@ -56,7 +56,7 @@
 
     <!-- Section: What am I currently working on? -->
     <div revealOnScroll [index]="visibleSections[2].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[2].show">
-        <section class="section">
+        <section>
           <h1 class="mat-display-1 heading">What I've built</h1>
   
           <p class="mat-body-1"> As previously mentioned, I like to build things which I will be regularly posting here.
@@ -67,7 +67,7 @@
 
     <!-- Section: Blog, do this last -->
     <div revealOnScroll [index]="visibleSections[3].id" [@sectionState]="visibleSections[3].show" (showSection)="displayEmitterResults($event)">
-      <section class="section">
+      <section>
           <h1 class="mat-display-1 heading">Lets Connect</h1>
           <h2 class="mat-body-1">Feel free to reach out to me. LinkedIn or Email best.</h2>
       </section>
