@@ -137,16 +137,16 @@ parallax-home {
   // margin: 0px auto;
   // box-sizing:border-box;
 
-  @media screen and (min-width: 400px) {   //ultra small
+  @media screen and (max-width: 600px) {   //ultra small
     padding: 0px 25px;
   }
-  @media screen and (min-width: 800px) {   //small
+  @media only screen and (min-width: 600px) {
+    padding: 0px 50px;
+  }
+  @media screen and (min-width: 768px) {   //small
     padding: 0px 50px;
   }
   @media screen and (min-width: 1200px) {   //medium
-    padding: 0px 100px;
-  }
-  @media screen and (min-width: 1600px) {  //large
     padding: 0px 150px;
   }
 }
@@ -282,36 +282,36 @@ app-vertical-tabs {
 }
 
 
-/* Column Container */
-
-/* Create four equal columns that sits next to each other */
-
 /*
-.mat-display-1 {
-      position: relative;
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    width: 100%;
-    white-space: nowrap;
-    font-size: 30px;
-    margin: 10px 0px 40px;
-}
+  Section: Projects
 */
+.cardList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:flex-start;
 
-/* Section: What I've accomplished */
-// .column-left {
-//   display:flex;
-//   flex-grow: 1;
-//   /* flex: 1 1 1px; */
-//   padding:12px 12px 12px 12px;
-// }
+}
 
-// .column-right {
-//   display:flex;
-//   flex-grow: 1;
-//   flex-direction: column;
-// }
+.cardList >*:not(:last-child) {
+  margin-right:32px;
+  margin-bottom:32px;
+
+}
+
+.cardListItem {
+  flex: 0 1 calc(33.3% - 32px);
+}
+
+.cardListItem > .mat-card {
+  @include mat-elevation-transition;
+  @include mat-elevation(4);
+
+  &:hover {
+    @include mat-elevation(8);
+  }
+}
+
 
 
 /* General */
