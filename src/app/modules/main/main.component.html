@@ -2,18 +2,17 @@
   <!-- https://stackblitz.com/edit/angular-flex-layout-seed-oyjh2z?file=app%2Fapp.component.ts -->
 <!-- <div [style.height.px]="contentHeight"> -->
 
-  <div fxLayout="column" >
+  <div fxFill fxLayout="column">
 
-    <!--
-    <router-outlet name="parallax" class="mat-elevation-z1 outlet-parallax"></router-outlet>  
-    -->
-
+    <app-header [logoPath]=logoPath></app-header>
     <!-- content -->
-    <div fxLayout="column" class="outlet-wrapper mat-elevation-z2">
+    <!-- <div class="outlet-wrapper mat-elevation-z2"> -->
       
       <!-- Center, NOTE: #outletContent="outlet" is property of router-outlet -->
-      <router-outlet #outletContent="outlet" class="mat-elevation-z1 outlet-main"></router-outlet>
+    <div fxFlex fxLayout="column">
+      <router-outlet #outletContent="outlet" class="mat-elevation-z1 router-flex"></router-outlet>
     </div>
+    <!-- </div> -->
     
     <!-- [footerPosition]="routerHeight" -->
     <app-footer [style.top]="routerHeight"></app-footer>

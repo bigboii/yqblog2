@@ -26,6 +26,8 @@ import { MainComponent } from './main.component'
 import { ChatModule } from '../chat/chat.module';
 import { ParallaxHomeComponent } from './pages/home/parallax/parallax-home.component'
 
+import { HeaderComponent } from '../../core/header/header.component';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { DragDropModule } from '@angular/cdk/drag-drop'
 
@@ -43,7 +45,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
     RevealonscrollDirective,
     ScrollRevealDirective,
     FooterComponent,
-    ParallaxHomeComponent],
+    ParallaxHomeComponent,
+    HeaderComponent],
   imports: [
     BrowserModule,
     MainRouterModule,

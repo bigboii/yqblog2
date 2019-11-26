@@ -1,10 +1,11 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { fadeTransition } from '../../shared/animations';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
+  encapsulation: ViewEncapsulation.None,   //?? added this to help stretch router outlet, https://blog.thoughtram.io/angular/2015/06/29/shadow-dom-strategies-in-angular2.html
   styleUrls: ['./main.component.scss'],
   animations: [fadeTransition]
 })

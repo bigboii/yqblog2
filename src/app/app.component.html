@@ -1,5 +1,3 @@
-<div>
-  <app-header [logoPath]=logoPath></app-header>
   <mat-sidenav-container class="drawer-container">
     <mat-sidenav #drawer class="drawer mat-elevation-z6 my-dark-theme" mode="{{mobileQuery.matches ? over : side}}" opened="false" [fixedInViewport]="true" fixedTopGap="{{mobileQuery.matches ? 56 : 64}}">
       <mat-nav-list>
@@ -12,7 +10,7 @@
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
+        <!-- <app-header [logoPath]=logoPath></app-header> -->
       <app-main> </app-main>
     </mat-sidenav-content>
   </mat-sidenav-container>
-</div>

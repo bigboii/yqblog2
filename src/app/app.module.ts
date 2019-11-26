@@ -16,8 +16,7 @@ import { MainRouterModule } from './modules/main/main-router.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
+    AppComponent
     // SidenavComponent,
 //    FooterComponent
   ],

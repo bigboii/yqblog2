@@ -1,4 +1,4 @@
-import { Directive, OnInit, ElementRef, Input, EventEmitter, AfterViewInit, Inject} from '@angular/core';
+import { Directive, OnInit, ElementRef, Input, EventEmitter, AfterViewInit, Inject, OnDestroy} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ContentScrollListenerService } from '../services/contentscrolllistener.service';
 
@@ -8,12 +8,9 @@ declare var window:any;
 @Directive({
   selector: '[fasttext]'
 })
-export class FasttextDirective implements OnInit, AfterViewInit  {
-
-  @Input() targetDom: string;    //which dom to listen to; scroll
+export class FasttextDirective implements OnInit, AfterViewInit, OnDestroy  {
 
   private element:any;    
-  private renderer:any;
 
   public scrollCallback;
   public contentScrollEvent;
@@ -23,6 +20,8 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
   public isMobile;
   public fastTextElement;
 
+  private scrollSubscription;
+
 
   constructor(private el: ElementRef, 
               @Inject(DOCUMENT) private document: Document,
@@ -31,15 +30,10 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
   }
 
   ngOnInit() {
-    // this.contentScrollService.listenForScrolling();
-    // this.contentScrollService.scrollEvent.subscribe(event => this.contentScrollEvent = event);    
-    //console.log("[FASTTEST] input-> targetDom: " + this.targetDom);
     // window.addEventListener('scroll', this.onContentScroll.bind(this));
   } 
 
   ngAfterViewInit() {
-    // this.contentScrollService.listenForScrolling();
-    // this.contentScrollService.scrollEvent.subscribe(event => this.contentScrollEvent = event);    
     console.log("[FASTTEXT] onInit");
     var t = this;                              //reference to current element
     this._speed = 1;                            //translate speed
@@ -54,44 +48,28 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
 
     this.isMobile = window.mobileAndTabletcheck();    
 
-    // function onContentScroll(event) {
-    //   let scrollTop =  this.contentScrollEvent['sT'];
-    //   let clientHeight = this.contentScrollEvent['cH'];
+    //subscribe to scroll
+    if( this.document.body.clientHeight > window.innerHeight)  {
+      window.addEventListener('touchmove', this.onContentScroll.bind(this));
+      window.addEventListener('scroll', this.onContentScroll.bind(this));
+    }
+    else {
+      this.scrollSubscription =  this.contentScrollService.getScrollEventForSubscription().subscribe(scrollEvent => { console.log("event fired"); this.onContentScroll(scrollEvent) });
+      //TODO: add "touchmove" listener for mobile devices
+    }
+  }
 
-    //   var speed = -(scrollTop / _speed );
-
-    //   if(isMobile){
-    //     speed = speed * .10
-    //   }
-    //   if(speed == 0){
-    //     fastTextElement.style.backgroundPosition = '0% '+ 0 + '%';
-    //   }
-    //   else{
-    //     fastTextElement.style.transform = 'translate(0px, ' + speed   + 'px)';
-    //   }
-      
-    // }
-    //console.log("[FASTTEST] input-> targetDom: " + this.targetDom);
-    // for 
-    // window.addEventListener('scroll', this.onContentScroll.bind(this));
-
-    // this.document.querySelector(this.targetDom).addEventListener('touchmove', this.onContentScroll.bind(this));
-    window.addEventListener('touchmove', this.onContentScroll.bind(this));
-
-    // for browsers
-    // this.document.querySelector(this.targetDom).addEventListener('scroll', this.onContentScroll.bind(this));
-    window.addEventListener('scroll', this.onContentScroll.bind(this));
+  ngOnDestroy() {
+    //cleanup to provent meory leak
+    this.scrollSubscription.unsubscribe();
   }
 
   onContentScroll(event) {
-    // let scrollTop =  this.contentScrollEvent['sT'];
-    // let clientHeight = this.contentScrollEvent['cH'];
-    let scrollTop = window.pageYOffset;
-    let clientHeight = window.innerHeight ;
+
+    let scrollTop =  event['sT'];
+    let clientHeight = event['cH'];
 
     var speed = -(scrollTop / this._speed );
-
-    // console.log("speed: " + speed);
     if(this.isMobile){
       speed = speed * .10
     }
@@ -101,6 +79,5 @@ export class FasttextDirective implements OnInit, AfterViewInit  {
     else{
       this.fastTextElement.style.transform = 'translate(0px, ' + speed   + 'px)';
     }
-    
   }
 }

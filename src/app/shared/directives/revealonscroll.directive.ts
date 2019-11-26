@@ -2,19 +2,25 @@ import { Directive, HostListener, ElementRef, ViewChild, Input, AfterViewInit, O
 import { DOCUMENT } from '@angular/common';
 import { revealOnScrollAnimation } from '../animations';
 
+
+/**
+ * 
+ * Listens to either window/body or mat-sidenav-content depending on which scrollbar is visible
+ * 
+ * Assumes only one mat-sidenav-content used within the application.
+ */
+
 @Directive({
   selector: '[revealOnScroll]'
 })
 export class RevealonscrollDirective implements OnInit, AfterViewInit, OnDestroy {
 
-  //@ViewChild('sectionAbout') section: ElementRef;
-
-  //public windowHeight: string;
   public windowWidth: string;
   public win_height_padded: number;
   public switchedOn : boolean = true;
   private posY;
-  private startOfContent2;
+
+  private scrollElementRef : Element;
 
   private elementView;
   private windowHeight;
@@ -29,20 +35,19 @@ export class RevealonscrollDirective implements OnInit, AfterViewInit, OnDestroy
   }
 
   ngOnInit() {
-    //Constantly listen to content scrolling inside "mat-sidenav-content"
-    // this.document.querySelector('mat-sidenav-content')
-    //                              .addEventListener('scroll', this.onContentScroll.bind(this));
+    if( this.document.body.clientHeight > window.innerHeight)  {              //listen to Window scroll
+      this.scrollElementRef = this.document.body;
+    }
+    else {                                                                   //listen to mat-sidenav-content scroll
+      this.scrollElementRef = this.document.querySelector('mat-sidenav-content');
+    }
 
-    window.addEventListener('scroll', this.onContentScroll.bind(this));
+    this.scrollElementRef.addEventListener('scroll', this.onContentScroll.bind(this));
   }
 
   ngAfterViewInit() {
-    
     this.elementView = this.elementRef.nativeElement.getBoundingClientRect();
     this.posY = this.getYPosition(this.elementRef);
-    // this.posY = this.elementRef.nativeElement.getBoundingClientRect().top;
-    // console.log("this.elementView.nativeElement.children[0].offsetTop: " + this.elementView.nativeElement.children);
-
     this.windowHeight = window.innerHeight;
 
     this.showSection.emit({
@@ -52,30 +57,20 @@ export class RevealonscrollDirective implements OnInit, AfterViewInit, OnDestroy
   }
 
   ngOnDestroy() {
-    //unsubscribe
-    // this.document.querySelector('mat-sidenav-content').removeEventListener('scroll', this.onContentScroll);
-    window.removeEventListener('scroll', this.onContentScroll);
+    //unsubscribe (prevent memory leak)
+    this.scrollElementRef.removeEventListener('scroll', this.onContentScroll);
   }
 
-  onContentScroll(event) {
-    // if(this.index == 3) {
-    //   console.log("============================================");
-    //   console.log("window.pageYOffset: " + (window.pageYOffset + window.innerHeight));
-    //   console.log("this.posY: " + this.posY);
-    //   console.log("============================================");
-    // }
-   
+  onContentScroll(event) {   
     if(this.timer) {
       window.clearTimeout(this.timer);
     }
 
     this.timer = window.setTimeout(function() {
-
       }, 1000);
         
     //activate event when scrolled to its designated element
-    if( (window.scrollY + this.windowHeight) >= (this.posY + 150 + 36) ) {  // verticalY + padding + h1.height
-    
+    if( (this.scrollElementRef.scrollTop + this.scrollElementRef.clientHeight) >= (this.posY + 150 + 36) ) {  // verticalY + padding + h1.height
       if(this.switchedOn) {
         this.switchedOn = false;
       }
@@ -87,6 +82,9 @@ export class RevealonscrollDirective implements OnInit, AfterViewInit, OnDestroy
     }
   }
 
+  /**
+   * determine element's Y position
+   */
   getYPosition(el:ElementRef){
     let offsetTop = 0;
 

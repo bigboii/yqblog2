@@ -41,6 +41,14 @@
 //   align-items:center;
 // }
 
+//https://github.com/angular/flex-layout/issues/171
+//https://github.com/angular/flex-layout/issues/782
+router-outlet.router-flex + * {   //TODO: This solves my issue, but causes revealonscroll to not WORK
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow:hidden;
+}
 
 ::ng-deep .outlet-parallax~* {
   //position: absolute;        //uncomment to add animation

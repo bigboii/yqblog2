@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnInit, OnDestroy, ViewChild, Inject, ChangeDetectorRef, AfterViewInit} from '@angular/core';
 import { MatSidenav } from '@angular/material';
-
+import { ContentScrollListenerService } from './shared/services/contentscrolllistener.service';
 import { ThemeService } from './shared/services/theme.service';
 import { ToggleService } from './shared/services/toggle.service';;
 import { DOCUMENT } from '@angular/common';
@@ -47,7 +47,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     {"id":"Chat", "iconName":"desktop_windows", "route":"chat"}  ]
 
   constructor(public themeService : ThemeService,
-              private toggleService: ToggleService, 
+              private toggleService: ToggleService,
+              private scrollListenerService: ContentScrollListenerService,
               changeDetectorRef: ChangeDetectorRef,
               media: MediaMatcher,
               @Inject(DOCUMENT) private document: Document,
@@ -61,6 +62,11 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     //Register Theme
     this.themeService.currentTheme.subscribe(theme => { this.componentCssClass = theme; console.log("change detected: " + theme);});
     this.themeService.currentLogo.subscribe(logo => this.logoPath = logo);    
+
+
+
+    //Initialize listening to content scroll
+    // this.scrollListenerService.startListeningToScrolling();
 
     //Register current sidenav to toggleService
     this.toggleService.setSidenav(this.sidenav);
@@ -87,7 +93,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   ngAfterViewInit() {
-
+    //Initialize listening to content scroll
+    this.scrollListenerService.startListeningToScrolling();
   }
 
   //LazyLoad for parallax bg
