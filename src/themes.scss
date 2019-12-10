@@ -3,7 +3,6 @@
 @import './app/core/footer/footer.component';
 @import './app/app.component';
 @import './app/modules/main/pages/home/content/home.component';
-@import './app/modules/main/pages/home/parallax/parallax-home.component';
 @import './app/modules/main/components/vertical-tabs/vertical-tabs.component';
 @import './themeVars';
 @include mat-core($custom-typography);

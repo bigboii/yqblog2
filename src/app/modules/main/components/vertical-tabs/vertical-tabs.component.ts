@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, ViewEncapsulation  } from '@angular/core';
 // import { MaterialElevationDirective } from '../../../../shared/directives/material-elevation.directive';
 import { DOCUMENT } from '@angular/common';
 import { fadeIn} from '../../../../shared/animations';
@@ -11,6 +11,7 @@ import { dynamicTabVerticalSlide, tabVerticalSlide,  verticalTabContentFadeIn} f
   animations: [ fadeIn, 
     dynamicTabVerticalSlide(52, "red"), 
     tabVerticalSlide, verticalTabContentFadeIn]
+  // encapsulation: ViewEncapsulation.Emulated           //ViewEncapsulation.emulated
 })
 export class VerticalTabsComponent implements OnInit {
 

@@ -42,8 +42,9 @@ $config: mat-typography-config();
 
   /*
     arrow bullet point
+    TODO: make this a directive
   */
-  mat-list-item p::before {
+  .about mat-list-item p::before {
     content: "▹";
     position: absolute;
     left: 0px;
@@ -52,15 +53,20 @@ $config: mat-typography-config();
     // line-height: 60px;
   }
 
+  .arrowBulletPoint {
+    font-size:12px;
+    font-family: 'Ubuntu Mono', monospace;
+  }
+
   /**
     Common Heading
   **/
   .heading {
+    font-family: 'Roboto Mono', monospace;
       position: relative;
       display: flex;
       -webkit-box-align: center;
       align-items: center;
-      width: 100%;
       white-space: nowrap;
       // font-size: 32px;      //TODO: dynamic font sizes? based on screen size
       margin: 10px 0px 40px;   //TODO: causing issue with mobile screen sizes
@@ -116,28 +122,82 @@ $config: mat-typography-config();
 
 }
 
+@mixin set-theme-parallax($theme) {
+  // Parse the theme and create variables for each color in the pallete
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background: map-get($theme, background);
+  $foreground: map-get($theme, foreground);
+
+  // Create theme specfic styles
+  .primaryColorBG {
+    background-color: mat-color($primary);
+  }
+  .accentColorBG {
+    background-color: mat-color($accent);
+  }
+  .warnColorBG {
+    background-color: mat-color($warn);
+  }
+
+  .parallax-color {
+    background-color: mat-color($primary, darker);
+    color:mat-color($primary, 50);
+  }
+
+  .section-parallax {
+    // background-color: mat-color($primary, darker);
+    // color:mat-color($primary, 50);
+    padding: 0 !important;
+    // margin: 0 !important;
+    // max-width:none !important;
+    width:100%;
+  }
+
+  .parallax-bg-light {
+    background-color: mat-color($primary, darker);
+    border-color: mat-color($accent, darker);
+    color:mat-color($primary, 50);
+  }
+
+  .parallax-bg-dark {
+    background-color: mat-color($background);
+    border-color: mat-color($accent, lighter);
+    color:mat-color($accent, lighter);
+  }
+
+  .parallax-caption h3 {
+    //color:mat-color($accent);
+  }
+
+  .parallax-caption h1 {
+    //color: mat-color($accent, darker);
+  }
+
+  .parallax-bg .mat-body-1 { 
+    //color:mat-color($accent, lighter);
+  }
+}
+
+
+/**
+* Global CSS
+*/
+
 .root-container {
   width: 100%;
   height: 100%;
 }
 
-.home {
+.home-container {
   counter-reset: heading-count;  //creates a counter
-}
-
-parallax-home {
-  width:100%;
-}
-
-/* Left Center Right columning */
-
-/* Create four equal columns that sits next to each other */
-
-.container {
   width: 100%;
   // margin: 0px auto;
   // box-sizing:border-box;
+}
 
+.padded {
   @media screen and (max-width: 600px) {   //ultra small
     padding: 0px 25px;
   }
@@ -152,28 +212,124 @@ parallax-home {
   }
 }
 
-/* Section: About */
 section {
-    width:100%;
-    position: relative;
-    display:block;     //starts on a new line and strech out to the left and right as far as it can.
-    margin: 0px auto;
-    // box-sizing:inherit;  //inherit box sizing from .container
-    max-width:1000px;
-    // flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
-    @media screen and (min-width: 400px) {   //ultra small
-      padding: 100px 0px;
-    }
-    @media screen and (min-width: 1600px) {  //large
-      padding: 150px 0px;
-    }
+  width:100%;
+  // position: relative;
+  display:block;     //starts on a new line and strech out to the left and right as far as it can.
+  margin: 0px auto;
+  // box-sizing:inherit;  //inherit box sizing from .container
+  max-width:1000px;
+  // flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
+  @media screen and (max-width: 600px) {   //ultra small
+    padding: 100px 0px;
+  }
+  @media screen and (min-width: 600px) {  //large
+    padding: 150px 0px;
+  }
+}
+
+/**
+  Section Parallax
+*/
+
+parallax-home {
+  width:100%;
+}
+
+.parallax-bg
+{
+
+  // position: relative;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: flex-start;
+  // z-index:0;
+  --matToolbarLarge:64px;        //TODO: hardcode this? or dynamically retrieve this via typescript?
+  --matToolbarSmall:56px;
+  width: 100%; 
+  margin: 0px auto;
+
+  @media screen and (max-width: 600px) {   //ultra small
+    // padding: 100px 25px;
+    padding: 56px 25px 0 25px;
+  }
+  @media screen and (min-width: 600px) and (max-width:1200px) {   //small
+    // padding: 150px 100px;
+    padding: 56px 100px 0 100px;
+  }
+  @media screen and (min-width: 1200px) {  //large
+    // padding: 150px 150px;
+    padding: 64px 150px 0 150px;
+  }
+}
+
+/* Put this on top of the blurred background layer */
+.parallax-caption
+{
+  --matToolbarLarge:64px;        //TODO: hardcode this? or dynamically retrieve it via typescript?
+  --matToolbarSmall:56px;
+
+  max-width: 1000px;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0px auto;
+  @media screen and (min-width: 400px) {
+    padding: calc(100px - var(--matToolbarSmall)) 0px 100px 0px;
+    // padding: 100px 0px 100px 0px;
+  }
+  @media screen and (min-width:1200px) {
+    padding: calc(150px - var(--matToolbarLarge)) 0px 150px 0px;
+    // padding: 150px 0px 150px 0px;
+  }
+}
+
+.parallax-caption h3 {
+  // font-family:'Ubuntu Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
+  margin: 0px 0px 10px 0px;
+}
+
+.parallax-caption h1 {
+  // font: 
+  font-family:'Roboto', sans-serif;
+  font-size:80px;
+  font-weight:bold;
+  line-height:1.1;
+}
+
+.parallax-caption p {
+    /* width: 50%; */ 
+    font-family:'Roboto', sans-serif;
+    max-width: 500px;
+    margin: 25px 0px 0px 0px;
+}
+
+.parallax-caption .middle-caption2 {
+  text-align: center;
+  margin-bottom: 0;
+  //font-size:mat-font-size($config, display-2);
+  font-style:italic;
+}
+
+/*
+  Section: Resume
+*/
+
+.sectionJobs {
+  max-width:700px;
 }
 
 app-vertical-tabs {
-  @media screen and (min-width: 400px) {   //ultra small
+  @media screen and (max-width: 600px) {   //ultra small
     display:none;
   }
-  @media screen and (min-width: 1200px) {  //large
+  @media screen and (min-width: 600px) {  //large
     display:initial;
   }
 }
@@ -197,10 +353,10 @@ app-vertical-tabs {
 .about-container-content {
   
   max-width: 480px;
-  @media screen and (min-width: 400px) {   //ultra small
+  @media screen and (max-width: 600px) {   //ultra small
     width:100%;
   }
-  @media screen and (min-width: 1600px) {  //large
+  @media screen and (min-width: 600px) {  //large
     width:60%;
   }
 }
@@ -213,12 +369,12 @@ app-vertical-tabs {
   // margin-top: 22px;
   border-radius:3px;
 
-  @media screen and (min-width: 400px) {   //ultra small
+  @media screen and (max-width: 600px) {   //ultra small
     width:100%;
     margin: 0px auto;
     padding-top: 25px;
   }
-  @media screen and (min-width: 1600px) {  //large
+  @media screen and (min-width: 600px) {  //large
     width:60%;
     margin-left: 60px;
   }
@@ -295,13 +451,12 @@ app-vertical-tabs {
 }
 
 .cardList >*:not(:last-child) {
-  margin-right:32px;
-  margin-bottom:32px;
-
+  margin-right:16px;
+  margin-bottom:16px;
 }
 
 .cardListItem {
-  flex: 0 1 calc(33.3% - 32px);
+  flex: 0 1 calc(33.3% - 16px);
 }
 
 .cardListItem > .mat-card {
@@ -309,10 +464,64 @@ app-vertical-tabs {
   @include mat-elevation(4);
 
   &:hover {
-    @include mat-elevation(8);
+    @include mat-elevation(16);
   }
 }
 
+.mat-card {
+  padding: 32px 28px;
+}
+
+.vertical_center_helper {   //used to help center img vertically
+  display:inline-block; 
+  height:100%; 
+  vertical-align:middle;
+}
+
+.tileButton {
+  padding:0;
+}
+
+.github_img {
+  height: 20px;
+  vertical-align:middle;
+  // transform: 'translateY(-18px)';
+  // transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+}
+
+.tileCardTitle {
+  min-height:45px;    //for desktop mode, need another one for small screends
+}
+
+.mat-card-header-text {
+  margin: 0 !important;   //override material css for mat card header
+}
+
+.tileCardContent {
+  min-height:200px;
+}
+
+.tileCardContent ul {
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+}
+
+.tileCardContent li {
+  font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Lucida Console", Monaco, monospace;
+  font-size: 12px;
+  color: rgb(136, 146, 176);
+  line-height: 1.75;
+  margin-right: 15px;
+}
+
+.tileCardContent li:last-of-type {
+  margin-right: 0px;
+}
 
 
 /* General */

@@ -22,10 +22,11 @@ $config: mat-typography-config();
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
+
   /*
     arrow bullet point
   */
-  mat-card-content p::before {
+  .tabCardContent p::before {  //TODO: make this apply only to vertical-tabs component, not globally
     content: "▹";
     position: absolute;
     left: 0px;
@@ -35,7 +36,12 @@ $config: mat-typography-config();
     box-sizing:inherit;
   }
 
-  mat-card-content > p {
+  .tabCardContent p {
+    font-size:14px;
+    line-height:22px; 
+  }
+
+  .tabcontent mat-card-content > p {
     padding-left: 30px;
     margin-bottom: 10px;
   }
@@ -49,19 +55,12 @@ $config: mat-typography-config();
     @include mat-elevation-transition;
   }
 
-  /*
-    TAB CSS
-  */
-
-  /* Style the tab */
   .tab {
     float: left;
     width: max-content;  //30%
     height: 300px;
   }
 
-  /* Style the buttons inside the tab */
-  // $my-button : map-get($config, button);
   .tab div button {
     // display: block;
     background-color: inherit;
@@ -86,6 +85,10 @@ $config: mat-typography-config();
 // $button-font-weight: map-font-weight($my-button);
 // $button-line-height: map-line-height($my-button);
   }
+
+
+
+
 
   .tab div span {
     // display: block;
@@ -113,7 +116,7 @@ $config: mat-typography-config();
     border-right: 2px solid mat-color($accent);
   }
 
-  /* Style the tab content */
+  /* tab content */
   .tabcontent {
     float: left;
     padding: 0px 12px;
@@ -126,7 +129,6 @@ $config: mat-typography-config();
     padding-left: 30px;
     //transition: all 0s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
   }
-
 }
 
 mat-card-avatar {

@@ -1,6 +1,6 @@
-<div fxLayout="row" fxLayout.xs="row" fxLayoutAlign="flex-start">
+<div fxFlex fxLayout="row" fxLayout.xs="row" class="vertical-tabs-wrapper">
 
-  <div fxLayout="row">
+  <div  fxLayout="row">
     <div class="tab" fxLayout="column">
       <div fxLayout="row" > 
         <button mat-button (click)="openTab($event, 'tab0')" id="defaultOpen"> Bank of America </button>
@@ -18,7 +18,7 @@
     <div class="dynamicBorder" [@dynamicTabVerticalSlide]="this.currentTab['id']"></div>
   </div>
 
-  <div *ngFor="let cardDatum of cardData">
+  <div  *ngFor="let cardDatum of cardData">
     <div class="tabcontent" id="{{cardDatum.id}}" [@verticalTabContentFadeIn]="this.tabs[cardDatum.id]['isShow']">
       <mat-card class="tabcontent" id="{{cardDatum.id}}" elevateOnHover class="card-container" >
 
@@ -30,7 +30,7 @@
           <mat-card-title>{{cardDatum.position}} @ {{cardDatum.title}}</mat-card-title>
           <mat-card-subtitle>{{cardDatum.subTitle}}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content >
+        <mat-card-content class="tabCardContent">
           <p *ngFor="let bulletpoint of cardDatum.description">
            {{bulletpoint}}
           </p>

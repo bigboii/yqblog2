@@ -1,12 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { revealOnScrollAnimation } from '../../../../../shared/animations';
+import { revealOnScrollAnimation, revealParallaxAnimation, slideUpFadeIn } from '../../../../../shared/animations';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [ revealOnScrollAnimation ]
+  animations: [ revealOnScrollAnimation, revealParallaxAnimation, slideUpFadeIn ]
 })
 export class HomeComponent implements OnInit{
 
@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit{
 
   public parallaxHeight: number;
   public visibleSections: Array<Object> = [];
-  private cards: Array<Object>;
+  private tabContents: Array<Object>;
+  private projectTiles: Array<Object>;
   public showParallax : boolean;
 
   panelOpenState = false;
@@ -46,11 +47,11 @@ export class HomeComponent implements OnInit{
     this.visibleSections.push({ "id": 3, "show": false });
     this.visibleSections.push({ "id": 4, "show": false });
 
-    this.cards= 
+    this.tabContents= 
     [
       {
         "id": "tab0",
-        "title": "Bank of America (Current)",
+        "title": "Bank of America",
         "position": "Software Engineer (Officer)",
         "subTitle": "Jun 2017 - Present",
         "imgPath":"./assets/imgs/card_bofa.png",
@@ -88,6 +89,54 @@ export class HomeComponent implements OnInit{
         ]
       }
     ];
+
+    this.projectTiles = [
+      {
+        "title": "Content Management System",
+        "description":"A CMS for my blog, currently in Progress",
+        "technologies":["Mongo", "Spring", "In Progress"]
+      },
+      {
+        "title": "Simple Comment System",
+        "description":"A simple comment system for my blog",
+        "technologies":["Spring", "Mongo", "In Progress"]
+      },
+      {
+        "title": "Adaptive Step Size in gradient descent",
+        "description":"In Progress",
+        "technologies":["Python", "ML", "In Progress"]
+      },
+      {
+        "title": "Logistic Regression",
+        "description":"Implemented a python program for the logistic discribmination gradient descent algorithm",
+        "technologies":["Python", "ML"]
+      },
+      {
+        "title":"Personal Website V2",
+        "description":"2nd iteration of my personal website built using MEAN (Angular 8)",
+        "technologies":["Mongo, Express, Angular, Node"]
+      },
+      {
+        "title": "Hinge Loss Classifier",
+        "description":"Implemented a SVM and optimized the hinge loss using gradient descent algorithm",
+        "technologies":["Python", "ML"]
+      },
+      {
+        "title": "Least Square Loss Classifier (Perceptron)",
+        "description":"Implemented a Perceptron and minimized the least square loss using a gradient descent algorithm",
+        "technologies":["Python", "ML"]
+      },
+      {
+        "title": "Naive Bayes Classifier",
+        "description":"Implemented a Naive Bayes (probabilistic) classifier for learning purposes.",
+        "technologies":["Python", "ML"]
+      },
+      {
+        "title": "Simple Chat",
+        "description":"Implemented a simple chat app with a material design based UI",
+        "technologies":["Angular, SocketIO"]
+      }
+    ]
   
     //LazyLoad for parallax bg
     this.showParallax = false;
