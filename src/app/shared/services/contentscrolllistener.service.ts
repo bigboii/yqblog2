@@ -1,13 +1,16 @@
 import { Injectable, Inject, Input } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { BehaviorSubject ,  fromEvent } from 'rxjs';
-import { map, tap, startWith, pairwise, filter, exhaustMap } from 'rxjs/operators';
+import { BehaviorSubject , fromEvent,  AsyncSubject, Subject, Observable, ConnectableObservable } from 'rxjs';
+import { map, tap, startWith, pairwise, share, publish, filter, exhaustMap, multicast, isEmpty } from 'rxjs/operators';
 
 /** 
  * 
  * Listens to scrolling event within mat-side-nav content (when windows:scroll isn't available)
  * 
- * BehaviorSubject vs Observable(x)
+ * - An Observable by default is unicast. Unicasting means that each subscribed observer owns an independent execution of the Observable.
+ * - The main reason to use Subjects is to multicast. A Subject is like an Observable, but can multicast to many Observers. Subjects are like EventEmitters:
+ *      they maintain a registry of many listeners. 
+ * - fromEvent(), by default, returns an observable that broadcasts to many subscribers (like a subject). It does this because the constructor calls publish().refCount().
 */
 
 interface ScrollPosition {
@@ -28,8 +31,9 @@ const DEFAULT_SCROLL_POSITION: ScrollPosition = {
 export class ContentScrollListenerService {
 
   private sidenavContentElem;
-  private contentScrollEventSource;
-  private scrollEvent;
+  private contentScrollEventSubject = new Subject(); // observes observable sequences
+  private multicast;
+  private subscriptions = [];
 
   @Input() public scrollCallback;
   @Input() public testInput: string;
@@ -44,26 +48,40 @@ export class ContentScrollListenerService {
   */
   public startListeningToScrolling() {
 
-    //Register Scroll Event on sidenav-content
-    this.sidenavContentElem = document.querySelector('mat-sidenav-content');
-    console.log("[contentscrolllistener] sidenavContentElem: " + this.sidenavContentElem);
-    console.dir(this.sidenavContentElem);
-    this.contentScrollEventSource = fromEvent(this.sidenavContentElem, 'scroll');
+    //Method 1: Subject, register Scroll Event on sidenav-content
+    this.sidenavContentElem = this.document.querySelector('mat-sidenav-content');
+    this.document.querySelector('mat-sidenav-content')
+                                 .addEventListener('scroll', this.onContentScroll.bind(this));
 
-    //Stream Scroll Event: map to ScrollPosition
-    this.scrollEvent = this.contentScrollEventSource.pipe(
-      map((e: any): ScrollPosition => ({                   //get scrollHeight, scrollTop, and clientHeight per each scroll
-        sH: e.target.scrollHeight,
-        sT: e.target.scrollTop,
-        cH: e.target.clientHeight
-      }))
-      // ,tap(val => console.log(`After MAP: ${val}`))    //enable for debugging
-    );
+    //Method 2, Multicast Observable: Register Scroll Event
+    this.multicast = fromEvent(this.sidenavContentElem, 'scroll');
 
-    // this.scrollEvent.startWith([DEFAULT_SCROLL_POSITION, DEFAULT_SCROLL_POSITION]) 
+    // this.multicast = (fromEvent(this.sidenavContentElem, 'scroll')).pipe(
+    //     map((e: any): ScrollPosition => ({                   //get scrollHeight, scrollTop, and clientHeight per each scroll
+    //       sH: e.target.scrollHeight,
+    //       sT: e.target.scrollTop,
+    //       cH: e.target.clientHeight
+    //     }))
+    //     // ,tap(val => console.log(`After MAP: ${val}`))    //enable for debugging
+    //   );
+
+    console.log("finished initializing contentScrollEventSubject");
   }
 
-  public getScrollEventForSubscription() {
-    return this.scrollEvent;
+  public getScrollEventSubject() {
+    if(this.contentScrollEventSubject == undefined) {
+      this.startListeningToScrolling();
+    }
+
+    return this.contentScrollEventSubject;
+  }
+
+  public getMulticast(caller: String) {
+    return this.multicast;
+  }
+
+
+  public onContentScroll(e) {
+    this.contentScrollEventSubject.next(e);
   }
 }

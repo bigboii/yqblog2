@@ -3,11 +3,55 @@
 //Custom Font
 
 //Typography
+// $custom-typography: mat-typography-config(
+//   $font-family: 'Roboto, sans-serif',
+//   $headline: mat-typography-level(32px, 8px, 900),
+//   $display-1: mat-typography-level(24px, 36px, 700),
+//   $body-1: mat-typography-level(16px, 24px, 400)
+// );
+
+// $custom-typography: mat-typography-config(
+//   $font-family: 'Roboto, sans-serif',
+//   $display-4: mat-typography-level(32px, 8px, 900),
+//   $display-3: mat-typography-level(32px, 8px, 900),
+//   $display-2: mat-typography-level(32px, 8px, 900),
+//   $display-1: mat-typography-level(24px, 36px, 700),
+//   $headline: mat-typography-level(96px, 36px, 700),
+//   $title: mat-typography-level(60px, 36px, 700),
+//   $subheading-2: mat-typography-level(48px, 36px, 700),
+//   $subheading-1: mat-typography-level(34px, 36px, 700),
+//   $body-1: mat-typography-level(16px, 24px, 400),
+//   $body-2: mat-typography-level(16px, 24px, 700),
+//   $caption: mat-typography-level(16px, 24px, 400)
+// );
+//  // $headline: mat-typography-level(32px, 8px, 900),
+
+//https://stackoverflow.com/questions/28363186/inline-elements-and-line-height
+//https://material.io/design/typography/#type-scale
+//https://material.angular.io/guide/typography#customization
+//https://medium.com/tradecraft-traction/harmonious-typography-and-grids-10da490a17d
+//use multiples of 12px
+//line height should be 1.5 of font size
+
+//correct way to import;; https://medium.com/@aditya_tyagi/import-fonts-in-an-angular-app-the-easy-right-way-ae9e99cab551
+
+//https://stackoverflow.com/questions/49622784/how-include-fonts-in-project-on-the-angular
+
 $custom-typography: mat-typography-config(
   $font-family: 'Roboto, sans-serif',
-  $headline: mat-typography-level(32px, 36px, 900),
-  $display-1: mat-typography-level(24px, 36px, 700),
-  $body-1: mat-typography-level(16px, 24px, 400)
+  $display-4: mat-typography-level(96px, 144px, 700),
+  $display-3: mat-typography-level(76px, 96px, 700),
+  $display-2: mat-typography-level(28px, 42px, 700),
+  $display-1: mat-typography-level(20px, 24px, 500),
+  $headline: mat-typography-level(24px, 32px, 400),
+  $title: mat-typography-level(20px, 32px, 500),
+  $subheading-2: mat-typography-level(16px, 28px, 400),
+  $subheading-1: mat-typography-level(15px, 24px, 400),
+  $body-1: mat-typography-level(16px, 24px, 500),
+  $body-2: mat-typography-level(14px, 20px, 400),
+  $caption: mat-typography-level(12px, 20px, 400),
+  $button: mat-typography-level(16px, 20px, 500),
+  $input: mat-typography-level(inherit, 1.125, 400)
 );
 
 // Dark theme

@@ -2,6 +2,10 @@
 
 $config: mat-typography-config();
 
+$eight-pt: 8px;
+$toolbarHeightLarge:64px;
+$toolbarHeightSmall:56px;
+
 // Define a custom mixin that takes in the current theme
 @mixin set-theme-home($theme) {
   // Parse the theme and create variables for each color in the pallete
@@ -35,9 +39,9 @@ $config: mat-typography-config();
     color: mat-color($accent);
   }
 
-  section > .mat-display-1
+  section > .mat-display-2
   {
-    color: mat-color($accent);
+    // color: mat-color($accent);
   }
 
   /*
@@ -46,15 +50,15 @@ $config: mat-typography-config();
   */
   .about mat-list-item p::before {
     content: "▹";
-    position: absolute;
-    left: 0px;
+    // position: absolute;
+    // left: 0px;
     color: mat-color($accent);
-    font-size: 14px;
+    font-size: 16px;
     // line-height: 60px;
   }
 
   .arrowBulletPoint {
-    font-size:12px;
+    font-size:16px;
     font-family: 'Ubuntu Mono', monospace;
   }
 
@@ -63,13 +67,18 @@ $config: mat-typography-config();
   **/
   .heading {
     font-family: 'Roboto Mono', monospace;
-      position: relative;
+      // position: relative;
+      align-items: center;
+      margin: 8px 0px 40px;   //TODO: causing issue with mobile screen sizes
+
+      //Below needed for .heading::after
       display: flex;
       -webkit-box-align: center;
-      align-items: center;
-      white-space: nowrap;
+      // background-color: mat-color($foreground, text);
+      color: mat-color($foreground, text);
+      
+      // white-space: nowrap;
       // font-size: 32px;      //TODO: dynamic font sizes? based on screen size
-      margin: 10px 0px 40px;   //TODO: causing issue with mobile screen sizes
 
       // @media screen and (min-width: 400px) {   //ultra small
       //   padding: 0px 25px;
@@ -94,24 +103,42 @@ $config: mat-typography-config();
   .heading::before{
     counter-increment: heading-count;
     content: "0" counter(heading-count) ".";
-    margin-right: 10px;
-    font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Lucida Console", Monaco, monospace;
-    font-weight: normal;
-    color: mat-color($primary);
-    font-size: 20px;
+    margin-right: 8px;
+    // font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Lucida Console", Monaco, monospace;
+    // font-weight: normal;
+    color: mat-color($accent);
+    font-size: 24px;
     position: relative;
     box-sizing: inherit;
   }
 
   .heading::after {
-      content: "";
-      display: block;
-      height: 1px;
-      width: 300px;
-      background-color: mat-color($foreground, text);
-      position: relative;
-      margin-left: 20px;
-      box-sizing: inherit;
+      // content: "";
+      // // width: 300px;      //TODO: need width for small screen size
+      // display: block;
+      // height: 1px;
+      // width: calc(#{$eight-pt} * 38);    //304px
+      // background-color: mat-color($foreground, text);
+      // position: relative;
+      // margin-left: 24px;
+      // box-sizing: inherit;
+  }
+
+  .dash::after {
+    content: "";
+    // width: 300px;      //TODO: need width for small screen size
+    display: block;
+    height: 1px;
+    width: calc(#{$eight-pt} * 38);    //304px
+    background-color: mat-color($foreground, text);
+    position: relative;
+    margin-left: 24px;
+    box-sizing: inherit;
+  }
+
+  .center {
+    text-align: center;
+    justify-content: center;
   }
 
   // h1, h2, h3, h4, h5 {
@@ -158,13 +185,13 @@ $config: mat-typography-config();
   .parallax-bg-light {
     background-color: mat-color($primary, darker);
     border-color: mat-color($accent, darker);
-    color:mat-color($primary, 50);
+    // color:mat-color($primary, 50);
   }
 
   .parallax-bg-dark {
     background-color: mat-color($background);
     border-color: mat-color($accent, lighter);
-    color:mat-color($accent, lighter);
+    // color:mat-color($accent, lighter);
   }
 
   .parallax-caption h3 {
@@ -199,32 +226,24 @@ $config: mat-typography-config();
 
 .padded {
   @media screen and (max-width: 600px) {   //ultra small
-    padding: 0px 25px;
+    padding: 0px calc(#{$eight-pt} * 3);
   }
-  @media only screen and (min-width: 600px) {
-    padding: 0px 50px;
-  }
-  @media screen and (min-width: 768px) {   //small
-    padding: 0px 50px;
-  }
-  @media screen and (min-width: 1200px) {   //medium
-    padding: 0px 150px;
+  @media screen and (min-width: 600px) {   //medium
+    padding: calc(#{$eight-pt} * 16) 0px;
   }
 }
 
 section {
   width:100%;
-  // position: relative;
   display:block;     //starts on a new line and strech out to the left and right as far as it can.
   margin: 0px auto;
-  // box-sizing:inherit;  //inherit box sizing from .container
-  max-width:1000px;
+  max-width: calc(#{$eight-pt} * 128);   //1024px
   // flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
   @media screen and (max-width: 600px) {   //ultra small
-    padding: 100px 0px;
+    padding: calc(#{$eight-pt} * 8) 0px;
   }
   @media screen and (min-width: 600px) {  //large
-    padding: 150px 0px;
+    padding: calc(#{$eight-pt} * 16) 0px;
   }
 }
 
@@ -238,39 +257,33 @@ parallax-home {
 
 .parallax-bg
 {
-
   // position: relative;
   // display: flex;
   // flex-direction: column;
   // justify-content: center;
   // align-items: flex-start;
   // z-index:0;
-  --matToolbarLarge:64px;        //TODO: hardcode this? or dynamically retrieve this via typescript?
-  --matToolbarSmall:56px;
   width: 100%; 
   margin: 0px auto;
 
-  @media screen and (max-width: 600px) {   //ultra small
+  @media screen and (min-width: 400px) {   //ultra small
     // padding: 100px 25px;
-    padding: 56px 25px 0 25px;
+    padding: #{$toolbarHeightSmall} calc(#{$eight-pt} * 4) 0 calc(#{$eight-pt} * 4);
   }
-  @media screen and (min-width: 600px) and (max-width:1200px) {   //small
+  @media screen and (min-width: 600px) {   //small
     // padding: 150px 100px;
-    padding: 56px 100px 0 100px;
+    padding: #{$toolbarHeightSmall} calc(#{$eight-pt} * 8) 0 calc(#{$eight-pt} * 8);
   }
   @media screen and (min-width: 1200px) {  //large
     // padding: 150px 150px;
-    padding: 64px 150px 0 150px;
+    padding: #{$toolbarHeightLarge} calc(#{$eight-pt} * 16) 0 calc(#{$eight-pt} * 16);
   }
 }
 
 /* Put this on top of the blurred background layer */
 .parallax-caption
 {
-  --matToolbarLarge:64px;        //TODO: hardcode this? or dynamically retrieve it via typescript?
-  --matToolbarSmall:56px;
-
-  max-width: 1000px;
+  max-width: calc(#{$eight-pt} * 128);   //1024px
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
@@ -280,11 +293,11 @@ parallax-home {
   min-height: 100vh;
   margin: 0px auto;
   @media screen and (min-width: 400px) {
-    padding: calc(100px - var(--matToolbarSmall)) 0px 100px 0px;
+    padding: calc(100px - #{$toolbarHeightSmall}) 0px calc(#{$eight-pt} * 8) 0px;
     // padding: 100px 0px 100px 0px;
   }
   @media screen and (min-width:1200px) {
-    padding: calc(150px - var(--matToolbarLarge)) 0px 150px 0px;
+    padding: calc(150px - #{$toolbarHeightLarge}) 0px calc(#{$eight-pt} * 16) 0px;
     // padding: 150px 0px 150px 0px;
   }
 }
@@ -292,22 +305,27 @@ parallax-home {
 .parallax-caption h3 {
   // font-family:'Ubuntu Mono', monospace;
   font-family: 'Roboto Mono', monospace;
-  margin: 0px 0px 10px 0px;
+  // margin: 0px 0px 8px 0px;
 }
 
-.parallax-caption h1 {
+.parallax-caption .mat-display-1 {
   // font: 
-  font-family:'Roboto', sans-serif;
-  font-size:80px;
-  font-weight:bold;
-  line-height:1.1;
+  // font-family: 'Roboto Mono', monospace;
+  // font: 400 20px/24px 'Roboto Mono', monospace;
+  // font-size:80px;
+  // line-height:1.1;
+  max-width: 512px;
 }
 
-.parallax-caption p {
+.mono {
+  font: 400 20px/24px 'Roboto Mono', monospace;
+}
+
+.parallax-caption .mat-body-2 {
     /* width: 50%; */ 
     font-family:'Roboto', sans-serif;
-    max-width: 500px;
-    margin: 25px 0px 0px 0px;
+    max-width: 512px;
+    // margin: 24px 0px 0px 0px;
 }
 
 .parallax-caption .middle-caption2 {
@@ -320,9 +338,8 @@ parallax-home {
 /*
   Section: Resume
 */
-
 .sectionJobs {
-  max-width:700px;
+  max-width: calc(#{$eight-pt} * 88);  //704px
 }
 
 app-vertical-tabs {
@@ -366,17 +383,18 @@ app-vertical-tabs {
   width: 40%;
   height:auto;
   max-width: 300px;
+  max-width: calc(#{$toolbarHeightLarge} * 5); //
   // margin-top: 22px;
-  border-radius:3px;
+  border-radius:4px;
 
   @media screen and (max-width: 600px) {   //ultra small
     width:100%;
     margin: 0px auto;
-    padding-top: 25px;
+    padding-top: 24px;
   }
   @media screen and (min-width: 600px) {  //large
     width:60%;
-    margin-left: 60px;
+    margin-left: 64px;
   }
 
   a {
@@ -401,14 +419,14 @@ app-vertical-tabs {
       position: absolute;
       width: 100%;
       height: 100%;
-      border-radius: 3px;
+      border-radius: 4px;
       transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
     }
     img.avator-pic::after {
       top: 20px;
       left: 20px;
       z-index: -1;
-      border-width: 2px;
+      border-width: 8px;
       border-style: solid;
       border-color: rgb(100, 255, 218);
       border-image: initial;
@@ -417,7 +435,7 @@ app-vertical-tabs {
       position: absolute;
       width: 100%;
       height: 100%;
-      border-radius: 3px;
+      border-radius: 4px;
       transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
     }
   } 
@@ -432,8 +450,8 @@ app-vertical-tabs {
   // position: absolute;
   // top: 0px;
   // left: 0px;
-  width: 300px;
-  height: 300px;
+  width: calc(#{$toolbarHeightLarge} * 5); //;
+  height: calc(#{$toolbarHeightLarge} * 5); //;
   object-fit: cover;
   object-position: center center;
 }
@@ -469,7 +487,7 @@ app-vertical-tabs {
 }
 
 .mat-card {
-  padding: 32px 28px;
+  padding: 32px 32px;
 }
 
 .vertical_center_helper {   //used to help center img vertically
@@ -483,18 +501,14 @@ app-vertical-tabs {
 }
 
 .github_img {
-  height: 20px;
+  height: 24px;
   vertical-align:middle;
   // transform: 'translateY(-18px)';
   // transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
 }
 
 .tileCardTitle {
-  min-height:45px;    //for desktop mode, need another one for small screends
-}
-
-.mat-card-header-text {
-  margin: 0 !important;   //override material css for mat card header
+  min-height:48px;    //for desktop mode, need another one for small screends
 }
 
 .tileCardContent {
@@ -506,17 +520,17 @@ app-vertical-tabs {
   display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 24px;
   list-style: none;
   padding: 0;
 }
 
 .tileCardContent li {
   font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", "Lucida Console", Monaco, monospace;
-  font-size: 12px;
+  // font-size: 14px;
   color: rgb(136, 146, 176);
-  line-height: 1.75;
-  margin-right: 15px;
+  // line-height: 1.75;
+  margin-right: 16px;
 }
 
 .tileCardContent li:last-of-type {
@@ -533,10 +547,10 @@ app-vertical-tabs {
 
 /* List Item Height */
 .mat-list .mat-list-item {
-  height: 30px; /* default is 72px */
+  height: 32px; /* default is 72px */
 }
 
 
 p {
-  margin: 0px 0px 15px;
+  // margin: 0px 0px 16px;
 }

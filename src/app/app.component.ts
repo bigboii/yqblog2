@@ -94,7 +94,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit() {
     //Initialize listening to content scroll
-    this.scrollListenerService.startListeningToScrolling();
+    // this.scrollListenerService.startListeningToScrolling();
   }
 
   //LazyLoad for parallax bg

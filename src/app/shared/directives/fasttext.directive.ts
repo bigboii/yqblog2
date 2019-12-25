@@ -16,7 +16,7 @@ export class FasttextDirective implements OnInit, AfterViewInit, OnDestroy  {
   public contentScrollEvent;
   public currentScrollPosition;
 
-  public _speed;
+  public _speed = 1;
   public isMobile;
   public fastTextElement;
 
@@ -34,7 +34,8 @@ export class FasttextDirective implements OnInit, AfterViewInit, OnDestroy  {
   } 
 
   ngAfterViewInit() {
-    console.log("[FASTTEXT] onInit");
+    // console.log("[FASTTEXT] onInit");
+    console.log("[22222222222222222222]");
     var t = this;                              //reference to current element
     this._speed = 1;                            //translate speed
 
@@ -54,20 +55,27 @@ export class FasttextDirective implements OnInit, AfterViewInit, OnDestroy  {
       window.addEventListener('scroll', this.onContentScroll.bind(this));
     }
     else {
-      this.scrollSubscription =  this.contentScrollService.getScrollEventForSubscription().subscribe(scrollEvent => { console.log("event fired"); this.onContentScroll(scrollEvent) });
+    
+      this.contentScrollService.startListeningToScrolling();
+      this.scrollSubscription = this.contentScrollService.getMulticast("fasttext").subscribe(scrollEvent => { console.log("event fired"); this.onContentScroll(scrollEvent) });
+
+      //Solution below via Solution
+      // this.scrollSubscription = this.contentScrollService.getScrollEventSubject().subscribe(scrollEvent => { console.log("event fired"); this.onContentScroll(scrollEvent) });
       //TODO: add "touchmove" listener for mobile devices
     }
   }
 
   ngOnDestroy() {
-    //cleanup to provent meory leak
+    //cleanup to provent memory leak
     this.scrollSubscription.unsubscribe();
   }
 
   onContentScroll(event) {
-
-    let scrollTop =  event['sT'];
-    let clientHeight = event['cH'];
+    console.log("[fastTextCalled]")
+    // let scrollTop =  event['sT'];
+    // let clientHeight = event['cH'];
+    let scrollTop = event.target.scrollTop;
+    let clientHeight = event.target.clientHeight;
 
     var speed = -(scrollTop / this._speed );
     if(this.isMobile){

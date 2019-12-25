@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, Input, EventEmitter, Inject, ElementRef, ViewChild} from '@angular/core';
 import { ToggleService } from '../../shared/services/toggle.service';
 import { ThemeService } from '../../shared/services/theme.service';
+import { ContentScrollListenerService } from '../../shared/services/contentscrolllistener.service';
 import { MatSidenav } from '@angular/material';
 import { revealOnScrollAnimation, slideDownFadeIn, fadeIn } from '../../shared/animations';
 import { DOCUMENT } from '@angular/common';
@@ -15,19 +16,18 @@ export class HeaderComponent implements AfterViewInit {
 
   @Input() private logoPath;
   @ViewChild('headerToolbar', {static:false, read: ElementRef}) private matToolbarElem: ElementRef;
+  private scrollSubscription;
 
   constructor(private toggleService: ToggleService,
               private themeService : ThemeService,
+              private contentScrollService: ContentScrollListenerService,
               private elementRef: ElementRef,
               @Inject(DOCUMENT) private document: Document) {
   }
 
   ngAfterViewInit() {
-    // this.document.querySelector('mat-sidenav-content')
-    //                              .addEventListener('scroll', this.onContentScroll.bind(this));
-    window.addEventListener("scroll", this.onContentScroll.bind(this));
-
-    this.onContentScroll(new CustomEvent(null));
+    this.contentScrollService.startListeningToScrolling();
+    this.scrollSubscription = this.contentScrollService.getScrollEventSubject().subscribe(scrollEvent => { console.log("event fired 2"); this.onContentScroll2(scrollEvent) });
   }
 
   toggleActive:boolean = false;
@@ -47,8 +47,10 @@ export class HeaderComponent implements AfterViewInit {
   public switchedOn :boolean = true;
   public elevationValue = 0
 
-  onContentScroll(event) {
-    if( window.scrollY > this.matToolbarElem.nativeElement.clientHeight) 
+  onContentScroll2(event) {    
+    // if( window.scrollY > this.matToolbarElem.nativeElement.clientHeight)
+    if( event.target.scrollTop > this.matToolbarElem.nativeElement.clientHeight) 
+    // if( event['sT']> this.matToolbarElem.nativeElement.clientHeight) 
     {
       if(this.isElevated) {
         this.isElevated = false;
@@ -63,6 +65,4 @@ export class HeaderComponent implements AfterViewInit {
       this.elevationValue = 0;
     }
   }
-
-
 }

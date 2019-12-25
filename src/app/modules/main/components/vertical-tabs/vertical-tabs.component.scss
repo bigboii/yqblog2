@@ -26,25 +26,45 @@ $config: mat-typography-config();
   /*
     arrow bullet point
   */
-  .tabCardContent p::before {  //TODO: make this apply only to vertical-tabs component, not globally
+  .tabCardContent li::before {  //TODO: make this apply only to vertical-tabs component, not globally
     content: "▹";
     position: absolute;
     left: 0px;
     color: mat-color($accent);
-    font-size: 12px;
+    font-size: 16px;
     // line-height: 60px;
-    box-sizing:inherit;
   }
 
-  .tabCardContent p {
-    font-size:14px;
-    line-height:22px; 
+  .tabcontent ul {
+    padding: 0px;
+      margin: 0px;
+      list-style: none;
   }
+  
+  .tabcontent ul li {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 8px;
+  }
+  
+  // .tabCardContent p {
+  //   font-size:14px;
+  //   line-height:22px; 
+  // }
 
   .tabcontent mat-card-content > p {
-    padding-left: 30px;
-    margin-bottom: 10px;
+    // padding-left: 32px;
+    // margin-bottom: 8px;
   }
+
+  // p{
+  //   // margin: 8px 0;
+  //   margin:0;
+  //   // margin-bottom: 16px;
+  // }
+  // p + p{
+  //   margin-top:10px;
+  // }
 
   .tabcontent > mat-card {
     padding:0px;
@@ -65,8 +85,9 @@ $config: mat-typography-config();
     // display: block;
     background-color: inherit;
     // color: $primary;
-    padding: 8px 8px;
+    padding: 8px;
     width: 100%;
+    padding: 8px 24px;
     border: none;
     outline: none;
     text-align: left;
@@ -76,9 +97,8 @@ $config: mat-typography-config();
     font-family: mat-font-family($config);
     max-height:61px;
     border-radius:0px;     //override mat-button's rounded corners
-    text-align: center;
-
-  vertical-align:middle;
+    // text-align: center;
+    vertical-align:middle;
 
 //     $button-font-family: map-font-family($my-button);
 // $button-font-size: map-font-size($my-button);
@@ -119,22 +139,42 @@ $config: mat-typography-config();
   /* tab content */
   .tabcontent {
     float: left;
-    padding: 0px 12px;
-    width: 34em;
+    // padding: 16px;
+    padding-left: 32px;
+    width: 100%;
     border-left: none;
     height: 300px;
     flex-grow: 1;
 
-    padding-top: 12px;
-    padding-left: 30px;
+    // padding-top: 16px;
+    // padding-left: 16px;
     //transition: all 0s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
   }
 }
 
-mat-card-avatar {
-  width:60px;
-  height:60px;
-  object-fit: scale-down;
+.mat-card-avatar {
+  width:48px;
+  height:48px;
+  margin-right:8px;
+  // object-fit: scale-down;
+}
+
+.mat-card-avatar > img {
+  width:48px;
+  height:48px;
+  // object-fit: scale-down;
+}
+
+.mat-card-header-text {
+  margin: 0 !important;   //override material css for mat card header
+}
+
+.mat-card-title {
+
+}
+
+.mat-card-subtitle {
+  
 }
 
 /*
@@ -148,4 +188,17 @@ mat-card-avatar {
 
 .card-container {
   //margin-bottom: 1%;
+}
+
+
+/*
+  Overriding som material css properties
+*/
+
+.mat-card-header .mat-card-title {
+  margin-bottom: 16px;
+}
+
+.mat-card-content>:first-child {
+  margin-top:16px;
 }

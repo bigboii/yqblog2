@@ -5,15 +5,15 @@
         <!-- <div [style.height.px]="parallaxHeight">  -->
     <!-- [@revealParallax]="parallaxShow"  lazyLoad--> <!-- (themeService.getIsNightmode() == false) ? 'parallax-bg parallax-bg-light mat-elevation-z0':'parallax-bg parallax-bg-dark mat-elevation-z0' -->
           <div class="parallax-caption">
-              <h3 class="mat-title" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1}}" fasttext>
-                  Hi, my name is
-              </h3>
-            <h1 class="mat-headline" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.2}}"  fasttext> 
+            <div class="mat-display-1 mono" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1}}" fasttext>
+                Hi, my name is
+            </div>
+            <div class="mat-display-4 caption-second" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.2}}"  fasttext> 
                 Young Kyu Kim.
-            </h1>
-            <p class="mat-body-1" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.4}}"  fasttext> 
+            </div>
+            <div class="mat-display-1" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.4}}"  fasttext> 
               I'm a software engineer based in Jersey City, NJ whos been developing (and occasionaly designing) large scale applications. Recently, I've also picked up UI development as a hobby.
-            </p>
+            </div>
           </div>
         <!-- </div> -->
     </section>
@@ -25,7 +25,7 @@
     <!-- Section: About Me -->
     <!-- <div revealOnScroll [index]="this.visibleSections[0].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[0].show"> -->
     <section class="about" fxLayout="column" revealOnScroll [index]="this.visibleSections[0].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[0].show">
-      <h1 class="mat-display-1 heading">About Me</h1>
+      <h1 class="mat-display-2 heading dash">About Me</h1>
       <div class="about-container" fxLayout="row" fxLayout.xs="column">
         <div class="about-container-content" fxLayout="column">
           <p class="mat-body-1"> I'm currently a Software Engineer based in the United States, Jersey City and I spent the last few years developing Bank of America's Private Cloud Platform. </p>
@@ -63,19 +63,47 @@
     </section>
     <!-- </div>     -->
 
-    <!-- Section: jobs -->
+    <!-- Section: Work Experience -->
     <div revealOnScroll [index]="visibleSections[1].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[1].show">
       <section class="sectionJobs" fxLayout="column">
-        <h1 class="mat-display-1 heading">Where I've worked</h1>
+        <h1 class="mat-display-2 heading center">Where I've worked</h1>
 
+        <!-- Vertical Tabs for desktop -->
         <app-vertical-tabs [cardData]=tabContents> </app-vertical-tabs>
+
+
+        <!-- Hortizontal Tabs for Mobile -->
+        <mat-tab-group class="horizontal-tabs">
+          <mat-tab *ngFor="let tabContent of tabContents" label="{{tabContent.id}}"> 
+            <div class="tabcontent" id="{{tabContent.id}}" [@verticalTabContentFadeIn]="this.tabs[tabContent.id]['isShow']">
+              <mat-card class="tabcontent" id="{{tabContent.id}}" elevateOnHover class="card-container" >
+        
+                <!-- Right -->
+                <mat-card-header>
+                  <div mat-card-avatar class="example-header-image"> 
+                    <img src="{{tabContent.imgPath}}" alt="Photo of a Shiba Inu" width=40 height=40> 
+                  </div>
+                  <mat-card-title>{{tabContent.position}} @ {{tabContent.title}}</mat-card-title>
+                  <mat-card-subtitle>{{tabContent.subTitle}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content class="tabCardContent">
+                  <ul>
+                    <li class="mat-body-1" *ngFor="let bulletpoint of tabContent.description">
+                      {{bulletpoint}}
+                    </li>
+                  </ul>
+                </mat-card-content>
+              </mat-card>
+            </div>  
+          </mat-tab>
+        </mat-tab-group>
       </section>
     </div>
 
     <!-- Section: Projects -->
     <div revealOnScroll [index]="visibleSections[2].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[2].show">
         <section>
-          <h1 class="mat-display-1 heading">What I've built</h1>
+          <h1 class="mat-display-2 heading dash">What I've built</h1>
   
           <p class="mat-body-1"> </p>
 
@@ -91,7 +119,7 @@
                       {{_.description}}
                     </p>
                     <ul fxFlex> 
-                      <li *ngFor="let tech of _.technologies"> {{tech}} </li>
+                      <li class="mat-caption" *ngFor="let tech of _.technologies"> {{tech}} </li>
                     </ul>
                     <div fxLayout="row" fxLayoutAlign="space-between">
                       <button fxFlex="0 1 auto"  class="mat-button tileButton"> View Project </button>
@@ -113,8 +141,9 @@
     <!-- Section: Blog, do this last -->
     <div revealOnScroll [index]="visibleSections[3].id" [@sectionState]="visibleSections[3].show" (showSection)="displayEmitterResults($event)">
       <section>
-          <h1 class="mat-display-1 heading">Lets Connect</h1>
-          <h2 class="mat-body-1">Feel free to reach out to me. LinkedIn or Email best.</h2>
+        <h1 class="mat-display-2 heading center">Lets Connect</h1>
+        <!-- https://stackoverflow.com/questions/32876788/nodemailer-without-gmail -->
+        <p class="mat-body-1 center">Feel free to reach out to me. LinkedIn or Email best.</p>
       </section>
     </div>
 

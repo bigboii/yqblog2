@@ -1,6 +1,6 @@
 <div fxFlex fxLayout="row" fxLayout.xs="row" class="vertical-tabs-wrapper">
 
-  <div  fxLayout="row">
+  <div fxLayout="row">
     <div class="tab" fxLayout="column">
       <div fxLayout="row" > 
         <button mat-button (click)="openTab($event, 'tab0')" id="defaultOpen"> Bank of America </button>
@@ -31,9 +31,11 @@
           <mat-card-subtitle>{{cardDatum.subTitle}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content class="tabCardContent">
-          <p *ngFor="let bulletpoint of cardDatum.description">
-           {{bulletpoint}}
-          </p>
+          <ul>
+            <li class="mat-body-1" *ngFor="let bulletpoint of cardDatum.description">
+              {{bulletpoint}}
+            </li>
+          </ul>
         </mat-card-content>
       </mat-card>
     </div>

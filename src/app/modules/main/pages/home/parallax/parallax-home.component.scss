@@ -51,6 +51,11 @@
   }
 }
 
+$eight-pt: 8px;
+$toolbarHeightLarge:64px;
+$toolbarHeightSmall:56px;
+
+
 /* --------------------------------------------*/
 /* ------------ Parallax ----------------------*/
 /* --------------------------------------------*/
@@ -64,22 +69,20 @@
   // justify-content: center;
   // align-items: flex-start;
   // z-index:0;
-  --matToolbarLarge:64px;        //TODO: hardcode this? or dynamically retrieve this via typescript?
-  --matToolbarSmall:56px;
   width: 100%; 
   margin: 0px auto;
 
   @media screen and (min-width: 400px) {   //ultra small
     // padding: 100px 25px;
-    padding: 56px 25px 0 25px;
+    padding: $toolbarHeightSmall calc($eight-pt * 4) 0 calc($eight-pt * 4);
   }
   @media screen and (min-width: 600px) {   //small
     // padding: 150px 100px;
-    padding: 56px 100px 0 100px;
+    padding: $toolbarHeightSmall calc($eight-pt * 8) 0 calc($eight-pt * 8);
   }
   @media screen and (min-width: 1200px) {  //large
     // padding: 150px 150px;
-    padding: 64px 150px 0 150px;
+    padding: $toolbarHeightLarge calc($eight-pt * 16) 0 calc($eight-pt * 16);
   }
 }
 
@@ -89,7 +92,7 @@
   --matToolbarLarge:64px;        //TODO: hardcode this? or dynamically retrieve this via typescript?
   --matToolbarSmall:56px;
 
-  max-width: 1000px;
+  max-width: calc($eight-pt * 128);   //1024px
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
@@ -99,11 +102,11 @@
   min-height: 100vh;
   margin: 0px auto;
   @media screen and (min-width: 400px) {
-    padding: calc(100px - var(--matToolbarSmall)) 0px 100px 0px;
+    padding: calc(100px - $toolbarHeightSmall) 0px calc($eight-pt * 8) 0px;
     // padding: 100px 0px 100px 0px;
   }
   @media screen and (min-width:1200px) {
-    padding: calc(150px - var(--matToolbarLarge)) 0px 150px 0px;
+    padding: calc(150px - $toolbarHeightLarge) 0px calc($eight-pt * 16) 0px;
     // padding: 150px 0px 150px 0px;
   }
 }

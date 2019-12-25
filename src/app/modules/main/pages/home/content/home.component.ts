@@ -36,9 +36,9 @@ export class HomeComponent implements OnInit{
       this.parallaxHeight = document.documentElement.clientHeight - 56;
     }
 
-    this.languages = ["Java, Spring Boot", "C++", "JavaScript", "TypeScript",];
-    this.technologies = ["Angular", "Node.js", "JavaScript", "TypeScript"];
-    this.databases=["SQL", "MongoDB", "Firebase", "Logstash", "Filebeat"];
+    this.languages = ["Java", "Spring", "C++", "Python"];
+    this.technologies = ["HTML && SCSS", "Angular", "Node.js", "JavaScript && TypeScript"];
+    this.databases=["MongoDB", "Logstash", "Filebeat"];
     this.tools=["Jenkins", "[Hashicorp] Consul, Nomad, Vault", "Elastic, Logstash, Kibana (ELK)"]
 
     this.visibleSections.push({ "id": 0, "show": false });

@@ -63,17 +63,17 @@
 
     text-align: center;
     height: auto;
-    min-height: 70px;
+    min-height: 72px;
     @media screen and (max-width: 600px) {   //ultra small
-      padding: 15px;
+      padding: 16px;
     }
     @media screen and (min-width: 600px) {  //large
-      padding:70px;
+      padding:72px;
     }
   }
   
   .footer-top > span {
-    height:20px;
+    height:24px;
   }
 
   .footer-top > span > a {
@@ -81,7 +81,7 @@
   }
 
   .footer-top > a > img {
-    padding:0px 10px;
+    padding:0px 8px;
     height:inherit;
     display:block;
   }
@@ -90,23 +90,23 @@
     // height:20px;
     display: flex;
     flex-direction: row;
-    margin-top: 5px;
+    margin-top: 8px;
   }
 
   .footer-top-logos > a {
     // height:inherit;
-    padding: 5px 5px;
+    padding: 8px 8px;
   }
 
   .footer-top-logos > a > img {
     // padding:0px 10px;
-    height:20px;
+    height:24px;
     display:block;
   }
 
   .footer-top-text > span{
     transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
-    padding:0px 10px;
+    padding:0px 8px;
   }
 
   .footer-top-text> span:hover {
@@ -138,13 +138,13 @@
 
   .linkedin_img {
     color:black;
-    height:20px;
+    height:24px;
   }
 
 }
 
 .github_img {
-  height: 20px;
+  height: 24px;
   // transform: 'translateY(-18px)';
   // transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
 }
@@ -157,8 +157,8 @@
 }
 
 .footer-list > p {
-  margin: 0px 10px;
-  margin-top: 10px;
+  margin: 0px 8px;
+  margin-top: 8px;
 
 }
 
