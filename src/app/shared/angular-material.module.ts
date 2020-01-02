@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -10,6 +10,7 @@ import {
   MatCheckboxModule,
   MatChipsModule,
   MatDatepickerModule,
+  MatDialog,
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
@@ -41,6 +42,7 @@ import {
 
 @NgModule({
 exports: [
+  CommonModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
@@ -55,6 +57,7 @@ exports: [
     MatDividerModule,
     MatExpansionModule,
     MatGridListModule,
+    MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
@@ -77,6 +80,9 @@ exports: [
     MatTooltipModule,
     MatTreeModule,
   ],
-declarations: []
+declarations: [],
+providers: [
+  MatDialog
+]
 })
 export class AngularMaterialModule { }

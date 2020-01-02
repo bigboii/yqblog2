@@ -226,7 +226,7 @@ $toolbarHeightSmall:56px;
 
 .padded {
   @media screen and (max-width: 600px) {   //ultra small
-    padding: 0px calc(#{$eight-pt} * 3);
+    padding: 0px calc(#{$eight-pt} * 6);
   }
   @media screen and (min-width: 600px) {   //medium
     padding: calc(#{$eight-pt} * 16) 0px;

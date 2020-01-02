@@ -70,33 +70,6 @@
 
         <!-- Vertical Tabs for desktop -->
         <app-vertical-tabs [cardData]=tabContents> </app-vertical-tabs>
-
-
-        <!-- Hortizontal Tabs for Mobile -->
-        <mat-tab-group class="horizontal-tabs">
-          <mat-tab *ngFor="let tabContent of tabContents" label="{{tabContent.id}}"> 
-            <div class="tabcontent" id="{{tabContent.id}}" [@verticalTabContentFadeIn]="this.tabs[tabContent.id]['isShow']">
-              <mat-card class="tabcontent" id="{{tabContent.id}}" elevateOnHover class="card-container" >
-        
-                <!-- Right -->
-                <mat-card-header>
-                  <div mat-card-avatar class="example-header-image"> 
-                    <img src="{{tabContent.imgPath}}" alt="Photo of a Shiba Inu" width=40 height=40> 
-                  </div>
-                  <mat-card-title>{{tabContent.position}} @ {{tabContent.title}}</mat-card-title>
-                  <mat-card-subtitle>{{tabContent.subTitle}}</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content class="tabCardContent">
-                  <ul>
-                    <li class="mat-body-1" *ngFor="let bulletpoint of tabContent.description">
-                      {{bulletpoint}}
-                    </li>
-                  </ul>
-                </mat-card-content>
-              </mat-card>
-            </div>  
-          </mat-tab>
-        </mat-tab-group>
       </section>
     </div>
 

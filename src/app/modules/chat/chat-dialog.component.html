@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>Welcome </h1>
+<div mat-dialog-content>
+  <!-- <form [formGroup]="data.signInForm" > -->
+  <!-- <div [formGroup]="data.signInForm" > -->
+    <mat-form-field>
+      <input matInput type="text" [(ngModel)]="data.userName" [formControl]="userNameValidation" required>
+      <mat-error>This field is required</mat-error>
+      <mat-hint>Please type your username</mat-hint>
+      <!-- <mat-error *ngIf="signInForm.controls.userNameValidation.invalid">Please type in a username</mat-error> -->
+      <!-- <mat-error *ngIf="signInForm.controls.userNameValidation.hasError('required')"> Please enter username </mat-error> -->
+    </mat-form-field>
+  </div>
+<!-- </div> -->
+<div mat-dialog-actions>
+  <button mat-button (click)="onSubmit('new')" [disabled]="userNameValidation.hasError('required')">Submit</button>
+</div> 
+
+<!-- [mat-dialog-close]="data.userName" -->
+
+<!-- https://blog.angular-university.io/introduction-to-angular-2-forms-template-driven-vs-model-driven/ -->
+
+
+<!-- https://stackoverflow.com/questions/44431613/cannot-find-control-with-name-formcontrolname-in-angular-2-or-4 -->

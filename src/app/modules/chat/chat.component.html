@@ -1,9 +1,8 @@
-
 <div class="chat-container" fxFlex="1 1 auto">
 
   <!-- Sign In -->
   <!-- http://jasonwatmore.com/post/2018/11/07/angular-7-reactive-forms-validation-example -->
-  <div class="signInSection" *ngIf="showSignInPage">
+  <!-- <div class="signInSection" *ngIf="showSignInPage">
     <form [formGroup]="userNameForm" (ngSubmit)="onSignIn($event)">
       <mat-form-field>
           <input matInput placeholder="Enter username" formControlName="userName" type="text"/>
@@ -11,12 +10,12 @@
 
       <button type="submit">Sign In</button>
     </form>
-  </div>
+  </div> -->
 
   <!-- Chat Box -->
   <div class="chat-box">
     <mat-list role="list" class="chat-list">
-      <mat-list-item role="listitem" *ngFor="let message of messages">{{message.content}}</mat-list-item>
+      <mat-list-item role="listitem" *ngFor="let message of messages">{{message.from}}: {{message.content}}</mat-list-item>
     </mat-list>
 
     <div class="chat-input">
