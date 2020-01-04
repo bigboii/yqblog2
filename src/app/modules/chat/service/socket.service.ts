@@ -20,6 +20,11 @@ export class SocketService {
     this.socket = socketIo(SERVER_URL);
   }
 
+  public disconnectSocket(): void {
+    this.socket.close();
+    console.log("Disconnecting Socket from Client Side");
+  }
+
   public send(message: Message): void {
     this.socket.emit('message', message);
   }
@@ -31,8 +36,8 @@ export class SocketService {
   }
 
   public onEvent(event: Event): Observable<any> {
-        return new Observable<Event>(observer => {
-            this.socket.on(event, () => observer.next());
-        });
-    }
+    return new Observable<Event>(observer => {
+        this.socket.on(event, () => observer.next());
+    });
+  }
 }

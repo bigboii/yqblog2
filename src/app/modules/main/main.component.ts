@@ -1,6 +1,7 @@
 import { Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { fadeTransition } from '../../shared/animations';
+import { ThemeService } from '../../shared/services/theme.service';
 
 @Component({
   selector: 'app-main',
@@ -14,6 +15,12 @@ export class MainComponent implements OnInit {
   public contentHeight: number;
   public routerHeight: number;         //Might need to return this to Sidenav
 
+  public logoPath: string;
+
+  constructor(public themeService : ThemeService) {
+
+  }
+
   ngOnInit() {
 
      //Set Dynamically set Height of content based on screen sizes
@@ -24,6 +31,8 @@ export class MainComponent implements OnInit {
     else {                                                              //Mobile Screen
       this.contentHeight = document.documentElement.clientHeight - 56;
     }
+
+    this.themeService.currentLogo.subscribe(logo => this.logoPath = logo);    
   }
 
   /*

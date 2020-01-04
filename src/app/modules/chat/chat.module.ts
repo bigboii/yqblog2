@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../../shared/angular-material.module';
 import { SignInDialog } from './chat.component';
 
+import { SocketService } from './service/socket.service';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { SignInDialog } from './chat.component';
     AngularMaterialModule,
   ],
   declarations: [ChatComponent, SignInDialog],
-  // bootstrap: [ChatComponent],  
+  providers:[SocketService], 
   entryComponents: [             // For any component loaded into a dialog, must include component into entryComponents in NgModule definition
     SignInDialog                 // https://material.angular.io/components/dialog/overview
   ]

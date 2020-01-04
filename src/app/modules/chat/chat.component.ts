@@ -4,10 +4,12 @@ import { Action } from './model/action';
 import { Event } from './model/event';
 import { User } from './model/user';
 import { Message } from './model/message';
+import {ActivatedRoute, Router, RouterEvent, NavigationStart} from '@angular/router';
 
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { filter } from 'rxjs/operators';
 
 /*
 
@@ -27,22 +29,22 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  action = Action;
-  user: User;
-  messages: Message[] = [];
-  messageContent: string;
-  ioConnection: any;
+  private action = Action;
+  private user: User;
+  private messages: Message[] = [];
+  private messageContent: string;
+  private ioConnection: any;
 
-  userNameForm: FormGroup;
-  showSignInPage: boolean = true;             //boolean page displaying sign in page
-  userName: string = "";
+  private userNameForm: FormGroup;
+  private showSignInPage: boolean = true;             //boolean page displaying sign in page
+  private userName: string = "";
 
-  // userNameValidation;
+  private dialogRef;
 
-  dialogRef;
+  private signInForm: FormGroup; 
+  private chatForm: FormGroup;
 
-  signInForm: FormGroup; 
-  chatForm: FormGroup;
+  private routerSubscription;
 
 
   // getting a reference to the overall list, which is the parent container of the list items
@@ -53,7 +55,9 @@ export class ChatComponent implements OnInit {
 
   constructor(private socketService: SocketService, 
               private formBuilder: FormBuilder,
-              public dialog: MatDialog) { 
+              public dialog: MatDialog,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) { 
     // this.signInForm=formBuilder.group({
     //   "userNameValidation": new FormControl('', [Validators.required])
     // });
@@ -61,7 +65,41 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     console.log("[Chat Component] onInit");
+    this.openSignInDialog();
+    // this.activatedRoute.url.subscribe( url => { 
+    //   console.log("currently in path: " + url);
+    //   console.dir(url);
+    //   if(url[0].path == "chat") {
+    //     this.openSignInDialog();
+    //   }
+    //   if(url[0].path != "chat") {
+    //     console.log("not in chat page: " + url[0].path);
+    //     this.socketService.disconnectSocket();
+    //   }
+    // }); 
+  
+    // listen for router's changes and close the dialog and disconnect socket
+    this.routerSubscription = this.router.events
+      .pipe(
+        filter((event: RouterEvent) => event instanceof NavigationStart),
+        filter(() => !!this.dialogRef)
+      )
+      .subscribe(() => {
+        this.dialogRef.close({
+        username: "",
+        dialogType: "navigating"
+      });
 
+      this.socketService.disconnectSocket();
+    });
+  }
+
+  ngAfterViewInit() {
+
+  }
+
+  openSignInDialog() {
+    console.log("opening SignInDialog");
     this.dialogRef = this.dialog.open(SignInDialog, {
       // width: '400px',
       // height: '600px',
@@ -72,15 +110,14 @@ export class ChatComponent implements OnInit {
 
 
     this.dialogRef.afterClosed().subscribe(result => {
-
-      
       if(result.dialogType == 'new') {
 
         this.initIoConnection();
         console.log('The dialog was closed');
         this.userName = result;
-        console.log("signing in with result: " + result);
-        console.log("signing in as " + this.userName);
+        // console.log("signing in with result: " + result.username);
+        console.dir(result)
+        // console.log("signing in as " + this.userName);
         //Sign in
         // this.user = new User(this.userName);
         this.user = new User();
@@ -88,25 +125,12 @@ export class ChatComponent implements OnInit {
         this.showSignInPage = false;
         this.sendNotification('',Action.JOINED);
       }
+      if(result.dialogType == "navigating") {
+        console.log("Closing Dialog");
+        this.socketService.disconnectSocket();
+      }
     });
   }
-
-  ngAfterViewInit() {
-
-
-
-  }
-
-  // public validateAndSubmitUserName() {
-  //   console.log("userNameValidation: ");
-  //   console.dir(this.signInForm.controls.userNameValidation);
-  //   if(this.signInForm.controls.userNameValidation.valid) {
-  //     console.log("username not validated");
-  //     this.dialogRef.close();
-  //   }
-  // }
-
-  //get userNameForm() { return this.userNameForm.controls; }
 
   /**
     Change User Name
@@ -141,6 +165,10 @@ export class ChatComponent implements OnInit {
       });
   }
 
+  // private disconnectSocket(): void {
+  //   this.socketService.disconnectSocket();
+  // }
+
   public sendMessage(message: string): void {
 
     console.log("[sendMessage] message: " + message);
@@ -153,7 +181,6 @@ export class ChatComponent implements OnInit {
       content: message,
       action: null
     });
-
 
     this.messageContent = null;
   }
@@ -191,7 +218,6 @@ export class ChatComponent implements OnInit {
 /*
   Dialog
 */
-
 export interface DialogData {
   userName: string;
 }
@@ -202,7 +228,7 @@ export interface DialogData {
 })
 export class SignInDialog {
 
-  public userNameValidation = new FormControl('', [Validators.required]);
+  public userNameForm = new FormControl('', [Validators.required]);
 
   constructor(
     public dialogRef: MatDialogRef<SignInDialog>,
@@ -213,9 +239,11 @@ export class SignInDialog {
   }
 
   onSubmit(dialogType: string): void {
+    console.log("userNameForm");
+    console.dir(this.userNameForm);
     this.dialogRef.close({
-      username: this.data.userName,
-      dialogType: dialogType
+      username: this.userNameForm.value,
+      dialogType: "new"
     });
   }
 

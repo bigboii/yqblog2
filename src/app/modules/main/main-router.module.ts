@@ -9,7 +9,7 @@ import { ChatComponent } from '../chat/chat.component';
 import { ParallaxHomeComponent } from './pages/home/parallax/parallax-home.component'
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, data:{page: "home"}},
 //  { path: 'home', component: ParallaxHomeComponent, outlet:'parallax', data:{page: "home"}},
   { path: 'about', component: AboutComponent, data:{page: "about"} },

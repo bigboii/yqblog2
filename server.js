@@ -49,7 +49,7 @@ io.on('connection', function(socket)
   socket.on('message', function(data)
   {
     console.log(util.inspect(data, false, null, true));
-    console.log('recieved message from', data.from.name, 'msg', data.content);
+    console.log('received message from', data.from.name, 'msg', data.content);
 
     console.log("broadcasting");           //let chatroom know there was new message
     //io.emit("something happened");         //for all
