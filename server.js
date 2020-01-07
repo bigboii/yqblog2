@@ -44,7 +44,7 @@ var nameCounter  = 1;            // number of users
 //use io.on This event will be called when new user joins
 //use socket.on to emit or receive event.
 io.on('connection', function(socket) 
-{   
+{
   //This event will be called when a user sends a message
   socket.on('message', function(data)
   {
@@ -105,7 +105,7 @@ io.on('connection', function(socket)
     //console.log(clients2);          //debugging : before splice
     
     var nameOfDc = clients2[socket.id];
-    console.log(nameOfDc + " disconnected");        //print socket id of disconnected client
+    console.log("[Server] client, " + nameOfDc + ", disconnected from chat server");        //print socket id of disconnected client
     
     //remove from clients2 : associative array
     var index2 = clients2.indexOf(socket.id);          //find index of 

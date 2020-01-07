@@ -78,7 +78,7 @@ exports: [
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule,
+    MatTreeModule
   ],
 declarations: [],
 providers: [

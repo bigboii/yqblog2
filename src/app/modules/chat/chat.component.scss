@@ -11,50 +11,6 @@
 }
 
 
-.chat-container {
-  /*background-color:blue;*/
-  height: 100%;
-  width: 100%;
-  // min-height:calc(100vh - 64px);    //TODO: fill up space?
-  
-  @media screen and (max-width: 600px) {   //ultra small
-    padding-top:56px;
-    padding: 56px 25x 0px 25px;
-    // height: calc(100vh - 56px);
-  }
-  @media only screen and (min-width: 600px) {
-    padding-top:64px;
-    padding: 64px 50px 0px 50px;
-    // height: calc(100vh - 64);
-  }
-  @media screen and (min-width: 768px) {   //small
-    padding-top:64px;
-    padding: 64px 50px 0px 50px;
-    // height: calc(100vh - 64px);
-  }
-  @media screen and (min-width: 1200px) {   //medium
-    padding-top:64px;
-    padding: 64px 150 0px 150px;
-    // height: calc(100vh - 64px);
-  }
-}
-
-
-/********************
-  Sign In Section
-*********************/
-.signInSection {
-  position: relative;
-  top:64px;
-  width:100%;
-  z-index:5;
-}
-
-
-/********************
-    Chat Section
-*********************/
-
 // section {
 //   width:100%;
 //   display:block;     //starts on a new line and strech out to the left and right as far as it can.
@@ -69,32 +25,71 @@
 //   }
 // }
 
-.chat-box {
 
+.chat-container {
+  /*background-color:blue;*/
+  height: 100%;
+  width: 100%;
+  // min-height:calc(100vh - 64px);    //TODO: fill up space?
+
+  display: flex;
+  flex: 1 1 1e-09px;
+  flex-direction: column;
+  
+  @media screen and (max-width: 600px) {   //ultra small
+    // padding-top:56px;
+    padding: 56px 25x 0px 25px;
+    // height: calc(100vh - 56px);
+  }
+  @media only screen and (min-width: 600px) {
+    // padding-top:64px;
+    padding: 64px 50px 0px 50px;
+    // height: calc(100vh - 64);
+  }
+  @media screen and (min-width: 768px) {   //small
+    // padding-top:64px;
+    padding: 64px 50px 0px 50px;
+    // height: calc(100vh - 64px);
+  }
+  @media screen and (min-width: 1200px) {   //medium
+    // padding-top:64px;
+    padding: 64px 150 0px 150px;
+    // height: calc(100vh - 64px);
+  }
 }
 
-.chat-input {
-  position: fixed;
-  bottom: 25px;
-
+.chat-message-list {
+  overflow: auto;
+  top:500px;
+  flex-grow: 1;
 }
 
 .messages {
-   list-style-type: none; 
-   margin: 0; 
-   padding: 0; 
- }
+  list-style-type: none; 
+  margin: 0; 
+  padding: 0; 
+}
 
 .messages li { 
-  padding: 5px 10px; 
+ padding: 5px 10px; 
 }
 
 .messages li:nth-child(odd) { 
-  background: #eee; 
+ background: #eee; 
 }
 
-.chat-list {
-    overflow: auto;
-    top:500px;
-
+.chat-input {
+  padding: 0 16px;
+  // position: fixed;
+  // bottom: 25px;
 }
+
+// /********************
+//   Sign In Section
+// *********************/
+// .signInSection {
+//   position: relative;
+//   top:64px;
+//   width:100%;
+//   z-index:5;
+// }

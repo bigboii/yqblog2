@@ -6,10 +6,14 @@ import { User } from './model/user';
 import { Message } from './model/message';
 import {ActivatedRoute, Router, RouterEvent, NavigationStart} from '@angular/router';
 
-import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
+import { SignInDialog } from './chat-dialog.component';
 
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { MatDialog } from '@angular/material';
+import {FormBuilder, FormGroup} from '@angular/forms';
+
 import { filter } from 'rxjs/operators';
+
+
 
 /*
 
@@ -94,10 +98,6 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit() {
-
-  }
-
   openSignInDialog() {
     console.log("opening SignInDialog");
     this.dialogRef = this.dialog.open(SignInDialog, {
@@ -121,7 +121,7 @@ export class ChatComponent implements OnInit {
         //Sign in
         // this.user = new User(this.userName);
         this.user = new User();
-        this.user.name = this.userName;
+        this.user.name = result.username;
         this.showSignInPage = false;
         this.sendNotification('',Action.JOINED);
       }
@@ -178,7 +178,7 @@ export class ChatComponent implements OnInit {
     
     this.socketService.send({
       from: this.user.name,
-      content: message,
+      content: this.user.name + " : " + message,
       action: null
     });
 
@@ -193,9 +193,11 @@ export class ChatComponent implements OnInit {
     console.log(this.userName);
 
     if (action === Action.JOINED) {
+      console.log("this.user.name: " + this.user.name);
+      console.dir(this.user.name);
       message = {
         from: this.user.name,
-        content: ' has joined the chat',
+        content: this.user.name + ' has joined the chat',
         action: action
       }
     } else if (action === Action.RENAME) {
@@ -210,41 +212,6 @@ export class ChatComponent implements OnInit {
     }
 
     this.socketService.send(message);
-  }
-
-}
-
-
-/*
-  Dialog
-*/
-export interface DialogData {
-  userName: string;
-}
-
-@Component({
-  selector: 'chat-dialog',
-  templateUrl: 'chat-dialog.component.html',
-})
-export class SignInDialog {
-
-  public userNameForm = new FormControl('', [Validators.required]);
-
-  constructor(
-    public dialogRef: MatDialogRef<SignInDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-  onSubmit(dialogType: string): void {
-    console.log("userNameForm");
-    console.dir(this.userNameForm);
-    this.dialogRef.close({
-      username: this.userNameForm.value,
-      dialogType: "new"
-    });
   }
 
 }

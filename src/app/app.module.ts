@@ -29,4 +29,6 @@ import { MainRouterModule } from './modules/main/main-router.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+
+}

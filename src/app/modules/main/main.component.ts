@@ -32,7 +32,7 @@ export class MainComponent implements OnInit {
       this.contentHeight = document.documentElement.clientHeight - 56;
     }
 
-    this.themeService.currentLogo.subscribe(logo => this.logoPath = logo);    
+    this.themeService.currentLogo.subscribe(logo => this.logoPath = logo);
   }
 
   /*

@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 
 import { revealParallaxAnimation } from './shared/animations';
 
+import {OverlayContainer} from '@angular/cdk/overlay';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -52,7 +54,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
               changeDetectorRef: ChangeDetectorRef,
               media: MediaMatcher,
               @Inject(DOCUMENT) private document: Document,
-              private router: Router) {
+              private router: Router,
+              private overlayContainer: OverlayContainer) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -60,7 +63,18 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     //Register Theme
-    this.themeService.currentTheme.subscribe(theme => { this.componentCssClass = theme; console.log("change detected: " + theme);});
+    this.themeService.currentTheme.subscribe(theme => { 
+        // console.log("change detected: " + theme);
+        if(theme == "light-theme") {
+          this.overlayContainer.getContainerElement().classList.remove("dark-theme");
+        }
+        else if(theme == "dark-theme") {
+          this.overlayContainer.getContainerElement().classList.remove("dark-theme");
+        } 
+        this.overlayContainer.getContainerElement().classList.add(theme);   //apply theme for dialogs
+        this.componentCssClass = theme; 
+      }
+    );
     this.themeService.currentLogo.subscribe(logo => this.logoPath = logo);    
 
 

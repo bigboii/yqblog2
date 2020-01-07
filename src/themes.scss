@@ -8,6 +8,9 @@
 @include mat-core($custom-typography);
 //https://github.com/angular/components/blob/master/src/lib/core/theming/_palette.scss
 
+//https://stackoverflow.com/questions/44163721/modal-dialog-is-opening-at-the-bottom-of-the-screen-and-not-behaving-properly
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";  //Importing this resolve mat-dialog bug where it doesn't float
+
 @mixin set-theme($theme) // define a new @mixin that will be invoked each time the theme is changed
 {
   @include set-theme-header($theme);   // invoke the mixin we defined for component_1

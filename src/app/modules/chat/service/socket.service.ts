@@ -22,7 +22,7 @@ export class SocketService {
 
   public disconnectSocket(): void {
     this.socket.close();
-    console.log("Disconnecting Socket from Client Side");
+    console.log("[Client] Disconnecting from chat server");
   }
 
   public send(message: Message): void {
