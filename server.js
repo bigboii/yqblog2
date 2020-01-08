@@ -53,11 +53,15 @@ io.on('connection', function(socket)
 
     console.log("broadcasting");           //let chatroom know there was new message
     //io.emit("something happened");         //for all
+
+    let date = new Date();
+
     io.emit("message",     //for all except me      
     {
       from: data.from,
       content: data.content,
-      action: Action.BROADCAST
+      action: Action.BROADCAST,
+      time: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() 
     });
     console.log("broadcast complete");
   });
@@ -122,7 +126,7 @@ io.on('connection', function(socket)
     io.emit("broadcast_user_disconnect", nameOfDc);
   });
   
-  socket.emit('message', "Welcome to Chat");
+  // socket.emit('message', "Welcome to Chat");
 
 });
 

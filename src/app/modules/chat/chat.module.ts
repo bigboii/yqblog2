@@ -4,6 +4,7 @@ import { ChatComponent } from './chat.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../../shared/angular-material.module';
 import { SignInDialog } from './chat-dialog.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SocketService } from './service/socket.service';
 
@@ -13,6 +14,7 @@ import { SocketService } from './service/socket.service';
     FormsModule,
     ReactiveFormsModule,
     AngularMaterialModule,
+    FlexLayoutModule,
   ],
   declarations: [
     ChatComponent, 

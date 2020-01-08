@@ -4,13 +4,10 @@ import { Action } from './model/action';
 import { Event } from './model/event';
 import { User } from './model/user';
 import { Message } from './model/message';
-import {ActivatedRoute, Router, RouterEvent, NavigationStart} from '@angular/router';
-
+import { ActivatedRoute, Router, RouterEvent, NavigationStart } from '@angular/router';
 import { SignInDialog } from './chat-dialog.component';
-
 import { MatDialog } from '@angular/material';
-import {FormBuilder, FormGroup} from '@angular/forms';
-
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { filter } from 'rxjs/operators';
 
 
@@ -178,8 +175,9 @@ export class ChatComponent implements OnInit {
     
     this.socketService.send({
       from: this.user.name,
-      content: this.user.name + " : " + message,
-      action: null
+      content: message,
+      action: null,
+      time:null
     });
 
     this.messageContent = null;
@@ -198,7 +196,8 @@ export class ChatComponent implements OnInit {
       message = {
         from: this.user.name,
         content: this.user.name + ' has joined the chat',
-        action: action
+        action: action,
+        time:null
       }
     } else if (action === Action.RENAME) {
       message = {
@@ -207,7 +206,8 @@ export class ChatComponent implements OnInit {
         content: {
           username: this.user.name,
           previousUsername: params.previousUsername
-        }
+        },
+        time:null
       };
     }
 

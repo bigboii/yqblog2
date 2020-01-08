@@ -6,6 +6,7 @@ export class Message {
   from: User;
   content: any;
   action: Action;
+  time: any;
 
 /*
   constructor(private from: User, private content: string) 
