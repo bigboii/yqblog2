@@ -1,12 +1,12 @@
 import { User } from './user';
 import { Action } from './action';
+import { Message } from './message';
 
-export class Message {
+export class Interaction {
 
-  from: string;
-  content: any;
-  action: Action;
-  time: string;
+  user: User;
+  timestamp: any;
+  messages: Message[];
 
 /*
   constructor(private from: User, private content: string) 

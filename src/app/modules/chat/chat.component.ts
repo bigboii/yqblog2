@@ -8,7 +8,8 @@ import { ActivatedRoute, Router, RouterEvent, NavigationStart } from '@angular/r
 import { SignInDialog } from './chat-dialog.component';
 import { MatDialog } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { filter } from 'rxjs/operators';
+import { filter, timestamp } from 'rxjs/operators';
+import { from } from 'rxjs';
 
 
 
@@ -31,10 +32,14 @@ import { filter } from 'rxjs/operators';
 })
 export class ChatComponent implements OnInit {
   private action = Action;
-  private user: User;
+  // private user: User;
   private messages: Message[] = [];
+  private interactions = [];
   private messageContent: string;
   private ioConnection: any;
+
+  private lastUserTyped: string;
+  private interactionCount: number = -1;
 
   private userNameForm: FormGroup;
   private showSignInPage: boolean = true;             //boolean page displaying sign in page
@@ -78,7 +83,7 @@ export class ChatComponent implements OnInit {
     //     this.socketService.disconnectSocket();
     //   }
     // }); 
-  
+
     // listen for router's changes and close the dialog and disconnect socket
     this.routerSubscription = this.router.events
       .pipe(
@@ -111,14 +116,13 @@ export class ChatComponent implements OnInit {
 
         this.initIoConnection();
         console.log('The dialog was closed');
-        this.userName = result;
+        // this.userName = result;
         // console.log("signing in with result: " + result.username);
         console.dir(result)
         // console.log("signing in as " + this.userName);
         //Sign in
         // this.user = new User(this.userName);
-        this.user = new User();
-        this.user.name = result.username;
+        this.userName = result.username;
         this.showSignInPage = false;
         this.sendNotification('',Action.JOINED);
       }
@@ -133,7 +137,7 @@ export class ChatComponent implements OnInit {
     Change User Name
   */
   private changeUserName(newUserName: string): void {
-    this.user.name = newUserName;
+    this.userName = newUserName;
     this.sendNotification({previousUserName: newUserName}, Action.RENAME);
   }
 
@@ -145,8 +149,37 @@ export class ChatComponent implements OnInit {
 
     this.ioConnection = this.socketService.onMessage()
       .subscribe((message: Message) => {
-        this.messages.push(message);
-                console.log("[onMessage] messages: " + message);
+        // this.messages.push(message);
+        console.log("message: ");
+        console.dir(message);
+
+        console.log("lastUserTyped vs message.from.name >: " + this.lastUserTyped+ ": " +message.from)
+        if(this.lastUserTyped == undefined || this.lastUserTyped != message.from) {
+          this.interactionCount += 1;
+          console.log("Starting new interaction");
+          this.interactions.push ({
+            user: message.from,
+            timestamp: message.time,
+            messages: []
+          });
+
+          console.log("interactionCount: " + this.interactionCount );
+          console.log("interactions: ");
+          console.dir(this.interactions);
+          console.dir(this.interactions[this.interactionCount]);
+
+          this.interactions[this.interactionCount].messages.push(message.content)
+        }
+        else {
+          console.log("same interaction: " + this.interactionCount);
+          console.dir(this.interactions);
+          console.dir(this.interactions[this.interactionCount]);
+          this.interactions[this.interactionCount].messages.push(message.content)
+        }
+
+        //Keep track of last person typed
+        this.lastUserTyped = message.from;
+        console.log("[onMessage] lastUserTyped was : " + this.lastUserTyped);
       });
 
     //subscribe to socketIO's default CONNECT event
@@ -174,7 +207,7 @@ export class ChatComponent implements OnInit {
     }
     
     this.socketService.send({
-      from: this.user.name,
+      from: this.userName,
       content: message,
       action: null,
       time:null
@@ -186,25 +219,25 @@ export class ChatComponent implements OnInit {
   public sendNotification(params: any, action: Action): void {
     let message: Message;
 
-    console.log("userName is : " + this.user );
-    console.dir(this.user);
+    console.log("userName is : " + this.userName );
+    // console.dir(this.user);
     console.log(this.userName);
 
     if (action === Action.JOINED) {
-      console.log("this.user.name: " + this.user.name);
-      console.dir(this.user.name);
+      console.log("this.user.name: " + this.userName);
+      console.dir(this.userName);
       message = {
-        from: this.user.name,
-        content: this.user.name + ' has joined the chat',
+        from: this.userName,
+        content: this.userName + ' has joined the chat',
         action: action,
         time:null
       }
     } else if (action === Action.RENAME) {
       message = {
-        from: this.user,
+        from: this.userName,
         action: action,
         content: {
-          username: this.user.name,
+          username: this.userName,
           previousUsername: params.previousUsername
         },
         time:null

@@ -26,8 +26,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   private appTheme: string;
   public logoPath: string;
 
-
-  @ViewChild('drawer', { static: true }) //angular 8: true means toggle works(?), static means no toggling
+  @ViewChild('drawer', { static: true }) //angular 8: true means allow toggling
   public sidenav: MatSidenav;
 
   public contentHeight: number;
@@ -46,7 +45,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     {"id":"Home", "iconName":"home", "route":"home"},
     {"id":"About", "iconName":"account_circle", "route":"about"},
     {"id":"Projects", "iconName":"code", "route":"projects"},
-    {"id":"Chat", "iconName":"desktop_windows", "route":"chat"}  ]
+    {"id":"Chat", "iconName":"desktop_windows", "route":"chat"},
+    {"id":"ML Classifier", "iconName":"desktop_windows", "route":"ml"}]
 
   constructor(public themeService : ThemeService,
               private toggleService: ToggleService,

@@ -1,15 +1,19 @@
 <div class="chat-container" *ngIf="userName">
-  <mat-list role="list" class="chat-message-list">
-    <mat-list-item role="listitem" *ngFor="let message of messages">
-      <mat-icon mat-list-icon> person </mat-icon>
-      <div mat-line> 
-        <h3> {{message.from}}  </h3>
-        <p> {{message.time}} </p>
-      </div>
-      <p mat-line>
-        <span> {{message.content}} </span>
-      </p>
-    </mat-list-item>
+  <mat-list class="chat-message-list">
+    <ng-container *ngFor="let interaction of interactions" style="display:inline;">
+      <mat-list-item>
+        <mat-icon mat-list-icon> person </mat-icon>
+        <div mat-line> 
+          <h3> {{interaction.user}}  </h3>
+          <p> {{interaction.timestamp}} </p>
+        </div>
+      </mat-list-item>
+      <mat-list-item *ngFor="let message of interaction.messages">
+          <!-- <h3> {{interaction.user}}  </h3>
+          <p> {{interaction.timestamp}} </p> -->
+          {{message}}
+      </mat-list-item>
+    </ng-container>
   </mat-list>
 
   <div class="chat-input" fxLayout="row">
