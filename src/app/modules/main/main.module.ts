@@ -24,6 +24,7 @@ import { MainRouterModule } from './main-router.module';
 import { MainComponent } from './main.component'
 
 import { ChatModule } from '../chat/chat.module';
+import { MLClientModule} from '../ml-client/ml-client.module'
 import { ParallaxHomeComponent } from './pages/home/parallax/parallax-home.component'
 
 import { HeaderComponent } from '../../core/header/header.component';
@@ -56,6 +57,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
     FlexLayoutModule,
     AngularMaterialModule,
     ChatModule,
+    MLClientModule,
     DragDropModule
   ],
   exports: [

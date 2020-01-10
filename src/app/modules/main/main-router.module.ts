@@ -7,6 +7,7 @@ import { ProjectsComponent } from './pages/projects/projects.component';
 import { ChatComponent } from '../chat/chat.component';
 
 import { ParallaxHomeComponent } from './pages/home/parallax/parallax-home.component'
+import { MLClientComponent } from '../ml-client/ml-client.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent, data:{page: "about"} },
   { path: 'projects', component: ProjectsComponent, data:{page: "projects"}},
   { path: 'chat', component: ChatComponent, data:{page: "chat"}},
+  { path: 'ml', component: MLClientComponent, data:{page:"ml"}},
   { path: '**', redirectTo: '/home' }
 ];
 
