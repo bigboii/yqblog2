@@ -80,7 +80,7 @@
   
           <p class="mat-body-1"> </p>
 
-          <div class="cardList" fxLayout="row">
+          <div class="cardList" fxLayout="row" fxLayout.xs="column">
             <ng-container *ngFor="let _ of projectTiles">
               <div class="cardListItem">              
                 <mat-card class="cardTile">
@@ -91,7 +91,7 @@
                     <p fxFlex>
                       {{_.description}}
                     </p>
-                    <ul fxFlex> 
+                    <ul fxFlex>
                       <li class="mat-caption" *ngFor="let tech of _.technologies"> {{tech}} </li>
                     </ul>
                     <div fxLayout="row" fxLayoutAlign="space-between">

@@ -1,5 +1,11 @@
 @import '~@angular/material/_theming';
 
+/**
+*  Stores static theme variables. It can be used 2 ways
+*   1. Imported by theme.scss for global use
+*   2. If a component needs reference to a specific theme data, it can import this file.
+*/
+
 //Custom Font
 
 //Typography
@@ -29,11 +35,21 @@
 //https://stackoverflow.com/questions/28363186/inline-elements-and-line-height
 //https://material.io/design/typography/#type-scale
 //https://material.angular.io/guide/typography#customization
-//https://medium.com/tradecraft-traction/harmonious-typography-and-grids-10da490a17d
-//use multiples of 12px
-//line height should be 1.5 of font size
+/*
+  General Design Guidelines:
 
-//correct way to import;; https://medium.com/@aditya_tyagi/import-fonts-in-an-angular-app-the-easy-right-way-ae9e99cab551
+  General:
+    - use increments of 8px for everything; width, height, margin, padding
+      +https://medium.com/tradecraft-traction/harmonious-typography-and-grids-10da490a17d
+
+  Typography:
+    - line height should be 1.5 of font size
+      + e.g.1  If font size is 16px, lineheight = 16px * 1.5 = 24px
+      + e.g.2  If font size is 15px, linehight = 15px * 1.5 =~ 22 px 
+              (in this scenario; round up or down to multiple of 4px; could be either 24px or 20px)
+    - use multiples of 12px
+    e
+*/
 
 //https://stackoverflow.com/questions/49622784/how-include-fonts-in-project-on-the-angular
 

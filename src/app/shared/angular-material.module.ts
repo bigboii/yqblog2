@@ -40,6 +40,10 @@ import {
   MatFormFieldModule
 } from '@angular/material';
 
+/**
+ * Module which exports all material modules so that app module can import it easily
+ */
+
 @NgModule({
 exports: [
   CommonModule,

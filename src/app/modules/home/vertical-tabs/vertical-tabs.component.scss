@@ -106,6 +106,10 @@ $config: mat-typography-config();
 // $button-line-height: map-line-height($my-button);
   }
 
+  .tabs-container {
+    width:100%;
+  }
+
 
 
 
@@ -225,6 +229,7 @@ $config: mat-typography-config();
 
 
 
+
 /*
  * Horizontal Tabs
  */
@@ -236,6 +241,8 @@ $config: mat-typography-config();
   @media screen and (min-width: 600px) {   //medium
     display:none;
   }
+
+  
 }
 
 .mat-tab-body {

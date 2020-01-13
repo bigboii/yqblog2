@@ -1,6 +1,10 @@
 import { User } from './user';
 import { Action } from './action';
 
+/**
+ * Message contract between client and chat server
+ */
+
 export class Message {
 
   from: string;

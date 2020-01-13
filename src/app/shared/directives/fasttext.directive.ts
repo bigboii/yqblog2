@@ -1,4 +1,4 @@
-import { Directive, OnInit, ElementRef, Input, EventEmitter, AfterViewInit, Inject, OnDestroy} from '@angular/core';
+import { Directive, ElementRef, Input, EventEmitter, AfterViewInit, Inject, OnDestroy} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ContentScrollListenerService } from '../services/contentscrolllistener.service';
 
@@ -8,7 +8,7 @@ declare var window:any;
 @Directive({
   selector: '[fasttext]'
 })
-export class FasttextDirective implements OnInit, AfterViewInit, OnDestroy  {
+export class FastTextDirective implements AfterViewInit, OnDestroy  {
 
   private element:any;    
 
@@ -29,13 +29,9 @@ export class FasttextDirective implements OnInit, AfterViewInit, OnDestroy  {
     this.element = el.nativeElement;
   }
 
-  ngOnInit() {
-    // window.addEventListener('scroll', this.onContentScroll.bind(this));
-  } 
-
   ngAfterViewInit() {
     // console.log("[FASTTEXT] onInit");
-    console.log("[22222222222222222222]");
+    // console.log("[22222222222222222222]");
     var t = this;                              //reference to current element
     this._speed = 1;                            //translate speed
 
@@ -59,8 +55,6 @@ export class FasttextDirective implements OnInit, AfterViewInit, OnDestroy  {
       this.contentScrollService.startListeningToScrolling();
       this.scrollSubscription = this.contentScrollService.getMulticast("fasttext").subscribe(scrollEvent => { console.log("event fired"); this.onContentScroll(scrollEvent) });
 
-      //Solution below via Solution
-      // this.scrollSubscription = this.contentScrollService.getScrollEventSubject().subscribe(scrollEvent => { console.log("event fired"); this.onContentScroll(scrollEvent) });
       //TODO: add "touchmove" listener for mobile devices
     }
   }
@@ -71,7 +65,7 @@ export class FasttextDirective implements OnInit, AfterViewInit, OnDestroy  {
   }
 
   onContentScroll(event) {
-    console.log("[fastTextCalled]")
+    // console.log("[fastTextCalled]")
     // let scrollTop =  event['sT'];
     // let clientHeight = event['cH'];
     let scrollTop = event.target.scrollTop;
@@ -79,7 +73,7 @@ export class FasttextDirective implements OnInit, AfterViewInit, OnDestroy  {
 
     var speed = -(scrollTop / this._speed );
     if(this.isMobile){
-      speed = speed * .10
+      speed = speed * .05;
     }
     if(speed == 0){
       this.fastTextElement.style.backgroundPosition = '0% '+ 0 + '%';

@@ -4,12 +4,11 @@ import { Action } from './model/action';
 import { Event } from './model/event';
 import { User } from './model/user';
 import { Message } from './model/message';
-import { ActivatedRoute, Router, RouterEvent, NavigationStart } from '@angular/router';
+import { Router, RouterEvent, NavigationStart } from '@angular/router';
 import { SignInDialog } from './chat-dialog.component';
 import { MatDialog } from '@angular/material';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { filter, timestamp } from 'rxjs/operators';
-import { from } from 'rxjs';
 
 
 
@@ -60,13 +59,8 @@ export class ChatComponent implements OnInit {
   //@ViewChildren(MatListItem, { read: ElementRef }) matListItems: QueryList<MatListItem>;
 
   constructor(private socketService: SocketService, 
-              private formBuilder: FormBuilder,
               public dialog: MatDialog,
-              private router: Router,
-              private activatedRoute: ActivatedRoute) { 
-    // this.signInForm=formBuilder.group({
-    //   "userNameValidation": new FormControl('', [Validators.required])
-    // });
+              private router: Router) { 
   }
 
   ngOnInit() {
@@ -82,7 +76,7 @@ export class ChatComponent implements OnInit {
     //     console.log("not in chat page: " + url[0].path);
     //     this.socketService.disconnectSocket();
     //   }
-    // }); 
+    // });
 
     // listen for router's changes and close the dialog and disconnect socket
     this.routerSubscription = this.router.events
@@ -103,25 +97,17 @@ export class ChatComponent implements OnInit {
   openSignInDialog() {
     console.log("opening SignInDialog");
     this.dialogRef = this.dialog.open(SignInDialog, {
-      // width: '400px',
-      // height: '600px',
       hasBackdrop: false,
       disableClose: true,            //disable closing when clicking outside of dialog
       data: {userName: this.userName}
     });
-
 
     this.dialogRef.afterClosed().subscribe(result => {
       if(result.dialogType == 'new') {
 
         this.initIoConnection();
         console.log('The dialog was closed');
-        // this.userName = result;
-        // console.log("signing in with result: " + result.username);
         console.dir(result)
-        // console.log("signing in as " + this.userName);
-        //Sign in
-        // this.user = new User(this.userName);
         this.userName = result.username;
         this.showSignInPage = false;
         this.sendNotification('',Action.JOINED);
@@ -218,10 +204,6 @@ export class ChatComponent implements OnInit {
 
   public sendNotification(params: any, action: Action): void {
     let message: Message;
-
-    console.log("userName is : " + this.userName );
-    // console.dir(this.user);
-    console.log(this.userName);
 
     if (action === Action.JOINED) {
       console.log("this.user.name: " + this.userName);

@@ -8,11 +8,12 @@
           <p> {{interaction.timestamp}} </p>
         </div>
       </mat-list-item>
-      <mat-list-item *ngFor="let message of interaction.messages">
-          <!-- <h3> {{interaction.user}}  </h3>
-          <p> {{interaction.timestamp}} </p> -->
-          {{message}}
-      </mat-list-item>
+      <mat-list dense>
+        <mat-list-item class="my-messages" *ngFor="let message of interaction.messages">
+          <span class="mat-caption">{{message}}</span>
+          <!-- <textarea>{{message}} </textarea> -->
+        </mat-list-item>
+      </mat-list>
     </ng-container>
   </mat-list>
 

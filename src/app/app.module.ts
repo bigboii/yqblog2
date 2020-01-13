@@ -1,31 +1,45 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { AppComponent } from './app.component';
 import { AngularMaterialModule } from './shared/angular-material.module'
-import { MainModule } from './modules/main/main.module'
-
 import { HeaderComponent } from './core/header/header.component';
 // import { SidenavComponent } from './core/sidenav/sidenav.component';
-import { MainComponent } from './modules/main/main.component';
-import { MainRouterModule } from './modules/main/main-router.module';
-//import { FooterComponent } from './core/footer/footer.component';  //needed to inject scrolling inside sidenav-content
+import { AppRouterModule } from './app-router.module';
 
-//import { MaterialTabsModule } from '../node_modules/angular-vertical-tabs/projects/vertical-tabs/src/lib/vertical-tabs.module';
+import { CommonModule } from '@angular/common';
+import { OverlayModule} from '@angular/cdk/overlay';
+import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { HomeModule } from './modules/home/home.module'
+import { FooterComponent } from './core/footer/footer.component';  //needed to inject scrolling inside sidenav-content
+import { DragDropModule } from '@angular/cdk/drag-drop'
+import { ChatModule } from './modules/chat/chat.module';
+import { MLClientModule} from './modules/ml-client/ml-client.module'
+
+
 
 @NgModule({
-  declarations: [
-    AppComponent
-    // SidenavComponent,
-//    FooterComponent
+  declarations: [                  //define all components, directives, and pipes used here
+    AppComponent,
+    HeaderComponent,
+    FooterComponent
   ],
-  imports: [
+  imports: [                       //define list of submodules used here
     BrowserAnimationsModule,
     BrowserModule,
-    MainRouterModule,
+    CommonModule,
+    AppRouterModule,
     AngularMaterialModule,
-    MainModule
+    HomeModule,
+    ChatModule,
+    MLClientModule,
+    DragDropModule,
+    FlexLayoutModule,
+    ScrollDispatchModule,
+    OverlayModule
+
   ],
   bootstrap: [AppComponent]
 })

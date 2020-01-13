@@ -45,7 +45,6 @@ app-header {
 }
 
 /* SIDENAV*/
-//Q: why sticky sidenavs?
 app-sidenav {
   position: sticky!important; 
   top:0!important; 
@@ -55,49 +54,7 @@ app-sidenav {
   flex-direction: column;
 }
 
-// mat-sidenav-container {
-//   top: 64px;  //make space for sticky header; default 0
-// }
-
-
 $some-other-color: mat-palette($mat-red, 700, 100, 800);
-
-/* --------------------------------------------*/
-/* Content underneath parallax */
-/* --------------------------------------------*/
-/*
-.left-column {
-  flex:25%;
-}
-
-.content-column
-{
-  display:flex;
-  flex-direction:column;
-  height:100%;
-}
-
-.right-column {
-  flex:25%;
-}
-*/
-
-
-/* --------------------------------------------*/
-/* ------------ Sidenav Layout ----------------*/
-/* --------------------------------------------*/
-
-//SCSS for sidenav content scrollbar
-// mat-sidenav-container {
-//   position: absolute;    //Use this to make router outlet contain scrollbar instead of window
-//   top: 0;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   background-color: #EEEEEE;
-// }
-
-
 
 //SCSS for window scrollbar
 mat-sidenav-container {
@@ -152,3 +109,25 @@ app-main {
   margin-right:8px;
 }
 
+/**
+  Router CSS
+*/
+router-outlet.router-flex + * {   //TODO: This solves my issue, but causes revealonscroll to not WORK
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  overflow:hidden;
+}
+
+::ng-deep .outlet-parallax~* {
+  //position: absolute;        //uncomment to add transition animation
+  width:100%;
+  height:800px;
+  top:0;
+}
+::ng-deep router-outlet~* {
+  //position: absolute;        //uncomment to add transition animation
+  //width:960px;
+  width:100%;
+  top:0;
+}

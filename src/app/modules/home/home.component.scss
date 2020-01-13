@@ -171,6 +171,10 @@ $toolbarHeightSmall:56px;
   .parallax-color {
     background-color: mat-color($primary, darker);
     color:mat-color($primary, 50);
+
+    @media screen and (max-width: 600px) {   //ultra small, TODO: refactor parallax
+      padding: 0px calc(#{$eight-pt} * 6);
+    }
   }
 
   .section-parallax {
@@ -351,12 +355,6 @@ app-vertical-tabs {
   }
 }
 
-// section .about {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: flex-start;
-// }
-
 .about-container {
   // flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
   display: flex;
@@ -474,7 +472,24 @@ app-vertical-tabs {
 }
 
 .cardListItem {
-  flex: 0 1 calc(33.3% - 16px);
+
+  @media screen and (max-width: 600px) {   //extra-small
+    flex: 0 1 calc(100% - 16px);  //TODO: need to make this responsive
+  }
+  @media screen and (min-width: 600px) and (max-width: 960px) { //small
+    flex: 0 1 calc(50% - 16px);  //TODO: need to make this responsive
+  }
+  @media screen and (min-width: 960px) and (max-width: 1200px) {   //medium
+    flex: 0 1 calc(50% - 16px);  //TODO: need to make this responsive
+  }
+  @media screen and (min-width: 1200px) and (max-width:1920px) {   //large
+    flex: 0 1 calc(33.3% - 16px);  //TODO: need to make this responsive
+  }
+  @media screen and (min-width: 1920px) {   //extra-large 
+    flex: 0 1 calc(33.3% - 16px);  //TODO: need to make this responsive
+  }
+
+
 }
 
 .cardListItem > .mat-card {

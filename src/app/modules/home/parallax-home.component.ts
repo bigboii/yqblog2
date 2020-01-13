@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
-import { revealParallaxAnimation, slideUpFadeIn } from '../../../../../shared/animations';
-import { ThemeService } from '../../../../../shared/services/theme.service';
+import { revealParallaxAnimation, slideUpFadeIn } from '../../shared/animations';
+import { ThemeService } from '../../shared/services/theme.service';
 
 @Component({
   selector: 'parallax-home',

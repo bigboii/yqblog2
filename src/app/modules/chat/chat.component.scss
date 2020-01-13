@@ -86,6 +86,13 @@
   display:inline;
 }
 
+.my-messages {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 1000px;
+}
+
 // .mat-line > p {
 //   display:inline;
 // }
