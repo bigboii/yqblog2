@@ -14,7 +14,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { HomeModule } from './modules/home/home.module'
 import { FooterComponent } from './core/footer/footer.component';  //needed to inject scrolling inside sidenav-content
-import { DragDropModule } from '@angular/cdk/drag-drop'
+// import { DragDropModule } from '@angular/cdk/drag-drop'
 import { ChatModule } from './modules/chat/chat.module';
 import { MLClientModule} from './modules/ml-client/ml-client.module'
 
@@ -35,7 +35,7 @@ import { MLClientModule} from './modules/ml-client/ml-client.module'
     HomeModule,
     ChatModule,
     MLClientModule,
-    DragDropModule,
+    // DragDropModule,
     FlexLayoutModule,
     ScrollDispatchModule,
     OverlayModule

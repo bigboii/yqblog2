@@ -1,3 +1,93 @@
 .ml-container {
     margin-top:64px;
+    width:100%;
+    height: 100%;
+
+    @media screen and (max-width: 600px) {   //extra-small
+        padding: 56px 24px 0px 24px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 960px) { //small
+        padding: 64px 50px 0px 50px;
+    }
+    @media screen and (min-width: 960px) and (max-width: 1200px) {   //medium
+        padding: 64px 100px 0px 100px;
+    }
+    @media screen and (min-width: 1200px) and (max-width:1920px) {   //large
+        padding: 64px 150px 0px 150px;
+    }
+    @media screen and (min-width: 1920px) {   //extra-large 
+        padding: 64px 250px 0px 250px;
+    }
+}
+
+/*
+    CSS for drag drop
+*/
+
+.uploadFileContainer {
+    background-image: url("../../../assets/material-design-icons-3.0.1//file/ios/ic_file_upload_white_48pt.imageset/ic_file_upload_white_48pt.png");
+    background-repeat: no-repeat;
+    background-size:100px;
+    background-position:center;
+    height:300px;
+    width:100%;
+    // min-width: 300px;    //for mobile
+    margin: 24px auto;
+    border: 2px dashed #1C8ADB;
+    border-radius:16px;
+}
+
+.uploadFileContainer:hover {
+    cursor: pointer;
+    background-color: #9ecbec !important;
+    opacity: 0.8;
+
+}
+
+.files-list {
+    display: flex;
+    justify-content: space-between;
+    width:80%;
+    margin:8px auto;
+    // background: #ffffff;
+    border: 1px dashed;
+    border-radius: 16px;
+    padding: 5px;
+    color: #1c8adb;
+}
+
+.files-list .delete-file {
+    background:transparent;
+    border:non;
+    cursor: pointer;
+}
+
+.files-list .delete-file img {
+    width:32px;
+}
+
+.formContainer {
+    padding: 8px;
+}
+
+.formItem {   //no need to set height here when formItem is flex item
+    padding: 8px;
+    border: 2px solid #1C8ADB;
+    border-radius: 8px;
+
+    span {
+        margin: auto 0 auto 0;   //vertically align text
+    }
+
+    textArea {
+        height:300px;
+    }
+}
+
+.trainingContainer {
+    padding:8px;
+}
+
+.dataContainer {
+    padding:8px;
 }

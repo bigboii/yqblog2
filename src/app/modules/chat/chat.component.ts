@@ -2,7 +2,6 @@ import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
 import { SocketService } from './service/socket.service';
 import { Action } from './model/action';
 import { Event } from './model/event';
-import { User } from './model/user';
 import { Message } from './model/message';
 import { Router, RouterEvent, NavigationStart } from '@angular/router';
 import { SignInDialog } from './chat-dialog.component';
@@ -10,18 +9,13 @@ import { MatDialog } from '@angular/material';
 import { FormGroup } from '@angular/forms';
 import { filter, timestamp } from 'rxjs/operators';
 
-
-
 /*
-
   FormControl:  it tracks the value and validity status of an angular form control. It matches to a HTML form control like an input.
   FormGroup: it tracks the value and validity state of a FormBuilder instance group. It aggregates the values of each child FormControl into one object, using the name of each form control as the key. It calculates its status by reducing the statuses of its children. If one of the controls inside a group is invalid, the entire group becomes invalid.
   FormArray: is a variation of FormGroup. The main difference is that its data gets serialized as an array, as opposed to being serialized as an object in case of FormGroup. This might be especially useful when you don’t know how many controls will be present within the group, like in dynamic forms.
   FormBuilder: is a helper class that creates FormGroup, FormControl and FormArray instances for us. It basically reduces the repetition and clutter by handling details of form control creation for you.
 
-
   https://angular-templates.io/tutorials/about/angular-forms-and-validations
-
 */
 
 @Component({

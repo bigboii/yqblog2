@@ -1,3 +1,71 @@
-<div class="ml-container">
-<p>machinelearning works!</p>
+<div class="ml-container" fxFlex="1 1 initial" fxLayout="column">
+
+    <h4> Select a classifier </h4>
+    <mat-form-field>
+        <mat-select> 
+            <mat-label> Classifier </mat-label>
+            <mat-option *ngFor="let classifer of classifiers" [value]="classifier">
+                <span> {{classifier}} </span>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <!-- File Drop Zone (Original, use this as reference) -->
+    <h4> Please input a set of training and data sets or drag and drop </h4>
+    <!-- <div class="uploadFileContainer" (click)="fileInput.click()" dragDrop (onFileDropped)="uploadFile($event)">
+        <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)">
+    </div> -->
+    <!-- <div class="files-list" *ngFor="let file of files; let i=index">
+        <p> {{ file }} </p>
+        <button class="delete-file" (click)="deleteAttachment(i)">
+            <img src= "../../../assets/material-design-icons-3.0.1/content/ios/ic_delete_sweep_white_48pt.imageset/ic_delete_sweep_white_48pt.png">
+        </button>
+    </div> -->
+
+    <div fxLayout="row" fxLayout.xs="column" class="formContainer">
+        <div class="trainingContainer" fxLayout="column" fxFlex>
+            <div class="files-list">
+                <span> {{ trainingLabelName }} </span>
+                <button class="delete-file" (click)="deleteTrainingLabel()">
+                    <img src= "../../../assets/material-design-icons-3.0.1/content/ios/ic_delete_sweep_white_48pt.imageset/ic_delete_sweep_white_48pt.png">
+                </button>
+            </div>
+            <mat-form-field fxFlex class="formItem" dragDrop (onFileDropped)="uploadFile($event)">
+                <!-- <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)"> -->
+                <mat-label> Training Labels </mat-label>
+                <textarea matInput type="text" [formControl]="trainingLabelInputForm" (change)="uploadFile($event.target.files)" required> </textarea>
+                <mat-error>This field is required</mat-error>
+                <mat-hint>Please enter a set of training labels</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="dataContainer" fxLayout="column" fxFlex>
+            <div class="files-list">
+                <span> {{ dataSetName }} </span>
+                <button class="delete-file" (click)="deleteDataSet()">
+                    <img src= "../../../assets/material-design-icons-3.0.1/content/ios/ic_delete_sweep_white_48pt.imageset/ic_delete_sweep_white_48pt.png">
+                </button>
+            </div>
+            <mat-form-field fxFlex class="formItem" dragDrop (onFileDropped)="uploadFile($event)">
+                <!-- <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)"> -->
+                <mat-label> Data Sets </mat-label>
+                <textarea matInput type="text" [formControl]="dataSetInputForm" (change)="uploadFile($event.target.files)" required> </textarea>
+                <mat-error>This field is required</mat-error>
+                <mat-hint>Please enter data set</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+
+
+    <!-- Console Log for ml progress -->
+    <h4> Output </h4>
+    <div class="outputContainer">
+        <p> w : {{w}}</p>
+        <p> Distance to plane of origin : {{distanceToPlaneOfOrigin}} </p>
+        <p> predictions: </p>
+        <ul>
+            <li *ngFor="let prediction of predictions"> {{prediction}} </li>
+        </ul>
+    </div>
+
 </div>

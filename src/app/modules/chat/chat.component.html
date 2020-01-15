@@ -1,4 +1,4 @@
-<div class="chat-container" *ngIf="userName">
+<div class="chat-container" *ngIf="userName" fxFlex="1 1 1e-09px" fxLayout="column">
   <mat-list class="chat-message-list">
     <ng-container *ngFor="let interaction of interactions" style="display:inline;">
       <mat-list-item>

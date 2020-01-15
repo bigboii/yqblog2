@@ -9,31 +9,15 @@
   $foreground: map-get($theme, foreground);
 }
 
-
-// section {
-//   width:100%;
-//   display:block;     //starts on a new line and strech out to the left and right as far as it can.
-//   margin: 0px auto;
-//   max-width: calc(#{$eight-pt} * 128);   //1024px
-//   // flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
-//   @media screen and (max-width: 600px) {   //ultra small
-//     padding: calc(#{$eight-pt} * 8) 0px;
-//   }
-//   @media screen and (min-width: 600px) {  //large
-//     padding: calc(#{$eight-pt} * 16) 0px;
-//   }
-// }
-
-
 .chat-container {
   /*background-color:blue;*/
   height: 100%;
   width: 100%;
   // min-height:calc(100vh - 64px);    //TODO: fill up space?
 
-  display: flex;
-  flex: 1 1 1e-09px;
-  flex-direction: column;
+  // display: flex;
+  // flex: 1 1 1e-09px;
+  // flex-direction: column;
   
   @media screen and (max-width: 600px) {   //extra-small
     // padding-top:56px;
