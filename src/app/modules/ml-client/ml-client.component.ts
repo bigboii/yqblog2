@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 /**
  * TODO: propagate drag drop data into text area
@@ -26,7 +27,7 @@ export class MLClientComponent implements OnInit {
 
   public reader;
 
-  constructor() { }
+  constructor(private _snackBar: MatSnackBar) { }
   
   ngOnInit() {
     this.reader = new FileReader();
@@ -93,4 +94,5 @@ export class MLClientComponent implements OnInit {
   deleteAttachment(index) {
     this.files.splice(index, 1);
   }
+
 }

@@ -1,4 +1,7 @@
-import { Directive, Output, Input, EventEmitter, HostBinding, HostListener} from "@angular/core";
+import { Directive, Output, Input, ElementRef, EventEmitter, HostBinding, HostListener} from "@angular/core";
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DragdropSnackbarComponent } from '../../modules/ml-client/dragdrop-snackbar/dragdrop-snackbar.component';
+
 
 
 /** 
@@ -34,10 +37,20 @@ import { Directive, Output, Input, EventEmitter, HostBinding, HostListener} from
 export class DragDropDirective {
     @Output() onFileDropped = new EventEmitter<any>();        //(onFileDropped)="uploadFile($event)"
                                                               //how to send file to another component?
+    // @Input() snackBarRef: MatSnackBar;                 //Reference to parent snackbar
+                                    
     
     @HostBinding('style.background-color') private background = '#f5fcff';
     @HostBinding('style.opacity') private opacity = '1';
-    
+
+    public style: any;
+    constructor(private _snackBar:MatSnackBar,
+                private el: ElementRef) {
+
+        this.style = el.nativeElement.style;
+    }
+
+
     //Dragover listener
     @HostListener('dragover', ['$event']) onDragOver(event) {
         event.preventDefault();
@@ -66,4 +79,32 @@ export class DragDropDirective {
             this.onFileDropped.emit(files);
         }
     }
+
+
+    
+  /*
+    Snack Bar logic
+  */
+  openSnackBar() {
+    this._snackBar.openFromComponent(DragdropSnackbarComponent, {
+
+    });
+
+    // border: 2px solid #1C8ADB;
+    this.style.border = "border: 2px solid #1C8ADB";
+    // this.style.backgroundColor = 
+    // this.style.position = "absolute"
+    // this.style.left = "50%"
+    // this.style.bottom = "0"
+    // this.style.transform = "translateX(-50%)"
+    // this.style.padding = "20px"
+    // this.style.margin = "12px"
+    // this.style.width = "fit-content"
+    // this.style.borderRadius = "8px"
+  }
+
+  closeSnackBar() {
+    this._snackBar.dismiss();
+    this.style.border = "";
+  }
 }

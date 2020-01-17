@@ -25,6 +25,12 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
+## Creating new components
+Use below syntax to create a component to a specific module:
+    `ng g c ./modules/some/some-random-component --module=./modules/some/some-module.ts`
+
+The above example will create a new component, "some-random-component" under the module "some-module.ts"
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
