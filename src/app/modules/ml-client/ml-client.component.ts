@@ -1,10 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http'
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 /**
  * TODO: propagate drag drop data into text area
 */
+
+interface MLRequest {
+  training: any,
+  data: any,
+  classifier: string
+}
+
+interface MLResponse {
+  data: string;
+}
+
+const headers = new HttpHeaders()
+    .set("Content-Type", "application/json");
 
 @Component({
   selector: 'app-ml-client',
@@ -24,10 +39,14 @@ export class MLClientComponent implements OnInit {
   public w;                           //
   public distanceToPlaneOfOrigin;     //abs(w0/||w||)
   public predictions: any = ["waiting", "for" , "predictions"];       
+  public currClassifier: any;
 
   public reader;
 
-  constructor(private _snackBar: MatSnackBar) { }
+  constructor(private _snackBar: MatSnackBar,
+              private http: HttpClient) { 
+    
+  }
   
   ngOnInit() {
     this.reader = new FileReader();
@@ -94,5 +113,62 @@ export class MLClientComponent implements OnInit {
   deleteAttachment(index) {
     this.files.splice(index, 1);
   }
+
+
+  /*
+    Send training and data set to backend for processing
+  */
+
+
+  processClassifier() {
+
+    // console.log("training: " + this.trainingLabelInputForm.value);
+    // console.dir(this.trainingLabelInputForm);
+    // console.log("data: " + this.dataSetInputForm.value);
+    // console.dir(this.dataSetInputForm);
+
+
+    let mlRequest = {
+      training: this.trainingLabelInputForm.value,
+      data: this.dataSetInputForm.value,
+      classifier: this.currClassifier
+    }
+
+    console.log("mlRequest: below");
+    console.dir(mlRequest);
+
+    this.dataSetInputForm.get("")
+    this.trainingLabelInputForm.get("");
+
+    let output = this.http.post<MLRequest>("http://localhost:8080/ml/", mlRequest, {headers}).subscribe(
+      (data) => {
+        console.log("Processing Classifier");
+        console.log(data);
+      },
+      (err: HttpErrorResponse) => {
+          console.log("err: " + err);
+          console.dir(err);
+          if (err.error instanceof Error) {
+              console.log('Client-side error occured.');
+          } else {
+              console.log('Server-side error occured.');
+          }
+      }
+    );
+
+    return output;
+  }
+
+  testValue: any;
+  
+  testConnectionWithServer() {
+    this.http.get<MLResponse>("http://localhost:8080/ml/test", {headers}).subscribe((data) => {this.testValue = data; console.log("[apdjhfoi] data: " + data); console.dir(data);});
+    console.log("testValue from backend: " + this.testValue);  //TODO this.testValue is not being applied
+    console.dir(this.testValue);
+  }
+
+  // testConnectionWithServer() {
+  //   this.http.post<MLRequest>("http://localhost:8080/ml/test", {headers}).subscribe((data) => {this.testValue = data; console.log("[apdjhfoi] data: " + data); console.dir(data);});
+  // }
 
 }

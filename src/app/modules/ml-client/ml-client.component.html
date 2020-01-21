@@ -1,14 +1,15 @@
 <div class="ml-container" fxFlex="1 1 initial" fxLayout="column">
 
-    <h4> Select a classifier </h4>
     <mat-form-field>
-        <mat-select> 
-            <mat-label> Classifier </mat-label>
-            <mat-option *ngFor="let classifer of classifiers" [value]="classifier">
-                <span> {{classifier}} </span>
+        <mat-label> Select a Classifier </mat-label>
+        <mat-select [(value)]="currClassifier"> 
+            <mat-option *ngFor="let classifier of classifiers" [value]="classifier">
+                {{classifier}}
             </mat-option>
         </mat-select>
     </mat-form-field>
+
+    <p>You selected: {{currClassifier}} </p>
 
     <!-- File Drop Zone (Original, use this as reference) -->
     <h4> Please input a set of training and data sets or drag and drop </h4>
@@ -67,5 +68,9 @@
             <li *ngFor="let prediction of predictions"> {{prediction}} </li>
         </ul>
     </div>
+
+    <button class="mat-button" (click)="testConnectionWithServer()"> Test Connection </button>
+    <button class="mat-button" (click)="processClassifier()"> Process Classifier </button>
+    <p *ngIf="testValue"> {{testValue.data}} </p>
 
 </div>
