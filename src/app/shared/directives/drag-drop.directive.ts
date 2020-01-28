@@ -64,8 +64,8 @@ export class DragDropDirective {
         event.preventDefault();
         event.stopPropagation();
         this.background = '#f5fcff';
-        this.background = '1';
-    }
+        this.opacity = '1';
+    }  
 
     //Drop listener
     @HostListener('drop', ['$event']) public ondrop(event) {

@@ -1,10 +1,11 @@
 @import '~@angular/material/_theming';
+@import '~src/themeVars.scss';
 
 $config: mat-typography-config();
 
-$eight-pt: 8px;
-$toolbarHeightLarge:64px;
-$toolbarHeightSmall:56px;
+// $eight-pt: 8px;
+// $toolbarHeightLarge:64px;
+// $toolbarHeightSmall:56px;
 
 // Define a custom mixin that takes in the current theme
 @mixin set-theme-home($theme) {

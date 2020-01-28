@@ -1,22 +1,32 @@
+@import '~src/themeVars.scss';
+
 .ml-container {
     margin-top:64px;
     width:100%;
     height: 100%;
 
+    margin: 0px auto;
+    max-width: calc(#{$eight-pt} * 128);   //1024px
+
     @media screen and (max-width: 600px) {   //extra-small
-        padding: 56px 24px 0px 24px;
+        // padding: 56px 24px 0px 24px;
+        padding: calc(#{$eight-pt} * 8) 0px;
     }
     @media screen and (min-width: 600px) and (max-width: 960px) { //small
-        padding: 64px 50px 0px 50px;
+        // padding: 64px 50px 0px 50px;
+        padding: calc(#{$eight-pt} * 16) 0px;
     }
     @media screen and (min-width: 960px) and (max-width: 1200px) {   //medium
-        padding: 64px 100px 0px 100px;
+        // padding: 64px 100px 0px 100px;
+        padding: calc(#{$eight-pt} * 16) 0px;
     }
     @media screen and (min-width: 1200px) and (max-width:1920px) {   //large
-        padding: 64px 150px 0px 150px;
+        // padding: 64px 150px 0px 150px;
+        padding: calc(#{$eight-pt} * 16) 0px;
     }
     @media screen and (min-width: 1920px) {   //extra-large 
-        padding: 64px 250px 0px 250px;
+        // padding: 64px 250px 0px 250px;
+        padding: calc(#{$eight-pt} * 16) 0px;
     }
 }
 

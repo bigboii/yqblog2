@@ -28,7 +28,34 @@ const headers = new HttpHeaders()
 })
 export class MLClientComponent implements OnInit {
 
-  public classifiers: any = ["Naive Bayes", "Least Square Loss", "Hinge Loss", "Logistic Regression", "CART Decision Tree"];
+  public classifiers: any = [
+    {"viewValue": "Naive Bayes", "value":"naive_bayes"}, 
+    {"viewValue":"Least Square Loss", "value":"least_square_loss"}, 
+    {"viewValue":"Hinge Loss", "value":"hinge_loss"}, 
+    {"viewValue":"Logistic Regression", "value":"logistic_discrimination"}
+    // {"value":"CART Decision Tree", "viewValue":""}
+  ];
+
+  public UCIDataSets: any = [
+    {
+      "viewValue": "Breast Cancer", 
+      "value":"breast_cancer", 
+      "description": "Diagnostic Wisconsin Breast Cancer Database", 
+      "link":"https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)"
+    }, 
+    {
+      "viewValue":"Climate Simulation", 
+      "value":"climate_simulation",
+      "description":"Given Latin hypercube samples of 18 climate model input parameter values, predict climate model simulation crashes and determine the parameter value combinations that cause the failures", 
+      "link":"https://archive.ics.uci.edu/ml/datasets/climate+model+simulation+crashes"
+    }, 
+    {
+      "viewValue":"Ionosphere", 
+      "value":"ionosphere",
+      "description": "Classification of radar returns from the ionosphere", 
+      "link":"https://archive.ics.uci.edu/ml/datasets/ionosphere"
+    }
+  ]
 
   public trainingLabelInputForm = new FormControl('', [Validators.required]);
   public dataSetInputForm = new FormControl('', [Validators.required] );
@@ -144,6 +171,7 @@ export class MLClientComponent implements OnInit {
       (data) => {
         console.log("Processing Classifier");
         console.log(data);
+        this.testValue=data;
       },
       (err: HttpErrorResponse) => {
           console.log("err: " + err);
@@ -159,7 +187,7 @@ export class MLClientComponent implements OnInit {
     return output;
   }
 
-  testValue: any;
+  testValue: any = {"data":[]};
   
   testConnectionWithServer() {
     this.http.get<MLResponse>("http://localhost:8080/ml/test", {headers}).subscribe((data) => {this.testValue = data; console.log("[apdjhfoi] data: " + data); console.dir(data);});

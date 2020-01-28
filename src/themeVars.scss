@@ -81,3 +81,10 @@ $light-primary: mat-palette($mat-red, 500, 400, 600);
 $light-accent:  mat-palette($mat-indigo, A200, A100, A700);
 $light-warn:    mat-palette($mat-orange);
 $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
+
+
+
+//8 grid config
+$eight-pt: 8px;
+$toolbarHeightLarge:64px;
+$toolbarHeightSmall:56px;
