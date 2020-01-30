@@ -29,6 +29,7 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src"
+                // "src/themeVars.scss"
                 //"./folder/you/want/to/include"
               ]
             },

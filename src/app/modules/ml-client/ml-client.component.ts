@@ -18,6 +18,10 @@ interface MLResponse {
   data: string;
 }
 
+// interface UCIDataSet {
+
+// }
+
 const headers = new HttpHeaders()
     .set("Content-Type", "application/json");
 
@@ -41,32 +45,49 @@ export class MLClientComponent implements OnInit {
       "viewValue": "Breast Cancer", 
       "value":"breast_cancer", 
       "description": "Diagnostic Wisconsin Breast Cancer Database", 
-      "link":"https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)"
+      "link":"https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)",
+      "attribute": 'a) radius (mean of distances from center to points on the perimeter)\
+      b) texture (standard deviation of gray-scale values)\
+      c) perimeter\
+      d) area\
+      e) smoothness (local variation in radius lengths)\
+      f) compactness (perimeter^2 / area - 1.0)\
+      g) concavity (severity of concave portions of the contour)\
+      h) concave points (number of concave portions of the contour)\
+      i) symmetry\
+      j) fractal dimension ("coastline approximation" - 1)'
     }, 
     {
       "viewValue":"Climate Simulation", 
       "value":"climate_simulation",
       "description":"Given Latin hypercube samples of 18 climate model input parameter values, predict climate model simulation crashes and determine the parameter value combinations that cause the failures", 
-      "link":"https://archive.ics.uci.edu/ml/datasets/climate+model+simulation+crashes"
+      "link":"https://archive.ics.uci.edu/ml/datasets/climate+model+simulation+crashes",
+      "attribute": "Column 1: Latin hypercube study ID (study 1 to study 3)\
+      Column 2: simulation ID (run 1 to run 180)\
+      Columns 3-20: values of 18 climate model parameters scaled in the interval [0, 1]\
+      Column 21: simulation outcome (0 = failure, 1 = success)"
     }, 
     {
       "viewValue":"Ionosphere", 
       "value":"ionosphere",
       "description": "Classification of radar returns from the ionosphere", 
-      "link":"https://archive.ics.uci.edu/ml/datasets/ionosphere"
+      "link":"https://archive.ics.uci.edu/ml/datasets/ionosphere",
+      "attribute":'Column 1 ~ 34 are continuous\
+      The 35th attribute is either "good" or "bad" according to the definition summarized above. This is a binary classification task.'
     }
   ]
 
-  public trainingLabelInputForm = new FormControl('', [Validators.required]);
+  public trainingSetInputForm = new FormControl('', [Validators.required]);
   public dataSetInputForm = new FormControl('', [Validators.required] );
 
   public files: any = [];
-  public trainingLabelName: string;
+  public trainingSetName: string;
   public dataSetName: string;
   public w;                           //
   public distanceToPlaneOfOrigin;     //abs(w0/||w||)
   public predictions: any = ["waiting", "for" , "predictions"];       
   public currClassifier: any;
+  public currUciDataset: any = {};
 
   public reader;
 
@@ -88,7 +109,7 @@ export class MLClientComponent implements OnInit {
       console.log(files[index].name);
       if(files[index].name.endsWith(".train.txt")) {
         inputType = "training";
-        this.trainingLabelName = files[index].name;
+        this.trainingSetName = files[index].name;
       }
       else if(files[index].name.endsWith(".data.txt")) {
         inputType="data";
@@ -117,19 +138,18 @@ export class MLClientComponent implements OnInit {
             dataForm.setValue(e.target.result);             //works
           }
           else if(inputType == "training") {
-            // this.trainingLabelInputForm.setValue(e.target.result);  //doesn't work; this.trainingLabelInputForm is not visible in this scope(? why?)
             trainingForm.setValue(e.target.result);              //works
           }
         }
-      })(files[index], inputType, this.dataSetInputForm, this.trainingLabelInputForm); 
+      })(files[index], inputType, this.dataSetInputForm, this.trainingSetInputForm); 
 
       this.reader.readAsText(files[index]);
     }
   }
 
-  deleteTrainingLabel() {
-    this.trainingLabelName = undefined;
-    this.trainingLabelInputForm.setValue("");
+  deleteTrainingSet() {
+    this.trainingSetName = undefined;
+    this.trainingSetInputForm.setValue("");
   }
 
   deleteDataSet() {
@@ -145,18 +165,11 @@ export class MLClientComponent implements OnInit {
   /*
     Send training and data set to backend for processing
   */
-
-
-  processClassifier() {
-
-    // console.log("training: " + this.trainingLabelInputForm.value);
-    // console.dir(this.trainingLabelInputForm);
-    // console.log("data: " + this.dataSetInputForm.value);
-    // console.dir(this.dataSetInputForm);
+  generatePredictions() {
 
 
     let mlRequest = {
-      training: this.trainingLabelInputForm.value,
+      training: this.trainingSetInputForm.value,
       data: this.dataSetInputForm.value,
       classifier: this.currClassifier
     }
@@ -165,7 +178,7 @@ export class MLClientComponent implements OnInit {
     console.dir(mlRequest);
 
     this.dataSetInputForm.get("")
-    this.trainingLabelInputForm.get("");
+    this.trainingSetInputForm.get("");
 
     let output = this.http.post<MLRequest>("http://localhost:8080/ml/", mlRequest, {headers}).subscribe(
       (data) => {
