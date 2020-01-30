@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -10,6 +10,7 @@ import {
   MatCheckboxModule,
   MatChipsModule,
   MatDatepickerModule,
+  MatDialog,
   MatDialogModule,
   MatDividerModule,
   MatExpansionModule,
@@ -39,8 +40,13 @@ import {
   MatFormFieldModule
 } from '@angular/material';
 
+/**
+ * Module which exports all material modules so that app module can import it easily
+ */
+
 @NgModule({
 exports: [
+  CommonModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
@@ -55,6 +61,7 @@ exports: [
     MatDividerModule,
     MatExpansionModule,
     MatGridListModule,
+    MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
@@ -75,8 +82,11 @@ exports: [
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule,
+    MatTreeModule
   ],
-declarations: []
+declarations: [],
+providers: [
+  MatDialog
+]
 })
 export class AngularMaterialModule { }

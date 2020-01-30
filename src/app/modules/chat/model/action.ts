@@ -2,5 +2,7 @@
 export enum Action {
     JOINED,
     LEFT,
-    RENAME
+    RENAME,
+    MESSAGE,
+    SYSTEM            //System events
 }

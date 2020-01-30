@@ -29,6 +29,7 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "src"
+                // "src/themeVars.scss"
                 //"./folder/you/want/to/include"
               ]
             },
@@ -47,11 +48,27 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
+              "aot": true,             //TODO: fix template errors (public vs private) for AOT compiler
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
-
+            },
+            "dev": {                   //dev configuration for localhost testing + faster build
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with":"src/environments/environment.dev.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "none",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": false,               //Ahead Of Time; disable for dev configuration
+              "extractLicenses": false,
+              "vendorChunk": true,
+              "buildOptimizer": false
             }
           }
         },

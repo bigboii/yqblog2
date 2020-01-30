@@ -25,26 +25,146 @@
   //     @include mat-elevation-transition;
   // }
 
-  .footer {
-    padding: 12px;
+  .footer-container {
+    border-top: 1px solid #eee
+    // padding: 15px;
+    // font-size: 12px;
+    // // margin-top: 40px;    
+    // background-color: mat-color($primary);
+    // //background-color: red;
+    // color: mat-color($foreground, text);
+
+
+    // display: flex;
+    // -webkit-box-pack: center;
+    // justify-content: center;
+    // -webkit-box-align: center;
+    // align-items: center;
+    // flex-direction: column;
+
+    // text-align: center;
+    // height: auto;
+    // min-height: 70px;
+  }
+
+  .footer-top {
     font-size: 12px;
     // margin-top: 40px;    
-    background-color: mat-color($primary);
+    // background-color: mat-color($primary);
     //background-color: red;
-    color: mat-color($foreground, text);
+    // color: mat-color($foreground, text);
+
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+
+    text-align: center;
+    height: auto;
+    min-height: 72px;
+    @media screen and (max-width: 600px) {   //ultra small
+      padding: 16px;
+    }
+    @media screen and (min-width: 600px) {  //large
+      padding:72px;
+    }
   }
+  
+  .footer-top > span {
+    height:24px;
+  }
+
+  .footer-top > span > a {
+    height:inherit;
+  }
+
+  .footer-top > a > img {
+    padding:0px 8px;
+    height:inherit;
+    display:block;
+  }
+
+  .footer-top-logos {
+    // height:20px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 8px;
+  }
+
+  .footer-top-logos > a {
+    // height:inherit;
+    padding: 8px 8px;
+  }
+
+  .footer-top-logos > a > img {
+    // padding:0px 10px;
+    height:24px;
+    display:block;
+  }
+
+  .footer-top-text > span{
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+    padding:0px 8px;
+  }
+
+  .footer-top-text> span:hover {
+    color: mat-color($accent);
+  }
+
+  .footer-bottom {
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+
+    text-align: center;
+    height: auto;
+
+    background-color: mat-color($primary, darker);
+  }
+
+  .footer-bottom {
+    width:100%;
+    background-color: mat-color($primary, darker);
+  }
+
+  .myname {
+    color: mat-color($accent);
+  }
+
+  .linkedin_img {
+    color:black;
+    height:24px;
+  }
+
+}
+
+.github_img {
+  height: 24px;
+  // transform: 'translateY(-18px)';
+  // transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
 }
 
 .footer-list {
 	align-items: center;
   display: flex;
   flex-flow: row wrap;
-  padding: 8px;
+  padding: 0px 8px;
 }
 
-.footer-list-item {
-	flex: 1;
+.footer-list > p {
+  margin: 0px 8px;
+  margin-top: 8px;
+
 }
+
+// .footer-list-item {
+// 	flex: 1;
+// }
 
 .fill-remaining-space {
   /* This fills the remaining space, by using flexbox. 

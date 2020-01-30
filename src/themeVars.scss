@@ -1,20 +1,73 @@
 @import '~@angular/material/_theming';
-@include mat-core();
-@import './app/core/header/header.component';
-@import './app/core/footer/footer.component';
-@import './app/app.component';
-@import './app/modules/main/pages/home/content/home.component';
-@import './app/modules/main/pages/home/parallax/parallax-home.component';
-@import './app/modules/main/components/vertical-tabs/vertical-tabs.component';
+
+/**
+*  Stores static theme variables. It can be used 2 ways
+*   1. Imported by theme.scss for global use
+*   2. If a component needs reference to a specific theme data, it can import this file.
+*/
 
 //Custom Font
 
 //Typography
+// $custom-typography: mat-typography-config(
+//   $font-family: 'Roboto, sans-serif',
+//   $headline: mat-typography-level(32px, 8px, 900),
+//   $display-1: mat-typography-level(24px, 36px, 700),
+//   $body-1: mat-typography-level(16px, 24px, 400)
+// );
+
+// $custom-typography: mat-typography-config(
+//   $font-family: 'Roboto, sans-serif',
+//   $display-4: mat-typography-level(32px, 8px, 900),
+//   $display-3: mat-typography-level(32px, 8px, 900),
+//   $display-2: mat-typography-level(32px, 8px, 900),
+//   $display-1: mat-typography-level(24px, 36px, 700),
+//   $headline: mat-typography-level(96px, 36px, 700),
+//   $title: mat-typography-level(60px, 36px, 700),
+//   $subheading-2: mat-typography-level(48px, 36px, 700),
+//   $subheading-1: mat-typography-level(34px, 36px, 700),
+//   $body-1: mat-typography-level(16px, 24px, 400),
+//   $body-2: mat-typography-level(16px, 24px, 700),
+//   $caption: mat-typography-level(16px, 24px, 400)
+// );
+//  // $headline: mat-typography-level(32px, 8px, 900),
+
+//https://stackoverflow.com/questions/28363186/inline-elements-and-line-height
+//https://material.io/design/typography/#type-scale
+//https://material.angular.io/guide/typography#customization
+/*
+  General Design Guidelines:
+
+  General:
+    - use increments of 8px for everything; width, height, margin, padding
+      +https://medium.com/tradecraft-traction/harmonious-typography-and-grids-10da490a17d
+
+  Typography:
+    - line height should be 1.5 of font size
+      + e.g.1  If font size is 16px, lineheight = 16px * 1.5 = 24px
+      + e.g.2  If font size is 15px, linehight = 15px * 1.5 =~ 22 px 
+              (in this scenario; round up or down to multiple of 4px; could be either 24px or 20px)
+    - use multiples of 12px
+    e
+*/
+
+//https://stackoverflow.com/questions/49622784/how-include-fonts-in-project-on-the-angular
+
 $custom-typography: mat-typography-config(
-  $font-family: Roboto,
-  $headline: mat-typography-level(32px, 36px, 900),
-  $display-1: mat-typography-level(24px, 36px, 700),
-  $body-1: mat-typography-level(16px, 24px, 400)
+  $font-family: 'Roboto, sans-serif',
+  $display-4: mat-typography-level(96px, 144px, 700),
+  $display-3: mat-typography-level(76px, 96px, 700),
+  $display-2: mat-typography-level(28px, 42px, 700),
+  $display-1: mat-typography-level(20px, 24px, 500),
+  $headline: mat-typography-level(24px, 32px, 400),
+  $title: mat-typography-level(20px, 32px, 500),
+  $subheading-2: mat-typography-level(16px, 28px, 400),
+  $subheading-1: mat-typography-level(15px, 24px, 400),
+  $body-1: mat-typography-level(16px, 24px, 500),
+  $body-2: mat-typography-level(14px, 20px, 400),
+  $caption: mat-typography-level(12px, 20px, 400),
+  $button: mat-typography-level(16px, 20px, 500),
+  $input: mat-typography-level(inherit, 1.125, 400)
 );
 
 // Dark theme
@@ -28,3 +81,10 @@ $light-primary: mat-palette($mat-red, 500, 400, 600);
 $light-accent:  mat-palette($mat-indigo, A200, A100, A700);
 $light-warn:    mat-palette($mat-orange);
 $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
+
+
+
+//8 grid config
+$eight-pt: 8px;
+$toolbarHeightLarge:64px;
+$toolbarHeightSmall:56px;

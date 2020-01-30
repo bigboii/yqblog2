@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnInit, OnDestroy, ViewChild, Inject, ChangeDetectorRef, AfterViewInit} from '@angular/core';
 import { MatSidenav } from '@angular/material';
-
+import { ContentScrollListenerService } from './shared/services/contentscrolllistener.service';
 import { ThemeService } from './shared/services/theme.service';
 import { ToggleService } from './shared/services/toggle.service';;
 import { DOCUMENT } from '@angular/common';
@@ -9,11 +9,15 @@ import { Router } from '@angular/router';
 
 import { revealParallaxAnimation } from './shared/animations';
 
+import {OverlayContainer} from '@angular/cdk/overlay';
+
+import { fadeTransition } from './shared/animations';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [revealParallaxAnimation] //fadeTransition
+  animations: [revealParallaxAnimation, fadeTransition] //fadeTransition
 })
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
@@ -21,14 +25,14 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   title = 'app';
 
-  private appTheme: string;
+  public contentHeight: number;
+  public routerHeight: number;         //Might need to return this to Sidenav
   public logoPath: string;
+  private appTheme: string;
 
-
-  @ViewChild('drawer', { static: true }) //angular 8: true means toggle works(?), static means no toggling
+  @ViewChild('drawer', { static: true }) //angular 8: true means allow toggling
   public sidenav: MatSidenav;
 
-  public contentHeight: number;
   mobileQuery: MediaQueryList;
 
 
@@ -44,14 +48,17 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
     {"id":"Home", "iconName":"home", "route":"home"},
     {"id":"About", "iconName":"account_circle", "route":"about"},
     {"id":"Projects", "iconName":"code", "route":"projects"},
-    {"id":"Chat", "iconName":"desktop_windows", "route":"chat"}  ]
+    {"id":"Chat", "iconName":"desktop_windows", "route":"chat"},
+    {"id":"ML Classifier", "iconName":"desktop_windows", "route":"ml"}]
 
   constructor(public themeService : ThemeService,
-              private toggleService: ToggleService, 
+              private toggleService: ToggleService,
+              private scrollListenerService: ContentScrollListenerService,
               changeDetectorRef: ChangeDetectorRef,
               media: MediaMatcher,
               @Inject(DOCUMENT) private document: Document,
-              private router: Router) {
+              private router: Router,
+              private overlayContainer: OverlayContainer) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -59,8 +66,21 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit(): void {
     //Register Theme
-    this.themeService.currentTheme.subscribe(theme => { this.componentCssClass = theme; console.log("change detected: " + theme);});
+    this.themeService.currentTheme.subscribe(theme => { 
+      // console.log("change detected: " + theme);
+      if(theme == "light-theme") {
+        this.overlayContainer.getContainerElement().classList.remove("dark-theme");
+      }
+      else if(theme == "dark-theme") {
+        this.overlayContainer.getContainerElement().classList.remove("dark-theme");
+      } 
+      this.overlayContainer.getContainerElement().classList.add(theme);   //apply theme for dialogs
+      this.componentCssClass = theme; 
+    });
     this.themeService.currentLogo.subscribe(logo => this.logoPath = logo);    
+
+    //Initialize listening to content scroll
+    // this.scrollListenerService.startListeningToScrolling();
 
     //Register current sidenav to toggleService
     this.toggleService.setSidenav(this.sidenav);
@@ -87,7 +107,8 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
   ngAfterViewInit() {
-
+    //Initialize listening to content scroll
+    // this.scrollListenerService.startListeningToScrolling();
   }
 
   //LazyLoad for parallax bg
@@ -105,6 +126,39 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
   /***
     SideNav component
   */
+
+
+
+  /**
+   * 
+      Contents below Copied over from "Main" component
+   */
+  /*
+    Get currently active route page
+    @outlet: router outlet
+  */
+ getPage(outletContent) {
+  // Changing the activatedRouteData.state triggers the animation
+  let output = outletContent.isActivated ? outletContent.activatedRoute : '';
+  return outletContent.activatedRouteData['page'] || 'content';
+
+}
+
+/*
+  Callback when route transition animation starts
+  @event: animation event
+*/
+routeTransitionStarted(event) {
+  console.log("Route Transition Starting");
+}
+
+/*
+  Callback when route transition animation ends
+  @event: animation event
+*/
+routeTransitionDone(event) {
+  console.log("Route Transition Complete");
+}
 
 
 

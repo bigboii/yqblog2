@@ -45,7 +45,6 @@ app-header {
 }
 
 /* SIDENAV*/
-//Q: why sticky sidenavs?
 app-sidenav {
   position: sticky!important; 
   top:0!important; 
@@ -55,57 +54,27 @@ app-sidenav {
   flex-direction: column;
 }
 
-// mat-sidenav-container {
-//   top: 64px;  //make space for sticky header; default 0
-// }
-
-
-/*
-$custom-typography: mat-typography-config(
-  $headline: mat-typography-level(32px, 48px, 700),
-  $body-1: mat-typography-level(16px, 20px, 400)
-);
-
-@include mat-core($custom-typography);
-*/
-
-
-$config: mat-typography-config();
-
 $some-other-color: mat-palette($mat-red, 700, 100, 800);
 
-/* --------------------------------------------*/
-/* Content underneath parallax */
-/* --------------------------------------------*/
-/*
-.left-column {
-  flex:25%;
-}
-
-.content-column
-{
-  display:flex;
-  flex-direction:column;
-  height:100%;
-}
-
-.right-column {
-  flex:25%;
-}
-*/
-
-
-/* --------------------------------------------*/
-/* ------------ Sidenav Layout ----------------*/
-/* --------------------------------------------*/
-
+//SCSS for window scrollbar
 mat-sidenav-container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  // position: absolute;    //Use this to make router outlet contain scrollbar instead of window
+  // top: 0;
+  // bottom: 0;
+  // left: 0;
+  // right: 0;
   background-color: #EEEEEE;
+  
+}
+
+mat-sidenav-container, mat-sidenav-content{
+  display: block; 
+  height: 100%;
+}
+
+app-main { 
+  height: 100%; 
+  // overflow-y: auto; 
 }
 
 /* Column Container */
@@ -131,92 +100,34 @@ mat-sidenav-container {
 
   align-items: center; 
   text-align: center;
+  
 }
 
 .row-sidenav-item > mat-icon {
+  box-sizing: initial;          //don't use border-box for mat-icon
   padding-right:4px;
   margin-right:8px;
 }
 
-
-
-/* --------------------------------------------*/
-/* ------------ Parallax ----------------------*/
-/* --------------------------------------------*/
-/* Grey + Blurred Background Image */
-
-
-.parallax-bg
-{
-  position: relative;
+/**
+  Router CSS
+*/
+router-outlet.router-flex + * {   //TODO: This solves my issue, but causes revealonscroll to not WORK
   display: flex;
-  justify-content:center;
-  align-items:center;
-  z-index:0;
-  width: 100%; 
-  /* min-height: calc(100vh); */
-  /* parallax height is set by content.component.ts */
-
-  /* parallax effect */
-  
-  //background-image: url("/assets/imgs/parallax.jpg");
-  //background-attachment:fixed;                     
-  //background-repeat: no-repeat;
-  //background-size: cover;
-  //background-position:center; 
-  
-    
-  /* Pull the background 70px higher to the same as .parallax's */
-
-}
-
-/* Put this on top of the blurred background layer */
-.parallax-caption
-{
-  max-width: 1000px;
-  display: flex;
-  -webkit-box-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
+  flex: 1 1 auto;
   flex-direction: column;
-  align-items: flex-start;
-  min-height: 100vh;
-  margin: 0px auto;
-  padding: 150px 0px;
+  overflow:hidden;
 }
 
-.parallax-caption2
-{
-  /* Place above z-index 99 */
-  position:absolute;
-  top:calc(50vh - 32px - 154px);     /* toolbar_height/2 - fastText_height/2 */
-  left: 0;
+::ng-deep .outlet-parallax~* {
+  //position: absolute;        //uncomment to add transition animation
   width:100%;
-  text-align: center;
-  z-index:2;
-  color: white;
+  height:800px;
+  top:0;
 }
-
-.parallax-caption h3 {
-  font-family:'Ubuntu Mono', monospace;
-  margin: 0px 0px 20px 0px;
+::ng-deep router-outlet~* {
+  //position: absolute;        //uncomment to add transition animation
+  //width:960px;
+  width:100%;
+  top:0;
 }
-
-.parallax-caption h1 {
-  font-size:80px;
-  line-height:1.1;
-}
-
-.parallax-caption p {
-    /* width: 50%; */ 
-    max-width: 500px;
-    margin: 0px 0px 10px;
-}
-
-.parallax-caption .middle-caption2 {
-  text-align: center;
-  margin-bottom: 0;
-  //font-size:mat-font-size($config, display-2);
-  font-style:italic;
-}
-

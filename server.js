@@ -44,20 +44,24 @@ var nameCounter  = 1;            // number of users
 //use io.on This event will be called when new user joins
 //use socket.on to emit or receive event.
 io.on('connection', function(socket) 
-{   
+{
   //This event will be called when a user sends a message
   socket.on('message', function(data)
   {
     console.log(util.inspect(data, false, null, true));
-    console.log('recieved message from', data.from.name, 'msg', data.content);
+    console.log('received message from', data.from.name, 'msg', data.content);
 
     console.log("broadcasting");           //let chatroom know there was new message
     //io.emit("something happened");         //for all
+
+    let date = new Date();
+
     io.emit("message",     //for all except me      
     {
       from: data.from,
       content: data.content,
-      action: Action.BROADCAST
+      action: Action.BROADCAST,
+      time: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() 
     });
     console.log("broadcast complete");
   });
@@ -105,7 +109,7 @@ io.on('connection', function(socket)
     //console.log(clients2);          //debugging : before splice
     
     var nameOfDc = clients2[socket.id];
-    console.log(nameOfDc + " disconnected");        //print socket id of disconnected client
+    console.log("[Server] client, " + nameOfDc + ", disconnected from chat server");        //print socket id of disconnected client
     
     //remove from clients2 : associative array
     var index2 = clients2.indexOf(socket.id);          //find index of 
@@ -122,7 +126,7 @@ io.on('connection', function(socket)
     io.emit("broadcast_user_disconnect", nameOfDc);
   });
   
-  socket.emit('message', "Welcome to Chat");
+  // socket.emit('message', "Welcome to Chat");
 
 });
 

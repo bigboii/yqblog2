@@ -6,29 +6,144 @@
 
 //@import './themes.scss';  //  <-- the theme file shown above
 
+$eight-pt: 8px;
+$toolbarHeightLarge:64px;
+$toolbarHeightSmall:56px;
 
-html, body { height: 100%; }
-body { 
-  margin: 0; 
-  font-family: 'Roboto', sans-serif; 
-  width:100%;
-  min-height:100%;
+
+html, body { 
+  margin: 0;
+  height:100%; 
+  width:100%; 
 }
 
-.container {
-  width: 100%;
-  max-width:1000px;
-  padding: 0px 150px;
-  margin: 0 auto;
+body { 
+  // min-height:100%;
+}
+
+/*
+  Universal box sizing with inheritance.
+  Set this to make responsive layouts more manageable
+  actual width of element = width + padding + border
+  actual height of element = height + padding + border
+
+  Now all elements will include padding and border in its total width and height (this solves children's overflowing parent width issue)
+*/
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing:inherit;
+}
+
+//prevent large gaps between consecutive paragraphs
+p {
+  margin-block-start: 0;
+}
+
+// p + p {
+//   margin-block-start: 0;
+// }
+
+/**
+  Import Fonts
+  https://medium.com/@aditya_tyagi/import-fonts-in-an-angular-app-the-easy-right-way-ae9e99cab551
+*/
+//Roboto
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  font-weight:100;
+  src: url('/assets/fonts/Roboto/Roboto-Thin.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Roboto', sans-serif;
-  src: url('/assets/fonts/Roboto/Roboto-Medium.ttf') format('truetype')
+  font-weight:300;
+  src: url('/assets/fonts/Roboto/Roboto-Light.ttf') format('truetype');
 }
 
 @font-face {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  src: url('/assets/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  src: url('/assets/fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  src: url('/assets/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  src: url('/assets/fonts/Roboto/Roboto-Black.ttf') format('truetype');
+}
+
+//Ubuntu
+@font-face {
   font-family: 'Ubuntu Mono', monospace;
   src: url('/assets/fonts/Ubuntu_Mono/UbuntuMono-Bold.ttf') format('truetype');
-  font-weight: bold;
+  // font-weight: bold;
+}
+
+
+//RobotoMono
+@font-face {
+  font-family: 'Roboto Mono', monospace;
+  src: url('/assets/fonts/Roboto_Mono/RobotoMono.ttf') format('truetype');
+  // font-weight: bold;
+}
+
+
+
+/**
+* Material Icons (Self Hosting)
+* Warning: increases ng build time significantly ( 2 min)
+*/
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/material-design-icons-3.0.1/iconfont/MaterialIcons-Regular.woff2") format('woff2')
+  // src: local('Material Icons'),
+        // local('MaterialIcons-Regular'),
+        // url("/assets/material-design-icons-3.0.1/MaterialIcons-Regular.woff2") format('woff2')
+        // url("/assets/material-design-icons-3.0.1/MaterialIcons-Regular.woff") format('woff')
+        // url("/assets/material-design-icons-3.0.1/.ttf") format('truetype')
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size:24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform:none;
+  letter-spacing:normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction:ltr;
+
+  /* Support for all webkit browsers */
+  -webkit-font-smoothing: antialiased;
+
+  /* Support for Safari and Chrome */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for internet explorer */
+  font-feature-settings: 'liga';
+
+
 }

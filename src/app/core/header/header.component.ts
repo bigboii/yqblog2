@@ -1,6 +1,7 @@
-import { Component, AfterViewInit, Input, EventEmitter, Inject, ElementRef} from '@angular/core';
+import { Component, AfterViewInit, Input, EventEmitter, Inject, ElementRef, ViewChild} from '@angular/core';
 import { ToggleService } from '../../shared/services/toggle.service';
 import { ThemeService } from '../../shared/services/theme.service';
+import { ContentScrollListenerService } from '../../shared/services/contentscrolllistener.service';
 import { MatSidenav } from '@angular/material';
 import { revealOnScrollAnimation, slideDownFadeIn, fadeIn } from '../../shared/animations';
 import { DOCUMENT } from '@angular/common';
@@ -13,24 +14,20 @@ import { DOCUMENT } from '@angular/common';
 })
 export class HeaderComponent implements AfterViewInit {
 
-  @Input() logoPath;
+  @Input() private logoPath;
+  @ViewChild('headerToolbar', {static:false, read: ElementRef}) private matToolbarElem: ElementRef;
+  private scrollSubscription;
 
-  public contentScrollEvent;
-  public currentScrollPosition;
- // public state: boolean;
-
-  //public elem;
-
-  constructor(public toggleService: ToggleService,
-              public themeService : ThemeService,
+  constructor(private toggleService: ToggleService,
+              private themeService : ThemeService,
+              private contentScrollService: ContentScrollListenerService,
               private elementRef: ElementRef,
               @Inject(DOCUMENT) private document: Document) {
-
   }
 
   ngAfterViewInit() {
-    this.document.querySelector('mat-sidenav-content')
-                                 .addEventListener('scroll', this.onContentScroll.bind(this));
+    this.contentScrollService.startListeningToScrolling();
+    this.scrollSubscription = this.contentScrollService.getScrollEventSubject().subscribe(scrollEvent => { console.log("event fired 2"); this.onContentScroll2(scrollEvent) });
   }
 
   toggleActive:boolean = false;
@@ -45,16 +42,15 @@ export class HeaderComponent implements AfterViewInit {
 
 
   //SECTION
-
   @Input() public index: number;
   public isElevated: boolean = false;
   public switchedOn :boolean = true;
   public elevationValue = 0
 
-  onContentScroll(event) {
-    let elem = document.getElementsByClassName('parallax-bg')[0].getBoundingClientRect();
-    //console.log("[header] elem.top: " + elem.top);
-    if( elem.top < 64 ) 
+  onContentScroll2(event) {    
+    // if( window.scrollY > this.matToolbarElem.nativeElement.clientHeight)
+    if( event.target.scrollTop > this.matToolbarElem.nativeElement.clientHeight) 
+    // if( event['sT']> this.matToolbarElem.nativeElement.clientHeight) 
     {
       if(this.isElevated) {
         this.isElevated = false;
@@ -62,12 +58,11 @@ export class HeaderComponent implements AfterViewInit {
 
       this.isElevated = true;
       this.elevationValue = 8;
+      
     }
     else {
       this.isElevated = false;
       this.elevationValue = 0;
     }
   }
-
-
 }

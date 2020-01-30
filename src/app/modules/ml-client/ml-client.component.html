@@ -1,0 +1,117 @@
+<div class="ml-container" fxFlex="1 1 initial" fxLayout="column">
+
+    <h3> Step 1: Select Classifier </h3>
+    <mat-form-field>
+        <mat-label> Select a Classifier </mat-label>
+        <mat-select [(value)]="currClassifier"> 
+            <mat-option *ngFor="let classifier of classifiers" [value]="classifier.value">
+                {{classifier.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <p>You selected: {{currClassifier}} </p>
+
+    <!-- File Drop Zone  -->
+    <h3> Step 2: Enter training and data set </h3>
+
+    <mat-accordion>
+        <!-- Panel 1: Custom Dataset -->
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Enter your own data
+                </mat-panel-title>
+                <mat-panel-description>
+                    
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <!-- Content -->
+            <div fxLayout="row" fxLayout.xs="column" class="formContainer">
+                <div class="trainingContainer" fxLayout="column" fxFlex>
+                    <mat-form-field fxFlex class="formItem" dragDrop (onFileDropped)="uploadFile($event)">
+                        <!-- <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)"> -->
+                        <mat-label> Training Set </mat-label>
+                        <textarea matInput type="text" [formControl]="trainingSetInputForm" (change)="uploadFile($event.target.files)" required> </textarea>
+                        <mat-error>This field is required</mat-error>
+                        <mat-hint>Please enter a set of training labels</mat-hint>
+                    </mat-form-field>
+                    <div *ngIf="trainingSetName" class="files-list">
+                        <span> {{ trainingSetName }} </span>
+                        <button class="delete-file" (click)="deleteTrainingSEt()">
+                            <img src= "../../../assets/material-design-icons-3.0.1/content/ios/ic_delete_sweep_white_48pt.imageset/ic_delete_sweep_white_48pt.png">
+                        </button>
+                    </div>
+                </div>
+        
+                <div class="dataContainer" fxLayout="column" fxFlex>
+                    <mat-form-field fxFlex class="formItem" dragDrop (onFileDropped)="uploadFile($event)">
+                        <!-- <input hidden type="file" #fileInput (change)="uploadFile($event.target.files)"> -->
+                        <mat-label> Data Set </mat-label>
+                        <textarea matInput type="text" [formControl]="dataSetInputForm" (change)="uploadFile($event.target.files)" required> </textarea>
+                        <mat-error>This field is required</mat-error>
+                        <mat-hint>Please enter data set</mat-hint>
+                    </mat-form-field>
+                    <div *ngIf="dataSetName" class="files-list">
+                        <span> {{ dataSetName }} </span>
+                        <button class="delete-file" (click)="deleteDataSet()">
+                            <img src= "../../../assets/material-design-icons-3.0.1/content/ios/ic_delete_sweep_white_48pt.imageset/ic_delete_sweep_white_48pt.png">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </mat-expansion-panel>
+
+        <!-- Panel 2: UCI Data Set -->
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                                (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Or use datasets from UCI machine learning repository
+                </mat-panel-title>
+                <mat-panel-description>
+                    Data from Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            
+            <mat-form-field>
+                <mat-label> Select sample UCI dataset</mat-label>
+                <mat-select [(value)]="currUciDataset"> 
+                    <mat-option *ngFor="let UCIDataSet of UCIDataSets" [value]="UCIDataSet">
+                        {{UCIDataSet.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <h4> Data Description</h4>
+            <p> {{currUciDataset.description}} </p>
+
+            <h4> Variable notes </h4>
+            <p> {{currUciDataset.attribute}} </p>
+
+        </mat-expansion-panel>
+    </mat-accordion>
+    
+    <p> {{trainingSetInputForm.value}} </p>
+
+    <p> {{dataSetInputForm.value}} </p>
+
+    <!-- Console Log for ml progress -->
+    <h3> Step 3: View Predictions </h3>
+    <div class="outputContainer">
+        <p> w : {{w}}</p>
+        <p> Distance to plane of origin : {{distanceToPlaneOfOrigin}} </p>
+        <p> predictions: </p>
+        <ul>
+            <li *ngFor="let prediction of testValue.data"> {{prediction}} </li>
+        </ul>
+        <div *ngIf="testValue"> 
+            <p *ngFor="let data of testValue.data"> {{data}} </p>
+
+        </div>
+    </div>
+    <button mat-raised-button color="primary" (click)="generatePredictions()"> Generate Predictions </button>
+
+
+</div>

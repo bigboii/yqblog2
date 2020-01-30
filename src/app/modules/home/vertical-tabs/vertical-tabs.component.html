@@ -1,0 +1,71 @@
+
+<div class="tabs-container" fxFlex fxLayout="column">
+  <!-- Vertical Tabs for Desktop -->
+  <div class="vertical-tabs-wrapper">
+
+    <div fxLayout="row">
+      <div class="tab" fxLayout="column">
+        <div fxLayout="row" > 
+          <button mat-button (click)="openTab($event, 'tab0')" id="defaultOpen"> Bank of America </button>
+          <span fxFlex="none" ></span>
+        </div>
+        <div fxLayout="row" >
+          <button mat-button (click)="openTab($event, 'tab1')" > Bank of America </button>
+          <span fxFlex="none" ></span>
+        </div>
+        <div fxLayout="row" >
+          <button mat-button (click)="openTab($event, 'tab2')" > HeyKorean </button>
+          <span fxFlex="none" ></span>
+        </div>
+      </div>
+      <div class="dynamicBorder" [@dynamicTabVerticalSlide]="this.currentTab['id']"></div>
+    </div>
+
+    <div  *ngFor="let cardDatum of cardData">
+      <div class="tabcontent fixedCardHeight" id="{{cardDatum.id}}" [@verticalTabContentFadeIn]="this.tabs[cardDatum.id]['isShow']">
+        <mat-card class="tabcontent" id="{{cardDatum.id}}" elevateOnHover class="card-container" >
+
+          <!-- Right -->
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"> 
+              <img src="{{cardDatum.imgPath}}" alt="Photo of a Shiba Inu" width=40 height=40> 
+            </div>
+            <mat-card-title>{{cardDatum.position}} @ {{cardDatum.title}}</mat-card-title>
+            <mat-card-subtitle>{{cardDatum.subTitle}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="tabCardContent">
+            <ul>
+              <li class="mat-body-1" *ngFor="let bulletpoint of cardDatum.description">
+                {{bulletpoint}}
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>   
+  </div>
+
+  <!-- Hortizontal Tabs for Mobile -->
+  <mat-tab-group class="horizontal-tabs-wrapper">
+    <mat-tab *ngFor="let cardDatum of cardData" label="{{cardDatum.title}}"> 
+      <div class="tabcontent" id="{{cardDatum.id}}" [@verticalTabContentFadeIn]="this.tabs[cardDatum.id]['isShow']">
+        <mat-card class="tabcontent" id="{{cardDatum.id}}" elevateOnHover class="card-container" >
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"> 
+              <img src="{{cardDatum.imgPath}}" alt="Photo of a Shiba Inu" width=40 height=40> 
+            </div>
+            <mat-card-title>{{cardDatum.position}} @ {{cardDatum.title}}</mat-card-title>
+            <mat-card-subtitle>{{cardDatum.subTitle}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="tabCardContent">
+            <ul>
+              <li class="mat-body-1" *ngFor="let bulletpoint of cardDatum.description">
+                {{bulletpoint}}
+              </li>
+            </ul>
+          </mat-card-content>
+        </mat-card>
+      </div>  
+    </mat-tab>
+  </mat-tab-group>
+</div>
