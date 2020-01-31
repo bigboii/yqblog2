@@ -67,9 +67,35 @@ mat-sidenav-container {
   
 }
 
-mat-sidenav-container, mat-sidenav-content{
-  display: block; 
-  height: 100%;
+// mat-sidenav-container, mat-sidenav-content{
+//   display: block; 
+//   height: 100%;
+// }
+
+//Grid layout
+mat-sidenav-content {
+  height:100%;
+  width:100%;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 100px max-content 1fr max-content;
+  grid-template-areas:
+  "header"
+  "main"
+  "footer";
+}
+
+app-header {
+  grid-area:header;
+}
+
+router-outlet + * {
+  grid-area: main;
+
+}
+
+app-footer {
+  grid-area:footer;
 }
 
 app-main { 
