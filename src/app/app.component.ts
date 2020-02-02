@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit, OnDestroy, ViewChild, Inject, ChangeDetectorRef, AfterViewInit} from '@angular/core';
+import { ViewEncapsulation, Component, HostBinding, OnInit, OnDestroy, ViewChild, Inject, ChangeDetectorRef, AfterViewInit} from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { ContentScrollListenerService } from './shared/services/contentscrolllistener.service';
 import { ThemeService } from './shared/services/theme.service';
@@ -17,7 +17,8 @@ import { fadeTransition } from './shared/animations';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [revealParallaxAnimation, fadeTransition] //fadeTransition
+  animations: [revealParallaxAnimation, fadeTransition]
+  // encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit, OnDestroy, AfterViewInit {
 

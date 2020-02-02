@@ -1,4 +1,4 @@
-import { Directive, HostListener, ElementRef, ViewChild, Input, AfterViewInit, Output, Inject, EventEmitter, OnInit, OnDestroy} from '@angular/core';
+import { Directive, HostListener, ElementRef, ViewChild, Input, AfterViewInit, Output, Inject, EventEmitter, OnInit, OnDestroy, SystemJsNgModuleLoader} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { revealOnScrollAnimation } from '../animations';
 
@@ -35,13 +35,16 @@ export class RevealonscrollDirective implements OnInit, AfterViewInit, OnDestroy
   }
 
   ngOnInit() {
-    if( this.document.body.clientHeight > window.innerHeight)  {              //listen to Window scroll
+    // if( this.document.body.clientHeight > window.innerHeight)  {              //listen to Window scroll
+      console.log("listen to Window scroll");
       this.scrollElementRef = this.document.body;
-    }
-    else {                                                                   //listen to mat-sidenav-content scroll
-      this.scrollElementRef = this.document.querySelector('mat-sidenav-content');
-    }
+    // }
+    // else {                                                                   //listen to mat-sidenav-content scroll
+    //   console.log("listen to mat-sidenav-content scroll ");
+    //   this.scrollElementRef = this.document.querySelector('mat-sidenav-content');
+    // }
 
+    this.document.querySelector('mat-sidenav-content').addEventListener('scroll', this.onContentScroll.bind(this));
     this.scrollElementRef.addEventListener('scroll', this.onContentScroll.bind(this));
   }
 
@@ -62,6 +65,9 @@ export class RevealonscrollDirective implements OnInit, AfterViewInit, OnDestroy
   }
 
   onContentScroll(event) {   
+    console.log("onContentScroll: ");
+    console.dir(event);
+
     if(this.timer) {
       window.clearTimeout(this.timer);
     }

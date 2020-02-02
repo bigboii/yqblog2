@@ -67,48 +67,53 @@ mat-sidenav-container {
   
 }
 
-// mat-sidenav-container, mat-sidenav-content{
-//   display: block; 
-//   height: 100%;
-// }
+mat-sidenav-container, mat-sidenav-content{
+  display: block; 
+  height: 100%;
+}
 
 //Grid layout
-mat-sidenav-content {
-  height:100%;
-  width:100%;
-  display:grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 100px max-content 1fr max-content;
-  grid-template-areas:
-  "header"
-  "main"
-  "footer";
-}
+// mat-sidenav-content {
+//   height:100%;
+//   width:100%;
+//   display:grid;
+//   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+//   grid-template-rows: 1fr auto 1fr;
+//   // grid-template-rows: 100px max-content 1fr max-content;
+//   grid-template-areas:
+//   "header"
+//   "main"
+//   "footer";
 
-app-header {
-  grid-area:header;
-}
+//   grid-row-gap: 8px;
+//   grid-column-gap:8px;
+// }
 
-router-outlet + * {
-  grid-area: main;
+// app-header {
+//   grid-area:header;
+//   // background: yellow;
+// }
 
-}
+// router-outlet + * {
+//   grid-area:main;
+//   // background: #9154f3;
+// }
 
-app-footer {
-  grid-area:footer;
-}
+// app-footer {
+//   grid-area:footer;
+//   // background: blue;
+// }
 
-app-main { 
-  height: 100%; 
-  // overflow-y: auto; 
-}
+// app-main { 
+//   height: 100%; 
+//   // overflow-y: auto; 
+// }
 
 /* Column Container */
 
 .drawer-container {
-  /*flex:1;*/
-  /* needed to push content down */
-  /*top: 64px;  */
+  display: flex;
+  flex-direction: column;
 }
 
 /* Set width of sidenav */

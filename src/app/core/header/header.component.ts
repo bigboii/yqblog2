@@ -28,6 +28,11 @@ export class HeaderComponent implements AfterViewInit {
   ngAfterViewInit() {
     this.contentScrollService.startListeningToScrolling();
     this.scrollSubscription = this.contentScrollService.getScrollEventSubject().subscribe(scrollEvent => { console.log("event fired 2"); this.onContentScroll2(scrollEvent) });
+    this.document.body.addEventListener('scroll', this.onContentScroll2.bind(this));   //testing
+
+    // document.addEventListener("wheel", function(event) {   //testing
+    //     console.log(event);
+    // });
   }
 
   toggleActive:boolean = false;
@@ -49,6 +54,8 @@ export class HeaderComponent implements AfterViewInit {
 
   onContentScroll2(event) {    
     // if( window.scrollY > this.matToolbarElem.nativeElement.clientHeight)
+    console.log("[HEADER]");
+    console.dir(event);
     if( event.target.scrollTop > this.matToolbarElem.nativeElement.clientHeight) 
     // if( event['sT']> this.matToolbarElem.nativeElement.clientHeight) 
     {
