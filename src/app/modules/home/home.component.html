@@ -1,6 +1,5 @@
-<div class="home-container">
-
-  <div class="parallax-container parallax-color">
+<div class="grid12 home-container">
+  <div class="span12 parallax-container parallax-color">
     <section class="section-parallax">
         <!-- <div [style.height.px]="parallaxHeight">  -->
     <!-- [@revealParallax]="parallaxShow"  lazyLoad--> <!-- (themeService.getIsNightmode() == false) ? 'parallax-bg parallax-bg-light mat-elevation-z0':'parallax-bg parallax-bg-dark mat-elevation-z0' -->
@@ -20,16 +19,16 @@
     </section>
   </div>
 
-  <div class="content-container padded">
+  <div class="content-container span6Center padded">
     <!-- Section: parallax-->
 
     <!-- Section: About Me -->
     <!-- <div revealOnScroll [index]="this.visibleSections[0].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[0].show"> -->
     <section class="about" >
-      <h1 class="mat-display-2 heading dash">About Me</h1>
-      <span class="content">
-      <div class="about-container " fxLayout="row" fxLayout.xs="column">
-        <div class="about-container-content" fxLayout="column">
+      <h1 class="span6 mat-display-2 heading dash">About Me</h1>
+      <span class="span6 grid6 content">
+      <!-- <div class="about-container " fxLayout="row" fxLayout.xs="column"> -->
+        <div class="about-container-content span3">
           <p class="mat-body-1"> I'm currently a Software Engineer based in the United States, Jersey City and I spent the last few years developing Bank of America's Private Cloud Platform. </p>
 
           <p class="mat-body-1"> I've gained hands on experience in developing large scale backend applications using a microservice architecture (inspired by Netflix); sometimes, a large complex problem can be be easily solved, developed, tested, and maintained when split into smaller fine-grained functions that are working together. </p>
@@ -61,13 +60,13 @@
             <img class="avatar-pic" alt="Avator" [src]="'/assets/imgs/parallax_small.jpg'">
           </a>
         </div>
-      </div>
+      <!-- </div> -->
     </span>
     </section>
     <!-- </div>     -->
 
     <!-- Section: Work Experience -->
-    <div >
+    <div>
       <section class="sectionJobs">
         <h1 class="mat-display-2 heading center">Where I've worked</h1>
 
@@ -77,41 +76,34 @@
     </div>
 
     <!-- Section: Projects -->
-    <div >
-        <section>
-          <h1 class="mat-display-2 heading dash">What I've built</h1>
+    <section>
+      <h1 class="mat-display-2 heading dash">What I've built</h1>
 
-          <span class="content">
-          <div class="cardList" fxLayout="row" fxLayout.xs="column">
-            <ng-container *ngFor="let _ of projectTiles">
-              <div class="cardListItem">              
-                <mat-card class="cardTile">
-                  <mat-card-header>
-                    <mat-card-title class="tileCardTitle"> {{_.title}}</mat-card-title>
-                  </mat-card-header>
-                  <mat-card-content class="tileCardContent" fxLayout="column" fxLayoutAlign="space-between" >
-                    <p fxFlex>
-                      {{_.description}}
-                    </p>
-                    <ul fxFlex>
-                      <li class="mat-caption" *ngFor="let tech of _.technologies"> {{tech}} </li>
-                    </ul>
-                    <div fxLayout="row" fxLayoutAlign="space-between">
-                      <button fxFlex="0 1 auto"  class="mat-button tileButton"> View Project </button>
-                      <a fxFlex="0 1 auto" href="https://github.com/bigboii/yqblog2">
-                        <span class="vertical_center_helper"></span>
-                        <img class="github_img" [src]="'../../assets/imgs/github/GitHub-Mark-32px.png'">
-                      </a>
-                    </div>
-                  </mat-card-content>
-                </mat-card>
-              </div>
-            </ng-container>
-          </div>
-        </span>
-          
-        </section>
-      </div>
+      <span class="content grid6 cardListItem">
+        <ng-container class="grid6" *ngFor="let _ of projectTiles">
+            <mat-card class="cardTile span6">
+              <mat-card-header>
+                <mat-card-title class="tileCardTitle"> {{_.title}}</mat-card-title>
+              </mat-card-header>
+              <mat-card-content class="tileCardContent" fxLayout="column" fxLayoutAlign="space-between" >
+                <p fxFlex>
+                  {{_.description}}
+                </p>
+                <ul fxFlex>
+                  <li class="mat-caption" *ngFor="let tech of _.technologies"> {{tech}} </li>
+                </ul>
+                <div fxLayout="row" fxLayoutAlign="space-between">
+                  <button fxFlex="0 1 auto"  class="mat-button tileButton"> View Project </button>
+                  <a fxFlex="0 1 auto" href="https://github.com/bigboii/yqblog2">
+                    <span class="vertical_center_helper"></span>
+                    <img class="github_img" [src]="'../../assets/imgs/github/GitHub-Mark-32px.png'">
+                  </a>
+                </div>
+              </mat-card-content>
+            </mat-card>
+        </ng-container>
+      </span>
+    </section>
 
 
     <!-- Section: Blog, do this last -->

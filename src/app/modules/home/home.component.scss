@@ -133,10 +133,11 @@ $config: mat-typography-config();
     // width: 300px;      //TODO: need width for small screen size
     display: block;
     height: 1px;
-    width: calc(#{$eight-pt} * 38);    //304px
+    // width: calc(#{$eight-pt} * 38);    //304px
+    width:100%;
     background-color: mat-color($foreground, text);
     position: relative;
-    margin-left: 24px;
+    // margin-left: 24px;
     box-sizing: inherit;
   }
 
@@ -246,73 +247,24 @@ app-main {
 
 .home-container {
   counter-reset: heading-count;  //creates a counter
-  
-  height:100%;
-  width:100%;
-  display:grid;
   grid-template-rows: auto auto;
-  // grid-template-rows: 100px max-content 1fr max-content;
-  // grid-template-areas: "content";
 
-  @media screen and (max-width: 600px) {   //ultra small
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    // grid-row-gap: 24px;
-    grid-column-gap:16px;
-  }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    // grid-row-gap: 24px;
-    grid-column-gap:16px;
-  }
-
-  @media screen and (min-width: 720px) {   //medium
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-
-    // grid-row-gap: 24px;
-    grid-column-gap:24px;
-  }
-}
-
-.parallax-container {
-  grid-area: pArea;
-
-  // grid-column: 1 / span 12;
-  // grid-row: 1 / span 1;
-
-
-  @media screen and (max-width: 600px) {   //ultra small
-    grid-column: 1 / span 4;
-    grid-row: 1 / span 1;
-  }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
-    grid-column: 1 / span 8;
-    grid-row: 1 / span 1;
-  }
-
-  @media screen and (min-width: 720px) {   //medium
-    grid-column: 1 / span 12;
-    grid-row: 1 / span 1;
-  }
-
-}
-
-.content-container {
-  grid-area: cArea;
+  .parallax-container {
+    // grid-area: pArea;
   
-  @media screen and (max-width: 600px) {   //ultra small
-    grid-column: 1 / span 4;
-    grid-row: 2 / span 1;
+    // grid-column: 1 / span 12;
+    grid-row: 1 / span 1;
+  
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
-    grid-column: 2 / span 6;
+  
+  .content-container {
+    // grid-area: cArea;
     grid-row: 2 / span 1;
-  }
 
-  @media screen and (min-width: 720px) {   //medium
-    grid-column: 4 / span 6;
-    grid-row: 2 / span 1;
+    section {
+      @extend .grid6;
+    }
   }
-
 }
 
 .padded {
@@ -329,26 +281,7 @@ section {
   // display:block;     //starts on a new line and strech out to the left and right as far as it can.
 
   height:100%;
-  display:grid;
   grid-template-rows: auto auto auto;
-
-  @media screen and (max-width: 600px) {   //ultra small
-    grid-template-columns: 1fr;
-    // grid-row-gap: 24px;
-    grid-column-gap:16px;
-  }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
-    grid-template-columns: 1fr 1fr 1fr;
-    // grid-row-gap: 24px;
-    grid-column-gap:16px;
-  }
-
-  @media screen and (min-width: 720px) {   //medium
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-
-    // grid-row-gap: 24px;
-    grid-column-gap:24px;
-  }
 
   // margin: 0px auto;
   // max-width: calc(#{$eight-pt} * 128);   //1024px
@@ -362,7 +295,9 @@ section {
 }
 
 section h1 {
-  @media screen and (max-width: 600px) {   //ultra small
+ //use span 6
+
+   @media screen and (max-width: 600px) {   //ultra small
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
   }
@@ -392,6 +327,8 @@ section .content {
     grid-column: 1 / span 6;
     grid-row: 2 / span 1;
   }
+
+
 
 }
 
@@ -485,7 +422,7 @@ section .content {
   Section: Resume
 */
 .sectionJobs {
-  max-width: calc(#{$eight-pt} * 88);  //704px
+  // max-width: calc(#{$eight-pt} * 88);  //704px
 }
 
 app-vertical-tabs {
@@ -497,45 +434,48 @@ app-vertical-tabs {
   }
 }
 
-.about-container {
-  // flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
-  display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  align-items: flex-start;
-  box-sizing:border-box;
-}
+// .about-container {
+//   // flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
+//   display: flex;
+//   -webkit-box-pack: justify;
+//   justify-content: space-between;
+//   -webkit-box-align: center;
+//   align-items: flex-start;
+//   box-sizing:border-box;
+// }
 
 .about-container-content {
   
-  max-width: 480px;
-  @media screen and (max-width: 600px) {   //ultra small
-    width:100%;
-  }
-  @media screen and (min-width: 600px) {  //large
-    width:60%;
-  }
+  grid-column:1 / span 3;
+
+  // max-width: 480px;
+  // @media screen and (max-width: 600px) {   //ultra small
+  //   width:100%;
+  // }
+  // @media screen and (min-width: 600px) {  //large
+  //   width:60%;
+  // }
 }
 
 .about-container-pic {
+  grid-column: 5 / span 2;
   position: relative;
-  width: 40%;
+  // width: 40%;
   height:auto;
-  max-width: 300px;
-  max-width: calc(#{$toolbarHeightLarge} * 5); //
+  // max-width: 300px;
+  // max-width: calc(#{$toolbarHeightLarge} * 5);  //
   // margin-top: 22px;
   border-radius:4px;
 
-  @media screen and (max-width: 600px) {   //ultra small
-    width:100%;
-    margin: 0px auto;
-    padding-top: 24px;
-  }
-  @media screen and (min-width: 600px) {  //large
-    width:60%;
-    margin-left: 64px;
-  }
+  // @media screen and (max-width: 600px) {        //ultra small
+  //   width:100%;
+  //   margin: 0px auto;
+  //   padding-top: 24px;
+  // }
+  // @media screen and (min-width: 600px) {        //large
+  //   width:60%;
+  //   margin-left: 64px;
+  // }
 
   a {
     filter: grayscale(100%) contrast(1);
@@ -590,8 +530,9 @@ app-vertical-tabs {
   // position: absolute;
   // top: 0px;
   // left: 0px;
-  width: calc(#{$toolbarHeightLarge} * 5); //;
-  height: calc(#{$toolbarHeightLarge} * 5); //;
+  // width: calc(#{$toolbarHeightLarge} * 5); //;
+  // height: calc(#{$toolbarHeightLarge} * 5); //;
+  width: 100%;
   object-fit: cover;
   object-position: center center;
 }
@@ -608,30 +549,39 @@ app-vertical-tabs {
 
 }
 
-.cardList >*:not(:last-child) {
-  margin-right:16px;
-  margin-bottom:16px;
-}
+// .cardList >*:not(:last-child) {
+//   margin-right:24px;
+//   margin-bottom:24px;
+// }
 
 .cardListItem {
+  // grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  // grid-column-gap:24px;
+  grid-auto-flow:rows;
+  grid-row-gap: 24px;
 
-  @media screen and (max-width: 600px) {   //extra-small
-    flex: 0 1 calc(100% - 16px);  //TODO: need to make this responsive
-  }
-  @media screen and (min-width: 600px) and (max-width: 960px) { //small
-    flex: 0 1 calc(50% - 16px);  //TODO: need to make this responsive
-  }
-  @media screen and (min-width: 960px) and (max-width: 1200px) {   //medium
-    flex: 0 1 calc(50% - 16px);  //TODO: need to make this responsive
-  }
-  @media screen and (min-width: 1200px) and (max-width:1920px) {   //large
-    flex: 0 1 calc(33.3% - 16px);  //TODO: need to make this responsive
-  }
-  @media screen and (min-width: 1920px) {   //extra-large 
-    flex: 0 1 calc(33.3% - 16px);  //TODO: need to make this responsive
-  }
+  // @media screen and (max-width: 600px) {   //extra-small
+  //   flex: 0 1 calc(100%);  //TODO: need to make this responsive
+  // }
+  // @media screen and (min-width: 600px) and (max-width: 960px) { //small
+  //   flex: 0 1 calc(50%);  //TODO: need to make this responsive
+  // }
+  // @media screen and (min-width: 960px) and (max-width: 1200px) {   //medium
+  //   flex: 0 1 calc(50%);  //TODO: need to make this responsive
+  // }
+  // @media screen and (min-width: 1200px) and (max-width:1920px) {   //large
+  //   flex: 0 1 calc(33.3%);  //TODO: need to make this responsive
+  // }
+  // @media screen and (min-width: 1920px) {   //extra-large 
+  //   flex: 0 1 calc(33.3%);  //TODO: need to make this responsive
+  // }
 
 
+
+}
+
+.cardTile {
+  grid-column: span 2;
 }
 
 .cardListItem > .mat-card {
