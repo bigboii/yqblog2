@@ -75,36 +75,39 @@ $config: mat-typography-config();
     @include mat-elevation-transition;
   }
 
-  .tab {
-    float: left;
-    width: max-content;  //30%
-    height: 300px;
+  .tabs {
+    // float: left;
+    // width: max-content;  //30%
+    // height: 300px;
+    .mat-button {             //to fix bug: when mat-button is clicked within grid layout, sections disappear.
+      position:initial;
+    }
   }
 
-  .tab div button {
-    // display: block;
-    background-color: inherit;
-    // color: $primary;
-    padding: 8px;
-    width: 100%;
-    padding: 8px 24px;
-    border: none;
-    outline: none;
-    text-align: left;
-    cursor: pointer;
-    font-size: mat-font-size($config, button);
-    font-weight: mat-font-weight($config, button);
-    font-family: mat-font-family($config);
-    max-height:61px;
-    border-radius:0px;     //override mat-button's rounded corners
-    // text-align: center;
-    vertical-align:middle;
+//   .tab div button {
+//     // display: block;
+//     background-color: inherit;
+//     // color: $primary;
+//     // padding: 8px;
+//     // width: 100%;
+//     // padding: 8px 24px;
+//     border: none;
+//     outline: none;
+//     text-align: left;
+//     cursor: pointer;
+//     font-size: mat-font-size($config, button);
+//     font-weight: mat-font-weight($config, button);
+//     font-family: mat-font-family($config);
+//     // max-height:61px;
+//     border-radius:0px;     //override mat-button's rounded corners
+//     // text-align: center;
+//     vertical-align:middle;
 
-//     $button-font-family: map-font-family($my-button);
-// $button-font-size: map-font-size($my-button);
-// $button-font-weight: map-font-weight($my-button);
-// $button-line-height: map-line-height($my-button);
-  }
+// //     $button-font-family: map-font-family($my-button);
+// // $button-font-size: map-font-size($my-button);
+// // $button-font-weight: map-font-weight($my-button);
+// // $button-line-height: map-line-height($my-button);
+//   }
 
   .tabs-container {
     width:100%;
@@ -140,46 +143,75 @@ $config: mat-typography-config();
     border-right: 2px solid mat-color($accent);
   }
 
+  .tabsContentContainer {
+    grid-column: 3/span 3;
+  }
+
   /* tab content */
   .tabcontent {
-    float: left;
-    // padding: 16px;
-    width: 100%;
-    border-left: none;
-    height: 300px;
-    flex-grow: 1;
+    // float: left;
+    // // padding: 16px;
+    // width: 100%;
+    // border-left: none;
+    // height: 300px;
+    // flex-grow: 1;
 
-    @media screen and (max-width: 600px) {
-      padding-left: 0px;
-    }
-    @media screen and (min-width: 600px) {   //medium
-      padding-left:32px;
-    }
+
 
     // padding-top: 16px;
     // padding-left: 16px;
     //transition: all 0s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+
+    // grid-column: 3 / span 3;
   }
 
-  .fixedCardHeight {
-    height: 300px;
+  // .fixedCardHeight {
+  //   height: 300px;
+  // }
+}
+
+.tabs {
+
+  grid-column: 2 / span 1;
+  display:grid;
+
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-row-gap:16px;
+    grid-template-rows: 56px 56px 56px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+    grid-row-gap:16px;
+    grid-template-rows: 64px 64px 64px;
+  }
+  @media screen and (min-width: 720px) {   //medium
+    grid-row-gap:24px;
+    grid-template-rows: 64px 64px 64px;
+  }
+
+  .tabBorder {
+    // position:absolute;
+    grid-row: 1 / span 1;
   }
 }
 
 .vertical-tabs-wrapper {
   @media screen and (max-width: 600px) {   //ultra small
-    display:none;
+    // display:none;
   }
   @media screen and (min-width: 600px) {   //medium
-    display:flex;
-    flex-direction: row;
+    // display:flex;
+    // flex-direction: row;
+  }
+
+  .mat-card {
+    padding: 0 0;
   }
 }
 
 .mat-card-avatar {
   width:48px;
   height:48px;
-  margin-right:8px;
+  margin-right:24px;
   // object-fit: scale-down;
 }
 
@@ -239,7 +271,7 @@ $config: mat-typography-config();
     // display:
   }
   @media screen and (min-width: 600px) {   //medium
-    display:none;
+    // display:none;
   }
 
   

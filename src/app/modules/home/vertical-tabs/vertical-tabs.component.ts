@@ -8,7 +8,7 @@ import { dynamicTabVerticalSlide, tabVerticalSlide,  verticalTabContentFadeIn} f
   templateUrl: './vertical-tabs.component.html',
   styleUrls: ['./vertical-tabs.component.scss'],
   animations: [ fadeIn, 
-    dynamicTabVerticalSlide(52, "red"), 
+    dynamicTabVerticalSlide(64, "red"), 
     tabVerticalSlide, verticalTabContentFadeIn]
   // encapsulation: ViewEncapsulation.Emulated           //ViewEncapsulation.emulated
 })

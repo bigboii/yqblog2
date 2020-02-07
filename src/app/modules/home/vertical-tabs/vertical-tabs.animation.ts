@@ -53,12 +53,12 @@ export function dynamicTabVerticalSlide( tabHeight: number, color: string): Anim
     state('tab1', style({
       height: tabHeight+'px',
       'border-right': '3px solid ' + color,
-      transform:'translateY(52px)'
+      transform:'translateY(88px)'
     })),
     state('tab2', style({
       height: tabHeight + 'px',
       'border-right': '3px solid ' + color,
-      transform:'translateY(104px)'
+      transform:'translateY(176px)'
     })),
     transition('* => *', [
       animate("200ms")

@@ -1,6 +1,7 @@
 <div class="grid12 home-container">
-  <div class="span12 parallax-container parallax-color">
-    <section class="section-parallax">
+  
+    <section class="span12 grid12 section-parallax parallax-color">
+      <div class="span6Center parallax-container">
         <!-- <div [style.height.px]="parallaxHeight">  -->
     <!-- [@revealParallax]="parallaxShow"  lazyLoad--> <!-- (themeService.getIsNightmode() == false) ? 'parallax-bg parallax-bg-light mat-elevation-z0':'parallax-bg parallax-bg-dark mat-elevation-z0' -->
           
@@ -16,37 +17,34 @@
             </div>
           </div>
         <!-- </div> -->
+      </div>
     </section>
-  </div>
 
-  <div class="content-container span6Center padded">
+  <div class="span6Center">
     <!-- Section: parallax-->
 
     <!-- Section: About Me -->
     <!-- <div revealOnScroll [index]="this.visibleSections[0].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[0].show"> -->
-    <section class="about" >
+    <section class="about">
       <h1 class="span6 mat-display-2 heading dash">About Me</h1>
       <span class="span6 grid6 content">
       <!-- <div class="about-container " fxLayout="row" fxLayout.xs="column"> -->
-        <div class="about-container-content span3">
+        <div class="span3 about-container-content">
           <p class="mat-body-1"> I'm currently a Software Engineer based in the United States, Jersey City and I spent the last few years developing Bank of America's Private Cloud Platform. </p>
-
           <p class="mat-body-1"> I've gained hands on experience in developing large scale backend applications using a microservice architecture (inspired by Netflix); sometimes, a large complex problem can be be easily solved, developed, tested, and maintained when split into smaller fine-grained functions that are working together. </p>
-
           <p class="mat-body-1"> I've recently delved my hands in to front end development, which led me to building this blog. I plan on regularly posting projects and blog articles here.</p>
-
           <p class="mat-body-1"> Heres a few technologies I've been working with recently: </p>
 
           <!-- Section: Skills -->
-          <div fxLayout="row" fxLayout.xs="column">
-            <div fxLayout="column">
+          <div class="grid3">
+            <div class="span1" fxLayout="column">
               <mat-list dense>
                 <mat-list-item *ngFor="let language of languages">
                   <p class="mat-body-1 arrowBulletPoint"> {{language}} </p>
                 </mat-list-item>
               </mat-list>
             </div>
-            <div fxLayout="column">
+            <div class="span2" fxLayout="column">
               <mat-list dense>
                 <mat-list-item *ngFor="let technology of technologies">
                   <p class="mat-body-1 arrowBulletPoint"> {{technology}} </p>
@@ -66,14 +64,12 @@
     <!-- </div>     -->
 
     <!-- Section: Work Experience -->
-    <div>
-      <section class="sectionJobs">
-        <h1 class="mat-display-2 heading center">Where I've worked</h1>
+    <section class="sectionJobs">
+      <h1 class="mat-display-2 heading center">Where I've worked</h1>
 
-        <!-- Vertical Tabs for desktop -->
-        <app-vertical-tabs class="content" [cardData]=tabContents> </app-vertical-tabs>
-      </section>
-    </div>
+      <!-- Vertical Tabs for desktop -->
+      <app-vertical-tabs  [cardData]=tabContents> </app-vertical-tabs>
+    </section>
 
     <!-- Section: Projects -->
     <section>
