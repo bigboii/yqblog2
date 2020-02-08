@@ -2,7 +2,7 @@ import { Component, AfterViewInit, Input, EventEmitter, Inject, ElementRef, View
 import { ToggleService } from '../../shared/services/toggle.service';
 import { ThemeService } from '../../shared/services/theme.service';
 import { ContentScrollListenerService } from '../../shared/services/contentscrolllistener.service';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 import { revealOnScrollAnimation, slideDownFadeIn, fadeIn } from '../../shared/animations';
 import { DOCUMENT } from '@angular/common';
 

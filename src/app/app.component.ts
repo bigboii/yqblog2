@@ -1,5 +1,5 @@
 import { ViewEncapsulation, Component, HostBinding, OnInit, OnDestroy, ViewChild, Inject, ChangeDetectorRef, AfterViewInit} from '@angular/core';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav } from '@angular/material/sidenav';
 import { ContentScrollListenerService } from './shared/services/contentscrolllistener.service';
 import { ThemeService } from './shared/services/theme.service';
 import { ToggleService } from './shared/services/toggle.service';;

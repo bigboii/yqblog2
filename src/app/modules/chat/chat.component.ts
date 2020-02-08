@@ -5,7 +5,7 @@ import { Event } from './model/event';
 import { Message } from './model/message';
 import { Router, RouterEvent, NavigationStart } from '@angular/router';
 import { SignInDialog } from './chat-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
 import { filter, timestamp } from 'rxjs/operators';
 

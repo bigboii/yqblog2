@@ -47,10 +47,11 @@ $config: mat-typography-config();
     margin-bottom: 8px;
   }
   
-  // .tabCardContent p {
-  //   font-size:14px;
-  //   line-height:22px; 
-  // }
+  .tabCardContent {
+    ul {
+      list-style-type: none;
+    }
+  }
 
   .tabcontent mat-card-content > p {
     // padding-left: 32px;
@@ -189,7 +190,7 @@ $config: mat-typography-config();
   }
 
   .tabBorder {
-    // position:absolute;
+    position:absolute;
     grid-row: 1 / span 1;
   }
 }
