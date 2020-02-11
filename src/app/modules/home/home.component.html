@@ -1,6 +1,6 @@
 <div class="grid12 home-container">
   
-    <section class="span12 grid12 section-parallax parallax-color">
+    <section class="span12 grid12 section-parallax parallax-color padding-vertical">
       <div class="span6Center parallax-container">
         <!-- <div [style.height.px]="parallaxHeight">  -->
     <!-- [@revealParallax]="parallaxShow"  lazyLoad--> <!-- (themeService.getIsNightmode() == false) ? 'parallax-bg parallax-bg-light mat-elevation-z0':'parallax-bg parallax-bg-dark mat-elevation-z0' -->
@@ -25,7 +25,7 @@
 
     <!-- Section: About Me -->
     <!-- <div revealOnScroll [index]="this.visibleSections[0].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[0].show"> -->
-    <section class="about">
+    <section class="about padding-vertical">
       <h1 class="span6 mat-display-2 heading dash">About Me</h1>
       <span class="span6 grid6 content">
       <!-- <div class="about-container " fxLayout="row" fxLayout.xs="column"> -->
@@ -64,18 +64,18 @@
     <!-- </div>     -->
 
     <!-- Section: Work Experience -->
-    <section class="sectionJobs">
+    <section class="sectionJobs padding-vertical">
       <h1 class="mat-display-2 heading center">Where I've worked</h1>
 
       <!-- Vertical Tabs for desktop -->
-      <app-vertical-tabs  [cardData]=tabContents> </app-vertical-tabs>
+      <app-vertical-tabs class="content" [cardData]=tabContents> </app-vertical-tabs>
     </section>
 
     <!-- Section: Projects -->
-    <section>
+    <section class="padding-vertical">
       <h1 class="mat-display-2 heading dash">What I've built</h1>
 
-      <span class="content grid6 cardListItem">
+      <span class="span6 grid6 content cardListItem">
         <ng-container class="grid6" *ngFor="let _ of projectTiles">
             <mat-card class="cardTile span6">
               <mat-card-header>
@@ -104,7 +104,7 @@
 
     <!-- Section: Blog, do this last -->
     <div >
-      <section>
+      <section class="padding-vertical">
         <h1 class="mat-display-2 heading center">Lets Connect</h1>
         <!-- https://stackoverflow.com/questions/32876788/nodemailer-without-gmail -->
         <span class="content">

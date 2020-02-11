@@ -76,12 +76,53 @@ $config: mat-typography-config();
     @include mat-elevation-transition;
   }
 
+  .gridRows {
+    @media screen and (max-width: 600px) {   //ultra small
+      grid-row-gap:16px;
+      grid-template-rows: 56px 56px 56px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+      grid-row-gap:16px;
+      grid-template-rows: 64px 64px 64px;
+    }
+    @media screen and (min-width: 720px) {   //medium
+      grid-row-gap:24px;
+      grid-template-rows: 64px 64px 64px;
+    }
+
+  }
+
   .tabs {
     // float: left;
     // width: max-content;  //30%
     // height: 300px;
     .mat-button {             //to fix bug: when mat-button is clicked within grid layout, sections disappear.
       position:initial;
+    }
+
+    
+    display:grid;
+  
+    @media screen and (max-width: 600px) {   //ultra small
+      grid-column: 1 / span 1;
+    }
+    @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+      grid-column: 1 / span 1;
+    }
+    @media screen and (min-width: 720px) {   //medium
+      grid-column: 1 / span 1;
+    }
+    @media screen and (min-width:1280px) and (max-width: 1439px){
+      // 1280 – 1439
+      grid-column: 1 / span 2;
+    }
+    @media screen and (min-width:1439px) {
+      grid-column: 2 / span 1;
+    }
+  
+    .tabBorder {
+      position:absolute;
+      grid-row: 1 / span 1;
     }
   }
 
@@ -169,30 +210,6 @@ $config: mat-typography-config();
   // .fixedCardHeight {
   //   height: 300px;
   // }
-}
-
-.tabs {
-
-  grid-column: 2 / span 1;
-  display:grid;
-
-  @media screen and (max-width: 600px) {   //ultra small
-    grid-row-gap:16px;
-    grid-template-rows: 56px 56px 56px;
-  }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
-    grid-row-gap:16px;
-    grid-template-rows: 64px 64px 64px;
-  }
-  @media screen and (min-width: 720px) {   //medium
-    grid-row-gap:24px;
-    grid-template-rows: 64px 64px 64px;
-  }
-
-  .tabBorder {
-    position:absolute;
-    grid-row: 1 / span 1;
-  }
 }
 
 .vertical-tabs-wrapper {

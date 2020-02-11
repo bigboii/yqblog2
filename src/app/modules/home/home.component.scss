@@ -267,11 +267,20 @@ app-main {
   }
 }
 
-.padded {
+.padding-horizontal {
   @media screen and (max-width: 600px) {   //ultra small
     padding: 0px calc(#{$eight-pt} * 6);
   }
   @media screen and (min-width: 600px) {   //medium
+    padding: calc(#{$eight-pt} * 16) 0px;
+  }
+}
+
+.padding-vertical {
+  @media screen and (max-width: 600px) {   //ultra small
+    padding: calc(#{$eight-pt} * 8) 0px;
+  }
+  @media screen and (min-width: 600px) {  //large
     padding: calc(#{$eight-pt} * 16) 0px;
   }
 }
@@ -286,12 +295,6 @@ section {
   // margin: 0px auto;
   // max-width: calc(#{$eight-pt} * 128);   //1024px
   // flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
-  @media screen and (max-width: 600px) {   //ultra small
-    padding: calc(#{$eight-pt} * 8) 0px;
-  }
-  @media screen and (min-width: 600px) {  //large
-    padding: calc(#{$eight-pt} * 16) 0px;
-  }
 }
 
 section h1 {
@@ -581,7 +584,24 @@ app-vertical-tabs {
 }
 
 .cardTile {
-  grid-column: span 2;
+  
+  
+
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: span 3;
+  }
+  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+    grid-column: span 3;
+  }
+  @media screen and (min-width: 720px) {   //medium
+    grid-column: span 3;
+  }
+  @media screen and (min-width:1280px) and (max-width: 1439px){  //surface pro
+    grid-column: span 3;
+  }
+  @media screen and (min-width:1439px) {
+    grid-column: span 2;
+  }
 }
 
 .cardListItem > .mat-card {

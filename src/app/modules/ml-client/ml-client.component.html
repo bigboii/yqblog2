@@ -1,18 +1,20 @@
-<div class="ml-container" fxFlex="1 1 initial" fxLayout="column">
+<div class="grid12 ml-container" fxFlex="1 1 initial" fxLayout="column">
 
-    <h3> Step 1: Select Classifier </h3>
-    <mat-form-field>
-        <mat-label> Select a Classifier </mat-label>
-        <mat-select [(value)]="currClassifier"> 
-            <mat-option *ngFor="let classifier of classifiers" [value]="classifier.value">
-                {{classifier.viewValue}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
-
-    <p>You selected: {{currClassifier}} </p>
+    <section class="span8 grid8">
+        <h3> Step 1: Select Classifier </h3>
+        <mat-form-field>
+            <mat-label> Select a Classifier </mat-label>
+            <mat-select [(value)]="currClassifier"> 
+                <mat-option *ngFor="let classifier of classifiers" [value]="classifier.value">
+                    {{classifier.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <p>You selected: {{currClassifier}} </p>
+    </section>
 
     <!-- File Drop Zone  -->
+    <section class="span8 grid8">
     <h3> Step 2: Enter training and data set </h3>
 
     <mat-accordion>
@@ -96,22 +98,24 @@
     <p> {{trainingSetInputForm.value}} </p>
 
     <p> {{dataSetInputForm.value}} </p>
+    </section>
 
-    <!-- Console Log for ml progress -->
-    <h3> Step 3: View Predictions </h3>
-    <div class="outputContainer">
-        <p> w : {{w}}</p>
-        <p> Distance to plane of origin : {{distanceToPlaneOfOrigin}} </p>
-        <p> predictions: </p>
-        <ul>
-            <li *ngFor="let prediction of testValue.data"> {{prediction}} </li>
-        </ul>
-        <div *ngIf="testValue"> 
-            <p *ngFor="let data of testValue.data"> {{data}} </p>
+    <section class="span8 grid8">
+        <!-- Console Log for ml progress -->
+        <h3> Step 3: View Predictions </h3>
+        <div class="outputContainer">
+            <p> w : {{w}}</p>
+            <p> Distance to plane of origin : {{distanceToPlaneOfOrigin}} </p>
+            <p> predictions: </p>
+            <ul>
+                <li *ngFor="let prediction of testValue.data"> {{prediction}} </li>
+            </ul>
+            <div *ngIf="testValue"> 
+                <p *ngFor="let data of testValue.data"> {{data}} </p>
 
+            </div>
         </div>
-    </div>
-    <button mat-raised-button color="primary" (click)="generatePredictions()"> Generate Predictions </button>
-
+        <button mat-raised-button color="primary" (click)="generatePredictions()"> Generate Predictions </button>
+    </section>
 
 </div>

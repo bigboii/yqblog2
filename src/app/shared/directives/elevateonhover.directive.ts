@@ -27,13 +27,13 @@ export class ElevateOnHoverDirective  {
 
   @HostListener('mouseenter')
   public onMouseEnter(event : Event) {
-    console.log("[hoverOnElevate] mouseEnter");
+    // console.log("[hoverOnElevate] mouseEnter");
     this.elevation = '2';
   }
 
   @HostListener('mouseleave')
   public onMouseLeave(event : Event) {
-    console.log("[hoverOnElevate] mouseLeave");
+    // console.log("[hoverOnElevate] mouseLeave");
     this.elevation = '8';
   }
 
