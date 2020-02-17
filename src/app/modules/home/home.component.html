@@ -1,34 +1,23 @@
 <div class="grid12 home-container">
   
-    <section class="span12 grid12 section-parallax parallax-color padding-vertical">
-      <div class="span6Center parallax-container">
-        <!-- <div [style.height.px]="parallaxHeight">  -->
-    <!-- [@revealParallax]="parallaxShow"  lazyLoad--> <!-- (themeService.getIsNightmode() == false) ? 'parallax-bg parallax-bg-light mat-elevation-z0':'parallax-bg parallax-bg-dark mat-elevation-z0' -->
-          
-        <div class="parallax-caption">
-            <div class="mat-display-1 mono" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1}}" fasttext>
-                Hi, my name is
-            </div>
-            <div class="mat-display-4 caption-second" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.2}}"  fasttext> 
-                Young Kyu Kim.
-            </div>
-            <div class="mat-display-1" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.4}}"  fasttext> 
-              I'm a software engineer based in Jersey City, NJ whos been developing (and occasionaly designing) large scale applications. Recently, I've also picked up UI development as a hobby.
-            </div>
-          </div>
-        <!-- </div> -->
+  <div class="spanGrid12 parallax-container parallax-color padding-vertical">
+    <div class="spanGrid6Center">
+      <div class="mat-display-1 mono span6" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1}}" fasttext>
+          Hi, my name is
       </div>
-    </section>
+      <div class="mat-display-4 caption-second span6" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.2}}"  fasttext> 
+          Young Kyu Kim.
+      </div>
+      <div class="mat-display-1 span4" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1.4}}"  fasttext> 
+        I'm a software engineer based in Jersey City, NJ whos been developing (and occasionaly designing) large scale applications. Recently, I've also picked up UI development as a hobby.
+      </div>
+    </div>
+  </div>
 
-  <div class="span6Center">
-    <!-- Section: parallax-->
-
-    <!-- Section: About Me -->
-    <!-- <div revealOnScroll [index]="this.visibleSections[0].id" (showSection)="displayEmitterResults($event)" [@sectionState]="visibleSections[0].show"> -->
+  <div class="spanGrid6Center">
     <section class="about padding-vertical">
       <h1 class="span6 mat-display-2 heading dash">About Me</h1>
-      <span class="span6 grid6 content">
-      <!-- <div class="about-container " fxLayout="row" fxLayout.xs="column"> -->
+      <span class="spanGrid6 content">
         <div class="span3 about-container-content">
           <p class="mat-body-1"> I'm currently a Software Engineer based in the United States, Jersey City and I spent the last few years developing Bank of America's Private Cloud Platform. </p>
           <p class="mat-body-1"> I've gained hands on experience in developing large scale backend applications using a microservice architecture (inspired by Netflix); sometimes, a large complex problem can be be easily solved, developed, tested, and maintained when split into smaller fine-grained functions that are working together. </p>
@@ -58,10 +47,8 @@
             <img class="avatar-pic" alt="Avator" [src]="'/assets/imgs/parallax_small.jpg'">
           </a>
         </div>
-      <!-- </div> -->
-    </span>
+      </span>
     </section>
-    <!-- </div>     -->
 
     <!-- Section: Work Experience -->
     <section class="sectionJobs padding-vertical">
@@ -75,7 +62,7 @@
     <section class="padding-vertical">
       <h1 class="mat-display-2 heading dash">What I've built</h1>
 
-      <span class="span6 grid6 content cardListItem">
+      <span class="spanGrid6 content cardListItem">
         <ng-container class="grid6" *ngFor="let _ of projectTiles">
             <mat-card class="cardTile span6">
               <mat-card-header>
@@ -103,15 +90,13 @@
 
 
     <!-- Section: Blog, do this last -->
-    <div >
-      <section class="padding-vertical">
-        <h1 class="mat-display-2 heading center">Lets Connect</h1>
-        <!-- https://stackoverflow.com/questions/32876788/nodemailer-without-gmail -->
-        <span class="content">
-          <p class="mat-body-1 center">Feel free to reach out to me. LinkedIn or Email best.</p>
-        </span>
-      </section>
-    </div>
+    <section class="padding-vertical">
+      <h1 class="mat-display-2 heading center">Lets Connect</h1>
+      <!-- https://stackoverflow.com/questions/32876788/nodemailer-without-gmail -->
+      <span class="content">
+        <p class="mat-body-1 center">Feel free to reach out to me. LinkedIn or Email best.</p>
+      </span>
+    </section>
 
   </div>
 </div>

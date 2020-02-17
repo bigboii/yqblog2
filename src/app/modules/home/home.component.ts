@@ -6,7 +6,7 @@ import { DOCUMENT } from '@angular/common';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  animations: [ revealOnScrollAnimation, revealParallaxAnimation, slideUpFadeIn ]
+  animations: [ revealOnScrollAnimation, revealParallaxAnimation, slideUpFadeIn ],
 })
 export class HomeComponent implements OnInit{
 

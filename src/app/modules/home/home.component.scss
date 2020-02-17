@@ -70,7 +70,7 @@ $config: mat-typography-config();
     font-family: 'Roboto Mono', monospace;
       // position: relative;
       align-items: center;
-      margin: 8px 0px 40px;   //TODO: causing issue with mobile screen sizes
+      // margin: 8px 0px 40px;   //TODO: causing issue with mobile screen sizes
 
       //Below needed for .heading::after
       // grid-column: 1/span 8;
@@ -182,14 +182,6 @@ $config: mat-typography-config();
     // }
   }
 
-  .section-parallax {
-    // background-color: mat-color($primary, darker);
-    // color:mat-color($primary, 50);
-    padding: 0 !important;
-    // margin: 0 !important;
-    // max-width:none !important;
-    width:100%;
-  }
 
   .parallax-bg-light {
     background-color: mat-color($primary, darker);
@@ -247,23 +239,17 @@ app-main {
 
 .home-container {
   counter-reset: heading-count;  //creates a counter
-  grid-template-rows: auto auto;
 
   .parallax-container {
-    // grid-area: pArea;
-  
-    // grid-column: 1 / span 12;
     grid-row: 1 / span 1;
-  
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
   }
   
   .content-container {
     // grid-area: cArea;
     grid-row: 2 / span 1;
-
-    section {
-      @extend .grid6;
-    }
   }
 }
 
@@ -291,10 +277,9 @@ section {
   display:grid;
   height:100%;
   grid-template-rows: auto auto;
+  row-gap:24px;
 
-  // margin: 0px auto;
-  // max-width: calc(#{$eight-pt} * 128);   //1024px
-  // flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
+  @extend .spanGrid6;
 }
 
 section h1 {
@@ -584,9 +569,6 @@ app-vertical-tabs {
 }
 
 .cardTile {
-  
-  
-
   @media screen and (max-width: 600px) {   //ultra small
     grid-column: span 3;
   }
@@ -606,10 +588,10 @@ app-vertical-tabs {
 
 .cardListItem > .mat-card {
   @include mat-elevation-transition;
-  @include mat-elevation(4);
+  @include mat-elevation(1);
 
   &:hover {
-    @include mat-elevation(16);
+    @include mat-elevation(4);
   }
 }
 

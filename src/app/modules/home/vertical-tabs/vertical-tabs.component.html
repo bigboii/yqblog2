@@ -12,7 +12,7 @@
 
     <div class="tabsContentContainer" *ngFor="let cardDatum of cardData"  id="{{cardDatum.id}}" [@verticalTabContentFadeIn]="this.tabs[cardDatum.id]['isShow']">
       <!-- <div class="tabcontent fixedCardHeight" id="{{cardDatum.id}}" [@verticalTabContentFadeIn]="this.tabs[cardDatum.id]['isShow']"> -->
-        <mat-card class="tabcontent" id="{{cardDatum.id}}" elevateOnHover class="card-container" >
+        <mat-card class="tabcontent" id="{{cardDatum.id}}" class="card-container" >
 
           <!-- Right -->
           <mat-card-header>

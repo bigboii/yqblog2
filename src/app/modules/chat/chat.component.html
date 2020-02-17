@@ -1,27 +1,29 @@
-<div class="chat-container" *ngIf="userName" fxFlex="1 1 1e-09px" fxLayout="column">
-  <mat-list class="chat-message-list">
-    <ng-container *ngFor="let interaction of interactions" style="display:inline;">
-      <mat-list-item>
-        <mat-icon mat-list-icon> person </mat-icon>
-        <div mat-line> 
-          <h3> {{interaction.user}}  </h3>
-          <p> {{interaction.timestamp}} </p>
-        </div>
-      </mat-list-item>
-      <mat-list dense>
-        <mat-list-item class="my-messages" *ngFor="let message of interaction.messages">
-          <span class="mat-caption">{{message}}</span>
-          <!-- <textarea>{{message}} </textarea> -->
+<div class="grid12">
+  <div class="chat-container" *ngIf="userName" fxFlex="1 1 1e-09px" fxLayout="column">
+    <mat-list class="chat-message-list">
+      <ng-container *ngFor="let interaction of interactions" style="display:inline;">
+        <mat-list-item>
+          <mat-icon mat-list-icon> person </mat-icon>
+          <div mat-line> 
+            <h3> {{interaction.user}}  </h3>
+            <p> {{interaction.timestamp}} </p>
+          </div>
         </mat-list-item>
-      </mat-list>
-    </ng-container>
-  </mat-list>
+        <mat-list dense>
+          <mat-list-item class="my-messages" *ngFor="let message of interaction.messages">
+            <span class="mat-caption">{{message}}</span>
+            <!-- <textarea>{{message}} </textarea> -->
+          </mat-list-item>
+        </mat-list>
+      </ng-container>
+    </mat-list>
 
-  <div class="chat-input" fxLayout="row">
-    <mat-form-field fxFlex="grow">
-      <input matInput placeholder="Enter message" type="text" [(ngModel)]="messageContent" >
-    </mat-form-field>
-    <button fxFlex="nogrow" mat-button type="submit" (click)="sendMessage(messageContent)">Send</button>
+    <div class="chat-input" fxLayout="row">
+      <mat-form-field fxFlex="grow">
+        <input matInput placeholder="Enter message" type="text" [(ngModel)]="messageContent" >
+      </mat-form-field>
+      <button fxFlex="nogrow" mat-button type="submit" (click)="sendMessage(messageContent)">Send</button>
+    </div>
+
   </div>
-
 </div>
