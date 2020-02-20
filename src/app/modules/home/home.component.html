@@ -43,8 +43,8 @@
           </div>
         </div>
         <div class="about-container-pic">
-          <a>
-            <img class="avatar-pic" alt="Avator" [src]="'/assets/imgs/parallax_small.jpg'">
+          <a class="stream">
+            <img class="stream__thumbnail avatar-pic" alt="Avator" [src]="'/assets/imgs/parallax_small.jpg'">
           </a>
         </div>
       </span>
@@ -59,12 +59,14 @@
     </section>
 
     <!-- Section: Projects -->
+    <!-- https://stackblitz.com/angular/vonmbgjmrog -->
     <section class="padding-vertical">
       <h1 class="mat-display-2 heading dash">What I've built</h1>
 
-      <span class="spanGrid6 content cardListItem">
-        <ng-container class="grid6" *ngFor="let _ of projectTiles">
-            <mat-card class="cardTile span6">
+      <div class="grid6 content cardRows">
+        <!-- <ng-container class="grid6" *ngFor="let _ of projectTiles"> -->
+          <div class="stream span2" *ngFor="let _ of projectTiles">
+            <mat-card class="stream__thumbnail">
               <mat-card-header>
                 <mat-card-title class="tileCardTitle"> {{_.title}}</mat-card-title>
               </mat-card-header>
@@ -84,8 +86,9 @@
                 </div>
               </mat-card-content>
             </mat-card>
-        </ng-container>
-      </span>
+          </div>
+        <!-- </ng-container> -->
+      </div>
     </section>
 
 

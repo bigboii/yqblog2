@@ -1,7 +1,6 @@
 <mat-sidenav-container class="drawer-container">
   
   <!-- <app-header class="searchme" [logoPath]=logoPath></app-header> -->
-
   <mat-sidenav #drawer class="drawer mat-elevation-z6 my-dark-theme" mode="{{mobileQuery.matches ? over : side}}" opened="false" [fixedInViewport]="true" fixedTopGap="{{mobileQuery.matches ? 56 : 64}}">
     <mat-nav-list>
       <a mat-list-item *ngFor="let nav of navItems" routerLink="{{nav.route}}" routerLinkActive="active-list-item">
@@ -15,7 +14,6 @@
   <mat-sidenav-content>
     <!-- <div fxFill fxLayout="column"> -->
       <app-header class="searchme" [logoPath]=logoPath></app-header>
-      
       <!-- content -->
       <!-- <div class="outlet-wrapper mat-elevation-z2"> -->
         

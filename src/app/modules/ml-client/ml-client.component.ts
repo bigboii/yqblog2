@@ -25,6 +25,8 @@ interface MLResponse {
 const headers = new HttpHeaders()
     .set("Content-Type", "application/json");
 
+//https://www.quora.com/What-is-the-difference-between-Support-Vector-Machine-and-Support-Vector-Regression
+
 @Component({
   selector: 'app-ml-client',
   templateUrl: './ml-client.component.html',
@@ -32,13 +34,84 @@ const headers = new HttpHeaders()
 })
 export class MLClientComponent implements OnInit {
 
+  public problemType: any = [
+    {"viewValue":"Classifier", "value":"classifier"}, 
+    {"viewValue":"Regression", "value":"regression"}
+  ];
+
   public classifiers: any = [
     {"viewValue": "Naive Bayes", "value":"naive_bayes"}, 
     {"viewValue":"Least Square Loss", "value":"least_square_loss"}, 
     {"viewValue":"Hinge Loss", "value":"hinge_loss"}, 
-    {"viewValue":"Logistic Regression", "value":"logistic_discrimination"}
-    // {"value":"CART Decision Tree", "viewValue":""}
+    {"viewValue":"Logistic Discrimination", "value":"logistic_discrimination"},   //aka logistic regression, but not really a regression algorithm
+    {"viewValue":"CART Decision Tree (Coming Soon)", "value":"decision_tree"}
   ];
+
+
+  public algorithms: any = [
+    {
+      "viewValue": "Naive Bayes", 
+      "value":"naive_bayes", 
+      "type":"classifier",
+      "description": "probabilistic model based on Bayesian Theorem"
+    }, 
+    {
+      "viewValue":"Least Square Loss", 
+      "value":"least_square_loss", 
+      "type":"regression",
+      "description":""
+    }, 
+    {
+      "viewValue":"Support Vector Machine (Hinge Loss)", 
+      "value":"svm_hinge_loss", 
+      "type":"classifier",
+      "description":""
+    },   //if kernels are applied, we can also perform regression analysis (Support Vector Regression)
+    {
+      "viewValue":"Logistic Discrimination", 
+      "value":"logistic_discrimination", 
+      "type":"classifier",
+      "description":""
+    },   //aka logistic regression, but not really a regression algorithm
+    {
+      "viewValue":"CART Decision Tree (Coming Soon)", 
+      "value":"decision_tree", 
+      "type":"classifier"
+      "description": "coming soon"
+    }
+  ]
+
+  public mlGlossary : any = [
+    {
+      "term":"Classification",
+      "description": "Classification functions predict a label."
+    },
+    {
+      "term":"Regression",
+      "description":"Regression functions predict a quantity"
+    },
+    {
+      "term":"Perceptron",
+      "description":"Finds separating hyperplane"
+      //https://www.quora.com/What-is-the-difference-between-the-perceptron-learning-algorithm-and-SVM
+    },
+    {
+      "term": "Support Vector Machine (svm)",
+      "description": "SVMs tries to draw a simple line to separate the data points into two parts. \
+      However sometimes, the seperating line/hyperplane isn't linear; a curly/wavy line is required.\
+      By applying a kernel trick (lift the feature space into a higher dimensional space), a linear classification may be possible."
+    },
+    {
+      "term":"Kernel",
+      "description":" ?? \
+      Kernel Trick is a very math heavy and won't be covered in this app."
+    }
+  ];
+  
+  public currMlGlossary : any;
+
+
+  public learningRate: any;   //number?
 
   public UCIDataSets: any = [
     {

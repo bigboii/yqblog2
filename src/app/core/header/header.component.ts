@@ -64,7 +64,7 @@ export class HeaderComponent implements AfterViewInit {
       }
 
       this.isElevated = true;
-      this.elevationValue = 8;
+      this.elevationValue = 4;
       
     }
     else {

@@ -1,10 +1,41 @@
 <div class="grid12 ml-container" >
+    <div class="introduction">
+        <p>
+            This page was created for my own personal note taking.
+            I've re-implemented common classification and regression algorithms for my own learning purposes.
+            Digit Recognition.
+        </p>
+    </div>
 
-    <div class="span6Left">
-        <section class="span6">
+    <div class="span5Left" [class.mat-elevation-z2]="true">
+        <section class="span5">
             <h3> Step 1: Select Classifier </h3>
-            <div class="content">
-                <mat-form-field>
+            <div class="content spanGrid5">
+
+                <mat-form-field class="span1">
+                    <mat-label> Select Problem Type </mat-label>
+                    <mat-select [(value)]="problemType"> 
+                        <mat-option *ngFor="let classifier of classifiers" [value]="classifier.value">
+                            {{classifier.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="span1">
+                    <mat-label> Select a Classifier </mat-label>
+                    <mat-select [(value)]="currClassifier "> 
+                        <mat-option *ngFor="let classifier of classifiers" [value]="classifier.value">
+                            {{classifier.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="span1">
+                    <mat-label> Learning Rate </mat-label>
+                    <input matInput placeholder="1000" value="learningRate">
+                </mat-form-field>
+
+                <mat-form-field class="span1">
                     <mat-label> Select a Classifier </mat-label>
                     <mat-select [(value)]="currClassifier"> 
                         <mat-option *ngFor="let classifier of classifiers" [value]="classifier.value">
@@ -16,7 +47,7 @@
         </section>
 
         <!-- File Drop Zone  -->
-        <section class="span6">
+        <section class="span5">
             <h3> Step 2: Enter training and data set </h3>
             <mat-accordion class="content">
                 <!-- Panel 1: Custom Dataset -->
@@ -100,7 +131,7 @@
             <p> {{dataSetInputForm.value}} </p>
         </section>
 
-        <section class="span6">
+        <section class="span5">
             <!-- Console Log for ml progress -->
             <h3> Step 3: View Predictions </h3>
             <div class="content outputContainer">
@@ -119,8 +150,8 @@
     </div>
 
     <!-- Overview -->
-    <div class="overview span4">
-        <mat-card class="span6">
+    <div class="span5Right overview">
+        <mat-card class="span5">
             <mat-card-header>
               <mat-card-title class="tileCardTitle"> Overview </mat-card-title>
             </mat-card-header>
@@ -143,5 +174,18 @@
                 </p>
             </mat-card-content>
         </mat-card>
+    </div>
+
+    <div class="mlGlossary">
+        <h1>Umm, what is a </h1>
+        <mat-form-field class="span1">
+            <mat-label> Select a Classifier </mat-label>
+            <mat-select [(value)]="currGlossary"> 
+                <mat-option *ngFor="let classifier of classifiers" [value]="classifier.value">
+                    {{classifier.viewValue}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
     </div>
 </div>

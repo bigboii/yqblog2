@@ -43,22 +43,26 @@ export const tabVerticalSlide = trigger('tabVerticalSlide',[
   ])
 ])
 
-export function dynamicTabVerticalSlide( tabHeight: number, color: string): AnimationTriggerMetadata {
+export function dynamicTabVerticalSlide( tabHeight: number, myColor: string): AnimationTriggerMetadata {
   return trigger( 'dynamicTabVerticalSlide', [
     state('tab0', style({
       height: tabHeight+'px',
-      'border-right': '3px solid ' + color,
-      transform:'translateY(0px)'
+      'border-right': '3px solid ' + myColor,
+      transform:'translateY(0px)',
+      'color': '' + myColor
     })),
     state('tab1', style({
       height: tabHeight+'px',
-      'border-right': '3px solid ' + color,
-      transform:'translateY(88px)'
+      'border-right': '3px solid ' + myColor,
+      transform:'translateY(88px)',
+      'color': '' + myColor
     })),
     state('tab2', style({
       height: tabHeight + 'px',
-      'border-right': '3px solid ' + color,
-      transform:'translateY(176px)'
+      'border-right': '3px solid ' + myColor,
+      transform:'translateY(176px)',
+      'color': '' + myColor
+
     })),
     transition('* => *', [
       animate("200ms")

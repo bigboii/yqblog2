@@ -38,6 +38,7 @@
 
 .ml-container section .content {
     grid-column: 1 / span 8;
+    
 }
 
 :host {
@@ -53,7 +54,7 @@
     }
 }
 
-.span6Left {
+.span5Left {
     @media screen and (max-width: 600px) {   //ultra small
         grid-column: 1 / span 1;
     }
@@ -62,11 +63,33 @@
     }
 
     @media screen and (min-width: 720px) {   //medium
-        grid-column: 2 / span 6;
+        grid-column: 2 / span 5;
     }
 
-    @extend .grid6;
+    @extend .grid5;
+
+    z-index: 2;
+    @include mat-elevation(2);
 }
+
+.span5Right{
+    @media screen and (max-width: 600px) {   //ultra small
+        grid-column: 2 / span 1;
+    }
+    @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+        grid-column: 5 / span 3;
+    }
+
+    @media screen and (min-width: 720px) {   //medium
+        grid-column: 7 / span 5;
+    }
+
+    @extend .grid5;
+
+    z-index: 2;
+    @include mat-elevation(2);
+}
+
 /*
     CSS for drag drop
 */
@@ -138,3 +161,5 @@
 .dataContainer {
     padding:8px;
 }
+
+

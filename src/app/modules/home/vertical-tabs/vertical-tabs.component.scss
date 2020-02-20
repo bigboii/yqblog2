@@ -58,23 +58,31 @@ $config: mat-typography-config();
     // margin-bottom: 8px;
   }
 
-  // p{
-  //   // margin: 8px 0;
-  //   margin:0;
-  //   // margin-bottom: 16px;
-  // }
-  // p + p{
-  //   margin-top:10px;
-  // }
-
   .tabcontent > mat-card {
     padding:0px;
   }
 
-  mat-card:hover {
-    z-index: 4;
-    @include mat-elevation-transition;
+  // mat-card:hover {     //BUG:    THIS IS IMPACTING HOME.SCSS
+  //   z-index: 4;
+  //   @include mat-elevation-transition;
+  // }
+
+  /*  
+  Remove elevation and background color for mat-card   //BUG:  this is impacting home scss
+  This css is impacting home.scss????????????
+  */
+  // mat-card:not([class*=mat-elevation-z])
+  .tabsContentContainer .mat-card:not([class*=mat-elevation-z]) {
+    background: none;
+    box-shadow: none;
+    // z-index:0;
   }
+
+  // .tabcontent {
+  //   background: none;
+  //   box-shadow: none;
+  //   // z-index:0;
+  // }
 
   .gridRows {
     @media screen and (max-width: 600px) {   //ultra small
@@ -98,6 +106,12 @@ $config: mat-typography-config();
     // height: 300px;
     .mat-button {             //to fix bug: when mat-button is clicked within grid layout, sections disappear.
       position:initial;
+    }
+
+    .mat-button:hover {             //to fix bug: when mat-button is clicked within grid layout, sections disappear.
+      z-index: 2;
+      @include mat-elevation-transition;
+      @include mat-elevation(2);
     }
 
     
@@ -156,9 +170,6 @@ $config: mat-typography-config();
   }
 
 
-
-
-
   .tab div span {
     // display: block;
     background-color: inherit;
@@ -190,7 +201,7 @@ $config: mat-typography-config();
   }
 
   /* tab content */
-  .tabcontent {
+  // .tabcontent {
     // float: left;
     // // padding: 16px;
     // width: 100%;
@@ -205,7 +216,7 @@ $config: mat-typography-config();
     //transition: all 0s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
 
     // grid-column: 3 / span 3;
-  }
+  // }
 
   // .fixedCardHeight {
   //   height: 300px;
@@ -251,15 +262,6 @@ $config: mat-typography-config();
   
 }
 
-/*
-  Remove elevation and background color for mat-card
-*/
-.mat-card:not([class*=mat-elevation-z]) {
-  background: none;
-  box-shadow: none;
-  z-index:0;
-}
-
 .card-container {
   //margin-bottom: 1%;
 }
@@ -291,8 +293,6 @@ $config: mat-typography-config();
   @media screen and (min-width: 600px) {   //medium
     // display:none;
   }
-
-  
 }
 
 .mat-tab-body {

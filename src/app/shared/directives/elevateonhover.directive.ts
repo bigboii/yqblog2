@@ -37,6 +37,8 @@ export class ElevateOnHoverDirective  {
     this.elevation = '8';
   }
 
+  
+
   // setElevation(amount: number) {
   //   // remove all elevation classes
   //   const classesToRemove = Array.from((<HTMLElement>this.element.nativeElement).classList).filter(c => c.startsWith('mat-elevation-z'));

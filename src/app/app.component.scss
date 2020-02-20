@@ -20,15 +20,6 @@
     background-color: mat-color($warn);
   }
 
-  /* Sidenav Drawer Color  */
-  $the-dark-theme: mat-dark-theme($primary, $accent, $warn);
-
-  .the-dark-theme {
-      @include angular-material-theme($the-dark-theme);
-      $background: map-get($the-dark-theme, background);
-      background-color: mat-color($background, background);
-  }
-
   /* Active List Item */
   .active-list-item {
     color: mat-color($primary) !important; /* Note: You could also use a custom theme */

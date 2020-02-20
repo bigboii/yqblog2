@@ -146,10 +146,73 @@ $config: mat-typography-config();
     justify-content: center;
   }
 
-  // h1, h2, h3, h4, h5 {
-  //     font-weight: 600;
-  //     color: rgb(230, 241, 255);
-  //     margin: 0px 0px 10px;
+
+  ///////////////////////////////////////////
+  //Twitch's elevate on hover effect
+  ///////////////////////////////////////////
+  .stream {
+    position: relative;
+    display: inline-block;
+    background-color: mat-color($primary);
+    border-radius: 4px;
+  }
+  
+  .stream:before, .stream:after {
+    content: '';
+    display: block;
+    background-color: mat-color($primary);
+    width: 8px;
+    height: 8px;
+    // border-radius: 4px;
+    position: absolute;
+    transition: all 0.15s ease;
+  }
+
+  .stream:before {
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+    transform: rotate(-45deg) scale(0);
+  }
+
+  .stream:after {
+    right: 0;
+    bottom: 0;
+    transform-origin: bottom right;
+    transform: rotate(45deg) scale(0);
+  }
+
+  .stream__thumbnail {
+    display: block;
+    transform: translate(0, 0);
+    transition: all 0.15s ease;
+    position: relative;
+    z-index: 4;
+  }
+  
+  .stream:hover > .stream__thumbnail {
+    transform: translate(6px, -6px);
+  }
+
+  .stream:hover .stream__thumbnail {
+    transform: translate(6px, -6px);
+  }
+  
+  .stream:hover:before {
+    transform: rotate(-45deg) scale(1);
+  }
+  
+  .stream:hover:after {
+    transform: rotate(45deg) scale(1);
+  }
+
+  /*
+    Remove elevation and background color for mat-card
+  */
+  // .stream .mat-card {
+  //   // background: none;
+  //   // box-shadow: none;
+  //   // z-index:0;
   // }
 
 }
@@ -542,7 +605,7 @@ app-vertical-tabs {
 //   margin-bottom:24px;
 // }
 
-.cardListItem {
+.cardRows {
   // grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   // grid-column-gap:24px;
   grid-auto-flow:rows;
@@ -568,36 +631,18 @@ app-vertical-tabs {
 
 }
 
-.cardTile {
-  @media screen and (max-width: 600px) {   //ultra small
-    grid-column: span 3;
-  }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
-    grid-column: span 3;
-  }
-  @media screen and (min-width: 720px) {   //medium
-    grid-column: span 3;
-  }
-  @media screen and (min-width:1280px) and (max-width: 1439px){  //surface pro
-    grid-column: span 3;
-  }
-  @media screen and (min-width:1439px) {
-    grid-column: span 2;
-  }
-}
+// .cardRows > .mat-card {
+//   // @include mat-elevation-transition;
+//   // @include mat-elevation(1);
 
-.cardListItem > .mat-card {
-  @include mat-elevation-transition;
-  @include mat-elevation(1);
+//   // &:hover {
+//   //   @include mat-elevation(4);
+//   // }
+// }
 
-  &:hover {
-    @include mat-elevation(4);
-  }
-}
-
-.mat-card {
-  padding: 32px 32px;
-}
+// .mat-card {
+//   padding: 32px 32px;
+// }
 
 .vertical_center_helper {   //used to help center img vertically
   display:inline-block; 
@@ -657,9 +702,4 @@ app-vertical-tabs {
 /* List Item Height */
 .mat-list .mat-list-item {
   height: 32px; /* default is 72px */
-}
-
-
-p {
-  // margin: 0px 0px 16px;
 }
