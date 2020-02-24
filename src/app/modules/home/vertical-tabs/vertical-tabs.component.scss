@@ -84,17 +84,18 @@ $config: mat-typography-config();
   //   // z-index:0;
   // }
 
-  .gridRows {
+  .buttonRows {
+    display:grid;
+    border-right: 1px solid rgba(0,0,0,.12);
+    height: fit-content;
+
     @media screen and (max-width: 600px) {   //ultra small
-      grid-row-gap:16px;
       grid-template-rows: 56px 56px 56px;
     }
     @media screen and (min-width: 600px) and (max-width: 720) {   //medium
-      grid-row-gap:16px;
       grid-template-rows: 64px 64px 64px;
     }
     @media screen and (min-width: 720px) {   //medium
-      grid-row-gap:24px;
       grid-template-rows: 64px 64px 64px;
     }
 
@@ -134,11 +135,26 @@ $config: mat-typography-config();
       grid-column: 2 / span 1;
     }
   
-    .tabBorder {
-      position:absolute;
+    // .tabBorder {
+    //   position:absolute;
+    //   grid-row: 1 / span 1;
+    // }
+
+    .tabBorderContainer {
+      // position:absolute;
       grid-row: 1 / span 1;
+      position: relative;
+
+      .tabBorder {
+        // position:relative;
+        position:absolute;
+        right: 0;
+        // right:64px;     //TODO: in desktop mode, its 136px... need to fetch this value dynamically somehow
+      }
     }
+
   }
+
 
 //   .tab div button {
 //     // display: block;

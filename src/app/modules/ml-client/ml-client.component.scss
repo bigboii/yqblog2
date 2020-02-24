@@ -1,8 +1,22 @@
 @import '~src/themeVars.scss';
+@import '~@angular/material/_theming';
+@import '~@angular/material/theming';
+//https://stackoverflow.com/questions/55949178/how-to-get-the-current-angular-themes-color-of-a-specific-component-e-g-butto
+
+@mixin set-theme-mlclient($theme) {
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+    $background-color : mat-color($background, dialog);
+
+    .elevatedBackground {
+        background-color : $background-color;
+    }
+}
 
 .ml-container {
     margin-top:24px;
     margin-bottom:24px;
+    grid-row-gap:24px;
     // margin-top:64px;
     // width:100%;
     // height: 100%;
@@ -54,16 +68,23 @@
     }
 }
 
+.introduction {
+    grid-column: 2 / span 10;
+}
+
 .span5Left {
     @media screen and (max-width: 600px) {   //ultra small
         grid-column: 1 / span 1;
+        padding:16px;
     }
     @media screen and (min-width: 600px) and (max-width: 720) {   //medium
         grid-column: 1 / span 3;
+        padding:16px;
     }
 
     @media screen and (min-width: 720px) {   //medium
         grid-column: 2 / span 5;
+        padding:24px;
     }
 
     @extend .grid5;
@@ -75,13 +96,16 @@
 .span5Right{
     @media screen and (max-width: 600px) {   //ultra small
         grid-column: 2 / span 1;
+        padding:16px;
     }
     @media screen and (min-width: 600px) and (max-width: 720) {   //medium
         grid-column: 5 / span 3;
+        padding:16px;
     }
 
     @media screen and (min-width: 720px) {   //medium
         grid-column: 7 / span 5;
+        padding:24px;
     }
 
     @extend .grid5;
@@ -90,29 +114,33 @@
     @include mat-elevation(2);
 }
 
+.mlGlossary {
+    grid-column: 2 / span 10;
+}
+
 /*
     CSS for drag drop
 */
 
-.uploadFileContainer {
-    background-image: url("../../../assets/material-design-icons-3.0.1//file/ios/ic_file_upload_white_48pt.imageset/ic_file_upload_white_48pt.png");
-    background-repeat: no-repeat;
-    background-size:100px;
-    background-position:center;
-    height:300px;
-    width:100%;
-    // min-width: 300px;    //for mobile
-    margin: 24px auto;
-    border: 2px dashed #1C8ADB;
-    border-radius:16px;
-}
+// .uploadFileContainer {
+//     background-image: url("../../../assets/material-design-icons-3.0.1//file/ios/ic_file_upload_white_48pt.imageset/ic_file_upload_white_48pt.png");
+//     background-repeat: no-repeat;
+//     background-size:100px;
+//     background-position:center;
+//     height:300px;
+//     width:100%;
+//     // min-width: 300px;    //for mobile
+//     margin: 24px auto;
+//     border: 2px dashed #1C8ADB;
+//     border-radius:16px;
+// }
 
-.uploadFileContainer:hover {
-    cursor: pointer;
-    background-color: #9ecbec !important;
-    opacity: 0.8;
+// .uploadFileContainer:hover {
+//     cursor: pointer;
+//     background-color: #9ecbec !important;
+//     opacity: 0.8;
 
-}
+// }
 
 .files-list {
     display: flex;

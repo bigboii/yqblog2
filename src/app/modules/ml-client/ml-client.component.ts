@@ -40,26 +40,26 @@ export class MLClientComponent implements OnInit {
   ];
 
   public classifiers: any = [
-    {"viewValue": "Naive Bayes", "value":"naive_bayes"}, 
-    {"viewValue":"Least Square Loss", "value":"least_square_loss"}, 
-    {"viewValue":"Hinge Loss", "value":"hinge_loss"}, 
-    {"viewValue":"Logistic Discrimination", "value":"logistic_discrimination"},   //aka logistic regression, but not really a regression algorithm
-    {"viewValue":"CART Decision Tree (Coming Soon)", "value":"decision_tree"}
+    {"viewValue": "Naive Bayes", "value":"naive_bayes", "defaultLearningRate": "N/A", "defaultStoppingCondition": "N/A"}, 
+    {"viewValue":"Least Square Loss", "value":"least_square_loss", "defaultLearningRate":0.001, "defaultStoppingCondition":0.001}, 
+    {"viewValue":"Hinge Loss", "value":"hinge_loss", "defaultLearningRate":0.001, "defaultStoppingCondition":0.000000001}, 
+    {"viewValue":"Logistic Discrimination", "value":"logistic_discrimination", "defaultLearningRate":0.01, "defaultStoppingCondition":0.0000001},   //aka logistic regression, but not really a regression algorithm
+    {"viewValue":"CART Decision Tree (Coming Soon)", "value":"decision_tree", "defaultLearningRate": 0.001, "defaultStoppingCondition":0.0000001}
   ];
 
 
   public algorithms: any = [
     {
-      "viewValue": "Naive Bayes", 
+      "viewValue": "Naive Bayes Classifier", 
       "value":"naive_bayes", 
       "type":"classifier",
-      "description": "probabilistic model based on Bayesian Theorem"
+      "description": "Classifier based on Bayesian Theorem"
     }, 
     {
-      "viewValue":"Least Square Loss", 
+      "viewValue":"Least Squares Linear Classifier", 
       "value":"least_square_loss", 
       "type":"regression",
-      "description":""
+      "description":"A perceptron with a least squares loss function"
     }, 
     {
       "viewValue":"Support Vector Machine (Hinge Loss)", 
@@ -76,12 +76,12 @@ export class MLClientComponent implements OnInit {
     {
       "viewValue":"CART Decision Tree (Coming Soon)", 
       "value":"decision_tree", 
-      "type":"classifier"
+      "type":"classifier",
       "description": "coming soon"
     }
   ]
 
-  public mlGlossary : any = [
+  public mlGlossaries : any = [
     {
       "term":"Classification",
       "description": "Classification functions predict a label."
@@ -111,7 +111,8 @@ export class MLClientComponent implements OnInit {
   public currMlGlossary : any;
 
 
-  public learningRate: any;   //number?
+  public learningRate: number;
+  public bias: number;
 
   public UCIDataSets: any = [
     {
@@ -161,6 +162,7 @@ export class MLClientComponent implements OnInit {
   public predictions: any = ["waiting", "for" , "predictions"];       
   public currClassifier: any;
   public currUciDataset: any = {};
+  public currGlossary: any = {};
 
   public reader;
 

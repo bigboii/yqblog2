@@ -190,9 +190,9 @@ $config: mat-typography-config();
     z-index: 4;
   }
   
-  .stream:hover > .stream__thumbnail {
-    transform: translate(6px, -6px);
-  }
+  // .stream:hover > .stream__thumbnail {
+  //   transform: translate(6px, -6px);
+  // }
 
   .stream:hover .stream__thumbnail {
     transform: translate(6px, -6px);
@@ -348,7 +348,7 @@ section {
 section h1 {
  //use span 6
 
-   @media screen and (max-width: 600px) {   //ultra small
+  @media screen and (max-width: 600px) {   //ultra small
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
   }
@@ -511,66 +511,65 @@ app-vertical-tabs {
 .about-container-pic {
   grid-column: 5 / span 2;
   position: relative;
-  // width: 40%;
   height:auto;
-  // max-width: 300px;
-  // max-width: calc(#{$toolbarHeightLarge} * 5);  //
-  // margin-top: 22px;
   border-radius:4px;
 
-  // @media screen and (max-width: 600px) {        //ultra small
-  //   width:100%;
-  //   margin: 0px auto;
-  //   padding-top: 24px;
-  // }
-  // @media screen and (min-width: 600px) {        //large
-  //   width:60%;
-  //   margin-left: 64px;
-  // }
+  img {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    // color: rgb(100, 255, 218);
+    // transition: opacity 5000ms ease;
 
-  a {
-    filter: grayscale(100%) contrast(1);
-    color: rgb(100, 255, 218);
-    transition: opacity 500ms ease 0s;
+    // &:hover {
+    //   color: rgb(0, 0, 0);
+    //   -webkit-filter: grayscale(0%);
+    //   -moz-filter: grayscale(0%);
+    //   filter: grayscale(0%);
+    // }
 
-    &:hover {
-      color: rgb(0, 0, 0);
-      filter: none;
-    }
+    // img.avator-pic::before {
+    //   top: 0px;
+    //   left: 0px;
+    //   right: 0px;
+    //   bottom: 0px;
+    //   background-color: rgb(10, 25, 47);
+    //   mix-blend-mode: screen;
+    //   content: "";
+    //   display: block;
+    //   position: absolute;
+    //   width: 100%;
+    //   height: 100%;
+    //   border-radius: 4px;
+    //   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+    // }
+    // img.avator-pic::after {
+    //   top: 20px;
+    //   left: 20px;
+    //   z-index: -1;
+    //   border-width: 8px;
+    //   border-style: solid;
+    //   border-color: rgb(100, 255, 218);
+    //   border-image: initial;
+    //   content: "";
+    //   display: block;
+    //   position: absolute;
+    //   width: 100%;
+    //   height: 100%;
+    //   border-radius: 4px;
+    //   transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+    // }
+  }
 
-    img.avator-pic::before {
-      top: 0px;
-      left: 0px;
-      right: 0px;
-      bottom: 0px;
-      background-color: rgb(10, 25, 47);
-      mix-blend-mode: screen;
-      content: "";
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 4px;
-      transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
-    }
-    img.avator-pic::after {
-      top: 20px;
-      left: 20px;
-      z-index: -1;
-      border-width: 8px;
-      border-style: solid;
-      border-color: rgb(100, 255, 218);
-      border-image: initial;
-      content: "";
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      border-radius: 4px;
-      transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
-    }
-  } 
+  img:hover {
+    color: rgb(0, 0, 0);
+    -webkit-filter: grayscale(0%);
+    -moz-filter: grayscale(0%);
+    filter: grayscale(0%);
+    // transition: opacity 5000ms ease;
+  }
 }
+
 // .about-container-pic img {
 //   width:100%;
 // }

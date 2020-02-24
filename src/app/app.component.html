@@ -1,4 +1,4 @@
-<mat-sidenav-container class="drawer-container">
+<mat-sidenav-container class="drawer-container" [hasBackdrop]="false">
   
   <!-- <app-header class="searchme" [logoPath]=logoPath></app-header> -->
   <mat-sidenav #drawer class="drawer mat-elevation-z6 my-dark-theme" mode="{{mobileQuery.matches ? over : side}}" opened="false" [fixedInViewport]="true" fixedTopGap="{{mobileQuery.matches ? 56 : 64}}">

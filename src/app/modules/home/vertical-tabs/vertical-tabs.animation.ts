@@ -43,25 +43,55 @@ export const tabVerticalSlide = trigger('tabVerticalSlide',[
   ])
 ])
 
+// export function dynamicTabVerticalSlide( tabHeight: number, myColor: string): AnimationTriggerMetadata {
+//   return trigger( 'dynamicTabVerticalSlide', [
+//     state('tab0', style({
+//       height: tabHeight+'px',
+//       'border-right': '3px solid ' + myColor,
+//       transform:'translateY(0px)',
+//       'color': '' + myColor
+//     })),
+//     state('tab1', style({
+//       height: tabHeight+'px',
+//       'border-right': '3px solid ' + myColor,
+//       transform:'translateY(88px)',
+//       'color': '' + myColor
+//     })),
+//     state('tab2', style({
+//       height: tabHeight + 'px',
+//       'border-right': '3px solid ' + myColor,
+//       transform:'translateY(176px)',
+//       'color': '' + myColor
+
+//     })),
+//     transition('* => *', [
+//       animate("200ms")
+//     ])
+//   ]);
+// }
+
 export function dynamicTabVerticalSlide( tabHeight: number, myColor: string): AnimationTriggerMetadata {
   return trigger( 'dynamicTabVerticalSlide', [
     state('tab0', style({
       height: tabHeight+'px',
-      'border-right': '3px solid ' + myColor,
-      transform:'translateY(0px)',
-      'color': '' + myColor
+      'width': '3px',
+      'background-color': myColor,
+      color:myColor,
+      transform:'translateY(0px)'
     })),
     state('tab1', style({
       height: tabHeight+'px',
-      'border-right': '3px solid ' + myColor,
-      transform:'translateY(88px)',
-      'color': '' + myColor
+      'width': '3px',
+      'background-color': myColor,
+      color:myColor,
+      transform:'translateY(64px)'
     })),
     state('tab2', style({
       height: tabHeight + 'px',
-      'border-right': '3px solid ' + myColor,
-      transform:'translateY(176px)',
-      'color': '' + myColor
+      'width': '3px',
+      'background-color': myColor,
+      color:myColor,
+      transform:'translateY(128px)'
 
     })),
     transition('* => *', [

@@ -1,25 +1,17 @@
-<div class="grid12 ml-container" >
+<div class="grid12 ml-container">
     <div class="introduction">
         <p>
+            Add Project Description here
             This page was created for my own personal note taking.
             I've re-implemented common classification and regression algorithms for my own learning purposes.
             Digit Recognition.
         </p>
     </div>
 
-    <div class="span5Left" [class.mat-elevation-z2]="true">
+    <div class="span5Left elevatedBackground" [class.mat-elevation-z2]="true">
         <section class="span5">
             <h3> Step 1: Select Classifier </h3>
             <div class="content spanGrid5">
-
-                <mat-form-field class="span1">
-                    <mat-label> Select Problem Type </mat-label>
-                    <mat-select [(value)]="problemType"> 
-                        <mat-option *ngFor="let classifier of classifiers" [value]="classifier.value">
-                            {{classifier.viewValue}}
-                        </mat-option>
-                    </mat-select>
-                </mat-form-field>
 
                 <mat-form-field class="span1">
                     <mat-label> Select a Classifier </mat-label>
@@ -36,12 +28,8 @@
                 </mat-form-field>
 
                 <mat-form-field class="span1">
-                    <mat-label> Select a Classifier </mat-label>
-                    <mat-select [(value)]="currClassifier"> 
-                        <mat-option *ngFor="let classifier of classifiers" [value]="classifier.value">
-                            {{classifier.viewValue}}
-                        </mat-option>
-                    </mat-select>
+                    <mat-label> Bias </mat-label>
+                    <input matInput placeholder="-1" value="bias">
                 </mat-form-field>
             </div>
         </section>
@@ -73,8 +61,9 @@
                             </mat-form-field>
                             <div *ngIf="trainingSetName" class="files-list">
                                 <span> {{ trainingSetName }} </span>
-                                <button class="delete-file" (click)="deleteTrainingSEt()">
-                                    <img src= "../../../assets/material-design-icons-3.0.1/content/ios/ic_delete_sweep_white_48pt.imageset/ic_delete_sweep_white_48pt.png">
+                                <button class="delete-file" (click)="deleteTrainingSet()">
+                                    <mat-icon>ic_delete_sweep</mat-icon>
+                                    <!-- <img src= "../../../assets/material-design-icons-3.0.1/content/ios/ic_delete_sweep_white_48pt.imageset/ic_delete_sweep_white_48pt.png"> -->
                                 </button>
                             </div>
                         </div>
@@ -90,7 +79,8 @@
                             <div *ngIf="dataSetName" class="files-list">
                                 <span> {{ dataSetName }} </span>
                                 <button class="delete-file" (click)="deleteDataSet()">
-                                    <img src= "../../../assets/material-design-icons-3.0.1/content/ios/ic_delete_sweep_white_48pt.imageset/ic_delete_sweep_white_48pt.png">
+                                    <mat-icon>ic_delete_sweep</mat-icon>
+                                    <!-- <img src= "../../../assets/material-design-icons-3.0.1/content/ios/ic_delete_sweep_white_48pt.imageset/ic_delete_sweep_white_48pt.png"> -->
                                 </button>
                             </div>
                         </div>
@@ -150,8 +140,29 @@
     </div>
 
     <!-- Overview -->
-    <div class="span5Right overview">
-        <mat-card class="span5">
+    <div class="span5Right overview elevatedBackground" fxLayout="column" fxLayoutAlign="space-between">
+        <h2> Overview0 </h2>
+
+        <!-- <div fxLayout="column" fxLayoutAlign="space-between"> -->
+            <h3> Classifier </h3>
+            <p>
+                You selected: {{currClassifier}}
+            </p>
+
+            <h3> Training Set </h3>
+            <p> 
+                {{dataSetInputForm.value}}    
+                {{currUciDataset.value}}
+            </p>
+
+            <h3> Dataset </h3>
+            <p> 
+                {{trainingSetInputForm.value}}
+                {{currUciDataset.value}}??
+            </p>
+        <!-- </div> -->
+        
+        <!-- <mat-card class="span5">
             <mat-card-header>
               <mat-card-title class="tileCardTitle"> Overview </mat-card-title>
             </mat-card-header>
@@ -173,19 +184,22 @@
                     {{currUciDataset.value}}??
                 </p>
             </mat-card-content>
-        </mat-card>
+        </mat-card> -->
     </div>
 
     <div class="mlGlossary">
-        <h1>Umm, what is a </h1>
+        <h1> What is a </h1>
         <mat-form-field class="span1">
             <mat-label> Select a Classifier </mat-label>
             <mat-select [(value)]="currGlossary"> 
-                <mat-option *ngFor="let classifier of classifiers" [value]="classifier.value">
-                    {{classifier.viewValue}}
+                <mat-option *ngFor="let mlGlossary of mlGlossaries" [value]="mlGlossary.value">
+                    {{mlGlossary.term}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
+        <p> 
+            {{currGlossary.description}}
 
+        </p>
     </div>
 </div>
