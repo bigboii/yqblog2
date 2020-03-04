@@ -76,21 +76,21 @@ export function dynamicTabVerticalSlide( tabHeight: number, myColor: string): An
       height: tabHeight+'px',
       'width': '3px',
       'background-color': myColor,
-      color:myColor,
+      'color': myColor,
       transform:'translateY(0px)'
     })),
     state('tab1', style({
       height: tabHeight+'px',
       'width': '3px',
       'background-color': myColor,
-      color:myColor,
+      'color':myColor,
       transform:'translateY(64px)'
     })),
     state('tab2', style({
       height: tabHeight + 'px',
       'width': '3px',
       'background-color': myColor,
-      color:myColor,
+      'color': myColor,
       transform:'translateY(128px)'
 
     })),

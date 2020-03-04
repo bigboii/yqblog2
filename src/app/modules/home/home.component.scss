@@ -49,7 +49,8 @@ $config: mat-typography-config();
     arrow bullet point
     TODO: make this a directive
   */
-  .about mat-list-item p::before {
+  // .about mat-list-item p::before {
+    mat-list-item p::before {
     content: "▹";
     // position: absolute;
     // left: 0px;
@@ -68,40 +69,18 @@ $config: mat-typography-config();
   **/
   .heading {
     font-family: 'Roboto Mono', monospace;
-      // position: relative;
-      align-items: center;
-      // margin: 8px 0px 40px;   //TODO: causing issue with mobile screen sizes
+    align-items: center;
+    // margin: 8px 0px 40px;   //TODO: causing issue with mobile screen sizes
 
-      //Below needed for .heading::after
-      // grid-column: 1/span 8;
-      // grid-row: 1/span 1;
-      display: flex;
+    //Below needed for .heading::after
+    // grid-column: 1/span 8;
+    // grid-row: 1/span 1;
+    display: flex;
 
-      -webkit-box-align: center;
-      // background-color: mat-color($foreground, text);
-      color: mat-color($foreground, text);
-      
-      // white-space: nowrap;
-      // font-size: 32px;      //TODO: dynamic font sizes? based on screen size
+    -webkit-box-align: center;
+    // background-color: mat-color($foreground, text);
+    color: mat-color($foreground, text);
 
-      // @media screen and (min-width: 400px) {   //ultra small
-      //   padding: 0px 25px;
-      //         font-size: 24px;         //TODO: causing issue with mobile screen sizes
-      //   margin: 10px 0px 40px;   //TODO: causing issue with mobile screen sizes
-
-      // }
-      // @media screen and (min-width: 600px) {   //small
-      //   padding: 0px 50px;
-      // }
-      // @media screen and (min-width: 1200px) {  //medium
-      //   padding: 0px 100px;
-      // }
-      // @media screen and (min-width: 1600px) {  //large
-      //   padding: 0px 150px;
-      //         font-size: 32px;         //TODO: causing issue with mobile screen sizes
-      // margin: 10px 0px 40px;   //TODO: causing issue with mobile screen sizes
-
-      // }
   }
 
   .heading::before{
@@ -155,6 +134,7 @@ $config: mat-typography-config();
     display: inline-block;
     background-color: mat-color($primary);
     border-radius: 4px;
+    height:min-content;  //TODO: 
   }
   
   .stream:before, .stream:after {
@@ -209,11 +189,16 @@ $config: mat-typography-config();
   /*
     Remove elevation and background color for mat-card
   */
-  // .stream .mat-card {
-  //   // background: none;
-  //   // box-shadow: none;
-  //   // z-index:0;
-  // }
+  .stream .mat-card {
+    @media screen and (max-width: 720px) {   //ultra small
+      padding: 16px;
+    }
+    @media screen and (min-width: 600px) {  //large
+      padding: 24px;
+    }    
+
+    // z-index:0;
+  }
 
 }
 
@@ -349,7 +334,7 @@ section h1 {
  //use span 6
 
   @media screen and (max-width: 600px) {   //ultra small
-    grid-column: 1 / span 1;
+    grid-column: span 4;
     grid-row: 1 / span 1;
   }
   @media screen and (min-width: 600px) and (max-width: 720) {   //medium
@@ -366,19 +351,21 @@ section h1 {
 section .content {
 
   @media screen and (max-width: 600px) {   //ultra small
-    grid-column: 1 / span 1;
+    grid-column: span 4;
     grid-row: 2 / span 1;
+    grid-gap: 16px;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-column: 1 / span 3;
     grid-row: 2 / span 1;
+    grid-gap: 24px;
   }
 
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-column: 1 / span 6;
     grid-row: 2 / span 1;
+    grid-gap: 24px;
   }
-
 
 
 }
@@ -472,18 +459,18 @@ section .content {
 /*
   Section: Resume
 */
-.sectionJobs {
-  // max-width: calc(#{$eight-pt} * 88);  //704px
-}
+// .sectionJobs {
+//   // max-width: calc(#{$eight-pt} * 88);  //704px
+// }
 
-app-vertical-tabs {
-  @media screen and (max-width: 600px) {   //ultra small
-    display:none;
-  }
-  @media screen and (min-width: 600px) {  //large
-    display:initial;
-  }
-}
+// app-vertical-tabs {
+//   @media screen and (max-width: 600px) {   //ultra small
+//     display:none;
+//   }
+//   @media screen and (min-width: 600px) {  //large
+//     display:initial;
+//   }
+// }
 
 // .about-container {
 //   // flex: 1 1 auto;    //prevent horizontal overflow; positive flex shrink; allow auto width to shrink
@@ -497,7 +484,19 @@ app-vertical-tabs {
 
 .about-container-content {
   
-  grid-column:1 / span 3;
+  @extend .span3;
+
+  .span3 {
+    @media screen and (max-width: 600px) {   //ultra small
+      grid-column: span 4;
+    }
+    @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+      grid-column: 1 / span 2;
+    }
+    @media screen and (min-width: 840px) {   //medium
+      grid-column: 1/ span 3;
+    }
+  }
 
   // max-width: 480px;
   // @media screen and (max-width: 600px) {   //ultra small
@@ -506,13 +505,23 @@ app-vertical-tabs {
   // @media screen and (min-width: 600px) {  //large
   //   width:60%;
   // }
+
 }
 
 .about-container-pic {
-  grid-column: 5 / span 2;
   position: relative;
   height:auto;
   border-radius:4px;
+
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: span 2;
+  }
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: 5 / span 2;
+  }
 
   img {
     filter: grayscale(100%);
@@ -700,5 +709,5 @@ app-vertical-tabs {
 
 /* List Item Height */
 .mat-list .mat-list-item {
-  height: 32px; /* default is 72px */
+  // height: 32px; /* default is 72px */
 }

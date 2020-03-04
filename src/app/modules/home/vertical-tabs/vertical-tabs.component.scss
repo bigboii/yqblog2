@@ -58,9 +58,9 @@ $config: mat-typography-config();
     // margin-bottom: 8px;
   }
 
-  .tabcontent > mat-card {
-    padding:0px;
-  }
+  // .tabcontent > mat-card {
+  //   padding:0px;
+  // }
 
   // mat-card:hover {     //BUG:    THIS IS IMPACTING HOME.SCSS
   //   z-index: 4;
@@ -97,6 +97,21 @@ $config: mat-typography-config();
     }
     @media screen and (min-width: 720px) {   //medium
       grid-template-rows: 64px 64px 64px;
+    }
+
+    button {
+      color:inherit;
+      transition: color 1s linear;
+    }
+
+    button:focus {
+      color:mat-color($primary);
+      transition: color 1s linear;
+    }
+
+    button:visited {
+      color:inherit;
+      transition: color 1s linear;
     }
 
   }
@@ -241,16 +256,16 @@ $config: mat-typography-config();
 
 .vertical-tabs-wrapper {
   @media screen and (max-width: 600px) {   //ultra small
-    // display:none;
+    display:none;
   }
   @media screen and (min-width: 600px) {   //medium
     // display:flex;
     // flex-direction: row;
   }
 
-  .mat-card {
-    padding: 0 0;
-  }
+  // .mat-card {
+  //   padding: 0 0;
+  // }
 }
 
 .mat-card-avatar {
@@ -307,7 +322,7 @@ $config: mat-typography-config();
     // display:
   }
   @media screen and (min-width: 600px) {   //medium
-    // display:none;
+    display:none;
   }
 }
 

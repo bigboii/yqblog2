@@ -92,6 +92,15 @@ export class HomeComponent implements OnInit{
 
     this.projectTiles = [
       {
+        "title":"Personal Website V2",
+        "description":"2nd iteration of my personal website built using MEAN (Angular 8)",
+        "bulletPoints":[
+          "Followed Material Design UX guidelines",
+          "..."
+        ],
+        "technologies":["Mongo, Express, Angular, Node.js"]
+      },
+      {
         "title": "Content Management System",
         "description":"A CMS for my blog, currently in Progress",
         "technologies":["Mongo", "Spring", "In Progress"]
@@ -102,39 +111,20 @@ export class HomeComponent implements OnInit{
         "technologies":["Spring", "Mongo", "In Progress"]
       },
       {
-        "title": "Adaptive Step Size in gradient descent",
-        "description":"In Progress",
-        "technologies":["Python", "ML", "In Progress"]
-      },
-      {
-        "title": "Logistic Regression",
-        "description":"Implemented a python program for the logistic discribmination gradient descent algorithm",
-        "technologies":["Python", "ML"]
-      },
-      {
-        "title":"Personal Website V2",
-        "description":"2nd iteration of my personal website built using MEAN (Angular 8)",
-        "technologies":["Mongo, Express, Angular, Node"]
-      },
-      {
-        "title": "Hinge Loss Classifier",
-        "description":"Implemented a SVM and optimized the hinge loss using gradient descent algorithm",
-        "technologies":["Python", "ML"]
-      },
-      {
-        "title": "Least Square Loss Classifier (Perceptron)",
-        "description":"Implemented a Perceptron and minimized the least square loss using a gradient descent algorithm",
-        "technologies":["Python", "ML"]
-      },
-      {
-        "title": "Naive Bayes Classifier",
-        "description":"Implemented a Naive Bayes (probabilistic) classifier for learning purposes.",
-        "technologies":["Python", "ML"]
+        "title": "Machine Learning Client",
+        "description":"Re-implemented various ML classification functions for learning purposes.",
+        "bulletPoints": [
+          "Naive Bayes Classifier",
+          "Perceptron (least square loss) Classifier",
+          "Support Vector Machine (Hinge Loss) Classifier",
+          "Logistic Discrimination Classifier"
+        ],
+        "technologies":["Angular", "Python", "Spring"]
       },
       {
         "title": "Simple Chat",
         "description":"Implemented a simple chat app with a material design based UI",
-        "technologies":["Angular, SocketIO"]
+        "technologies":["Angular, Node.js, SocketIO"]
       }
     ]
   

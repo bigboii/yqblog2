@@ -88,28 +88,38 @@ $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 $eight-pt: 8px;
 $toolbarHeightLarge:64px;
 $toolbarHeightSmall:56px;
+// $toolbarHeightUltraSmall:40px;
 
 
 //12 column responsive grid layout
 .grid12 {
-  height:100%;
+  // height:100%;  ?? impacting header height
   display:grid;
 
   @media screen and (max-width: 600px) {   //ultra small
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-column-gap:16px;
-    // margin: 0 16px 0 16px;
+    grid-gap: 16px;
+    padding: 0 16px;
   }
+
   @media screen and (min-width: 600px) and (max-width: 720) {   //medium
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-column-gap:16px;
-    // margin: 0 16px 0 16px;
+    grid-gap: 16px;
+    padding: 0 16px;
   }
-  @media screen and (min-width: 720px) {   //medium
+
+  @media screen and (min-width: 720px) and (max-width: 840) {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 24px;
+    padding: 0 24px;
+  }
+
+  @media screen and (min-width: 840px) {   //
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-column-gap:24px;
-    // margin: 0 24px 0 24px;
+    grid-gap: 24px;
+    padding: 0 24px;
   }
+
 }
 
 .grid8{
@@ -120,12 +130,12 @@ $toolbarHeightSmall:56px;
     grid-template-columns: 1fr;
     grid-column-gap:16px;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap:16px;
   }
 
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-column-gap:24px;
   }
@@ -136,15 +146,15 @@ $toolbarHeightSmall:56px;
   display:grid;
 
   @media screen and (max-width: 600px) {   //ultra small
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-column-gap:16px;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
-    grid-template-columns: 1fr 1fr 1fr;
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-column-gap:16px;
   }
 
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-column-gap:24px;
   }
@@ -158,12 +168,12 @@ $toolbarHeightSmall:56px;
     grid-template-columns: 1fr;
     grid-column-gap:16px;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap:16px;
   }
 
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-column-gap:24px;
   }
@@ -180,11 +190,11 @@ $toolbarHeightSmall:56px;
     grid-template-columns: 1fr;
     grid-column-gap:16px;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-template-columns: 1fr 1fr;
     grid-column-gap:16px;
   }
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-template-columns: 1fr 1fr 1fr ;
     grid-column-gap:24px;
   }
@@ -200,11 +210,11 @@ $toolbarHeightSmall:56px;
   @media screen and (max-width: 600px) {   //ultra small
     grid-column: 1 / span 4;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-column: 1 / span 8;
   }
 
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-column: 1 / span 12;
   }
 }
@@ -213,11 +223,11 @@ $toolbarHeightSmall:56px;
   @media screen and (max-width: 600px) {   //ultra small
     grid-column: 1 / span 4;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-column: 1 / span 8;
   }
 
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-column: 1 / span 12;
   }
 
@@ -228,11 +238,11 @@ $toolbarHeightSmall:56px;
   @media screen and (max-width: 600px) {   //ultra small
     grid-column: 1 / span 1;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-column: 1 / span 3;
   }
 
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-column: span 8;
   }
 
@@ -241,13 +251,13 @@ $toolbarHeightSmall:56px;
 
 .span8Center {
   @media screen and (max-width: 600px) {   //ultra small
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 4;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-column: 1 / span 3;
   }
 
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-column: 3/span 8;
   }
 
@@ -259,11 +269,11 @@ $toolbarHeightSmall:56px;
   @media screen and (max-width: 600px) {   //ultra small
     grid-column: 1 / span 4;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
-    grid-column: 2 / span 6;
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 2 / span 4;
   }
 
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-column: 4 / span 6;
   }
 
@@ -274,7 +284,7 @@ $toolbarHeightSmall:56px;
   @media screen and (max-width: 600px) {   //ultra small
     grid-column: 1 / span 4;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-column: 2 / span 6;
   }
 
@@ -285,26 +295,26 @@ $toolbarHeightSmall:56px;
 
 .span6 {
   @media screen and (max-width: 600px) {   //ultra small
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 4;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-column: 1 / span 3;
   }
 
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-column: 1 / span 6;
   }
 }
 
 .spanGrid6 {
   @media screen and (max-width: 600px) {   //ultra small
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 4;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-column: 1 / span 3;
   }
 
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-column: 1 / span 6;
   }
 
@@ -313,24 +323,24 @@ $toolbarHeightSmall:56px;
 
 .span5 {
   @media screen and (max-width: 600px) {   //ultra small
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 4;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-column: 1 / span 2;
   }
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-column: span 5;
   }
 }
 
 .spanGrid5 {
   @media screen and (max-width: 600px) {   //ultra small
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 4;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-column: 1 / span 2;
   }
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-column: span 5;
   }
 
@@ -339,30 +349,39 @@ $toolbarHeightSmall:56px;
 
 .span4 {
   @media screen and (max-width: 600px) {   //ultra small
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 4;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-column: 1 / span 2;
   }
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-column:span 4;
   }
 }
 
 .span3 {
   @media screen and (max-width: 600px) {   //ultra small
-    grid-column: 1 / span 1;
+    grid-column: 1 / span 4;
   }
-  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
     grid-column: 1 / span 2;
   }
-  @media screen and (min-width: 720px) {   //medium
-    grid-column:1 / span 3;
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: 1/ span 3;
   }
 }
 
 .span2 {
-  grid-column: span 2;
+
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 2;
+  }
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: span 2;
+  }
 }
 
 .span1 {

@@ -1,6 +1,6 @@
-<div class="grid12 home-container">
+<div class="home-container">
   
-  <div class="spanGrid12 parallax-container parallax-color padding-vertical">
+  <div class="grid12 parallax-container parallax-color padding-vertical">
     <div class="spanGrid6Center">
       <div class="mat-display-1 mono span6" [@slideUpFadeIn]="{value: state, params:{initialDelay: 1}}" fasttext>
           Hi, my name is
@@ -14,11 +14,12 @@
     </div>
   </div>
 
+  <div class="grid12">
   <div class="spanGrid6Center">
     <section class="about padding-vertical">
       <h1 class="span6 mat-display-2 heading dash">About Me</h1>
       <span class="spanGrid6 content">
-        <div class="span3 about-container-content">
+        <div class="about-container-content">
           <p class="mat-body-1"> I'm currently a Software Engineer based in the United States, Jersey City and I spent the last few years developing Bank of America's Private Cloud Platform. </p>
           <p class="mat-body-1"> I've gained hands on experience in developing large scale backend applications using a microservice architecture; sometimes, a large complex problem can be be easily solved, developed, tested, and maintained when split into smaller fine-grained functions that are working together. </p>
           <p class="mat-body-1"> I've recently delved my hands in to front end development, which led me to building this blog. I plan on regularly posting projects and blog articles here.</p>
@@ -60,11 +61,12 @@
 
     <!-- Section: Projects -->
     <!-- https://stackblitz.com/angular/vonmbgjmrog -->
+    <!-- TODO: implement masonry style grid rows-->
     <section class="padding-vertical">
       <h1 class="mat-display-2 heading dash">What I've built</h1>
 
       <div class="grid6 content cardRows">
-        <!-- <ng-container class="grid6" *ngFor="let _ of projectTiles"> -->
+        <!-- <div></div> -->
           <div class="stream span2" *ngFor="let _ of projectTiles">
             <mat-card class="stream__thumbnail">
               <mat-card-header>
@@ -74,6 +76,11 @@
                 <p fxFlex>
                   {{_.description}}
                 </p>
+                <mat-list fxFlex>
+                  <mat-list-item *ngFor="let bulletPoint of _.bulletPoints">
+                    <p class="mat-body-2"> {{bulletPoint}} </p>
+                  </mat-list-item>
+                </mat-list>
                 <ul fxFlex>
                   <li class="mat-caption" *ngFor="let tech of _.technologies"> {{tech}} </li>
                 </ul>
@@ -87,7 +94,6 @@
               </mat-card-content>
             </mat-card>
           </div>
-        <!-- </ng-container> -->
       </div>
     </section>
 
@@ -101,5 +107,6 @@
       </span>
     </section>
 
+  </div>
   </div>
 </div>

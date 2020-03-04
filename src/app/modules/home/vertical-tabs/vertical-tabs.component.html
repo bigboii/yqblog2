@@ -1,11 +1,12 @@
 <div class="span6 grid6">
   <!-- Vertical Tabs for Desktop -->
-  <div class="span6 grid6 vertical-tabs-wrapper">
+  <!-- span6 grid6 -->
+  <div class="spanGrid6 vertical-tabs-wrapper">
 
     <div class="tabs">
       <div fxLayout="row">
         <div class="buttonRows">
-          <button mat-button (click)="openTab($event, 'tab0')" id="defaultOpen"> Bank of America </button>
+          <button mat-button autofocus (click)="openTab($event, 'tab0')" id="defaultOpen"> Bank of America </button>
           <button mat-button (click)="openTab($event, 'tab1')" > Bank of America </button>
           <button mat-button (click)="openTab($event, 'tab2')" > HeyKorean </button>
         </div>
@@ -40,7 +41,7 @@
   </div>
 
   <!-- Hortizontal Tabs for Mobile -->
-  <!-- <mat-tab-group class="horizontal-tabs-wrapper">
+  <mat-tab-group class="spanGrid6 horizontal-tabs-wrapper">
     <mat-tab *ngFor="let cardDatum of cardData" label="{{cardDatum.title}}"> 
       <div class="tabcontent" id="{{cardDatum.id}}" [@verticalTabContentFadeIn]="this.tabs[cardDatum.id]['isShow']">
         <mat-card class="tabcontent" id="{{cardDatum.id}}" elevateOnHover class="card-container" >
@@ -61,5 +62,5 @@
         </mat-card>
       </div>  
     </mat-tab>
-  </mat-tab-group> -->
+  </mat-tab-group>
 </div>
