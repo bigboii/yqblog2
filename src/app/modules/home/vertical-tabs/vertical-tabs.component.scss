@@ -132,6 +132,7 @@ $config: mat-typography-config();
 
     
     display:grid;
+    justify-content: right;
   
     @media screen and (max-width: 600px) {   //ultra small
       grid-column: 1 / span 1;
@@ -147,7 +148,7 @@ $config: mat-typography-config();
       grid-column: 1 / span 2;
     }
     @media screen and (min-width:1439px) {
-      grid-column: 2 / span 1;
+      grid-column: 1 / span 2;
     }
   
     // .tabBorder {
@@ -228,7 +229,8 @@ $config: mat-typography-config();
   }
 
   .tabsContentContainer {
-    grid-column: 3/span 3;
+    // grid-column: 3/span 3;
+    grid-column: 3/span 5;
   }
 
   /* tab content */

@@ -652,6 +652,26 @@ section .content {
 //   padding: 32px 32px;
 // }
 
+.masonry2 {
+  display: grid;
+  grid-column-gap:24px;
+  grid-template-columns: repeat(auto-fill, 1fr);
+  grid-auto-rows: 0;
+}
+
+.masonry {
+  display: grid;
+  grid-column-gap:24px;
+  // grid-template-columns: repeat(auto-fill, 1fr);
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+  @extend .span6;
+}
+
+.spanVertical {
+  grid-row: auto;
+}
+
 .vertical_center_helper {   //used to help center img vertically
   display:inline-block; 
   height:100%; 
