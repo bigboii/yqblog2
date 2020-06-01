@@ -66,10 +66,10 @@
       <h1 class="mat-display-2 heading dash">What I've built</h1>
 
       <div class="masonry content cardRows">
-        <div fxLayout="column" style="grid-column: span 2">
-          <div *ngFor="let _ of projectTiles" style="padding-bottom:24px">
-            <div class="stream">
-              <mat-card class="stream__thumbnail">
+        <!-- <div fxLayout="column" style="grid-column: span 2"> -->
+          <!-- <div *ngFor="let _ of projectTiles" style="padding-bottom:24px"> -->
+            <div class="stream masonItem" *ngFor="let _ of projectTiles" >
+              <mat-card class="stream__thumbnail masonItemContent">
                 <mat-card-header>
                   <mat-card-title class="tileCardTitle"> {{_.title}}</mat-card-title>
                 </mat-card-header>
@@ -95,70 +95,8 @@
                 </mat-card-content>
               </mat-card>
             </div>
-          </div>
-        </div>
-        <div fxLayout="column" style="grid-column: span 2">
-          <div *ngFor="let _ of projectTiles" style="padding-bottom:24px">
-            <div class="stream">
-              <mat-card class="stream__thumbnail">
-                <mat-card-header>
-                  <mat-card-title class="tileCardTitle"> {{_.title}}</mat-card-title>
-                </mat-card-header>
-                <mat-card-content class="tileCardContent" fxLayout="column" fxLayoutAlign="space-between" >
-                  <p fxFlex>
-                    {{_.description}}
-                  </p>
-                  <mat-list fxFlex>
-                    <mat-list-item *ngFor="let bulletPoint of _.bulletPoints">
-                      <p class="mat-body-2"> {{bulletPoint}} </p>
-                    </mat-list-item>
-                  </mat-list>
-                  <ul fxFlex>
-                    <li class="mat-caption" *ngFor="let tech of _.technologies"> {{tech}} </li>
-                  </ul>
-                  <div fxLayout="row" fxLayoutAlign="space-between">
-                    <button fxFlex="0 1 auto"  class="mat-button tileButton"> View Project </button>
-                    <a fxFlex="0 1 auto" href="https://github.com/bigboii/yqblog2">
-                      <span class="vertical_center_helper"></span>
-                      <img class="github_img" [src]="'../../assets/imgs/github/GitHub-Mark-32px.png'">
-                    </a>
-                  </div>
-                </mat-card-content>
-              </mat-card>
-            </div>
-          </div>
-        </div>
-        <div fxLayout="column" style="grid-column: span 2">
-          <div *ngFor="let _ of projectTiles" style="padding-bottom:24px">
-            <div class="stream">
-              <mat-card class="stream__thumbnail">
-                <mat-card-header>
-                  <mat-card-title class="tileCardTitle"> {{_.title}}</mat-card-title>
-                </mat-card-header>
-                <mat-card-content class="tileCardContent" fxLayout="column" fxLayoutAlign="space-between" >
-                  <p fxFlex>
-                    {{_.description}}
-                  </p>
-                  <mat-list fxFlex>
-                    <mat-list-item *ngFor="let bulletPoint of _.bulletPoints">
-                      <p class="mat-body-2"> {{bulletPoint}} </p>
-                    </mat-list-item>
-                  </mat-list>
-                  <ul fxFlex>
-                    <li class="mat-caption" *ngFor="let tech of _.technologies"> {{tech}} </li>
-                  </ul>
-                  <div fxLayout="row" fxLayoutAlign="space-between">
-                    <button fxFlex="0 1 auto"  class="mat-button tileButton"> View Project </button>
-                    <a fxFlex="0 1 auto" href="https://github.com/bigboii/yqblog2">
-                      <span class="vertical_center_helper"></span>
-                      <img class="github_img" [src]="'../../assets/imgs/github/GitHub-Mark-32px.png'">
-                    </a>
-                  </div>
-                </mat-card-content>
-              </mat-card>
-            </div>
-          </div>
-        </div>
+          <!-- </div> -->
+        <!-- </div> -->
       </div>
     </section>
 

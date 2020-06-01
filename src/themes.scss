@@ -57,8 +57,9 @@
   color: $light-primary-text;
   @include set-theme($dark-theme);
   @include angular-material-theme($dark-theme);
+  @include mat-core($custom-typography);
   // @include mat-core($custom-typography);
-  font-family: "Roboto", sans-serif;
+  // font-family: "Roboto", sans-serif;
 }
 
 // Light theme
@@ -84,8 +85,9 @@
 
   @include set-theme($light-theme);
   @include angular-material-theme($light-theme);
+  @include mat-core($custom-typography);
   // @include mat-core($custom-typography);
-  font-family: "Roboto", sans-serif;
+  // font-family: "Roboto", sans-serif;
 }
 
 .mat-display-4 {
