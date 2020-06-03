@@ -40,8 +40,8 @@ export class HomeComponent implements OnInit, AfterViewInit{
       this.parallaxHeight = document.documentElement.clientHeight - 56;
     }
 
-    this.languages = ["Java", "Spring Boot", "C++"];
-    this.technologies = ["HTML && SCSS", "Angular", "Node.js", "JavaScript && TypeScript"];
+    this.languages = ["Java", "Spring Boot", "C++", "Python"];
+    this.technologies = ["HTML && SCSS", "Angular", "Node.js", "JavaScript", "TypeScript"];
     this.databases=["MongoDB", "Logstash", "Filebeat"];
     this.tools=["Jenkins", "[Hashicorp] Consul, Nomad, Vault", "Elastic, Logstash, Kibana (ELK)"]
 
@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit, AfterViewInit{
           "Continuously implementing features to automate manual tasks (e.g. recovery on build failure)",
           "Contributed to development and maintenance of in-house orchestration engine",
           "Contributed in automating deployment process using Jenkins, Artifactory, and various Hashicorp Tools;",
-          "Distributed Tracing using Spring rest templates, traceIds in headers, and ELK stack"
+          "Distributed Tracing with Trace ID and ELK stack"
         ]
       },
       {
@@ -135,6 +135,10 @@ export class HomeComponent implements OnInit, AfterViewInit{
         "index":4,
         "title": "Simple Chat",
         "description":"Implemented a simple chat app with a material design based UI",
+        "bulletPoints": [
+          "WebSockets enable 1 on 1 real time communication",
+          "No Registration required; sign in with username only"
+        ],
         "technologies":["Angular, Node.js, SocketIO"]
       },
       {

@@ -1,5 +1,4 @@
 import { User } from './user';
-import { Action } from './action';
 import { Message } from './message';
 
 export class Interaction {

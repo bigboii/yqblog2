@@ -5,6 +5,7 @@
 @import './app/modules/home/home.component';
 @import './app/modules/home/vertical-tabs/vertical-tabs.component';
 @import './app/modules/ml-client/ml-client.component';
+@import './app/modules/chat/chat.component';
 @import './themeVars';
 @include mat-core($custom-typography);
 //https://github.com/angular/components/blob/master/src/lib/core/theming/_palette.scss
@@ -18,6 +19,7 @@
   @include set-theme-footer($theme);
   @include set-theme-vertical-tabs($theme);
   @include set-theme-mlclient($theme);
+  @include set-theme-chat($theme);
   // repeat this for each component that requires theme reference
 }
 
@@ -54,7 +56,8 @@
   //color: mat-color($dark-primary, lighter);
   //$dark-foreground: my-mat-dark-theme-foreground(mat-color($dark-accent));
   //$dark-theme: map-merge($dark-theme, (foreground: $dark-foreground));
-  color: $light-primary-text;
+  
+  // color: $light-primary-text;
   @include set-theme($dark-theme);
   @include angular-material-theme($dark-theme);
   @include mat-core($custom-typography);

@@ -55,17 +55,17 @@
 
 $custom-typography: mat-typography-config(
   $font-family: 'Roboto, sans-serif',
-  $display-4: mat-typography-level(96px, 144px, 700),
-  $display-3: mat-typography-level(76px, 96px, 700),
-  $display-2: mat-typography-level(28px, 42px, 700),
-  $display-1: mat-typography-level(20px, 24px, 500),
+  $display-4: mat-typography-level(96px, 144px, 500),
+  $display-3: mat-typography-level(76px, 96px, 500),
+  $display-2: mat-typography-level(32px, 48px, 400),
+  $display-1: mat-typography-level(20px, 24px, 400),
   $headline: mat-typography-level(24px, 32px, 400),
   $title: mat-typography-level(20px, 32px, 500),
   $subheading-2: mat-typography-level(16px, 28px, 400),
   $subheading-1: mat-typography-level(15px, 24px, 400),
-  $body-1: mat-typography-level(16px, 24px, 500),
+  $body-1: mat-typography-level(16px, 24px, 400),
   $body-2: mat-typography-level(14px, 20px, 400),
-  $caption: mat-typography-level(12px, 20px, 400),
+  /* $caption: mat-typography-level(16px, 20px, 400), */
   $button: mat-typography-level(14px, 20px, 500),
   $input: mat-typography-level(inherit, 1.125, 400)
 );
@@ -83,11 +83,12 @@ $light-warn:    mat-palette($mat-orange);
 $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 
 
-
 //8 point config
 $eight-pt: 8px;
 $toolbarHeightLarge:64px;
 $toolbarHeightSmall:56px;
+$smallGap:16px;
+$largeGap:24px;
 // $toolbarHeightUltraSmall:40px;
 
 
@@ -114,12 +115,31 @@ $toolbarHeightSmall:56px;
     padding: 0 24px;
   }
 
-  @media screen and (min-width: 840px) {   //
+  @media screen and (min-width: 840px) {   // large
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 24px;
     padding: 0 24px;
   }
 
+}
+
+.grid10 {
+  height:100%;
+  display:grid;
+
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-template-columns: 1fr;
+    grid-column-gap:16px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap:16px;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap:24px;
+  }
 }
 
 .grid8{
@@ -202,6 +222,20 @@ $toolbarHeightSmall:56px;
 
 .grid2{
   display:grid;
+
+  display:grid;
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-template-columns: 1fr;
+    grid-column-gap:16px;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap:16px;
+  }
+  @media screen and (min-width: 840px) {   //medium
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap:24px;
+  }
 }
 
 
@@ -232,6 +266,21 @@ $toolbarHeightSmall:56px;
   }
 
   @extend .grid12;
+}
+
+.span10Center {
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 1 / span 4;
+  }
+  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+    grid-column: 1 / span 3;
+  }
+
+  @media screen and (min-width: 840px) {   //medium
+    grid-column: 2 / span 10;
+  }
+
+  @extend .grid10;
 }
 
 .span8 {
@@ -284,11 +333,11 @@ $toolbarHeightSmall:56px;
   @media screen and (max-width: 600px) {   //ultra small
     grid-column: 1 / span 4;
   }
-  @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+  @media screen and (min-width: 600px) and (max-width: 720px) {   //medium
     grid-column: 2 / span 6;
   }
 
-  @media screen and (min-width: 720px) {   //medium
+  @media screen and (min-width: 840px) {   //medium
     grid-column: 4 / span 6;
   }
 }
@@ -372,7 +421,6 @@ $toolbarHeightSmall:56px;
 }
 
 .span2 {
-
   @media screen and (max-width: 600px) {   //ultra small
     grid-column: span 4;
   }

@@ -1,5 +1,5 @@
 import { User } from './user';
-import { Action } from './action';
+import { Event } from '../model/event';
 
 /**
  * Message contract between client and chat server
@@ -9,7 +9,7 @@ export class Message {
 
   from: string;
   content: any;
-  action: Action;
+  action: Event;
   time: string;
 
 /*

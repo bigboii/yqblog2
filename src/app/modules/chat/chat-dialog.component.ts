@@ -27,8 +27,8 @@ onNoClick(): void {
 }
 
 onSubmit(dialogType: string): void {
-    console.log("userNameForm");
-    console.dir(this.userNameForm);
+    // console.log("userNameForm");
+    // console.dir(this.userNameForm);
     this.dialogRef.close({
     username: this.userNameForm.value,
     dialogType: "new"

@@ -50,7 +50,7 @@ $config: mat-typography-config();
     TODO: make this a directive
   */
   // .about mat-list-item p::before {
-    mat-list-item p::before {
+  .home-container .mat-list-item p::before {
     content: "▹";
     // position: absolute;
     // left: 0px;
@@ -60,8 +60,9 @@ $config: mat-typography-config();
   }
 
   .arrowBulletPoint {
-    font-size:16px;
-    font-family: 'Ubuntu Mono', monospace !important; 
+    font-size:14px;
+    font-family: 'Ubuntu Mono', monospace !important;
+    margin-bottom: 0px;
   }
 
   /**
@@ -69,18 +70,32 @@ $config: mat-typography-config();
   **/
   .heading {
     font-family: 'Roboto Mono', monospace;
+    display:flex;
+    flex-direction: row;
+    justify-content: start;
     align-items: center;
+
+    // -webkit-box-align: center;
     // margin: 8px 0px 40px;   //TODO: causing issue with mobile screen sizes
 
     //Below needed for .heading::after
     // grid-column: 1/span 8;
     // grid-row: 1/span 1;
-    display: flex;
+    // display: flex;
 
-    -webkit-box-align: center;
     // background-color: mat-color($foreground, text);
     color: mat-color($foreground, text);
+    margin-bottom:64px;       //TODO: instead of hard coding this, use em?
+  }
 
+  .heading h1 {
+    margin-right: 24px;
+    margin-bottom:0px;
+    flex: 0 0 auto;
+  }
+
+  .heading span {
+    flex: 5 1 0%;
   }
 
   .heading::before{
@@ -204,10 +219,10 @@ $config: mat-typography-config();
   */
   .stream .mat-card {
     @media screen and (max-width: 720px) {   //ultra small
-      // padding: 16px;
+      padding: 16px;
     }
     @media screen and (min-width: 600px) {  //large
-      // padding: 24px;
+      padding: 24px;
     }    
 
     // z-index:0;

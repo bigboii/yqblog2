@@ -54,8 +54,8 @@ export class HeaderComponent implements AfterViewInit {
 
   onContentScroll2(event) {    
     // if( window.scrollY > this.matToolbarElem.nativeElement.clientHeight)
-    console.log("[HEADER]");
-    console.dir(event);
+    // console.log("[HEADER]");
+    // console.dir(event);
     if( event.target.scrollTop > this.matToolbarElem.nativeElement.clientHeight) 
     // if( event['sT']> this.matToolbarElem.nativeElement.clientHeight) 
     {

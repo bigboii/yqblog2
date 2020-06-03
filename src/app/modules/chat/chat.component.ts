@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewInit, Inject } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject, OnDestroy, ViewChild, ViewChildren, ElementRef, Renderer2} from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { SocketService } from './service/socket.service';
-import { Action } from './model/action';
 import { Event } from './model/event';
 import { Message } from './model/message';
 import { Router, RouterEvent, NavigationStart } from '@angular/router';
@@ -8,6 +8,9 @@ import { SignInDialog } from './chat-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FormGroup } from '@angular/forms';
 import { filter, timestamp } from 'rxjs/operators';
+import { EVENT_MANAGER_PLUGINS } from '@angular/platform-browser';
+import { MatListItem, MatList } from '@angular/material/list';
+import { Observable, Subject } from 'rxjs';
 
 /*
   FormControl:  it tracks the value and validity status of an angular form control. It matches to a HTML form control like an input.
@@ -23,19 +26,21 @@ import { filter, timestamp } from 'rxjs/operators';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
-  private action = Action;
+export class ChatComponent implements OnInit, AfterViewInit, OnDestroy {
   // private user: User;
   private messages: Message[] = [];
-  private interactions = [];
-  private messageContent: string;
-  private ioConnection: any;
+  private users: any = [];
+  private interactions = [];                          //unique user interactions with its messages (list of users)
+                                                      //Alternative method: instead of storing interactions in arrays,
+                                                      //   append a mat-list-item with its messages?
+  private userMessageInput: string;                   // holds user's message input supplied from mat-form-field
+  private messageSubscription: any;                   //TODO: is this needed? Redundant?
 
   private lastUserTyped: string;
-  private interactionCount: number = -1;
+  private interactionCount: number = -1;              //# of unique interactions
 
   private userNameForm: FormGroup;
-  private showSignInPage: boolean = true;             //boolean page displaying sign in page
+  // private showSignInPage: boolean = true;             //boolean page displaying sign in page
   private userName: string = "";
 
   private dialogRef;
@@ -45,34 +50,29 @@ export class ChatComponent implements OnInit {
 
   private routerSubscription;
 
+  @ViewChild("isTypingItem", { static : false, read:ElementRef})    // with static turned off ViewChild reference gets updated by Angular when the ngIf directive Changes
+  private isTypingItemElemRef: ElementRef;
 
-  // getting a reference to the overall list, which is the parent container of the list items
-  //@ViewChild(MatList, { read: ElementRef }) matList: ElementRef;
-
-  // getting a reference to the items/messages within the list
-  //@ViewChildren(MatListItem, { read: ElementRef }) matListItems: QueryList<MatListItem>;
+  private isTyping : boolean = false;
+  private timeout : any = undefined
 
   constructor(private socketService: SocketService, 
               public dialog: MatDialog,
-              private router: Router) { 
+              private router: Router,
+              private elementRef: ElementRef, private renderer: Renderer2, @Inject(DOCUMENT) private document) { 
+  }
+
+  //TODO: is this needed?
+  ngOnDestroy(): void {
+    this.socketService.disconnectSocket();
   }
 
   ngOnInit() {
     console.log("[Chat Component] onInit");
-    this.openSignInDialog();
-    // this.activatedRoute.url.subscribe( url => { 
-    //   console.log("currently in path: " + url);
-    //   console.dir(url);
-    //   if(url[0].path == "chat") {
-    //     this.openSignInDialog();
-    //   }
-    //   if(url[0].path != "chat") {
-    //     console.log("not in chat page: " + url[0].path);
-    //     this.socketService.disconnectSocket();
-    //   }
-    // });
 
-    // listen for router's changes and close the dialog and disconnect socket
+    this.openSignInDialog();
+
+    // listen for router changes; if user navigates out of chat component, close the dialog then disconnect any socket connections established
     this.routerSubscription = this.router.events
       .pipe(
         filter((event: RouterEvent) => event instanceof NavigationStart),
@@ -86,8 +86,65 @@ export class ChatComponent implements OnInit {
 
       this.socketService.disconnectSocket();
     });
+
   }
 
+  ngAfterViewInit(): void {
+
+
+  }
+
+  timeoutFunction(socketService: SocketService) {
+    console.log("NO TYPING for 3 Seconds!!");
+    this.isTyping = false;
+    console.log("socketService: " + socketService);
+    socketService.sendEvent(Event.NOT_TYPING, "");      
+    /*
+    TypeError: Cannot read property 'sendEvent' of undefined
+    at push../app/modules/chat/chat.component.ts.ChatComponent.timeoutFunction
+    */
+  }
+
+
+  /**
+   * TODO BUG: when invoking setTimeout(this.timeoutFunction, 3000), timeoutFunction() above has socketService undefined.
+   * Temp Solution: Use arrow notation instead of this.timeoutFunction
+   * @param event 
+   */
+  keyPress(event: KeyboardEvent) : void {
+    console.log("TYPING!!");
+
+
+    if(this.isTyping == false) {
+      this.isTyping = true;
+
+      if(this.socketService != undefined) {
+        this.socketService.sendEvent(Event.TYPING, "");
+        this.timeout = setTimeout(() => {
+          console.log("NO TYPING for 3 Seconds!!");
+          this.isTyping = false;
+          console.log("socketService: " + this.socketService);
+          this.socketService.sendEvent(Event.NOT_TYPING, "");
+        }, 3000);    //TODO: need key press to wait until socketService is initialized. Solution Observable/Promise?
+      }
+
+    }
+    else {
+      if(this.socketService != undefined) {
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(() => {
+          console.log("NO TYPING for 3 Seconds!!");
+          this.isTyping = false;
+          console.log("socketService: " + this.socketService);
+          this.socketService.sendEvent(Event.NOT_TYPING, "");
+        }, 3000);
+      }
+    }
+  }
+
+  /**
+   * Open Sign In Dialog which allows user to join a chat session
+   */
   openSignInDialog() {
     console.log("opening SignInDialog");
     this.dialogRef = this.dialog.open(SignInDialog, {
@@ -99,12 +156,13 @@ export class ChatComponent implements OnInit {
     this.dialogRef.afterClosed().subscribe(result => {
       if(result.dialogType == 'new') {
 
-        this.initIoConnection();
         console.log('The dialog was closed');
         console.dir(result)
         this.userName = result.username;
-        this.showSignInPage = false;
-        this.sendNotification('',Action.JOINED);
+
+        this.initIoConnection();
+
+
       }
       if(result.dialogType == "navigating") {
         console.log("Closing Dialog");
@@ -118,20 +176,43 @@ export class ChatComponent implements OnInit {
   */
   private changeUserName(newUserName: string): void {
     this.userName = newUserName;
-    this.sendNotification({previousUserName: newUserName}, Action.RENAME);
+
+    this.socketService.sendEvent(Event.RENAME, {
+      previousUserName : this.userName,
+      newUserName : newUserName
+    });
   }
 
   /**
-    Socket IO
+    Initialize IO connection to Chat Server and start listening to incoming requests
   */
   private initIoConnection(): void {
-    this.socketService.initSocket();
 
-    this.ioConnection = this.socketService.onMessage()
+    //1) Initialize IO connection
+    this.socketService.initSocket(this.userName);
+
+    //2) Listen to incoming events from server
+
+    this.socketService.onEvent(Event.CONNECT)
+      .subscribe((data:string) => {
+        console.log('client connected to server chat');
+
+        //Let chat server know of your username
+        this.socketService.sendEvent(Event.JOINED, this.userName);
+      });
+
+    this.socketService.onEvent(Event.CURRENT_USERS)
+      .subscribe((currentUsers:string[]) => {
+        console.log('[CURRENT_USERS] refreshing current list of users');
+
+        this.users = this.users.concat(currentUsers);
+      });
+  
+    this.messageSubscription = this.socketService.onMessage()
       .subscribe((message: Message) => {
-        // this.messages.push(message);
-        console.log("message: ");
-        console.dir(message);
+
+        // console.log("message: ");
+        // console.dir(message);
 
         console.log("lastUserTyped vs message.from.name >: " + this.lastUserTyped+ ": " +message.from)
         if(this.lastUserTyped == undefined || this.lastUserTyped != message.from) {
@@ -160,67 +241,73 @@ export class ChatComponent implements OnInit {
         //Keep track of last person typed
         this.lastUserTyped = message.from;
         console.log("[onMessage] lastUserTyped was : " + this.lastUserTyped);
-      });
+    });
 
-    //subscribe to socketIO's default CONNECT event
-    this.socketService.onEvent(Event.CONNECT)
-      .subscribe(() => {
-        console.log('connected');
-      });
+    this.socketService.onEvent(Event.JOINED)
+      .subscribe((data:string) => {
+        console.log('new user ,' + data + ', joined');
+        this.users.push(data);
+    });
     
-    //subscribe to socketIO's default DISCONNECT event
-    this.socketService.onEvent(Event.DISCONNECT)
+    this.socketService.onEvent(Event.LEFT)
+      .subscribe((data:string) => {
+        this.users = this.users.filter(e => e !== data)
+        
+        //TODO: add notification
+
+        console.log(data + ' disconnected from chat');
+    });
+
+    this.socketService.onEvent(Event.RENAME)
       .subscribe(() => {
-        console.log('disconnected');
-      });
+        console.log('Renaming');
+        this.socketService.sendEvent(Event.RENAME, this.userName);
+    });
+
+    this.socketService.onGetUsers()
+      .subscribe((data: string[]) => {
+          this.users = data;
+        	console.log("data: " + data);
+    });
+
+    this.socketService.onEvent(Event.TYPING)
+      .subscribe((data : string) => {
+        console.log("typing : " + data);
+
+        const child = this.renderer.createElement("p");
+        const text = this.renderer.createText(data)
+
+        this.renderer.appendChild(child, text);
+
+        console.log("isTypingItemElemRef: " + this.isTypingItemElemRef);
+
+        this.renderer.setProperty(this.isTypingItemElemRef.nativeElement, 'textContent', data );
+    });
+
+    this.socketService.onEvent(Event.NOT_TYPING).subscribe((data:string) => {
+      this.renderer.setProperty(this.isTypingItemElemRef.nativeElement, 'textContent', "" );
+    });
+
+    this.socketService.onEvent(Event.DISCONNECTED).subscribe(() => {
+      console.log("SERVER DISCONNECTED");
+
+      this.socketService.disconnectSocket();
+      this.users = [];
+    }) 
   }
 
-  // private disconnectSocket(): void {
-  //   this.socketService.disconnectSocket();
-  // }
-
-  public sendMessage(message: string): void {
-
+  //Invoked from chat component html
+  public sendMessageToServer(message: string): void {
     console.log("[sendMessage] message: " + message);
     if (!message) {
       return;
     }
-    
-    this.socketService.send({
-      from: this.userName,
-      content: message,
-      action: null,
-      time:null
+  
+    this.socketService.sendMessage({
+        from: this.userName,
+        content: message,
+        action: null,
+        time:null
     });
-
-    this.messageContent = null;
   }
-
-  public sendNotification(params: any, action: Action): void {
-    let message: Message;
-
-    if (action === Action.JOINED) {
-      console.log("this.user.name: " + this.userName);
-      console.dir(this.userName);
-      message = {
-        from: this.userName,
-        content: this.userName + ' has joined the chat',
-        action: action,
-        time:null
-      }
-    } else if (action === Action.RENAME) {
-      message = {
-        from: this.userName,
-        action: action,
-        content: {
-          username: this.userName,
-          previousUsername: params.previousUsername
-        },
-        time:null
-      };
-    }
-
-    this.socketService.send(message);
-  }
-
 }
