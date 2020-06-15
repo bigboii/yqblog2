@@ -1,19 +1,27 @@
-<mat-toolbar #headerToolbar class="header-toolbar" [ngClass]="{ 'mat-elevation-z8' : isElevated}" > 
-  <button mat-icon-button [class.active]="toggleActive" (click)="toggleSidenav()">
-    <mat-icon [@fadeIn] >menu</mat-icon>
-  </button>
-  <img elevateOnHover [src]="logoPath" width="36px" height="36px" [@fadeIn] > <!-- [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.4}}" -->
-
+<mat-toolbar #headerToolbar class="header-toolbar" [ngClass]="{ 'mat-elevation-z4' : isElevated}" > 
+  <span class="logoContainer">
+    <button mat-icon-button [class.active]="toggleActive" (click)="toggleSidenav()">
+      <mat-icon [@fadeIn] >menu</mat-icon>
+    </button>
+    <img elevateOnHover [src]="logoPath" width="36px" height="36px" [@fadeIn] > <!-- [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.4}}" -->
+  </span>
   <!-- This fills the remaining space of the current row -->
-  <span class="fill-remaining-space"></span>
+  <!-- <span class="fill-remaining-space"></span> -->
 
-  <mat-icon [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.2}}">brightness_high</mat-icon>
-  <mat-slide-toggle
-        [color]="color"
-        [checked]="checked"
-        [disabled]="disabled"
-        (click)="toggleNightmode()"
-        [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.4}}">
-  </mat-slide-toggle>
-  <mat-icon [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.6}}">brightness_3</mat-icon>
+  <span class="themeToggleContainer"> 
+    <div fxLayout="row">
+      <span class="fill-remaining-space"></span>
+      <!-- <span> -->
+        <mat-icon [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.2}}">brightness_high</mat-icon>
+        <mat-slide-toggle
+              [color]="color"
+              [checked]="checked"
+              [disabled]="disabled"
+              (click)="toggleNightmode()"
+              [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.4}}">
+        </mat-slide-toggle>
+        <mat-icon [@slideDownFadeIn]="{value: state, params:{initialDelay: 0.6}}">brightness_3</mat-icon>
+      <!-- </span> -->
+    </div>
+  </span>
 </mat-toolbar>

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
 
 /*
@@ -27,8 +27,8 @@ onNoClick(): void {
 }
 
 onSubmit(dialogType: string): void {
-    console.log("userNameForm");
-    console.dir(this.userNameForm);
+    // console.log("userNameForm");
+    // console.dir(this.userNameForm);
     this.dialogRef.close({
     username: this.userNameForm.value,
     dialogType: "new"

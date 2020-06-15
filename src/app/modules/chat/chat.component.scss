@@ -1,47 +1,101 @@
 @import '~@angular/material/_theming';
+@import '~src/themeVars.scss';
 
-@mixin set-theme-sidenav($theme) {
+@mixin set-theme-chat($theme) {
   // Parse the theme and create variables for each color in the pallete
   $primary: map-get($theme, primary);
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
   $background: map-get($theme, background);
   $foreground: map-get($theme, foreground);
+
+  .elevationOverlay {
+    background-color: mat-color($background, card);
+  }
+}
+
+
+.container {
+  height: 100vh;
+
+  @media screen and (max-width: 600px) {   //ultra small
+    padding: #{$toolbarHeightSmall} 24px 0px 24px;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 720px) {   //medium
+    padding: #{$toolbarHeightSmall} 24px 0px 24px;
+  }
+
+  @media screen and (min-width: 720px) and (max-width: 840) {
+    padding: #{$toolbarHeightLarge} 0px 0px 0px;
+  }
+
+  @media screen and (min-width: 840px) {   //large
+    // padding: 64px 0px 0px 0px;
+    padding: #{$toolbarHeightLarge} 0px 0px 0px;
+  }
+
+}
+
+.user-list-container {
+  @media screen and (max-width: 600px) {   //ultra small
+    margin:16px 0px;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 720px) {   //medium
+    margin:16px 0px;
+  }
+
+  @media screen and (min-width: 720px) and (max-width: 840) {
+    margin:24px 0px;
+  }
+
+  @media screen and (min-width: 840px) {   //large
+    margin:24px 0px;
+  }
 }
 
 .chat-container {
   /*background-color:blue;*/
-  height: 100%;
   width: 100%;
-  // min-height:calc(100vh - 64px);    //TODO: fill up space?
 
+  // min-height:calc(100vh - 64px);    //TODO: fill up space?
   // display: flex;
   // flex: 1 1 1e-09px;
   // flex-direction: column;
-  
-  @media screen and (max-width: 600px) {   //extra-small
-    // padding-top:56px;
-    padding: 56px 24px 0px 24px;
-    // height: calc(100vh - 56px);
+
+  @media screen and (max-width: 600px) {   //ultra small
+    height: calc(100% - 36px);        //TODO: responsive height
+    margin:16px 0px;
+    gap:16px;         //flex gap
   }
-  @media screen and (min-width: 600px) and (max-width: 960px) { //small
-    // padding-top:64px;
-    padding: 64px 50px 0px 50px;
-    // height: calc(100vh - 64);
+
+  @media screen and (min-width: 600px) and (max-width: 720px) {   //medium
+    height: calc(100% - 36px);        //TODO: responsive height
+    margin:16px 0px;
+    gap:16px;         //flex gap
   }
-  @media screen and (min-width: 960px) and (max-width: 1200px) {   //medium
-    // padding-top:64px;
-    padding: 64px 100px 0px 100px;
-    // height: calc(100vh - 64px);
+
+  @media screen and (min-width: 720px) and (max-width: 840) {
+    height: calc(100% - 48px);        //TODO: responsive height
+    margin:24px 0px;
+    gap:24px;         //flex gap
   }
-  @media screen and (min-width: 1200px) and (max-width:1920px) {   //large
-    // padding-top:64px;
-    padding: 64px 150px 0px 150px;
-    // height: calc(100vh - 64px);
+
+  @media screen and (min-width: 840px) {   //large
+    height: calc(100% - 48px);        //TODO: responsive height
+    margin:24px 0px;
+    gap:24px;         //flex gap
   }
-  @media screen and (min-width: 1920px) {   //extra-large 
-    padding: 64px 250px 0px 250px;
-  }
+
+}
+
+.chat-container .mat-list-base{
+  // padding-top: 0px !important;
+}
+
+.chat-container .mat-icon {
+  background-color: red;            //TODO: don't hardcode this value; come up with dynamic solutions
 }
 
 .chat-interaction-list {
@@ -52,14 +106,60 @@
 
 .chat-message-list {
   overflow: auto;
-  // top:500px;
-  flex-grow: 1;
+  flex: 20 1 auto;
+
+  @media screen and (max-width: 600px) {   //ultra small
+    margin-bottom: 16px;
+    padding: 16px;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 720px) {   //medium
+    margin-bottom: 16px;
+    padding: 16px;
+  }
+
+  @media screen and (min-width: 720px) and (max-width: 840) {
+    margin-bottom: 24px;
+    padding: 24px;
+  }
+
+  @media screen and (min-width: 840px) {   //large
+    margin-bottom: 24px;
+    padding: 24px;
+  }
+}
+
+.chat-message-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.chat-message-list::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 20px;
+}
+
+.chat-message-list::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 20px;
 }
 
 .chat-input {
-  padding: 0 16px;
-  // position: fixed;
-  // bottom: 25px;
+  @media screen and (max-width: 600px) {   //ultra small
+    padding: 16px;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 720px) {   //medium
+    padding: 16px;
+  }
+
+  @media screen and (min-width: 720px) and (max-width: 840) {
+    padding: 24px;
+  }
+
+  @media screen and (min-width: 840px) {   //large
+    padding: 24px;
+  }
+
 }
 
 .chat-input > mat-form-field {
@@ -74,7 +174,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 1000px;
+  // max-width: 1000px;
 }
 
 // .mat-line > p {

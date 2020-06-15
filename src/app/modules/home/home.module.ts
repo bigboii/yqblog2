@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {OverlayContainer, OverlayModule} from '@angular/cdk/overlay';
-import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { HomeComponent } from './home.component';
@@ -47,7 +47,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
     BrowserModule,
     CommonModule,
     OverlayModule,
-    ScrollDispatchModule,
+    ScrollingModule,
     FlexLayoutModule,
     AngularMaterialModule,
     ChatModule,

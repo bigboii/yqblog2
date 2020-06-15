@@ -9,7 +9,7 @@ import { AppRouterModule } from './app-router.module';
 
 import { CommonModule } from '@angular/common';
 import { OverlayModule} from '@angular/cdk/overlay';
-import { ScrollDispatchModule } from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { HomeModule } from './modules/home/home.module'
@@ -37,7 +37,7 @@ import { MLClientModule} from './modules/ml-client/ml-client.module'
     MLClientModule,
     // DragDropModule,
     FlexLayoutModule,
-    ScrollDispatchModule,
+    ScrollingModule,
     OverlayModule
 
   ],

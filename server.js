@@ -37,70 +37,87 @@ var io = socketio.listen(server);
 app.set('socketio', io);
 app.set('server', server);
 
-var clients2 = [];          //associative array, array[sockets.id] = "username"
-var clients3 = [];          //array of user objects (username, socketid)
+
+var clients = [];          //associative array, array[sockets.id] = "username"
+var users = [];             //array of usernames only
 var nameCounter  = 1;            // number of users
 
 //use io.on This event will be called when new user joins
 //use socket.on to emit or receive event.
 io.on('connection', function(socket) 
 {
-  //This event will be called when a user sends a message
-  socket.on('message', function(data)
+  console.log("a user connected");
+
+  if(users.length > 0) {
+    console.log("CURRENT_USERS being invoked, broadcasting current users: " + users);
+    socket.emit("CURRENT_USERS", users); 
+  }
+
+  socket.on("JOINED", function(userName)
   {
-    console.log(util.inspect(data, false, null, true));
-    console.log('received message from', data.from.name, 'msg', data.content);
+    console.log("a new userName has joined => " +  userName);
+
+    //Store info about user
+    users.push(userName);
+
+    clients[socket.id] = userName;
+
+    console.log("clients: " + clients);
+
+    io.emit("JOINED", userName);
+    
+    
+    //console.log(data.user+" joined the conversation");
+  });
+  
+  socket.on("LEFT", function(userName)
+  {
+    users = users.filter(e => e !== userName);
+    
+    io.emit("LEFT", userName)
+  });
+
+  //TODO: NEED to test RENAME
+  socket.on("RENAME", function(data) {
+
+    io.emit("RENAME",     //emit to all connected clients 
+    {
+      old: data.userName,
+      new: data.newName
+    });
+  });
+
+  //This event will be called when a user sends a message
+  socket.on('MESSAGE', function(data)
+  {
+    function IntTwoChars(i) {
+      return (`0${i}`).slice(-2);
+    };
+
+    // console.log(util.inspect(data, false, null, true));
+    console.log('received message from', data.from, 'msg', data.content);
 
     console.log("broadcasting");           //let chatroom know there was new message
     //io.emit("something happened");         //for all
 
     let date = new Date();
+    // current hours
+    let hours = IntTwoChars(date.getHours());
 
-    io.emit("message",     //for all except me      
+    // current minutes
+    let minutes = IntTwoChars(date.getMinutes());
+
+    // current seconds
+    let seconds = IntTwoChars(date.getSeconds());
+
+    io.emit("MESSAGE",     //emit to all connected clients 
     {
       from: data.from,
       content: data.content,
       action: Action.BROADCAST,
-      time: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() 
+      time: hours + ":" + minutes + ":" + seconds 
     });
-    console.log("broadcast complete");
-  });
-  
-  //Called when new user joins
-  socket.on("user_connect", function(username)
-  {
-    console.log(username);           //debugging
-    
-    clients2[socket.id] = username;  //
-    clients3.push(
-    {
-      name: username,
-      id: socket.id
-    });
-    
-    io.emit("broadcast_user_connect", username);    //for all except me      
-
-    //console.log(data.user+" joined the conversation");
-  });
-  
-  socket.on("user_disconnect", function(data)
-  {
-    /*
-    socket.emit("broadcast_user_disconnect", 
-    {
-      user: data.user 
-    });
-    */
-  });
-  
-  //Called when a client first joins server
-  socket.on("userlist_get", function()
-  {
-    console.log("userlist_get called");
-    if(clients3.length > 0)
-    {
-      socket.emit("broadcast_userlist", clients3);
-    }
+    // console.log("broadcast complete");
   });
   
   //Whenever a client disconnects, this gets executed
@@ -108,24 +125,40 @@ io.on('connection', function(socket)
   {   
     //console.log(clients2);          //debugging : before splice
     
-    var nameOfDc = clients2[socket.id];
-    console.log("[Server] client, " + nameOfDc + ", disconnected from chat server");        //print socket id of disconnected client
+    let userName = clients[socket.id];
+    console.log("[Server] client, " + userName + ", disconnected from chat server");        //print socket id of disconnected client
     
     //remove from clients2 : associative array
-    var index2 = clients2.indexOf(socket.id);          //find index of 
-    delete clients2[socket.id];
+    var index2 = clients.indexOf(socket.id);          //find index of 
+    delete clients[socket.id];
     //clients2.splice(index2, 1);
-    console.log(clients2);
+    console.log("current list of clients after disconnect: " + clients);
+    // console.log(client);
     
     //remove from clients3 : array of objects
-    var index3 = clients3.indexOf((item) => item.id === sockets.id);
-    clients3.splice(index3, 1);
-    console.log(clients3);
+    users = users.filter(e => e !== userName);
+    console.log("users after " + userName + " disconnect: " + users);
     
-    console.log(nameOfDc + "'s disconnection will be broadcasted to other clients");        //print socket id of disconnected client
-    io.emit("broadcast_user_disconnect", nameOfDc);
+    console.log(userName + "'s disconnection will be broadcasted to other clients");        //print socket id of disconnected client
+    io.emit("LEFT", userName);
   });
   
+  socket.on("TYPING", function()
+  {   
+    let userName = clients[socket.id];
+    console.log(userName + " TYPING invoked!");
+
+    socket.broadcast.emit("TYPING", userName + " is typing a message")        //broadcast to everyone else except for the socket that starts it.
+  });
+
+  socket.on("NOT_TYPING", function() 
+  {
+    let userName = clients[socket.id];
+    console.log(userName + " NOT_TYPING invoked!");
+
+    socket.broadcast.emit("NOT_TYPING", userName)
+  });
+
   // socket.emit('message', "Welcome to Chat");
 
 });

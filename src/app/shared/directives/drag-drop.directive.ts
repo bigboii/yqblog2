@@ -40,7 +40,7 @@ export class DragDropDirective {
     // @Input() snackBarRef: MatSnackBar;                 //Reference to parent snackbar
                                     
     
-    @HostBinding('style.background-color') private background = '#f5fcff';
+    @HostBinding('style.background-color') private background;
     @HostBinding('style.opacity') private opacity = '1';
 
     public style: any;

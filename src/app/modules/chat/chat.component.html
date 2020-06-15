@@ -1,27 +1,45 @@
-<div class="chat-container" *ngIf="userName" fxFlex="1 1 1e-09px" fxLayout="column">
-  <mat-list class="chat-message-list">
-    <ng-container *ngFor="let interaction of interactions" style="display:inline;">
-      <mat-list-item>
-        <mat-icon mat-list-icon> person </mat-icon>
-        <div mat-line> 
-          <h3> {{interaction.user}}  </h3>
-          <p> {{interaction.timestamp}} </p>
-        </div>
-      </mat-list-item>
+<div class="grid12">
+  <div class="span10Center container">
+    <div class="span2 user-list-container mat-elevation-z2 elevationOverlay" *ngIf="userName" fxLayout="column">
       <mat-list dense>
-        <mat-list-item class="my-messages" *ngFor="let message of interaction.messages">
-          <span class="mat-caption">{{message}}</span>
+        <h3 matSubheader>Users in Chat:</h3>
+        <mat-list-item *ngFor="let user of users">
+          <p class="mat-body-1">{{user}}</p>
           <!-- <textarea>{{message}} </textarea> -->
         </mat-list-item>
       </mat-list>
-    </ng-container>
-  </mat-list>
-
-  <div class="chat-input" fxLayout="row">
-    <mat-form-field fxFlex="grow">
-      <input matInput placeholder="Enter message" type="text" [(ngModel)]="messageContent" >
-    </mat-form-field>
-    <button fxFlex="nogrow" mat-button type="submit" (click)="sendMessage(messageContent)">Send</button>
+    </div>
+    <!-- fxFlex="1 1 initial" -->
+    <div class="span8 chat-container" *ngIf="userName" fxLayout="column">
+      <mat-list class="chat-message-list mat-elevation-z2 elevationOverlay" fxFlex="1 1 auto">
+        <ng-container *ngFor="let interaction of interactions" style="display:inline;">
+          <mat-list-item>
+            <mat-icon mat-list-icon> person </mat-icon>
+            <div mat-line> 
+              <h3 class="mat-display-1"> {{interaction.user}}  </h3>
+              <p class="mat-caption"> {{interaction.timestamp}} </p>
+            </div>
+          </mat-list-item>
+          <mat-list dense>
+            <mat-list-item class="my-messages" *ngFor="let message of interaction.messages">
+              <span class="mat-body-1">{{message}}</span>
+              <!-- <textarea>{{message}} </textarea> -->
+            </mat-list-item>
+          </mat-list>
+        </ng-container>
+        <mat-list-item>
+          <div mat-line> 
+            <p #isTypingItem class="mat-caption"></p>
+          </div>
+        </mat-list-item>
+      </mat-list>
+  
+      <div class="chat-input mat-elevation-z2 elevationOverlay" fxFlex="0 1 auto" fxLayout="row">
+        <mat-form-field fxFlex="1 1 auto">
+          <input class="messageInput" matInput placeholder="Enter message" type="text" [(ngModel)]="userMessageInput" (keypress)="keyPress($event)" >
+        </mat-form-field>
+        <button fxFlex="nogrow" mat-button type="submit" (click)="sendMessageToServer(userMessageInput)">Send</button>
+      </div>
+    </div>
   </div>
-
 </div>

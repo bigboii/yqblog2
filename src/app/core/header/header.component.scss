@@ -1,4 +1,5 @@
 @import '~@angular/material/_theming';
+@import '~src/themeVars.scss';
 
 // Define a custom mixin that takes in the current theme
 @mixin set-theme-header($theme) {
@@ -24,27 +25,75 @@
     background-color: mat-color($primary, darker);
     color:mat-color($primary, 50);
     @include mat-elevation-transition;
+    padding: 0px 16px;
   }
 
-  
 }
 
-.mat-toolbar-row, .mat-toolbar-single-row {
-    display: flex;
-    box-sizing: border-box;
-    padding: 0 16px;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    white-space: nowrap;
+// .mat-toolbar-row, .mat-toolbar-single-row {  //original
+//     display: flex;
+//     box-sizing: border-box;
+//     padding: 0 16px;
+//     width: 100%;
+//     flex-direction: row;
+//     align-items: center;
+//     white-space: nowrap;
+// }
+
+.mat-toolbar-row, .mat-toolbar-single-row {  //grid version
+  @extend .grid12;
 }
 
 
+.header-toolbar .mat-icon,
+.header-toolbar .mat-slide-toggle,
+.header-toolbar img
+{
+    vertical-align: middle;
+    
+}
+
+.header-toolbar .mat-icon-button {
+  width: unset;
+  height: unset;
+}
+
+// .header-toolbar img{
+//   vertical-align: middle; 
+// }
+
+.logoContainer {
+  grid-column: 1 / span 2;
+
+  // img {
+  //   vertical-align: middle;
+  // }
+}
+
+
+.themeToggleContainer {
+
+  @media screen and (max-width: 600px) {   //ultra small
+    grid-column: 3 / span 2;
+  }
+  @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+    grid-column: 7 / span 2;
+  }
+  @media screen and (min-width: 720px) {   //medium
+    grid-column: 11 / span 2;
+  }
+}
+
+.flex-container {
+  display:flex;
+
+}
 
 .fill-remaining-space {
   /* This fills the remaining space, by using flexbox. 
      Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
+  // flex: 1 1 auto;
+  grid-column: 3 / span 8;
 }
 
 .mat-toolbar > img {
@@ -53,6 +102,6 @@
 }
 
 mat-icon {
-    padding: 0 16px;
+    padding: 0 24px;
     width:initial;  //default width of this image
 }

@@ -15,6 +15,7 @@ html, body {
   margin: 0;
   height:100%; 
   width:100%; 
+  // font-family: 'Roboto', 'arial', sans-serif;  //use this to apply font for non material components?
 }
 
 body { 
@@ -45,80 +46,6 @@ p {
 // p + p {
 //   margin-block-start: 0;
 // }
-
-/**
-  Import Fonts
-  https://medium.com/@aditya_tyagi/import-fonts-in-an-angular-app-the-easy-right-way-ae9e99cab551
-*/
-//Roboto
-@font-face {
-  font-family: 'Roboto', sans-serif;
-  font-weight:100;
-  src: url('/assets/fonts/Roboto/Roboto-Thin.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto', sans-serif;
-  font-weight:300;
-  src: url('/assets/fonts/Roboto/Roboto-Light.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 400;
-  src: url('/assets/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  src: url('/assets/fonts/Roboto/Roboto-Medium.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 700;
-  src: url('/assets/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 900;
-  src: url('/assets/fonts/Roboto/Roboto-Black.ttf') format('truetype');
-}
-
-//Ubuntu
-@font-face {
-  font-family: 'Ubuntu Mono', monospace;
-  src: url('/assets/fonts/Ubuntu_Mono/UbuntuMono-Bold.ttf') format('truetype');
-  // font-weight: bold;
-}
-
-
-//RobotoMono
-@font-face {
-  font-family: 'Roboto Mono', monospace;
-  src: url('/assets/fonts/Roboto_Mono/RobotoMono.ttf') format('truetype');
-  // font-weight: bold;
-}
-
-
-
-/**
-* Material Icons (Self Hosting)
-* Warning: increases ng build time significantly ( 2 min)
-*/
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url("/assets/material-design-icons-3.0.1/iconfont/MaterialIcons-Regular.woff2") format('woff2')
-  // src: local('Material Icons'),
-        // local('MaterialIcons-Regular'),
-        // url("/assets/material-design-icons-3.0.1/MaterialIcons-Regular.woff2") format('woff2')
-        // url("/assets/material-design-icons-3.0.1/MaterialIcons-Regular.woff") format('woff')
-        // url("/assets/material-design-icons-3.0.1/.ttf") format('truetype')
-}
 
 .material-icons {
   font-family: 'Material Icons';

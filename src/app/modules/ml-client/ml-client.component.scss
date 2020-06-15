@@ -1,58 +1,146 @@
 @import '~src/themeVars.scss';
+@import '~@angular/material/_theming';
+@import '~@angular/material/theming';
+//https://stackoverflow.com/questions/55949178/how-to-get-the-current-angular-themes-color-of-a-specific-component-e-g-butto
+
+@mixin set-theme-mlclient($theme) {
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+    $background-color : mat-color($background, dialog);
+
+    .elevatedBackground {
+        background-color : $background-color;
+    }
+}
 
 .ml-container {
-    margin-top:64px;
-    width:100%;
-    height: 100%;
+    margin-top:24px;
+    margin-bottom:24px;
+    grid-row-gap:24px;
+    // margin-top:64px;
+    // width:100%;
+    // height: 100%;
 
-    margin: 0px auto;
-    max-width: calc(#{$eight-pt} * 128);   //1024px
+    // margin: 0px auto;
+    // max-width: calc(#{$eight-pt} * 128);   //1024px
 
-    @media screen and (max-width: 600px) {   //extra-small
-        // padding: 56px 24px 0px 24px;
-        padding: calc(#{$eight-pt} * 8) 0px;
+    // @media screen and (max-width: 600px) {   //extra-small
+    //     // padding: 56px 24px 0px 24px;
+    //     padding: calc(#{$eight-pt} * 8) 0px;
+    // }
+    // @media screen and (min-width: 600px) and (max-width: 960px) { //small
+    //     // padding: 64px 50px 0px 50px;
+    //     padding: calc(#{$eight-pt} * 16) 0px;
+    // }
+    // @media screen and (min-width: 960px) and (max-width: 1200px) {   //medium
+    //     // padding: 64px 100px 0px 100px;
+    //     padding: calc(#{$eight-pt} * 16) 0px;
+    // }
+    // @media screen and (min-width: 1200px) and (max-width:1920px) {   //large
+    //     // padding: 64px 150px 0px 150px;
+    //     padding: calc(#{$eight-pt} * 16) 0px;
+    // }
+    // @media screen and (min-width: 1920px) {   //extra-large 
+    //     // padding: 64px 250px 0px 250px;
+    //     padding: calc(#{$eight-pt} * 16) 0px;
+    // }
+}
+
+.ml-container section h3 {
+    grid-column: 1/ span 8;
+}
+
+.ml-container section .content {
+    grid-column: 1 / span 8;
+    
+}
+
+:host {
+    
+    //top padding for mat-toolbar
+    @media screen and (max-width: 600px) {   //small
+    // padding: 150px 100px;
+        padding-top: 56px;
     }
-    @media screen and (min-width: 600px) and (max-width: 960px) { //small
-        // padding: 64px 50px 0px 50px;
-        padding: calc(#{$eight-pt} * 16) 0px;
+    @media screen and (min-width: 1200px) {  //large
+    // padding: 150px 150px;
+        padding-top: 64px;
     }
-    @media screen and (min-width: 960px) and (max-width: 1200px) {   //medium
-        // padding: 64px 100px 0px 100px;
-        padding: calc(#{$eight-pt} * 16) 0px;
+}
+
+.introduction {
+    grid-column: 2 / span 10;
+}
+
+.span5Left {
+    @media screen and (max-width: 600px) {   //ultra small
+        grid-column: 1 / span 1;
+        padding:16px;
     }
-    @media screen and (min-width: 1200px) and (max-width:1920px) {   //large
-        // padding: 64px 150px 0px 150px;
-        padding: calc(#{$eight-pt} * 16) 0px;
+    @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+        grid-column: 1 / span 3;
+        padding:16px;
     }
-    @media screen and (min-width: 1920px) {   //extra-large 
-        // padding: 64px 250px 0px 250px;
-        padding: calc(#{$eight-pt} * 16) 0px;
+
+    @media screen and (min-width: 840px) {   //medium
+        grid-column: 2 / span 5;
+        padding:24px;
     }
+
+    @extend .grid5;
+
+    z-index: 2;
+    @include mat-elevation(2);
+}
+
+.span5Right{
+    @media screen and (max-width: 600px) {   //ultra small
+        grid-column: 2 / span 1;
+        padding:16px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 840px) {   //medium
+        grid-column: 5 / span 3;
+        padding:16px;
+    }
+
+    @media screen and (min-width: 840px) {   //
+        grid-column: 7 / span 5;
+        padding:24px;
+    }
+
+    @extend .grid5;
+
+    z-index: 2;
+    @include mat-elevation(2);
+}
+
+.mlGlossary {
+    grid-column: 2 / span 10;
 }
 
 /*
     CSS for drag drop
 */
 
-.uploadFileContainer {
-    background-image: url("../../../assets/material-design-icons-3.0.1//file/ios/ic_file_upload_white_48pt.imageset/ic_file_upload_white_48pt.png");
-    background-repeat: no-repeat;
-    background-size:100px;
-    background-position:center;
-    height:300px;
-    width:100%;
-    // min-width: 300px;    //for mobile
-    margin: 24px auto;
-    border: 2px dashed #1C8ADB;
-    border-radius:16px;
-}
+// .uploadFileContainer {
+//     background-image: url("../../../assets/material-design-icons-3.0.1//file/ios/ic_file_upload_white_48pt.imageset/ic_file_upload_white_48pt.png");
+//     background-repeat: no-repeat;
+//     background-size:100px;
+//     background-position:center;
+//     height:300px;
+//     width:100%;
+//     // min-width: 300px;    //for mobile
+//     margin: 24px auto;
+//     border: 2px dashed #1C8ADB;
+//     border-radius:16px;
+// }
 
-.uploadFileContainer:hover {
-    cursor: pointer;
-    background-color: #9ecbec !important;
-    opacity: 0.8;
+// .uploadFileContainer:hover {
+//     cursor: pointer;
+//     background-color: #9ecbec !important;
+//     opacity: 0.8;
 
-}
+// }
 
 .files-list {
     display: flex;
@@ -101,3 +189,5 @@
 .dataContainer {
     padding:8px;
 }
+
+

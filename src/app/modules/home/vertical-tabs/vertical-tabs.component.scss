@@ -33,6 +33,7 @@ $config: mat-typography-config();
     color: mat-color($accent);
     font-size: 16px;
     // line-height: 60px;
+  
   }
 
   .tabcontent ul {
@@ -45,73 +46,164 @@ $config: mat-typography-config();
     position: relative;
     padding-left: 32px;
     margin-bottom: 8px;
+
+    // font-family: 'Ubuntu Mono', monospace !important; 
+    font-size: 14px;
   }
   
-  // .tabCardContent p {
-  //   font-size:14px;
-  //   line-height:22px; 
-  // }
+  .tabCardContent {
+    ul {
+      list-style-type: none;
+    }
+  }
 
   .tabcontent mat-card-content > p {
     // padding-left: 32px;
     // margin-bottom: 8px;
   }
 
-  // p{
-  //   // margin: 8px 0;
-  //   margin:0;
-  //   // margin-bottom: 16px;
-  // }
-  // p + p{
-  //   margin-top:10px;
+  // .tabcontent > mat-card {
+  //   padding:0px;
   // }
 
-  .tabcontent > mat-card {
-    padding:0px;
+  // mat-card:hover {     //BUG:    THIS IS IMPACTING HOME.SCSS
+  //   z-index: 4;
+  //   @include mat-elevation-transition;
+  // }
+
+  /*  
+  Remove elevation and background color for mat-card   //BUG:  this is impacting home scss
+  This css is impacting home.scss????????????
+  */
+  // mat-card:not([class*=mat-elevation-z])
+  .tabsContentContainer .mat-card:not([class*=mat-elevation-z]) {
+    background: none;
+    box-shadow: none;
+    // z-index:0;
   }
 
-  mat-card:hover {
-    z-index: 4;
-    @include mat-elevation-transition;
+  // .tabcontent {
+  //   background: none;
+  //   box-shadow: none;
+  //   // z-index:0;
+  // }
+
+  .buttonRows {
+    display:grid;
+    border-right: 1px solid rgba(0,0,0,.12);
+    height: fit-content;
+
+    @media screen and (max-width: 600px) {   //ultra small
+      grid-template-rows: 56px 56px 56px;
+    }
+    @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+      grid-template-rows: 64px 64px 64px;
+    }
+    @media screen and (min-width: 720px) {   //medium
+      grid-template-rows: 64px 64px 64px;
+    }
+
+    button {
+      color:inherit;
+      transition: color 1s linear;
+    }
+
+    button:focus {
+      color:mat-color($primary);
+      transition: color 1s linear;
+    }
+
+    button:visited {
+      color:inherit;
+      transition: color 1s linear;
+    }
+
   }
 
-  .tab {
-    float: left;
-    width: max-content;  //30%
-    height: 300px;
+  .tabs {
+    // float: left;
+    // width: max-content;  //30%
+    // height: 300px;
+    .mat-button {             //to fix bug: when mat-button is clicked within grid layout, sections disappear.
+      position:initial;
+    }
+
+    .mat-button:hover {             //to fix bug: when mat-button is clicked within grid layout, sections disappear.
+      z-index: 2;
+      @include mat-elevation-transition;
+      @include mat-elevation(2);
+    }
+
+    
+    display:grid;
+    justify-content: right;
+  
+    @media screen and (max-width: 600px) {   //ultra small
+      grid-column: 1 / span 1;
+    }
+    @media screen and (min-width: 600px) and (max-width: 720) {   //medium
+      grid-column: 1 / span 1;
+    }
+    @media screen and (min-width: 720px) {   //medium
+      grid-column: 1 / span 1;
+    }
+    @media screen and (min-width:1280px) and (max-width: 1439px){
+      // 1280 – 1439
+      grid-column: 1 / span 2;
+    }
+    @media screen and (min-width:1439px) {
+      grid-column: 1 / span 2;
+    }
+  
+    // .tabBorder {
+    //   position:absolute;
+    //   grid-row: 1 / span 1;
+    // }
+
+    .tabBorderContainer {
+      // position:absolute;
+      grid-row: 1 / span 1;
+      position: relative;
+
+      .tabBorder {
+        // position:relative;
+        position:absolute;
+        right: 0;
+        // right:64px;     //TODO: in desktop mode, its 136px... need to fetch this value dynamically somehow
+      }
+    }
+
   }
 
-  .tab div button {
-    // display: block;
-    background-color: inherit;
-    // color: $primary;
-    padding: 8px;
-    width: 100%;
-    padding: 8px 24px;
-    border: none;
-    outline: none;
-    text-align: left;
-    cursor: pointer;
-    font-size: mat-font-size($config, button);
-    font-weight: mat-font-weight($config, button);
-    font-family: mat-font-family($config);
-    max-height:61px;
-    border-radius:0px;     //override mat-button's rounded corners
-    // text-align: center;
-    vertical-align:middle;
 
-//     $button-font-family: map-font-family($my-button);
-// $button-font-size: map-font-size($my-button);
-// $button-font-weight: map-font-weight($my-button);
-// $button-line-height: map-line-height($my-button);
-  }
+//   .tab div button {
+//     // display: block;
+//     background-color: inherit;
+//     // color: $primary;
+//     // padding: 8px;
+//     // width: 100%;
+//     // padding: 8px 24px;
+//     border: none;
+//     outline: none;
+//     text-align: left;
+//     cursor: pointer;
+//     font-size: mat-font-size($config, button);
+//     font-weight: mat-font-weight($config, button);
+//     font-family: mat-font-family($config);
+//     // max-height:61px;
+//     border-radius:0px;     //override mat-button's rounded corners
+//     // text-align: center;
+//     vertical-align:middle;
+
+// //     $button-font-family: map-font-family($my-button);
+// // $button-font-size: map-font-size($my-button);
+// // $button-font-weight: map-font-weight($my-button);
+// // $button-line-height: map-line-height($my-button);
+//   }
 
   .tabs-container {
     width:100%;
   }
-
-
-
 
 
   .tab div span {
@@ -140,30 +232,32 @@ $config: mat-typography-config();
     border-right: 2px solid mat-color($accent);
   }
 
-  /* tab content */
-  .tabcontent {
-    float: left;
-    // padding: 16px;
-    width: 100%;
-    border-left: none;
-    height: 300px;
-    flex-grow: 1;
+  .tabsContentContainer {
+    // grid-column: 3/span 3;
+    grid-column: 3/span 5;
+  }
 
-    @media screen and (max-width: 600px) {
-      padding-left: 0px;
-    }
-    @media screen and (min-width: 600px) {   //medium
-      padding-left:32px;
-    }
+  /* tab content */
+  // .tabcontent {
+    // float: left;
+    // // padding: 16px;
+    // width: 100%;
+    // border-left: none;
+    // height: 300px;
+    // flex-grow: 1;
+
+
 
     // padding-top: 16px;
     // padding-left: 16px;
     //transition: all 0s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
-  }
 
-  .fixedCardHeight {
-    height: 300px;
-  }
+    // grid-column: 3 / span 3;
+  // }
+
+  // .fixedCardHeight {
+  //   height: 300px;
+  // }
 }
 
 .vertical-tabs-wrapper {
@@ -171,15 +265,19 @@ $config: mat-typography-config();
     display:none;
   }
   @media screen and (min-width: 600px) {   //medium
-    display:flex;
-    flex-direction: row;
+    // display:flex;
+    // flex-direction: row;
   }
+
+  // .mat-card {
+  //   padding: 0 0;
+  // }
 }
 
 .mat-card-avatar {
   width:48px;
   height:48px;
-  margin-right:8px;
+  margin-right:24px;
   // object-fit: scale-down;
 }
 
@@ -199,15 +297,6 @@ $config: mat-typography-config();
 
 .mat-card-subtitle {
   
-}
-
-/*
-  Remove elevation and background color for mat-card
-*/
-.mat-card:not([class*=mat-elevation-z]) {
-  background: none;
-  box-shadow: none;
-  z-index:0;
 }
 
 .card-container {
@@ -241,8 +330,6 @@ $config: mat-typography-config();
   @media screen and (min-width: 600px) {   //medium
     display:none;
   }
-
-  
 }
 
 .mat-tab-body {
